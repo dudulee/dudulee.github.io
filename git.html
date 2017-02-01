@@ -13,10 +13,60 @@
         <div class="entry">
             <h2 class="center">Utilisation de base</h2>
             <p class="center">
-            On commence par ouvrir le TTY :
-            <img src="./img/2017-02-01_23-20-33.png" alt="context-menu" style="width:304px;">
+            On commence par ouvrir le TTY :<br>
+            <a href="./img/2017-02-01_23-20-33.png"><img src="./img/2017-02-01_23-20-33.png" alt="context-menu" style="width:460px;"></a></p>
+            <p class="center">
+            On vérifie qu'on est bien dans le bon dossier (en jaune) et qu'un .git est bien présent <code>(master)</code>.<br>
+            <a href="./img/mintty_2017-02-01_23-24-15.png"><img src="./img/mintty_2017-02-01_23-24-15.png" alt="start" style="width:460px;"></a></p>
+            <h1 class="center">On fait un <code>git pull</code> TOUT DE SUITE!!!</h1>
+            <p class="center">
+            <a href="./img/mintty_2017-02-01_23-26-28.png"><img src="./img/mintty_2017-02-01_23-26-28.png" alt="git pull" style="width:460px;"></a>
+            <br>
+            Ça doit être instantané, premier truc que vous faites: <code>git pull</code> !!! Sinon vous allez sauvegarder des changements sans vous être mis à jour au préalable et ça va créer pleins de conflits ingérable. Encore moins en ligne de commande. donc <code>git pull</code> instant! </p>
+            <p class="center">
+            Après vos changement et le <code>git pull</code> on peut sauvegarder ces changements :
+            <code>git add -A</code> puis <code>git commit -m "message"</code>.<br>
+            Le -A c'est pour pas se casser la tête et tout simplement signaler à git qu'il y a eu des changements sur <i>*tous les fichiers*</i>.<br>
+            Pour le message, c'est simplement pour nous, pouvoir retrouver/retracer/comprendre à quoi correspond chaque commit sans vérifier un par un. C'est de bonne guerre comme dirait un certain Manu.<br><a href="./img/mintty_2017-02-01_23-25-20.png"><img src="./img/mintty_2017-02-01_23-25-20.png" alt="commit" style="width:460px;"></a>
+            </p>
 
+            <p class="center">
+            Y a plus qu'à envoyer nos changements vers le serveur central avec <code>git push</code>(github) et les autres, qui auront correctement <code>git pull</code> régulièrement recevront également nos changements sous pue :)
+            <br>
+            <a href="./img/mintty_2017-02-01_23-26-00.png"><img src="./img/mintty_2017-02-01_23-26-00.png" alt="git push" style="width:460px;"></a>
+            </p>
             <h2 class="center">Mise en place : cloner le repo</h2>
+            <p class="center"><code>git clone https://github.com/username/nom-repo</code> et POOF! On a l'exact réplique du repo, avec les gitignores, les HEADS, etc. Si git était déjà configuré correctement, y a plus rien à faire !
+            <br><a href="./img/clone.png"><img src="./img/clone.png" alt="git clone" style="width:460px;"></a><br>
+            vérifiez le <code>(master)</code>en bleu et la présence d'un dossier <code>.git</code> (<code>-a</code> pour voir les fichiers cachés avec <code>ls</code></p>
+            <br>
+            <p class="center">si vous ne l'avez pas encore fait (première config de git) :<br>
+            <code>git config --global user.email "nom@example.com"</code><br>
+            <code>git config --global user.name "nom"</code>
+            </p>
+
+            <br>
+            <br>
+            <br>
+            <br>
+            <h2 class="center">Créer un nouveau repo</h2>
+            <p class="center">
+            créer un dossier avec un fichier dedans <br>
+            <code>
+            mkdir repo<br>
+            cd repo<br>
+            echo "#Hitler did nothing wrong" >> README.md</code><br>
+            on créer un dossier .git (l'initialisation)<br>
+            <code>git init</code><br>
+            on ajouter le fichier qu'on a créer, et on commit.<br>
+            <code>git add README.md<br>
+            git commit -m "first commit"</code><br>
+            on configure le remote ( on le lie à notre repo sur github)<br>
+            <code>git remote add origin https://github.com/username/repo.git</code><br>
+            on push (-u va définir le stream par défaut; origin c'est le nom donnée au repo; master la branche qu'on veut push)<br>
+            <code>git push -u origin master</code><br>
+            un simple <code>git push</code> suffira les prochaines fois.
+
 
         </div>
     </div>
