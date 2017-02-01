@@ -22,3 +22,14 @@ a:hover {
     text-decoration: underline;
     font-weight: bold;
 }
+
+.center{
+    text-align: center;
+}
+
+#nav {
+    margin-right: 15%;
+    margin-left: 15%;
+    margin-top: 70px;
+    display: inline-flex;
+}
