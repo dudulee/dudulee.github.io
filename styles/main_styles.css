@@ -42,3 +42,19 @@ code {
     padding-right: 20px;
     padding-left: 20px;
 }
+
+
+
+
+
+#lol a, #lol a:link, #lol a:visited {
+    color: var(--fg-master);
+    font-family: "Courier New", Courier, monospace;
+    font-size: 12px;
+    font-weight: none;
+}
+#lol {
+    position: absolute;
+    bottom:0;
+    right:0;
+}
