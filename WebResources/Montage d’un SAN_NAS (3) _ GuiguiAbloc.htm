@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html hasbrowserhandlers="true"><head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+  <meta name="viewport" content="width=device-width; user-scalable=0">
+
+  <link rel="stylesheet" href="guiguiAbloc/aboutReader.css" type="text/css">
+
+<body class="light sans-serif loaded">
+  <div id="container" class="container font-size5 content-width3">
+    <div id="reader-header" class="header" style="display: block;">
+      <style scoped="">
+        @import url("chrome://global/skin/aboutReaderControls.css");
+      </style>
+      <a id="reader-domain" class="domain" href="https://dudulee.github.io/WebResources/Other%20link%20for%20ISCSI.html">dudulee.github.io</a>
+      <div class="domain-border"></div>
+      <h1 id="reader-title">Montage d’un SAN/NAS (3) | GuiguiAbloc</h1>
+      <div id="reader-credits" class="credits">Ecrit le</div>
+    </div>
+
+    <div class="content">
+      <style scoped="">
+        @import url("chrome://global/skin/aboutReaderContent.css");
+      </style>
+      <div id="moz-reader-content" class="line-height4" style="display: block;"><div id="readability-page-1" class="page" xml:base="https://dudulee.github.io/WebResources/Other%20link%20for%20ISCSI.html"><div class="entry-content"><p>Suite de l’installation du SAN/NAS et sa partie logicielle.</p><p>Comme dit précédemment, je suis partie sur le projet OpenFiler qui convient le mieux a mes désirs.</p><p>J’ai
+ tout d’abord tester la version stable, la 2.2, qui s’est installée sans
+ soucis particulier, a reconnu mes disques et ma configuration.</p><p>Après quelques tests, curieux, je me suis penché (pas trop hein <img src="guiguiAbloc/icon_smile.gif" alt=":-)" class="wp-smiley">  ) sur la version Beta, la 2.3.</p><p>Et là, surprise, c’est une bombe <img src="guiguiAbloc/icon_biggrin.gif" alt=":-D" class="wp-smiley"> </p><p>Une
+ nouvelle interface web, des réglages plus pointus sur le iSCSI, les
+droits, le channel-bonding intégré etc… Bref, un bijou et c’est cette
+version que j’ai installée.</p><p>Vous trouverez la procédure basique d’installation <a href="http://www.openfiler.com/docs/install/graphical_install.html" title="Install" target="_blank">ici</a>.</p><p>J’ai tout d’abord monter un RAID 1 de 10Go pour le système et de 1,5Go pour le swap via l’interface d’installation.</p><p>Quelques patchs a passer via Conary, le gestionnaire de paquet rPath comme décris sur le <a href="http://www.openfiler.com/news/?id=43" title="beta" target="_blank">site web</a> et c’est parti pour la configuration.</p><p>Voici quelques copies d’écrans plus explicite :</p>
+
+<p><a href="http://blog.guiguiabloc.fr/wp-content/capture1.png" title="Disque"><img src="http://blog.guiguiabloc.fr/wp-content/capture1.png" alt="Disque"></a></p>
+<p><a href="http://blog.guiguiabloc.fr/wp-content/capture2.png" title="Disque2"><img src="http://blog.guiguiabloc.fr/wp-content/capture2.png" alt="Disque2"></a></p>
+
+<p>Je vous passe les parties création de volume, partage NFS, SMB ou autres pour m’intéresser a ce que je veux monter : un SAN.</p><p>Création d’un volume <a href="http://fr.wikipedia.org/wiki/ISCSI" title="iscsi" target="_blank">iSCSI </a>de 30Go :</p>
+
+<p><a href="http://blog.guiguiabloc.fr/wp-content/capture3.png" title="iscsi1"><img src="http://blog.guiguiabloc.fr/wp-content/capture3.png" alt="iscsi1"></a></p>
+
+<p>Paramétrage du iSCSI target avec affectation de la nouvelle <a href="http://fr.wikipedia.org/wiki/LUN" title="LUN" target="_blank">LUN</a> créé.</p><p>Sachez qu’on peux affiner les controles d’accès suivant les ips, authentification CHAP ou/et LDAP etc…</p><p>Pour le moment je laisse tout ouvert.</p>
+
+<p><a href="http://blog.guiguiabloc.fr/wp-content/capture4.png" title="iscsi2"><img src="http://blog.guiguiabloc.fr/wp-content/capture4.png" alt="iscsi2"></a></p>
+<p><a href="http://blog.guiguiabloc.fr/wp-content/capture5.png" title="iscsi3"><img src="http://blog.guiguiabloc.fr/wp-content/capture5.png" alt="iscsi3"></a></p>
+
+<p>Côté client, il existe un excellent article sur le iSCS sur <a href="http://www.unixgarden.com/index.php/administration-reseau/le-support-du-protocole-iscsi-dans-linux" title="iscsi" target="_blank">UnixGarden</a> donc je vous invite fortement à le lire.</p><p>J’avais
+ tout d’abord essayer de recompiler mon noyau avec l’option iSCSI et
+ensuite installer les packages Debian Open-iSCSI, un fiasco complet,
+sûrement du au fait que mon kernel est compilé depuis les sources et non
+ à la sauce Debian.</p><p>J’ai donc retirer le support au niveau du noyau et un petit tour sur le site d’<a href="http://www.open-iscsi.org/" title="iscsi" target="_blank">Open-iscsi</a> pour telecharger les sources.</p><p>Premier test, on scanne le SAN :</p><p>Thanatos:~# /etc/init.d/open-iscsi start<br>
+Starting iSCSI initiator service: iscsid.<br>
+Setting up iSCSI targets:.<br>
+Thanatos:~# iscsiadm -m discovery -t sendtargets -p 192.168.0.20:3260<br>
+192.168.0.20:3260,1 iqn.2006-01.com.openfiler:tsn.2b335a36430c</p><p>Un succès, attachons le :</p><p>Thanatos:~# iscsiadm -m node -T iqn.2006-01.com.openfiler:tsn.2b335a36430c -p 192.168.0.20:3260 -l<br>
+Login session [iface: default, target: iqn.2006-01.com.openfiler:tsn.2b335a36430c, portal: 192.168.0.20,3260]</p><p>Il ne reste qu’a jeter un oeil sur nos périphériques SCSI :</p><p>Thanatos:~# cat /proc/scsi/scsi<br>
+Attached devices:<br>
+Host: scsi1 Channel: 00 Id: 00 Lun: 00<br>
+Vendor: OPNFILER Model: VIRTUAL-DISK     Rev: 0<br>
+Type:   Direct-Access                    ANSI  SCSI revision: 04</p><p>Et voila, un nouveau disque SCSI <img src="guiguiAbloc/icon_biggrin.gif" alt=":-D" class="wp-smiley"> </p><p>La preuve :</p><p>Thanatos:~# fdisk -l</p><p>Disk /dev/hda: 32.0 GB, 32003112960 bytes<br>
+255 heads, 63 sectors/track, 3890 cylinders<br>
+Units = cylinders of 16065 * 512 = 8225280 bytes</p><p>Device Boot      Start         End      Blocks   Id  System<br>
+/dev/hda1   *           1        3725    29921031   83  Linux<br>
+/dev/hda2            3726        3890     1325362+   5  Extended<br>
+/dev/hda5            3726        3890     1325331   82  Linux swap / Solaris</p><p>Disk /dev/sda: 31.9 GB, 31977373696 bytes<br>
+64 heads, 32 sectors/track, 30496 cylinders<br>
+Units = cylinders of 2048 * 512 = 1048576 bytes</p><p>Device Boot      Start         End      Blocks   Id  System<br>
+/dev/sda1               1       30496    31227888   83  Linux</p><p>Bien entendu, a ma première connexion au SAN, j’ai simplement fait un fdisk /dev/sda puis créé une partition que j’ai formaté.</p><p>Un mount bien placé et me voila avec un nouveau disque SCSI (via iSCSI) de 30Go…</p><p>Un succès total <img src="guiguiAbloc/icon_smile.gif" alt=":-)" class="wp-smiley"> </p><p>Thanatos:~# mount /dev/sda1 /data<br>
+Thanatos:~# mount<br>
+/dev/hda1 on / type ext3 (rw,errors=remount-ro)<br>
+tmpfs on /lib/init/rw type tmpfs (rw,nosuid,mode=0755)<br>
+proc on /proc type proc (rw,noexec,nosuid,nodev)<br>
+sysfs on /sys type sysfs (rw,noexec,nosuid,nodev)<br>
+procbususb on /proc/bus/usb type usbfs (rw)<br>
+udev on /dev type tmpfs (rw,mode=0755)<br>
+tmpfs on /dev/shm type tmpfs (rw,nosuid,nodev)<br>
+devpts on /dev/pts type devpts (rw,noexec,nosuid,gid=5,mode=620)<br>
+/dev/sda1 on /data type ext3 (rw)</p><p>Thanatos:~# df -k<br>
+Sys. de fich.        1K-blocs       Occupé Disponible Capacité Monté sur<br>
+/dev/hda1             29450988  10760432  17194508  39% /<br>
+tmpfs                   256620         0    256620   0% /lib/init/rw<br>
+udev                     10240        76     10164   1% /dev<br>
+tmpfs                   256620         0    256620   0% /dev/shm<br>
+/dev/sda1             30737328    184572  28991364   1% /data</p><p>Mes premier tests de lecture/écriture sont bluffant, bien plus rapide qu’un montage NFS mais je vous laisse tester vous-même <img src="guiguiAbloc/icon_biggrin.gif" alt=":-D" class="wp-smiley"> </p><p>Ah, dernière chose qui fait le côté «&nbsp;geek&nbsp;» de la chose, mon /dev/sda1 est monté en… wifi <img src="guiguiAbloc/icon_smile.gif" alt=":-)" class="wp-smiley"> </p><p>Du iSCSI via un SAN en WiFi, ça déchire quand même un peu <img src="guiguiAbloc/icon_biggrin.gif" alt=":-D" class="wp-smiley"> </p><p>Conclusion
+ : OpenFiler est un excellent produit que je vous conseille fortement
+d’essayer, bien entendu, de bonnes notions des environnements SAN sont
+nécessaires mais je suis sur que vous allez dévorer les articles a ce
+sujet.</p><p>PS : Je ne détaille pas volontairement toutes les étapes de
+ configuration ou d’installation, la découverte est le meilleure moyen
+d’apprendre mais je reste à votre écoute si vous avez des questions à ce
+ sujet. Le forum d’OpenFiler est vivant et les gens prêt à vous aider
+pour peu que vous maitrisiez la langue de Shakespeare.</p></div></div></div>
+    </div>
+
+    <div>
+      <style scoped="">
+        @import url("chrome://global/skin/aboutReaderControls.css");
+      </style>
+      <div id="reader-message" style="display: none;"></div>
+    </div>
+  </div>
+</body></html>
