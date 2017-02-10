@@ -30,6 +30,10 @@ code {
 .center{
     text-align: center;
 }
+.txt {
+    margin-left:20%;
+    margin-right:20%;
+}
 
 #nav {
     margin-right: 15%;
