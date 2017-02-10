@@ -1,0 +1,16 @@
+(function(){
+  window['optimizely'] = window['optimizely'] || [];
+  window['optimizely'].push(['activateGeoDelayedExperiments', {
+    'location':{
+      'city': "TOURNAI",
+      'continent': "EU",
+      'country': "BE",
+      'region': ""
+    },
+    'ip':"193.191.131.5"
+  }]);
+})
+//
+()
+
+;

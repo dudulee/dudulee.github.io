@@ -1,0 +1,1354 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0138)http://www.enterprisenetworkingplanet.com/netsp/article.php/3690921/Storage-Networking-101-%2DUnderstanding-the-Fibre-Channel-Protocol.htm -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" async="" src="./Fibre Channel Protocol_files/tag.aspx"></script><script type="text/javascript" async="" src="./Fibre Channel Protocol_files/tag.aspx"></script><script type="text/javascript" src="./Fibre Channel Protocol_files/get"></script><script type="text/javascript" src="./Fibre Channel Protocol_files/optout_check"></script><script src="./Fibre Channel Protocol_files/cb=gapi.loaded_1" async=""></script><script src="./Fibre Channel Protocol_files/cb=gapi.loaded_0" async=""></script><script type="text/javascript" async="" src="./Fibre Channel Protocol_files/plusone.js.téléchargement" gapi_processed="true"></script><script async="" src="./Fibre Channel Protocol_files/controltag.js.9b011501452f200c61e59ab807d974c3"></script>
+
+	<meta name="WT.qs_dlk" content="WJ2xAQrIZ7wAAH1xCWYAAAAU">
+
+	<meta name="WT.qs_shmv" content="hv20150423-shelton.sf.quinstreet.net">
+
+	<meta name="inject_params" content="WT.qs_dlk=WJ2xAQrIZ7wAAH1xCWYAAAAU&amp;">
+
+	<meta http-equiv="Set-Cookie" content="inject_params=WT.qs_dlk=WJ2xAQrIZ7wAAH1xCWYAAAAU&amp;; path=/;  domain=enterprisenetworkingplanet.com;">
+	<meta http-equiv="Set-Cookie" content="WMUUID=WJ2xAQrIZ7wAAH1xCWYAAAAU; path=/;  domain=enterprisenetworkingplanet.com;">
+
+    <title>Storage Networking 101:  Understanding the Fibre Channel Protocol</title>
+    <meta name="description" content="Troubleshooting a SAN requires some knowledge of how the underlying protocols work. Here&#39;s the  Fibre Channel protocol in-depth.">
+    <meta name="keywords" content="HTTP , Ethernet , Protocol , Networking , Fibre Channel , Storage , Enterprise , PHP , GUI , Articles , HP , os , av , app , MS , gns , TCP , edge , SAN , NEC , IM , CA , Exchange , LAN , XP , PAN , php , content , Nu , application , group , list , exam , plan , Fibre Channel , protocol , data , multi , text , x , MS , Net , Online , Switches , data , install , set , node , dynamic , UI , VAR , IDE , OSS , import , Time , GP , HIS , ICS , IL , IME , Word , number , relative , format , encrypt , IT , sco , source , IP , SWITCH , presence , ups , process , structure , network , HR">
+        <meta name="qs.quad.keywords" content="{keywords:&quot;109590,108770,109380|97520,96980,97450|96000,95950|935613|95850&quot;,nodes:&quot;109380,97520,108770,109590&quot;}">
+    <meta name="robots" content="index,follow">
+    <script type="text/javascript" async="" src="./Fibre Channel Protocol_files/wtid.js.téléchargement"></script><script async="" src="./Fibre Channel Protocol_files/webtrends.min.js.téléchargement"></script><script async="" src="./Fibre Channel Protocol_files/analytics.js.téléchargement"></script><script type="text/javascript" async="" src="./Fibre Channel Protocol_files/controltag"></script><script type="text/javascript" async="" src="./Fibre Channel Protocol_files/tag.aspx"></script><script async="" src="./Fibre Channel Protocol_files/beacon.js.téléchargement"></script><script language="javascript" src="http://e1.cdn.qnsr.com/cgi/b/109590,108770,109380/97520,96980,97450/96000,95950/935613/95850/tx.js"></script>
+                <link rel="alternate" media="only screen and (max-width: 640px)" href="http://mobile.enterprisenetworkingplanet.com/netsp/article.php/3690921/Storage-Networking-101--Understanding-the-Fibre-Channel-Protocol.htm">
+                <meta name="articleKey" content="6318070">
+        <link href="./Fibre Channel Protocol_files/minify-css.css" type="text/css" rel="stylesheet">
+    <!--[if IE 7]>
+    <link href="http://www.enterprisenetworkingplanet.com/css/ie7.css" type="text/css" rel="stylesheet" />
+    <![endif]-->
+    <!--[if IE 6]>
+    <link href="http://www.enterprisenetworkingplanet.com/css/ie7.css" type="text/css" rel="stylesheet" />
+    <![endif]-->
+        <script>window.ONSWIPE_USR = 'enterprisenetworkingplane'</script>
+    <script src="./Fibre Channel Protocol_files/on.js.téléchargement" id="onswipe_synapse"></script>
+
+    <!-- Begin comScore Tag -->
+<script>
+  var _comscore = _comscore || [];
+  _comscore.push({ c1: "2", c2: "17199065" });
+  (function() {
+    var s = document.createElement("script"), el = document.getElementsByTagName("script")[0]; s.async = true;
+    s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
+    el.parentNode.insertBefore(s, el);
+  })();
+</script>
+<noscript>
+  &lt;img src="http://b.scorecardresearch.com/p?c1=2&amp;c2=17199065&amp;cv=2.0&amp;cj=1" alt=""/&gt;
+</noscript>
+<!-- End comScore Tag -->
+    <script src="./Fibre Channel Protocol_files/jquery-1.5.2.js.téléchargement" type="text/javascript"></script>
+    <script type="text/javascript" src="./Fibre Channel Protocol_files/lightbox_me.js.téléchargement"></script>
+    <script src="./Fibre Channel Protocol_files/common.js.téléchargement" type="text/javascript"></script>
+    <script src="./Fibre Channel Protocol_files/feature_box.js.téléchargement" type="text/javascript"></script>
+    
+    <script type="text/javascript" src="./Fibre Channel Protocol_files/dfp-common-min.js.téléchargement"></script>
+
+	<script type="text/javascript" src="./Fibre Channel Protocol_files/dfp-sync-min.js.téléchargement"></script><script src="./Fibre Channel Protocol_files/gpt.js.téléchargement"></script><script id="gpt-impl-0.15079696954594768" src="https://securepubads.g.doubleclick.net/gpt/pubads_impl_108.js"></script><link rel="prefetch" href="http://tpc.googlesyndication.com/safeframe/1-0-5/html/container.html">
+
+<!-- BEGIN ML/CCM Tag -->
+<script type="text/javascript">var mlCLID="50425";</script>
+<script type="text/javascript" src="./Fibre Channel Protocol_files/dfp-ml_ccm2-min.js.téléchargement"></script>
+<!-- END ML/CCM Tag -->
+
+	<!-- BEGIN Krux Tag -->
+	<script type="text/javascript" src="./Fibre Channel Protocol_files/dfp-krux-min.js.téléchargement"></script>
+	<script class="kxct" data-id="Jd_KzIqn" data-timing="async" data-version="1.9" type="text/javascript">
+		window.Krux||((Krux=function(){Krux.q.push(arguments)}).q=[]);
+		(function(){
+			var k=document.createElement('script');k.type='text/javascript';k.async=true;
+			var m,src=(m=location.href.match(/\bkxsrc=([^&]+)/))&&decodeURIComponent(m[1]);
+			k.src = /^https?:\/\/([a-z0-9_\-\.]+\.)?krxd\.net(:\d{1,5})?\//i.test(src) ? src : src === "disable" ? "" : (location.protocol==="https:"?"https:":"http:")+"//cdn.krxd.net/controltag?confid=Jd_KzIqn";
+			var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(k,s);
+		}());
+	</script>
+	<!-- END Krux Tag -->
+
+<meta name="DCSext.tax" content="product storage storage area network san,product networking protocols and standards internet protocol,product storage storage hardware fibre channel,product storage storage area network san fibre channel san,audience purchase stage implementation"><meta name="DCSext.qse_b2b_tax" content="product storage storage area network san,product networking protocols and standards internet protocol,product storage storage hardware fibre channel,product storage storage area network san fibre channel san,audience purchase stage implementation">
+	<script type="text/javascript">
+		eval(function(p,a,c,k,e,d){e=function(c){return c};if(!''.replace(/^/,String)){while(c--){d[c]=k[c]||c}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('0 2=1(\'2\');0 3=1(\'3\');0 6=1(\'6\');0 4=1(\'4\');0 5=1(\'5\');',7,7,'var|gDFPC|dn|jf|ir|noer|dr'.split('|'),0,{}));
+
+				googletag.defineSlot('/5055/b2b/it/enterprisenetworkingplanet/ciu',[[600,200],[300,200]],'ciu-1').addService(googletag.pubads()).setTargeting('pos','top');
+				googletag.defineSlot('/5055/b2b/it/enterprisenetworkingplanet/ciu',[[600,200],[300,200]],'ciu-2').addService(googletag.pubads()).setTargeting('pos','low');
+				if(mbw>1049){googletag.defineOutOfPageSlot('/5055/b2b/it/enterprisenetworkingplanet/hero','hero-1').addService(googletag.pubads());}
+				googletag.defineSlot('/5055/b2b/it/enterprisenetworkingplanet/imu',[[300,250],[300,600],[300,1050]],'imu-1').addService(googletag.pubads()).setTargeting('pos','top');
+				googletag.defineSlot('/5055/b2b/it/enterprisenetworkingplanet/imu',[[300,250],[300,600]],'imu-2').addService(googletag.pubads()).setTargeting('pos','mid');
+				googletag.defineSlot('/5055/b2b/it/enterprisenetworkingplanet/imu',[300,250],'imu-3').addService(googletag.pubads()).setTargeting('pos','low');
+				googletag.defineSlot('/5055/b2b/it/enterprisenetworkingplanet/lb',[[728,90],[970,90],[970,250]],'lb-1').addService(googletag.pubads()).setTargeting('pos','top');
+				googletag.defineSlot('/5055/b2b/it/enterprisenetworkingplanet/lb',[728,90],'lb-2').addService(googletag.pubads()).setTargeting('pos','low');
+				googletag.defineSlot('/5055/b2b/it/enterprisenetworkingplanet/sky',[160,600],'sky-1').addService(googletag.pubads()).setTargeting('pos','top');
+				googletag.defineOutOfPageSlot('/5055/b2b/it/enterprisenetworkingplanet/wa','wa-1').addService(googletag.pubads());
+	
+				googletag.pubads().setTargeting('kw',['HTTP','Ethernet','Protocol','Networking','Fibre Channel','Storage','Enterprise','PHP','GUI','Articles','HP','os','av','app','MS','gns','TCP','edge','SAN','NEC','IM','CA','Exchange','LAN','XP','PAN','php','content','Nu','application','group','list','exam','plan','Fibre Channel','protocol','data','multi','text','x','MS','Net','Online','Switches','data','install','set','node','dynamic','UI','VAR','IDE','OSS','import','Time','GP','HIS','ICS','IL','IME','Word','number','relative','format','encrypt','IT','sco','source','IP','SWITCH','presence','ups','process','structure','network','HR']);
+					googletag.pubads().setTargeting('tax',['product storage storage area network san','product networking protocols and standards internet protocol','product storage storage hardware fibre channel','product storage storage area network san fibre channel san','audience purchase stage implementation']);
+					googletag.pubads().setTargeting('path',['netsp','article.php','3690921','Storage-Networking-101--Understanding-the-Fibre-Channel-Protocol.htm']);
+					googletag.pubads().setTargeting('articlekey','6318070');
+				googletag.pubads().setTargeting('pagetype','other');
+				googletag.pubads().setTargeting('url','http://www.enterprisenetworkingplanet.com/netsp/article.php/3690921/Storage-Networking-101--Understanding-the-Fibre-Channel-Protocol.htm');
+				if(mbw<641){googletag.pubads().setTargeting('pfm','mob');}else{googletag.pubads().setTargeting('pfm','des');}
+				googletag.pubads().setTargeting('env','prod');
+				googletag.pubads().setTargeting('wtdlk',''+myWTDLK+'');
+				if(typeof _ml!='undefined'&&_ml.us){if(_ml.us.tp&&_ml.us.tp.length>0){googletag.pubads().setTargeting('mlt',''+_ml.us.tp+'');}}
+					googletag.pubads().setTargeting('ksg',Krux.segments);
+			googletag.pubads().setTargeting('kuid',Krux.user);
+	
+			eval(function(p,a,c,k,e,d){e=function(c){return c};if(!''.replace(/^/,String)){while(c--){d[c]=k[c]||c}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('0(5!=\'\'&&5!=\'2\'){1.3().4(\'5\',\'\'+5+\'\')}0(6!=\'\'&&6!=\'2\'){1.3().4(\'6\',\'\'+6+\'\')}0(9!=\'\'&&9!=\'2\'){1.3().4(\'9\',\'\'+9+\'\')}0(7!=\'\'&&7!=\'2\'){1.3().4(\'7\',\'\'+7+\'\')}0(8!=\'\'&&8!=\'2\'){1.3().4(\'8\',\'\'+8+\'\')}',10,10,'if|googletag|null|pubads|setTargeting|dn|jf|ir|noer|dr'.split('|'),0,{}))
+
+			googletag.pubads().enableSingleRequest();
+			googletag.pubads().collapseEmptyDivs();
+				googletag.pubads().enableSyncRendering();
+					googletag.disablePublisherConsole();
+	
+			googletag.enableServices();
+		</script>
+    
+        	<!-- include Gigya's JS library -->
+	<script type="text/javascript" lang="javascript" src="./Fibre Channel Protocol_files/gigya.js.téléchargement">
+	{ // Global configuration object for Gigya JS API methods
+		sessionExpiration:0 // expire the user login session when the browser closes
+		,connectWithoutLoginBehavior: 'alwaysLogin' // This will cause Gigya's 'Adding Connection' operation (i.e. when the user clicks one of the social network buttons within the Social Plugins)
+													// to behave like a call to login in case the current user is not logged in.
+		,autoShareExpiration: expire5min // User's auto-share selection will expire after 5 min
+		,deviceType: 'auto' // Automatically identify the device mobile/desktop (using user-agent) and optimize the view of the plugins accordingly
+		,siteName: 'enterprisenetworkingplanet.com'
+		,enabledProviders: "facebook,twitter,linkedin,googleplus"
+	}
+	</script>
+	<!-- end include Gigya's JS library -->	<!--BEGIN FIRSTIMPRESSION TAG -->
+    <script data-cfasync="false" type="text/javascript">
+     window.apd_options = { 'websiteId': 5666, 'runFromFrame': false };
+     (function() {
+      var w = window.apd_options.runFromFrame ? window.top : window;
+      if(window.apd_options.runFromFrame && w!=window.parent) w=window.parent;
+      if (w.location.hash.indexOf('apdAdmin') != -1){if(typeof(Storage) !== 'undefined') {w.localStorage.apdAdmin = 1;}}
+      var adminMode = ((typeof(Storage) == 'undefined') || (w.localStorage.apdAdmin == 1));
+      w.apd_options=window.apd_options;
+      var apd = w.document.createElement('script'); apd.type = 'text/javascript'; apd.async = true;
+      apd.src = '//' + (adminMode ? 'cdn' : 'ecdn') + '.firstimpression.io/' + (adminMode ? 'apd.js?id=' + window.apd_options.websiteId : 'apd_client.js') ;
+      var s = w.document.getElementsByTagName('head')[0]; s.appendChild(apd);
+     })();</script><script type="text/javascript" async="" src="http://ecdn.firstimpression.io/apd_client.js"></script>
+	<!-- END FIRSTIMPRESSION TAG -->
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-48206002-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->		
+
+	<meta name="cache-creation-time" content="2017-02-10 04:02:05.000 -0800">
+
+    <script>
+    window.webtrendsAsyncInit=function(){
+        var dcs=new Webtrends.dcs().init({
+            dcsid:"dcs9xqfq400000spui4ozu2wa_4l4w",
+            domain:"www.qsstats.com",
+            timezone:-8,
+            i18n:true,
+            onsitedoms:"enterprisenetworkingplanet.com",
+            fpcdom:".enterprisenetworkingplanet.com",
+            plugins:{
+                //hm:{src:"//s.webtrends.com/js/webtrends.hm.js"}
+            }
+            }).track();
+    };
+    (function(){
+        var s=document.createElement("script"); s.async=true; s.src="/imageserver/common/v10/webtrends.min.js";    
+        var s2=document.getElementsByTagName("script")[0]; s2.parentNode.insertBefore(s,s2);
+    }());
+    </script>
+    <noscript>&lt;img alt="dcsimg" id="dcsimg" width="1" height="1" src="//www.qsstats.com/dcs9xqfq400000spui4ozu2wa_4l4w/njs.gif?dcsuri=/index.php/netsp/article.php/3690921/Storage-Networking-101--Understanding-the-Fibre-Channel-Protocol.htm&amp;amp;WT.js=No&amp;amp;WT.tv=10.4.1&amp;amp;dcssip=www.enterprisenetworkingplanet.com&amp;amp;WT.qs_dlk=WJ2xAQrIZ7wAAH1xCWYAAAAU&amp;"/&gt;</noscript>
+<script type="text/javascript" src="./Fibre Channel Protocol_files/saved_resource"></script><script type="text/javascript" src="./Fibre Channel Protocol_files/inputtools.js.téléchargement"></script><script type="text/javascript" charset="UTF-8" src="./Fibre Channel Protocol_files/ILj_9D4C6I5kqI-v-F10xiIFGDLnwBdYYS8FCWtG-1M.js.téléchargement"></script><style type="text/css">.recaptchatable td img{display:block}.recaptchatable .recaptcha_r1_c1{background:url('https://www.google.com/recaptcha/api/img/red/sprite.png') 0 -63px no-repeat;width:318px;height:9px}.recaptchatable .recaptcha_r2_c1{background:url('https://www.google.com/recaptcha/api/img/red/sprite.png') -18px 0 no-repeat;width:9px;height:57px}.recaptchatable .recaptcha_r2_c2{background:url('https://www.google.com/recaptcha/api/img/red/sprite.png') -27px 0 no-repeat;width:9px;height:57px}.recaptchatable .recaptcha_r3_c1{background:url('https://www.google.com/recaptcha/api/img/red/sprite.png') 0 0 no-repeat;width:9px;height:63px}.recaptchatable .recaptcha_r3_c2{background:url('https://www.google.com/recaptcha/api/img/red/sprite.png') -18px -57px no-repeat;width:300px;height:6px}.recaptchatable .recaptcha_r3_c3{background:url('https://www.google.com/recaptcha/api/img/red/sprite.png') -9px 0 no-repeat;width:9px;height:63px}.recaptchatable .recaptcha_r4_c1{background:url('https://www.google.com/recaptcha/api/img/red/sprite.png') -43px 0 no-repeat;width:171px;height:49px}.recaptchatable .recaptcha_r4_c2{background:url('https://www.google.com/recaptcha/api/img/red/sprite.png') -36px 0 no-repeat;width:7px;height:57px}.recaptchatable .recaptcha_r4_c4{background:url('https://www.google.com/recaptcha/api/img/red/sprite.png') -214px 0 no-repeat;width:97px;height:57px}.recaptchatable .recaptcha_r7_c1{background:url('https://www.google.com/recaptcha/api/img/red/sprite.png') -43px -49px no-repeat;width:171px;height:8px}.recaptchatable .recaptcha_r8_c1{background:url('https://www.google.com/recaptcha/api/img/red/sprite.png') -43px -49px no-repeat;width:25px;height:8px}.recaptchatable .recaptcha_image_cell center img{height:57px}.recaptchatable .recaptcha_image_cell center{height:57px}.recaptchatable .recaptcha_image_cell{background-color:white;height:57px}#recaptcha_area,#recaptcha_table{width:318px!important}.recaptchatable,#recaptcha_area tr,#recaptcha_area td,#recaptcha_area th{margin:0!important;border:0!important;padding:0!important;border-collapse:collapse!important;vertical-align:middle!important}.recaptchatable *{margin:0;padding:0;border:0;font-family:helvetica,sans-serif;font-size:8pt;color:black;position:static;top:auto;left:auto;right:auto;bottom:auto}.recaptchatable #recaptcha_image{position:relative;margin:auto}.recaptchatable #recaptcha_image #recaptcha_challenge_image{display:block}.recaptchatable #recaptcha_image #recaptcha_ad_image{display:block;position:absolute;top:0}.recaptchatable img{border:0!important;margin:0!important;padding:0!important}.recaptchatable a,.recaptchatable a:hover{cursor:pointer;outline:none;border:0!important;padding:0!important;text-decoration:none;color:blue;background:none!important;font-weight:normal}.recaptcha_input_area{position:relative!important;width:153px!important;height:45px!important;margin-left:7px!important;margin-right:7px!important;background:none!important}.recaptchatable label.recaptcha_input_area_text{margin:0!important;padding:0!important;position:static!important;top:auto!important;left:auto!important;right:auto!important;bottom:auto!important;background:none!important;height:auto!important;width:auto!important}.recaptcha_theme_red label.recaptcha_input_area_text,.recaptcha_theme_white label.recaptcha_input_area_text{color:black!important}.recaptcha_theme_blackglass label.recaptcha_input_area_text{color:white!important}.recaptchatable #recaptcha_response_field{width:153px!important;position:relative!important;bottom:7px!important;padding:0!important;margin:15px 0 0 0!important;font-size:10pt}.recaptcha_theme_blackglass #recaptcha_response_field,.recaptcha_theme_white #recaptcha_response_field{border:1px solid gray}.recaptcha_theme_red #recaptcha_response_field{border:1px solid #cca940}.recaptcha_audio_cant_hear_link{font-size:7pt;color:black}.recaptchatable{line-height:1!important}#recaptcha_instructions_error{color:red!important}.recaptcha_only_if_privacy{float:right;text-align:right}#recaptcha-ad-choices{position:absolute;height:15px;top:0;right:0}#recaptcha-ad-choices img{height:15px}.recaptcha-ad-choices-collapsed{width:30px;height:15px;display:block}.recaptcha-ad-choices-expanded{width:75px;height:15px;display:none}#recaptcha-ad-choices:hover .recaptcha-ad-choices-collapsed{display:none}#recaptcha-ad-choices:hover .recaptcha-ad-choices-expanded{display:block}
+
+.recaptcha_is_showing_audio .recaptcha_only_if_image,.recaptcha_isnot_showing_audio .recaptcha_only_if_audio,.recaptcha_had_incorrect_sol .recaptcha_only_if_no_incorrect_sol,.recaptcha_nothad_incorrect_sol .recaptcha_only_if_incorrect_sol{display:none !important}</style><script type="text/javascript" src="./Fibre Channel Protocol_files/reload"></script></head>
+<body onload="welcomeUser();">
+<div>
+    <!-- QS-AD: 'wa' start -->
+<script language="JavaScript">
+	var t=displayDFPTag("wa");
+	document.write(t);
+
+</script><div id="wa-1" style="height: 0px;">
+	<script type="text/javascript">
+		googletag.display('wa-1');
+	</script><script type="text/javascript" src="https://securepubads.g.doubleclick.net/gampad/ads?gdfp_req=1&amp;correlator=3724128450105490&amp;output=json_html&amp;callback=googletag.impl.pubads.setAdContentsBySlotForSync&amp;impl=ss&amp;json_a=1&amp;eid=108809080%2C108809160%2C21060065%2C108809007&amp;sc=0&amp;sfv=1-0-5&amp;iu_parts=5055%2Cb2b%2Cit%2Centerprisenetworkingplanet%2Cciu%2Chero%2Cimu%2Clb%2Csky%2Cwa&amp;enc_prev_ius=%2F0%2F1%2F2%2F3%2F4%2C%2F0%2F1%2F2%2F3%2F4%2C%2F0%2F1%2F2%2F3%2F5%2C%2F0%2F1%2F2%2F3%2F6%2C%2F0%2F1%2F2%2F3%2F6%2C%2F0%2F1%2F2%2F3%2F6%2C%2F0%2F1%2F2%2F3%2F7%2C%2F0%2F1%2F2%2F3%2F7%2C%2F0%2F1%2F2%2F3%2F8%2C%2F0%2F1%2F2%2F3%2F9&amp;prev_iu_szs=600x200%7C300x200%2C600x200%7C300x200%2C1x1%2C300x250%7C300x600%7C300x1050%2C300x250%7C300x600%2C300x250%2C728x90%7C970x90%7C970x250%2C728x90%2C160x600%2C1x1&amp;ists=129&amp;prev_scp=pos%3Dtop%7Cpos%3Dlow%7C%7Cpos%3Dtop%7Cpos%3Dmid%7Cpos%3Dlow%7Cpos%3Dtop%7Cpos%3Dlow%7Cpos%3Dtop%7C&amp;cust_params=kw%3DHTTP%252CEthernet%252CProtocol%252CNetworking%252CFibre%2520Channel%252CStorage%252CEnterprise%252CPHP%252CGUI%252CArticles%252CHP%252Cos%252Cav%252Capp%252CMS%252Cgns%252CTCP%252Cedge%252CSAN%252CNEC%252CIM%252CCA%252CExchange%252CLAN%252CXP%252CPAN%252Cphp%252Ccontent%252CNu%252Capplication%252Cgroup%252Clist%252Cexam%252Cplan%252CFibre%2520Channel%252Cprotocol%252Cdata%252Cmulti%252Ctext%252Cx%252CMS%252CNet%252COnline%252CSwitches%252Cdata%252Cinstall%252Cset%252Cnode%252Cdynamic%252CUI%252CVAR%252CIDE%252COSS%252Cimport%252CTime%252CGP%252CHIS%252CICS%252CIL%252CIME%252CWord%252Cnumber%252Crelative%252Cformat%252Cencrypt%252CIT%252Csco%252Csource%252CIP%252CSWITCH%252Cpresence%252Cups%252Cprocess%252Cstructure%252Cnetwork%252CHR%26tax%3Dproduct%2520storage%2520storage%2520area%2520network%2520san%252Cproduct%2520networking%2520protocols%2520and%2520standards%2520internet%2520protocol%252Cproduct%2520storage%2520storage%2520hardware%2520fibre%2520channel%252Cproduct%2520storage%2520storage%2520area%2520network%2520san%2520fibre%2520channel%2520san%252Caudience%2520purchase%2520stage%2520implementation%26path%3Dnetsp%252Carticle.php%252C3690921%252CStorage-Networking-101--Understanding-the-Fibre-Channel-Protocol.htm%26articlekey%3D6318070%26pagetype%3Dother%26url%3Dhttp%253A%252F%252Fwww.enterprisenetworkingplanet.com%252Fnetsp%252Farticle.php%252F3690921%252FStorage-Networking-101--Understanding-the-Fibre-Channel-Protocol.htm%26pfm%3Ddes%26env%3Dprod%26wtdlk%3DWJ2xAQrIZ7wAAH1xCWYAAAAU%26kuid%3D&amp;cookie_enabled=1&amp;lmt=1486729477&amp;dt=1486729477650&amp;frm=20&amp;biw=1708&amp;bih=779&amp;oid=3&amp;adxs=-9%2C-9%2C-9%2C-9%2C-9%2C-9%2C-9%2C-9%2C-9%2C0&amp;adys=-9%2C-9%2C-9%2C-9%2C-9%2C-9%2C-9%2C-9%2C-9%2C0&amp;adks=979762904%2C979762907%2C3702872683%2C3653961427%2C2859389032%2C1607233588%2C1042954587%2C2173243381%2C148049257%2C714774488&amp;gut=v2&amp;ifi=1&amp;u_tz=60&amp;u_his=7&amp;u_h=768&amp;u_w=1366&amp;u_ah=738&amp;u_aw=1366&amp;u_cd=24&amp;u_nplug=4&amp;u_nmime=5&amp;u_sd=0.8&amp;flash=0&amp;url=http%3A%2F%2Fwww.enterprisenetworkingplanet.com%2Fnetsp%2Farticle.php%2F3690921%2FStorage-Networking-101--Understanding-the-Fibre-Channel-Protocol.htm&amp;ref=https%3A%2F%2Fwww.google.be%2F&amp;dssz=29&amp;icsg=206175206128&amp;std=0&amp;csl=31&amp;vrg=108&amp;vrp=108&amp;ga_vid=1423709637.1486729478&amp;ga_sid=1486729478&amp;ga_hid=476164648" id="sae-script-1"></script>
+</div>
+<style type="text/css">#wa-1_ad_container { height: 0px; }</style>
+
+<!-- QS-AD: 'wa' end -->        <!-- QS-AD: 'hero' start -->
+<script language="JavaScript">
+	var t=displayDFPTag("hero");
+	document.write(t);
+
+</script><div id="hero-1" style="height: 0px; display: none;" data-google-query-id="">
+	<script type="text/javascript">
+		googletag.display('hero-1');
+	</script>
+</div>
+<style type="text/css">#hero-1_ad_container { height: 0px; }</style>
+
+<!-- QS-AD: 'hero' end --></div>
+<div id="EntNetPlanet">
+    <center></center>
+        <div id="pageHeader" class="container">
+        <div id="topHeader" class="grid_full">
+            <div id="logo" class="left">
+                <a href="http://www.enterprisenetworkingplanet.com/">
+                    <img alt="Enterprise Networking Planet" src="./Fibre Channel Protocol_files/logo.gif">
+                </a>
+            </div>
+
+            <div id="section-right">
+                <div class="joinSocial">
+                    <div>
+                        <ul>
+                            <li><a class="icons rss" href="http://www.enterprisenetworkingplanet.com/rss.xml" target="_blank">RSS</a></li>
+                            <li><a class="icons ln" href="https://www.linkedin.com/company/enterprise-networking-planet?trk=company_name" target="_blank">Linkedin</a></li>
+                            <li><a class="icons gplus" href="https://plus.google.com/102628285918266564251" target="_blank" rel="publisher">Find us on Google+</a></li>
+                            <li><a class="icons twitter" href="https://www.twitter.com/NetworkNotes" target="_blank">Twitter</a></li>
+                            <li><a class="icons fb" href="http://www.facebook.com/pages/Enterprise-Networking-Planet/66256463335" target="_blank">Facebook</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="pageLogin" class="right">
+                    <a href="http://www.enterprisenetworkingplanet.com/accountManagement?formType=loginForm" id="signinbutton" class="left">Sign In</a>
+                    <a href="http://www.enterprisenetworkingplanet.com/accountManagement?formType=registrationForm" id="registerbutton" class="right">Register</a>
+                </div>
+
+                <div class="vr-class">&nbsp;</div>
+
+                <div id="searchBox" class="right">
+                    <form action="http://www.enterprisenetworkingplanet.com/gsearch" method="get" name="SearchForm" id="cse-search-box">
+                        <div id="search" class="left">
+                            <input type="hidden" name="cx" value="006139176572967690502:szlr3hg-pya">
+                            <input type="hidden" name="ie" value="UTF-8">
+                            <input id="search-input" name="q" size="19" value="" style="border: 1px solid rgb(126, 157, 185); padding: 2px; background: url(&quot;https://www.google.com/cse/static/en/google_custom_search_watermark.gif&quot;) left center no-repeat rgb(255, 255, 255);">
+                            <script type="text/javascript" src="./Fibre Channel Protocol_files/jsapi">
+</script>
+                            <script type="text/javascript">google.load("elements", "1", {packages: "transliteration"});
+</script><script src="./Fibre Channel Protocol_files/saved_resource(1)" type="text/javascript"></script><link href="./Fibre Channel Protocol_files/transliteration.css" type="text/css" rel="stylesheet"><script src="./Fibre Channel Protocol_files/transliteration.I.js.téléchargement" type="text/javascript"></script>
+                            <script type="text/javascript" src="./Fibre Channel Protocol_files/t13n">
+</script>
+                            <script type="text/javascript" src="./Fibre Channel Protocol_files/brand">
+</script>
+                        </div><input name="siteurl" type="hidden" value="www.enterprisenetworkingplanet.com/netsp/article.php/3690921/Storage-Networking-101--Understanding-the-Fibre-Channel-Protocol.htm"><input name="ref" type="hidden" value="www.google.be/"><input name="ss" type="hidden" value="">
+                        <button id="search-submit" class="textButton" type="submit" title="" style=" background: url(/img/but-search-new.png) no-repeat;width:55px;height:24px;"></button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+        <!--<div class="clear clearfix"></div> -->
+        
+<style>
+ul#topnav li span {top:44px;}
+#navmaintext { line-height: 15px; margin-top: -3px; }
+</style>
+
+<div id="topContainer" class="roundedBoxSmall shadow" style="clear:left;">
+<div id="tagBar" class="grid_full">
+    <div id="tagLine" class="left">
+        The latest network routers, software, management tools and information for enterprise IT administrators.
+        
+    </div>
+</div>
+<div style="margin-bottom:30px;" id="navigationbar">  
+   <ul id="topnav">
+        <li style="margin-left: 7px; margin-top: 5px; background: url(&quot;/img/selectedtab_bg.gif&quot;) repeat-x;"><a href="http://www.enterprisenetworkingplanet.com/netsp/article.php/3690921/Storage-Networking-101--Understanding-the-Fibre-Channel-Protocol.htm#" id="navmaintext" onclick="return false;">Networking Resources</a>
+            <span style="display: inline;">
+                <a href="http://www.enterprisenetworkingplanet.com/research">White Papers &amp; Webcasts</a>
+            </span>
+        </li>
+
+        <li style="margin-top:5px;">
+            <a href="http://www.enterprisenetworkingplanet.com/netsecur" id="navmaintext">Network Security</a>
+            <span>
+                <a href="http://www.enterprisenetworkingplanet.com/reports/index.php/28851/Network+Security+Resources.htm">Security Resources</a> |
+                <a href="http://www.enterprisenetworkingplanet.com/reports/index.php/22711/Secure+Your+Infrastructure.htm">Infrastructure Security</a> |
+				<a href="http://www.enterprisenetworkingplanet.com/reports/cloud-security.html">Cloud Security</a>
+            </span>
+        </li>
+        <li style="margin-top:5px;">
+            <a href="http://www.enterprisenetworkingplanet.com/netos" id="navmaintext">Network Software</a>
+            <span>
+                <a href="http://www.enterprisenetworkingplanet.com/reports/index.php/27251/Linux+for+Your+Business+Network.htm" style="margin-left:163px;">Linux for Networking</a> 
+            </span>
+        </li>
+        <li style="margin-top:5px;">
+            <a href="http://www.enterprisenetworkingplanet.com/netsp" id="navmaintext">WAN and<br>LAN</a>
+            <span>
+                <a href="http://www.enterprisenetworkingplanet.com/reports/index.php/28791/WAN+Optimization+on+Your+Enterprise+Network.htm" style="margin-left:200px;">WAN Optimization</a> |
+                <a href="http://www.enterprisenetworkingplanet.com/reports/index.php/23851/Build+and+Secure+a+WLAN.htm">WLAN Deployment</a>
+            </span>
+        </li>
+        <li style="margin-top:5px;">
+            <a href="http://www.enterprisenetworkingplanet.com/datacenter" id="navmaintext">Data<br>Center</a>
+            <span>
+                <a href="http://www.enterprisenetworkingplanet.com/datacenter/datacenter-blog" style="margin-left: 345px;">Data Center Blog</a> |
+                <a href="http://www.enterprisenetworkingplanet.com/reports/cloud-computing.html">Cloud</a> |
+                <a href="http://www.enterprisenetworkingplanet.com/reports/software-defined-networking-sdn.html">Software Defined Networking</a> 
+            </span>
+        </li>
+         <li style="margin-top:5px;">
+            <a href="http://www.enterprisenetworkingplanet.com/netsysm" id="navmaintext">Network Management</a>
+            <span>
+                <a href="http://www.enterprisenetworkingplanet.com/reports/index.php/28831/Network+Management+Systems+for+the+Enterprise.htm" style="margin-left: 300px;">Network Management Systems</a> | 
+                <a href="http://www.enterprisenetworkingplanet.com/reports/index.php/28051/Working+Smarter:+Concepts+and+Tools+for+Better+Network+Management.htm">Concepts and Tools</a> | 
+                <a href="http://www.enterprisenetworkingplanet.com/reports/index.php/24931/Networking+101.htm">Networking 101</a>  |
+                <a href="http://www.enterprisenetworkingplanet.com/reports/index.php/28821/IPv6:+Preparing+for+the+Migration.htm">IPv6 Migration</a>
+            </span>
+        </li>
+        <li style="margin-top:5px;">
+            <a href="http://www.enterprisenetworkingplanet.com/nethub" id="navmaintext">Networking Hardware</a>
+            <span>
+                <a href="http://www.enterprisenetworkingplanet.com/reports/index.php/28911/Enterprise+Ethernet+Switch+Buyers+Guide.htm" style="margin-left:445px;">Ethernet Switch Buyer's Guide</a> | 
+                <a href="http://www.enterprisenetworkingplanet.com/reports/index.php/28901/Enterprise+Wireless+LAN+Controller+Buyers+Guide.htm">Wireless LAN Controller Buyer's Guide</a> |
+				<a href="http://www.enterprisenetworkingplanet.com/reports/wi-fi.html">Wi-Fi</a>				
+            </span>
+        </li>
+        <li style="margin-top:5px;">
+            <a href="http://www.enterprisenetworkingplanet.com/unified_communications" id="navmaintext" style="margin-left:-10px;margin-right:10px;">Unified Communications</a>
+        </li>
+       <li style="margin-top:5px;">
+           <a href="http://www.enterprisenetworkingplanet.com/slideshows/" id="navmaintext" style="margin-left:-10px;margin-right:15px;">Slideshows</a>
+       </li>
+    </ul>
+</div>
+
+<div class="clearfix"></div>
+</div>    </div>
+
+    <div id="lb-wrapper" align="center">
+        <div id="top_leader_ad">
+            <!-- QS-AD: 'lb' start -->
+<script language="JavaScript">
+	var t=displayDFPTag("lb");
+	document.write(t);
+
+</script><div id="lb-1" data-google-query-id="" style="display: none;">
+	<script type="text/javascript">
+		googletag.display('lb-1');
+	</script>
+</div>
+
+<!-- QS-AD: 'lb' end -->        </div>
+    </div>
+
+    <div id="pageContent" class="container">
+        <div id="mainContent" class="grid_major">
+    <div id="graybox">
+        <!-- QS-AD: 'ciu' start -->
+<script language="JavaScript">
+	var t=displayDFPTag("ciu");
+	document.write(t);
+
+</script><div id="ciu-1" data-google-query-id="" style="display: none;">
+	<script type="text/javascript">
+		googletag.display('ciu-1');
+	</script>
+</div>
+
+<!-- QS-AD: 'ciu' end -->    </div>
+        <div id="breadCrumb">
+        <ul>
+                        <li class="first"><a href="http://www.enterprisenetworkingplanet.com/">Home</a></li>
+                            <li class="current"><a href="http://www.enterprisenetworkingplanet.com/netsp">Standards &amp; Protocols</a>
+                 
+                </li>
+                    </ul>
+        
+        
+        <div id="sponsorLogo">                       
+                    </div>
+    </div>
+    <div id="article">
+        <h1>
+        Storage Networking 101:  Understanding the Fibre Channel Protocol        </h1>
+        <h2 class="leader">Troubleshooting a SAN requires some knowledge of how the underlying protocols work. Here's the Fibre Channel protocol in-depth.</h2>
+		  		
+        <div id="articleInfo" class="left">
+            By&nbsp;<a href="http://www.enterprisenetworkingplanet.com/author/6240/Charlie-Schluting">Charlie Schluting</a> | Posted Jul 25, 2007        <div id="paginationTop">
+    Page  of         &nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.enterprisenetworkingplanet.com/netsp/article.php/3690921/Storage-Networking-101--Understanding-the-Fibre-Channel-Protocol.htm">Back to Page 1</a>
+    </div>
+            </div>
+        <div id="articleShare" class="left">
+            <script language="javascript" type="text/javascript">
+                <!--
+                function popitup(url) {
+                    newwindow=window.open(url,'name','height=500,width=980,resizable,scrollbars');
+                    if (window.focus) {newwindow.focus()}
+                    return false;
+                }
+                // -->
+            
+</script>
+            <a href="http://www.enterprisenetworkingplanet.com/print/netsp/article.php/3690921/Storage-Networking-101--Understanding-the-Fibre-Channel-Protocol.htm" onclick="return popitup(&#39;http://www.enterprisenetworkingplanet.com/print/netsp/article.php/3690921/Storage-Networking-101--Understanding-the-Fibre-Channel-Protocol.htm&#39;)" rel="nofollow">
+                <img src="./Fibre Channel Protocol_files/print.png" alt="Print Article"></a><!--
+            --><a href="http://www.enterprisenetworkingplanet.com/email/netsp/article.php/3690921/Storage-Networking-101--Understanding-the-Fibre-Channel-Protocol.htm" rel="nofollow"><img src="./Fibre Channel Protocol_files/email.png" alt="Email Article"></a>
+            <ul id="shareToolbar">
+    <li>
+        <a href="http://www.facebook.com/sharer.php?u=http://www.enterprisenetworkingplanet.com/netsp/article.php/3690921/Storage-Networking-101--Understanding-the-Fibre-Channel-Protocol.htm&amp;t=Storage%20Networking%20101:%20%20Understanding%20the%20Fibre%20Channel%20Protocol">
+            <img class="first" src="./Fibre Channel Protocol_files/share_fb.png" alt="Share on Facebook">
+        </a>
+    </li>
+    <li>
+        <a href="http://twitter.com/share" data-text="Check out this Article">
+            <img src="./Fibre Channel Protocol_files/share_t.png" alt="Share on Twitter">
+        </a>
+    </li>
+    <li>
+    <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http://www.enterprisenetworkingplanet.com/netsp/article.php/3690921/Storage-Networking-101--Understanding-the-Fibre-Channel-Protocol.htm&amp;title=Storage%20Networking%20101:%20%20Understanding%20the%20Fibre%20Channel%20Protocol&amp;summary=Troubleshooting%20a%20SAN%20requires%20some%20knowledge%20of%20how%20the%20underlying%20protocols%20work.%20Here%27s%20the%20Fibre%20Channel%20protocol%20in-depth.}&amp;source=http://www.enterprisenetworkingplanet.com">
+        <img src="./Fibre Channel Protocol_files/share_li.png" alt="Share on LinkedIn" style="border-right: 1px solid #B4B4B4;">
+    </a>
+    </li>
+	<li>
+	<span style="padding: 0 6px;">
+	<!-- Place this tag where you want the +1 button to render -->
+	<div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 90px; height: 20px;"><iframe ng-non-bindable="" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 90px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 20px;" tabindex="0" vspace="0" width="100%" id="I0_1486729478610" name="I0_1486729478610" src="./Fibre Channel Protocol_files/fastbutton.html" data-gapiattached="true" title="+1"></iframe></div>
+	<!-- Place this render call where appropriate -->
+	<script type="text/javascript">
+	  (function() {
+		var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+		po.src = 'https://apis.google.com/js/plusone.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+	  })();
+	
+</script>
+	</span>
+	</li>
+</ul>        </div>
+		        <div class="clear clearfix"></div>
+    <div class="articleContent">
+
+	<p>Understanding the guts of the Fibre Channel (FC) protocol itself, including the naming format and addressing scheme, allows one to better understand what's happening on a SAN. Quickly glancing at a problem and knowing what's wrong requires thorough knowledge of all the protocols involved. While it's possible to operate a SAN with only point-and-click GUIs and limited knowledge, it certainly isn't recommended. So let's learn about the FC protocol.</p>
+    </div>
+<div id="relatedArticles" class="left">
+    <div class="header">
+        <h3>Related Articles</h3>
+    </div>
+    <div class="content">
+        <ul>
+                    <li><a href="http://www.enterprisenetworkingplanet.com/netsp/article.php/3688326/Storage-Networking-101-Understanding-Fibre-Channel.htm">Storage Networking 101: Understanding Fibre Channel</a></li>
+                    <li><a href="http://www.enterprisenetworkingplanet.com/focus/article.php/329096/Storage-Networking-101-Shopping-for-Disks.htm">Storage Networking 101: Shopping for Disks</a></li>
+                </ul>
+    </div>
+</div>
+
+    <div class="articleContent">
+<p>To reiterate: Fibre Channel is not a replacement for SCSI; SCSI generally rides on top of Fibre Channel. Now that we have that out of the way, let us get to work. FC generally refers to the FC-PHY layers: FC0-FC2, which were briefly discussed <a href="http://www.enterprisenetworkingplanet.com/netsp/article.php/3688326">in our last installment</a>. The term FCP, Fibre Channel Protocol, refers to the interface protocol for SCSI, or the FC-4 mapping. We're talking about the inner-workings of FC here, not FCP.</p>
+<p>FC data units are called Frames. FC is mostly a layer 2 protocol, even though it has its own layers. The maximum size for a FC frame is 2148 bytes, and the header FC frame itself is a bit strange, at least when compared to Ethernet with IP and TCP. FC uses one frame format for many purposes, and at many layers. The function of the frame determines the format, which is strange and wonderful, compared to our notions in the IP world.</p>
+<p>FC frames begin with a start-of-frame (SOF) marker followed by frame the header, which will be described in a moment. The data, or FC content, comes next, followed by an EOF. The reason for the encapsulation is so that FC can be carried over other protocols, such as TCP if desired.</p>
+<div style="float: left; width: 160; border: 1px solid #ccc; padding: .5em; margin: 1em; text-align: center; font-size: smaller; color: #003399;"><a href="http://enterprisenetworkingplanet.com/img/2007/07/FC_header.jpg" style="text-decoration: none;" target="_blank"><img src="./Fibre Channel Protocol_files/fc_header_t.jpg" alt="null"><br>Figure 1. The FC Encapsulation Header</a></div>
+
+<div id="olal-container">
+<script language="javascript" src="http://www.enterprisenetworkingplanet.com/sl/assetlisting/?wsn=www.enterprisenetworkingplanet.com&amp;wpu=/netsp/article.php/3690921/Storage-Networking-101--Understanding-the-Fibre-Channel-Protocol.htm&amp;lurl=http://o1.qnsr.com/cgi/r?WT.qs_dlk=WJ2xAQrIZ7wAAH1xCWYAAAAU;;n=203;c=1395303;s=9483;x=7936;f=201308291437180;u=j;z=TIMESTAMP;k=http://assetform.enterprisenetworkingplanet.com/controller&amp;wpos=onelineassetlisting&amp;lyt=l8&amp;css=http://www.enterprisenetworkingplanet.com/css/onePaidAsset.css&amp;wi=19737210">
+</script>
+</div>
+<div style="clear:both;"></div>
+<p>The FC frame itself, the general format that is, varies in size quite a bit. In Figure 1 you can see the SOF and EOF markers we mentioned before. The strange part about FC headers is that they are word-oriented, and an FC word is 4 bytes. Up to 537 words are allowed, which gives us our 2148-byte capacity.</p>
+<p>The components of the header, with all the optional items listed, are:</p>
+<ul>
+<li>SOF (1 word): The start of a frame.</li>
+<li>Frame Header (24 bytes): The header that specifies what protocol is being used, as well as the source and destination address. Varies depending on the protocol in question.</li>
+<li>Optional ESP Header (8 bytes): Provides encryption; includes the SPI and ESP sequence number.</li>
+<li>Optional Network Header (16 bytes): So that you can connect an FC-SAN to non-FC networks.</li>
+<li>Optional Association Header (32 bytes): Not used by FCP, but can be used to identify processes within a node.</li>
+<li>Optional Device Header (up to 64 bytes): Not used by FCP, and is application specific.</li>
+<li>Payload: The data, up to 2048 bytes.</li>
+<li>Optional Fill Bytes (variable): Used to ensure the variable-length payload ends on a word boundary.</li>
+<li>Optional ESP Trailer (variable): Contains check values for ESP.</li>
+<li>CRC (4 bytes): A CRC of the header <em>and</em> FC data fields.</li>
+<li>End of Frame (4 bytes): Ends the frame, and says whether or not it's the last in a sequence.</li>
+</ul>
+<div style="float: left; width: 160; border: 1px solid #ccc; padding: .5em; margin: 1em; text-align: center; font-size: smaller; color: #003399;"><a href="http://enterprisenetworkingplanet.com/img/2007/07/FC_frame_header.jpg" style="text-decoration: none;" target="_blank"><img src="./Fibre Channel Protocol_files/fc_header_t.jpg" alt="null"><br>Figure 2. The FC Frame Header</a></div>
+<p>The FC frame format includes FC-specific information, including the source and destination, among others. Hopefully it clear now why FC is so flexible, which also explains why there's so darn many FC-blah protocols available to give you a headache.</p>
+<p>The actual FC Header, depicted in Figure 2 includes the following fields:</p>
+<ul>
+<li>Routing Control (1 byte): The routing portion says if this is a data frame or a link-control frame (either an ACK or a Link_Response), and the information portion indicates the type of data.</li>
+<li>Destination ID (3 bytes): The FC address of the destination.</li>
+<li>Class Specific Control/Priority (1 byte): Essentially, Quality of Service.</li>
+<li>Source ID (3 bytes): The FC address of the originating node.</li>
+<li>Type (1 byte): Indicates the next protocol (what's in the Payload), unless R_CTL indicates a control frame.</li>
+<li>Frame Control (3 bytes): Various crazy FC options, such as sequencing information and what to do in case of a problem.</li>
+<li>Sequence ID (1 byte): A sequence number, just like IP.</li>
+<li>Data Field Control (1 byte): Indicates the presence of optional headers, and the size.</li>
+<li>Sequence Count (2 bytes): The number of frames that have been transmitted in a sequence.</li>
+<li>Originator Exchange ID (2 bytes): Assigned by the initiator, used to group related sequences.</li>
+<li>Responder Exchange ID (2 bytes): Same as the OX_ID, but assigned by a target node.</li>
+<li>Parameter (4 bytes): Mostly used as a "relative offset" in sequences, much like IP's offset.</li>
+</ul>
+<p>Yes, it is confusing, and there's a lot of new terminology, compared to the IP world. We'll continue to refer back to these headers in future Storage Networking 101 articles, so hopefully the fields and their purposes will become second nature after some real-world examples.</p>
+<p>The next important concept to grasp is the way FC assigns names. Notice that the D_ID and S_ID fields in the FC Frame Header only allow for 24 bits. Each HBA is assigned a WWN, and each port on it is assigned a Port WWN, or PWWN. These WWNs are 64-bits in length, which are larger than the 24 bits in FC. The ANSI T11 Address Identifier Format says that the FCID is made up of three parts, which are the Domain_ID, the Area_ID, and the Port_ID.</p>
+<p>FC networks are broken up into hierarchies, dynamically. The Domain_ID is assigned to each switch when a fabric comes online using a Domain_ID distribution process. Normally the Domain_ID is administratively configured. The Domain_ID, along with the Area_ID, a second hierarchical level, are combined with a Port_ID (assigned by the switch) to identify each FC node in a fabric. So the WWN doesn't really mean anything as far as SAN routing goes.</p>
+<p>Domain_IDs are distributed by a Principal Switch, which ensures that everyone has the correct information. In short, an FCID will be completely random the first time a node connects, which is generally fine, unless an administrator manually configures it. Some Domain_IDs are reserved for multicast and other purposes, but the details are a bit outside our scope here. Refer to the ANSI T11 FC-SW-3 specification for more details.</p>
+<p>Next we'll explore a bit into the hierarchical world of FC fabrics, including VSANs, a fairly new concept in the SAN world.</p>
+<div style="background: #003399; border: 1px solid #000; padding: 10px; color: #ffffff; margin-left: 50px; margin-right: 50px; font-size: smaller;"><strong>In a Nutshell</strong><br>
+<ul>
+<li>A 2148 byte FC frame is composed of an encapsulating header (Figure 1) and the FC frame (Figure 2), which lends FC easily to being transported over other protocols.</li>
+<li>FC addresses are FCIDs, which get assigned by a switch, based on its internal representation of its ports. Each node is identified by an 8-bit Port_ID.</li>
+<li>Domains are the top level of hierarchical structure in a SAN fabric, and Areas are the second. Areas are for groups of ports on a switch, and they cannot span multiple switches.</li>
+</ul>
+</div>	</div>
+        <div class="articleInfo">
+    </div>
+        
+<div id="paginationBottom">
+    <ul>
+            </ul>
+</div>    </div>
+	  	
+    <div>
+	<div style="float:left;padding-top:15px;margin-left:-10px;">
+		 <!-- QS-AD: 'sky' start -->
+<script language="JavaScript">
+	var t=displayDFPTag("sky");
+	document.write(t);
+
+</script><div id="sky-1" data-google-query-id="" style="display: none;">
+	<script type="text/javascript">
+		googletag.display('sky-1');
+	</script>
+</div>
+
+<!-- QS-AD: 'sky' end -->	</div>
+	<div style="float:left;width:465px;margin-left:22px;">
+		<p class="style1"> 
+	<noscript>Please enable Javascript in your browser, before you post the comment! Now Javascript is disabled.</noscript> 
+</p>
+<div id="comment_response"></div>
+<div id="comment_error" class="error"></div>
+
+<div class="comment_wrapper">
+	<div style="font-weight: bold;"><font id="commentCount">0</font> Comments&nbsp;<a href="http://www.enterprisenetworkingplanet.com/netsp/article.php/3690921/Storage-Networking-101--Understanding-the-Fibre-Channel-Protocol.htm#comment_form" style="text-decoration: underline;">(click to add your comment)</a></div>
+	<div id="comment_pagination_top"></div>
+	<div id="comment_page_container"></div>
+	<div id="comment_pagination_bottom"></div>
+	<div id="comment_form" class="formHeader">
+		Comment and Contribute
+	</div>
+	<div class="formBody">
+	<form action="http://www.enterprisenetworkingplanet.com/netsp/article.php/3690921/Storage-Networking-101--Understanding-the-Fibre-Channel-Protocol.htm" id="commentform" name="commentform" method="post">
+		<input type="hidden" id="key" value="8018420" name="key">
+		<input type="hidden" value="0" id="comment_parent" name="comment_parent">
+		<input type="hidden" value="3" id="totalComments" name="totalComments">
+
+        <div class="left textinput">
+            <input type="text" tabindex="1" size="22" id="author" name="author" value="Your name/nickname" onblur="if (this.value == &#39;&#39;) {this.value = &#39;Your name/nickname&#39;;}" onfocus="if(this.value == &#39;Your name/nickname&#39;) {this.value = &#39;&#39;;}">
+        </div>
+        <div class="left textinput">
+            <input type="text" tabindex="2" size="22" id="email" name="email" value="Your email" onblur="if (this.value == &#39;&#39;) {this.value = &#39;Your email&#39;;}" onfocus="if(this.value == &#39;Your email&#39;) {this.value = &#39;&#39;;}">
+        </div>
+        <div class="clearfix"></div>
+        <div class="subject textinput_wide">
+            <input type="text" tabindex="3" size="22" id="blurbTitle" name="blurbTitle" value="Subject (Optional)" onblur="if (this.value == &#39;&#39;) {this.value = &#39;Subject \(Optional\)&#39;;}" onfocus="if(this.value == &#39;Subject \(Optional\)&#39;) {this.value = &#39;&#39;;}">
+        </div>
+        <div id="textareafield">
+            <textarea id="commentdetails" name="commentdetails" onkeydown="limitText(this.form.commentdetails,this.form.countdown,1200);" onkeyup="limitText(this.form.commentdetails,this.form.countdown,1200);" rows="7" cols="51" tabindex="4" onblur="if (this.value == &#39;&#39;) {this.value = &#39;Comments&#39;;}" onfocus="if(this.value == &#39;Comments&#39;) {this.value = &#39;&#39;;}" value="Comments">Comments</textarea>
+            </div>
+        <div class="maxchar right">(Maximum characters: 1200). You have <div class="textinput_narrow"><input type="text" size="4" value="1200" name="countdown"></div> characters left.</div>
+        <div id="recaptcha" class="left">
+            <script type="text/javascript" src="./Fibre Channel Protocol_files/challenge">
+</script><script type="text/javascript" src="./Fibre Channel Protocol_files/recaptcha.js.téléchargement"></script><div id="recaptcha_widget_div" class=" recaptcha_nothad_incorrect_sol recaptcha_isnot_showing_audio"><div id="recaptcha_area"><table id="recaptcha_table" class="recaptchatable recaptcha_theme_red"> <tbody><tr> <td colspan="6" class="recaptcha_r1_c1"></td> </tr> <tr> <td class="recaptcha_r2_c1"></td> <td colspan="4" class="recaptcha_image_cell"><center><div id="recaptcha_image" style="width: 300px; height: 57px;"><img id="recaptcha_challenge_image" alt="Image reCAPTCHA" height="57" width="300" src="./Fibre Channel Protocol_files/image"></div></center></td> <td class="recaptcha_r2_c2"></td> </tr> <tr> <td rowspan="6" class="recaptcha_r3_c1"></td> <td colspan="4" class="recaptcha_r3_c2"></td> <td rowspan="6" class="recaptcha_r3_c3"></td> </tr> <tr> <td rowspan="3" class="recaptcha_r4_c1" height="49"> <div class="recaptcha_input_area"> <span id="recaptcha_challenge_field_holder" style="display: none;"><input type="hidden" name="recaptcha_challenge_field" id="recaptcha_challenge_field" value="03AHJ_Vuuxje10sJVvRwuG33HszuK-tTTXgu0Q0mFdKuM0erOBfzv4wkRLDoU6SHteHl7CVDAVuoGyyDe9Dymb7glvCM1ZlCQFvF5S3ITtFc3Js5uAyxt_eYtXxdxQSfjCX9FQNNNG1gYguVFPm2U5io01tqgie80dpzrGb48OOkCB44-kjbrahtkxEp3RxgnvxLJZxE2ECWHT"></span><input name="recaptcha_response_field" id="recaptcha_response_field" type="text" autocorrect="off" autocapitalize="off" placeholder="Saisissez le texte " autocomplete="off"> <span id="recaptcha_privacy" class="recaptcha_only_if_privacy"></span> </div> </td> <td rowspan="4" class="recaptcha_r4_c2"></td> <td><a id="recaptcha_reload_btn" title="Nouveau test"><img id="recaptcha_reload" width="25" height="17" src="./Fibre Channel Protocol_files/refresh.gif" alt="Nouveau test"></a></td> <td rowspan="4" class="recaptcha_r4_c4"></td> </tr> <tr> <td><a id="recaptcha_switch_audio_btn" class="recaptcha_only_if_image" title="Test audio"><img id="recaptcha_switch_audio" width="25" height="16" alt="Test audio" src="./Fibre Channel Protocol_files/audio.gif"></a><a id="recaptcha_switch_img_btn" class="recaptcha_only_if_audio" title="Test visuel"><img id="recaptcha_switch_img" width="25" height="16" alt="Test visuel" src="./Fibre Channel Protocol_files/text.gif"></a></td> </tr> <tr> <td><a id="recaptcha_whatsthis_btn" title="Aide"><img id="recaptcha_whatsthis" width="25" height="16" src="./Fibre Channel Protocol_files/help.gif" alt="Aide"></a></td> </tr> <tr> <td class="recaptcha_r7_c1"></td> <td class="recaptcha_r8_c1"></td> </tr> </tbody></table> </div></div>
+
+	<noscript>
+  		&lt;iframe src="http://api.recaptcha.net/noscript?k=6LeCOcQSAAAAAEtOGVBmGXQ0xqU2djFiDUQAE7u1" height="300" width="500" frameborder="0"&gt;&lt;/iframe&gt;&lt;br/&gt;
+  		&lt;textarea name="recaptcha_challenge_field" rows="3" cols="40"&gt;&lt;/textarea&gt;
+  		&lt;input type="hidden" name="recaptcha_response_field" value="manual_challenge"/&gt;
+	</noscript>        </div>
+        <div class="right">
+            
+            <input type="image" src="./Fibre Channel Protocol_files/form_comment_submit.png" value="Submit Your Comment" tabindex="6" id="submit" name="submit" onclick="return validate_comment();">
+            <img border="0" align="center" src="./Fibre Channel Protocol_files/ajax-loader.gif" id="ajax_loading_img" style="vertical-align:middle;visibility:hidden;" alt="null">
+        </div>
+        <div class="clear clearfix"></div>
+	</form>
+	</div>
+    <div class="formFooter">
+        <div class="clearfix"></div>
+    </div>
+	<script src="./Fibre Channel Protocol_files/comments.js.téléchargement" type="text/javascript">
+</script>
+	<script src="./Fibre Channel Protocol_files/boxover.js.téléchargement" type="text/javascript">
+</script>
+</div>	</div>
+    </div>
+	<!-- start Vibrant Media IntelliTXT script section -->
+<script type="text/javascript" src="http://enterprisenetworkingplanet.us.intellitxt.com/intellitxt/front.asp?ipid=26442">
+</script>
+<!-- end Vibrant Media IntelliTXT script section -->
+</div>        <div id="rightRail" class="grid_minor">
+<div id="newslettermailboxID" class="center-text roundedBox shadow">
+    <div class="header blackTextShadow">Get the Latest Scoop with Enterprise Networking Planet Newsletter</div>
+    <div id="newsletterbody" class="body">
+        <div id="IDnewsletterbox_error"></div>
+        <div id="newemailbox_content">
+            <form method="post" id="newsletterform" action="http://www.enterprisenetworkingplanet.com/netsp/article.php/3690921/Storage-Networking-101--Understanding-the-Fibre-Channel-Protocol.htm">
+                <div><input type="text" id="newsletteremailID" name="IC_QueryText" maxlength="255" onblur="if (this.value == &#39;&#39;) {this.value = &#39;Enter Your E-mail Address&#39;;}" onfocus="if(this.value == &#39;Enter Your E-mail Address&#39;) {this.value = &#39;&#39;;}" value="Enter Your E-mail Address">
+					<input id="NewsletterSignup" type="hidden" value="Networking Daily" name="NewsletterSignup">
+					<input id="navNewsletterSignup" type="hidden" value="1493" name="NewsletterKey">
+					<input id="businessUnit" type="hidden" value="Internet.com" name="businessUnit">
+					<input id="RegistrationWebsite" type="hidden" value="www.enterprisenetworkingplanet.com" name="RegistrationWebsite">
+				
+				</div>
+				<div>
+                <input type="image" src="./Fibre Channel Protocol_files/button_arrow.png" value="" name="btnSearch" id="newsletter_signInButton">
+				</div>
+            </form>
+        </div>
+
+        <div id="newslettermailboxsuccessID" style="display:none">
+            <p id="nlsuccessid"></p>
+        </div>
+    </div>
+    <div class="footer"></div>
+</div>
+<div>
+    <!-- QS-AD: 'imu' start -->
+<script language="JavaScript">
+	var t=displayDFPTag("imu");
+	document.write(t);
+
+</script><div id="imu-1" data-google-query-id="" style="display: none;">
+	<script type="text/javascript">
+		googletag.display('imu-1');
+	</script>
+</div>
+
+<!-- QS-AD: 'imu' end --></div>
+ <iframe id="whitePaperIFrame" scrolling="no" frameborder="0" align="middle" src="./Fibre Channel Protocol_files/saved_resource.html" height="650" style="display: none !important;"></iframe>
+<script type="text/javascript">
+	var updateIframe = false;
+	var t = 0;
+	function updateQMPIframe()
+	{
+		if(!updateIframe)
+		{
+			if($('#whitePaperIFrame').contents().find('.asset').length > 0)
+			{	
+				var height = $('#whitePaperIFrame').contents().find('.qmpContainer').height();
+				
+				var iframe = document.getElementById('whitePaperIFrame');
+				var iframeHeight = document.getElementById('whitePaperIFrame').height;
+				if(height>iframeHeight){
+					height = height + 5; //Add border pixels.
+					iframe.setAttribute( 'height', height);
+					clearTimeout(t);
+				}
+			}
+			else
+			{
+				updateIframe = true;
+				t = setTimeout('updateQMPIframe()', 5000);
+			}
+		}
+	}
+	
+	t = setTimeout('updateQMPIframe()', 5000);
+
+</script> 
+<div>
+    <!-- QS-AD: 'imu' start -->
+<script language="JavaScript">
+	var t=displayDFPTag("imu");
+	document.write(t);
+
+</script><div id="imu-2" data-google-query-id="" style="display: none;">
+	<script type="text/javascript">
+		googletag.display('imu-2');
+	</script>
+</div>
+
+<!-- QS-AD: 'imu' end --></div>
+
+<div>
+    <!-- QS-AD: 'imu' start -->
+<script language="JavaScript">
+	var t=displayDFPTag("imu");
+	document.write(t);
+
+</script><div id="imu-3" data-google-query-id="" style="display: none;">
+	<script type="text/javascript">
+		googletag.display('imu-3');
+	</script>
+</div>
+
+<!-- QS-AD: 'imu' end --></div>
+</div>
+<div style="clear:both;">    </div>
+
+            <div id="lb-wrapper" align="center">
+            <div id="top_leader_ad">
+                <!-- QS-AD: 'lb' start -->
+<script language="JavaScript">
+	var t=displayDFPTag("lb");
+	document.write(t);
+
+</script><div id="lb-2" data-google-query-id="" style="display: none;">
+	<script type="text/javascript">
+		googletag.display('lb-2');
+	</script>
+</div>
+
+<!-- QS-AD: 'lb' end -->            </div>
+        </div>
+    
+    <div id="pageFooter" class="container">
+        <!-- EnterpriseNetworkingPlanet: Begin Rocket Fuel Conversion Action Tracking Code Version 7 -->
+<script language="javascript">
+function callImpressionTracker(img_url) {
+	var trackingPixel = new Image();
+	cachebuster=parseInt(Math.random()*99999999);  // cache buster
+	trackingPixel.src = img_url + "&ra=" + cachebuster;
+	document.body.appendChild(trackingPixel);
+}
+// Code for Action: EnterpriseNetworkingPlanet - Quinstreet - Tracking
+callImpressionTracker("http://20514669p.rfihub.com/ca.gif?rb=3335&ca=20514669")
+
+</script>
+<!-- End Rocket Fuel Conversion Action Tracking Code Version 7 -->
+<!--
+<div id="enpFooter" class="grid_full roundedBox shadow">
+    <div class="header"></div>
+    <div class="body">
+        <div id="footerNav">
+            <ul id="navENP" class="left">
+                <li><span class="title">Enterprise Networking Planet</span></li>
+                <li><a href="/netsysm">Network Management</a></li>
+                <li><a href="/netsecur">Network Security</a></li>
+                <li><a href="/netos">Network Software</a></li>
+                <li><a href="/netsp">WAN and LAN</a></li>
+                <li><a href="/reports">Networking In-Depth</a></li>
+                <li><a href="/nethub">Networking Hardware</a></li>
+                <li><a href="/unified_communications">Unified Communications</a></li>
+               <li><a href="/sitemap.html">Sitemap</a></li>
+            </ul>
+            <ul id="navMoreNetworking" class="left">
+                <li><span class="title">More Networking</span></li>
+                <li><a href="http://www.wi-fiplanet.com/">Wi-Fi Planet</a></li>
+                <li><a href="http://www.webopedia.com/Networks">Networking Glossary</a></li>
+                <li><a href="/ebooks/50950510/95900/4190310/">Networking eBooks</a></li>
+                <li><a href="http://www.voipplanet.com/">VoIP Planet</a></li>
+                <li><a href="http://www.telephonyworld.com/">Telephony World</a></li>
+            </ul>
+            <ul id="navMoreITRnT" class="left">
+                <li><span class="title">More IT Reviews &amp; Tutorials</span></li>
+                <li><a href="http://www.esecurityplanet.com/">eSecurity Planet</a></li>
+                <li><a href="http://www.infostor.com/">InfoStor</a></li>
+                <li><a href="http://www.serverwatch.com/">ServerWatch</a></li>
+            </ul>
+            <ul id="navInternetDC" class="left last">
+                <li><span class="title">IT Business Edge</span></li>
+                <li><a href="/about-itbe">About the IT Business Edge Network</a></li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>	
+    </div>
+    <div class="footer">
+    </div>
+</div> -->
+<br>
+<!-- Common Footer -->
+<style type="text/css">
+#developerBrand-footer{text-align:center;margin:0 auto}
+#footerlinks{font-size:12px;word-spacing:1px}
+#footerlinks a{color:#000;margin:5px 0 0}
+#itbeBrand-footer{text-align:center;margin:0 auto}
+#itbusinessedge-footer{text-align:center;margin:0 auto}
+#footercopyright{font-size:12px;margin:5px 0 0}
+#developerBrandForum-footer{text-align:center;margin:0 auto}
+#itbeBrandForum-footer{text-align:center;margin:0 auto}
+#eweek-truste-footer{text-align:center;margin:0 auto}
+#developerBrand-truste-footer{text-align:center;margin:0 auto}
+#itbeBrand-truste-footer{text-align:center;margin:0 auto}
+#weboitbeBrand-truste-footer{text-align:center;margin:0 auto}
+#itbusinessedge-truste-footer{text-align:center;margin:0 auto}
+.footerLogoClass{text-align:center;margin:0 auto}
+</style>
+<div id="developerBrand-footer" style="display:none"></div>
+<div id="itbeBrand-footer"><div id="itbelogo"><img src="./Fibre Channel Protocol_files/itbe.gif" border="0"></div><div id="footercopyright"> Property of QuinStreet Enterprise. </div><div id="footerlinks"><a rel="nofollow" href="http://www.enterprisenetworkingplanet.com/terms">Terms of Service</a> | <a rel="nofollow" href="http://www.enterprisenetworkingplanet.com/licensing">Licensing &amp; Reprints</a> | <a rel="nofollow" href="http://quinstreetenterprise.com/about_us" target="_blank">About Us</a> |  <a rel="nofollow" href="http://www.enterprisenetworkingplanet.com/privacy">Privacy Policy</a> | <a rel="nofollow" href="http://quinstreetenterprise.com/about_us#contactus" target="_blank">Advertise</a><br>Copyright 2017 QuinStreet Inc. All Rights Reserved.<noscript>Copyright 2017 Quinstreet Inc. All right reserved.&lt;noscript&gt;&lt;/div&gt;</noscript></div></div>
+<div id="itbusinessedge-footer" style="display:none"></div>
+<div id="zde-footer" style="display:none" class="footerLogoClass"></div>
+<div id="baseline-footer" style="display:none" class="footerLogoClass"></div>
+<div id="cinsider-footer" style="display:none" class="footerLogoClass"></div>
+<div id="cioinsight-footer" style="display:none" class="footerLogoClass"></div>
+<div id="eweek-footer" style="display:none" class="footerLogoClass"></div>
+<div id="enterpriseappstoday-footer" style="display:none" class="footerLogoClass"></div>
+<div id="eseminar-footer" style="display:none" class="footerLogoClass"></div>
+<div id="wbg-footer" style="display:none" class="footerLogoClass"></div>
+<div id="developerBrandForum-footer" style="display:none"></div>
+<div id="itbeBrandForum-footer" style="display:none"></div>
+<div id="eweek-truste-footer" style="display:none" class="footerLogoClass"></div>
+<div id="developerBrand-truste-footer" style="display:none"></div>
+<div id="itbeBrand-truste-footer" style="display:none"></div>
+<div id="weboitbeBrand-truste-footer" style="display:none"></div>
+<div id="itbusinessedge-truste-footer" style="display:none"></div>
+<script async="" language="Javascript" src="./Fibre Channel Protocol_files/footerbrandingcode.js.téléchargement">
+</script><!-- Common Footer -->
+<link href="./Fibre Channel Protocol_files/css" rel="stylesheet" type="text/css">
+<div id="newuserregistrationpopup">
+    <div id="closepopup"><a class="close" href="http://www.enterprisenetworkingplanet.com/netsp/article.php/3690921/Storage-Networking-101--Understanding-the-Fibre-Channel-Protocol.htm#"><img src="./Fibre Channel Protocol_files/close_icon.png" border="0" alt="null"></a></div>
+    <div id="thankuptext">Thanks for your registration, follow us on our social networks to keep up-to-date</div>
+    <div id="socialsharebtn">
+        <div id="socialbtns"><a href="http://o1.qnsr.com/cgi/r?WT.qs_dlk=WJ2xAQrIZ7wAAH1xCWYAAAAU;;n=203;c=1459370;s=8986;x=7936;f=201411241658150;u=j;z=TIMESTAMP;k=https://www.facebook.com/pages/Enterprise-Networking-Planet/66256463335" target="_blank"><img src="./Fibre Channel Protocol_files/user-register-popup-fb.png" border="0" alt="null"></a></div>
+        <div id="socialbtns"><a href="http://o1.qnsr.com/cgi/r?WT.qs_dlk=WJ2xAQrIZ7wAAH1xCWYAAAAU;;n=203;c=1459370;s=8986;x=7936;f=201411241658150;u=j;z=TIMESTAMP;k=https://twitter.com/NetworkNotes" target="_blank"><img src="./Fibre Channel Protocol_files/user-register-popup-tw.png" border="0" alt="null"></a></div>
+        <div id="socialbtns"><a href="http://o1.qnsr.com/cgi/r?WT.qs_dlk=WJ2xAQrIZ7wAAH1xCWYAAAAU;;n=203;c=1459370;s=8986;x=7936;f=201411241658150;u=j;z=TIMESTAMP;k=https://www.linkedin.com/company/enterprise-networking-planet?trk=biz-companies-cym" target="_blank"><img src="./Fibre Channel Protocol_files/user-register-popup-ln.png" border="0" alt="null"></a></div>
+        <div id="socialbtns"><a href="http://o1.qnsr.com/cgi/r?WT.qs_dlk=WJ2xAQrIZ7wAAH1xCWYAAAAU;;n=203;c=1459370;s=8986;x=7936;f=201411241658150;u=j;z=TIMESTAMP;k=https://plus.google.com/u/0/b/102628285918266564251/102628285918266564251/posts" target="_blank"><img src="./Fibre Channel Protocol_files/user-register-popup-gplus.png" border="0" alt="null"></a></div>
+        <div id="socialbtns"><a href="http://o1.qnsr.com/cgi/r?WT.qs_dlk=WJ2xAQrIZ7wAAH1xCWYAAAAU;;n=203;c=1459370;s=8986;x=7936;f=201411241658150;u=j;z=TIMESTAMP;k=http://www.enterprisenetworkingplanet.com/rss.xml" target="_blank"><img src="./Fibre Channel Protocol_files/user-register-popup-rss.png" border="0" alt="null"></a></div>
+    </div>
+</div>
+        <div class="clear clearfix"></div>
+            </div>
+</div>
+<script language="JavaScript" type="text/javascript">
+        <!--
+        // Make sure all image has an alt tag if it doesn't already
+        $(document).ready(function(){
+            $("img").each(function() {
+                var img = $(this);
+                if (!img.attr("alt"))
+                    img.attr("alt", "null");
+            });
+        });
+        //-->
+
+</script>
+
+
+</div><img src="http://20514669p.rfihub.com/ca.gif?rb=3335&amp;ca=20514669&amp;ra=66935484" alt="null"><div class="kxhead" data-id="Jd_KzIqn" style="display:none !important;"><span class="kxtag kxinvisible" data-id="21041"><script>
+    (function() {
+        var kuid = Krux('get', 'user');
+        if (kuid) {
+            var prefix = location.protocol == 'https:' ? "https:" : "http:";
+            var kurl_params = encodeURIComponent("_kuid=" + kuid + "&_kdpid=e70bc6e8-7d66-460e-b96d-cee26cf41add&dlxid=<na_id>&dlxdata=<na_da>");
+            var kurl = prefix + "//beacon.krxd.net/data.gif?" + kurl_params;
+            var dlx_url = '//r.nexac.com/e/getdata.xgi?dt=br&pkey=oazw62oazwq13&ru=' + kurl;
+            var i = new Image();
+            i.src = dlx_url;
+        }
+    })();
+</script></span><span class="kxtag kxinvisible" data-id="19528"><script>
+(function() {
+    var i = new Image();
+    i.src = '//p.rfihub.com/cm?in=1&pub=6919';
+})();
+
+</script></span><span class="kxtag kxinvisible" data-id="19529"><script>
+(function(){
+        var kuid = Krux('get', 'user');
+        var prefix = location.protocol;
+        if (kuid) {
+           var dxu_url = '//i.w55c.net/ping_match.gif?st=Krux&rurl=' + prefix + '//beacon.krxd.net/usermatch.gif?partner=dataxu&uid=_wfivefivec_';
+           var i = new Image();
+           i.src = dxu_url;
+        }
+})();
+</script></span><span class="kxtag kxinvisible" data-id="28881"><script>
+(function(){
+	var prefix = window.location.protocol == 'https:' ? 'https:' : 'http:';
+	var url = prefix + '//ad.afy11.net/ad?mode=10&tpdpid=880';
+	new Image().src = url;
+})();
+</script></span><span class="kxtag kxinvisible" data-id="19527"><script>
+(function() {
+  if (Krux('get', 'user') != null) {
+      new Image().src = 'https://usermatch.krxd.net/um/v2?partner=google';
+  }
+})();
+</script></span><iframe class="kxtag kxinvisible" data-id="24588" height="0" width="0" scrolling="no" style="overflow:hidden;" src="./Fibre Channel Protocol_files/saved_resource(2).html"></iframe><span class="kxtag kxinvisible" data-id="19543"><script type="text/javascript">
+(function() {
+    (new Image()).src = '//sync.tidaltv.com/genericusersync.ashx?dpid=395';
+})();
+</script></span><span class="kxtag kxinvisible" data-id="22546"><script>
+(function(){
+         var prefix = window.location.protocol == 'https:' ? "https:" : "http:";
+         var i_url = prefix + '//ag.innovid.com/dv/sync?tid=2';
+         var i = new Image();
+         i.src = i_url;
+})();
+</script></span><span class="kxtag kxinvisible" data-id="19515"><script type="text/javascript">Krux('social.init');</script></span><span class="kxtag kxinvisible" data-id="19516"><script>
+// this tag is intentionally blank
+</script></span><span class="kxtag kxinvisible" data-id="19517"></span><span class="kxtag kxinvisible" data-id="19519"><script>
+(function() {
+  // adadvisor redirects to http://logger... so it's not https safe
+  if (location.protocol == "http:") {
+     var u = "https://aa.agkn.com/adscores/g.js?sid=9212244187&_kdpid=2111c0af-fc3a-446f-ab07-63aa74fbde8e";
+     (new Image()).src = u;
+   }
+})();
+</script></span><span class="kxtag kxinvisible" data-id="19775"><script>
+
+(function () {
+_ml = window._ml || {};
+_ml.pub = '748';
+_ml.redirect = '//beacon.krxd.net/usermatch.gif?partner=madisonlogic&partner_uid=[PersonID]';
+var s = document.getElementsByTagName('script')[0], cd = new Date(), mltag = document.createElement('script');
+mltag.type = 'text/javascript'; mltag.async = true;
+mltag.src = '//ml314.com/tag.aspx?' + cd.getDate() + cd.getMonth() + cd.getFullYear();
+s.parentNode.insertBefore(mltag, s);
+})();
+
+</script></span><span class="kxtag kxinvisible" data-id="19520"><script>
+(function(){
+  var kuid = Krux('get', 'user');
+  if (kuid) {
+      var liveramp_url = 'https://idsync.rlcdn.com/379708.gif?partner_uid=' + kuid;
+      var i = new Image();
+      i.src = liveramp_url;      
+  }
+})();
+</script></span><span class="kxtag kxinvisible" data-id="19521"><script>
+    (function() {
+        var kuid = Krux('get', 'user');
+        if (kuid) {
+            var prefix = location.protocol == 'https:' ? "https:" : "http:";
+            var kurl_params = encodeURIComponent("_kuid=" + kuid + "&_kdpid=2dd640a6-6ebd-4d4f-af30-af8baa441a0d&dlxid=<na_id>&dlxdata=<na_da>");
+            var kurl = prefix + "//beacon.krxd.net/data.gif?" + kurl_params;
+            var dlx_url = '//r.nexac.com/e/getdata.xgi?dt=br&pkey=gpwn29rvapq62&ru=' + kurl;
+            var i = new Image();
+            i.src = dlx_url;
+        }
+    })();
+</script></span><span class="kxtag kxinvisible" data-id="19523"><script>
+(function(){
+  var kuid = Krux('get', 'user');
+  if (kuid) {
+    Krux('require:http').pixel({
+      url: "//loadm.exelator.com/load",
+      data: {
+          _kdpid: 'e4942ff0-4070-4896-a7ef-e6a5a30ce9f9',
+          buid: kuid,
+          p: '204',
+          g: '270',
+          j: '0'
+      }});
+  }
+  })();
+</script></span><span class="kxtag kxinvisible" data-id="19524"><script>
+
+(function () {
+var user_logged_in = "dn";
+if(document.cookie.indexOf(user_logged_in) != -1){ 
+
+	Krux('set', { "user_attr_logged_in" : "yes" });
+	}
+
+
+// keywords
+Krux('scrape', { "page_attr_keywords" : {meta_name: 'keywords'} }) ; 
+// url_path
+Krux('scrape', { "page_attr_url_path_1" : {url_path: 1} }) ;
+Krux('scrape', { "page_attr_url_path_2" : {url_path: 2} }) ;
+Krux('scrape', { "page_attr_url_path_3" : {url_path: 3} }) ;
+  
+Krux('scrape', { "page_attr_domain": {url_domain: 2 } }) ;
+
+// cookies
+Krux('scrape', { 
+			user_attr_dn: {cookie: 'dn'},
+			user_attr_dr: {cookie: 'dr'},
+			user_attr_ir: {cookie: 'ir'},
+			user_attr_jf: {cookie: 'jf'},
+			user_attr_noer: {cookie: 'noer'}
+	} );
+
+})();
+</script></span><span class="kxtag kxinvisible" data-id="19525"><script>
+
+(function () {
+_ml = window._ml || {};
+_ml.pub = '748';
+_ml.redirect = '//beacon.krxd.net/usermatch.gif?partner=madisonlogic&partner_uid=[PersonID]';
+var s = document.getElementsByTagName('script')[0], cd = new Date(), mltag = document.createElement('script');
+mltag.type = 'text/javascript'; mltag.async = true;
+mltag.src = '//ml314.com/tag.aspx?' + cd.getDate() + cd.getMonth() + cd.getFullYear();
+s.parentNode.insertBefore(mltag, s);
+})();
+
+</script></span><span class="kxtag kxinvisible" data-id="19533"></span><span class="kxtag kxinvisible" data-id="19534"><script>
+(function(){
+  var kuid = Krux('get', 'user');
+  if (kuid) {
+      var liveramp_url = 'https://idsync.rlcdn.com/379708.gif?partner_uid=' + kuid;
+      var i = new Image();
+      i.src = liveramp_url;     
+  }
+})();
+</script></span><span class="kxtag kxinvisible" data-id="19535"><script>
+(function(){
+    var kuid = Krux('get', 'user');
+        if (kuid) {
+            var prefix = 'https:';
+            var rurl = prefix + '//cms.analytics.yahoo.com/cms?partner_id=KRUX';
+            var i = new Image();
+            i.src = rurl;
+        }
+})();
+</script></span><span class="kxtag kxinvisible" data-id="19536"><script>
+    (function() {
+        var kuid = Krux('get', 'user');
+        if (kuid) {
+            var prefix = location.protocol == 'https:' ? "https:" : "http:";
+            var kurl_params = encodeURIComponent("_kuid=" + kuid + "&_kdpid=d7158cb7-a851-4e3c-b7ab-cc9e815b2399&dlxid=<na_id>&dlxdata=<na_da>");
+            var kurl = prefix + "//beacon.krxd.net/data.gif?" + kurl_params;
+            var dlx_url = '//r.nexac.com/e/getdata.xgi?dt=br&pkey=gwjn34gwjnh86&ru=' + kurl;
+            var i = new Image();
+            i.src = dlx_url;
+        }
+    })();
+</script></span><span class="kxtag kxinvisible" data-id="19537"><script>
+(function(){
+        var kuid = Krux('get', 'user');
+        if (kuid) {
+            var prefix = location.protocol == 'https:' ? "https:" : "http:";
+            var kurl = prefix + '//beacon.krxd.net/usermatch.gif?adnxs_uid=$UID';
+            var appnexus_url = '//ib.adnxs.com/getuid?' + kurl
+            var i = new Image();
+            i.src = appnexus_url;
+        }
+})();
+</script></span><span class="kxtag kxinvisible" data-id="19538"><script>
+    (function() {
+        var prefix = location.protocol == 'https:' ? "https" : "http";
+        var tm_url = prefix + '://rtd.tubemogul.com/upi/pid/NC4WTmcy?redir=' + prefix + '%3A%2F%2Fbeacon.krxd.net%2Fusermatch.gif%3Fpartner_id%3Dcb276571-e0d9-4438-9fd4-80a1ff034b01%26puid%3D%24%7BTM_USER_ID%7D'
+        var i = new Image();
+        i.src = tm_url;
+    })();
+</script></span><span class="kxtag kxinvisible" data-id="19539"><script>
+(function(){
+        var kuid = Krux('get', 'user');
+        var prefix = window.location.protocol == 'https:' ? 'https:' : 'http:';
+        if (kuid) {
+           var url = '//servedby.flashtalking.com/map/?key=ad919e4f211cr5452615&url='
+                     + prefix
+                     + '//beacon.krxd.net/usermatch.gif?partner=flashtalking&partner_uid=[%FT_GUID%]';
+           (new Image()).src = url;
+        }
+})();
+</script></span><span class="kxtag kxinvisible" data-id="19540"><script>
+(function()
+{ var i = new Image(); i.src = '//match.adsrvr.org/track/cmf/generic?ttd_pid=krux&ttd_tpi=1'; }
+)();
+</script></span><span class="kxtag kxinvisible" data-id="19541"><script type="text/javascript">
+(function() {
+    (new Image()).src = '//aa.agkn.com/adscores/g.js?sid=9212244187&_kdpid=2111c0af-fc3a-446f-ab07-63aa74fbde8e';
+})();
+</script></span><span class="kxtag kxinvisible" data-id="19542"><script>
+(function(){
+        var kuid = Krux('get', 'user');
+        var prefix = window.location.protocol == 'https:' ? 'https:' : 'http:';
+        if (kuid) {
+           var url = prefix + '//pix.btrll.com/partner/868092.png';
+           (new Image()).src = url;
+        }
+})();
+</script></span><span class="kxtag kxinvisible" data-id="29014"><script>
+(function(){
+
+   var kuid = Krux('get', 'user');
+   var krux_url = encodeURIComponent('://beacon.krxd.net/usermatch.gif?partner=weborama&partner_uid=');
+   if (kuid) {
+      new Image().src = 'https://dx.bigsea.weborama.com/collect?r=https' + krux_url + '{UUID}';
+   }
+
+})();
+</script></span><span class="kxtag kxinvisible" data-id="19544"><script>
+(function(){
+        var kuid = Krux('get', 'user');
+        if (kuid) {
+           var qcast_url = '//pixel.quantserve.com/pixel/p-j_f_9hh7_PWUw.gif?idmatch=0';
+           var i = new Image();
+           i.src = qcast_url;
+        }
+})();
+</script></span><span class="kxtag kxinvisible" data-id="19545"></span><span class="kxtag kxinvisible" data-id="19546"><script>
+(function(){
+        var kuid = Krux('get', 'user');
+        var prefix = window.location.protocol == 'https:' ? 'https:' : 'http:';
+
+        if (kuid) {
+           var url = prefix + '//ps.eyeota.net/match?bid=i0r4o4v&uid=' + kuid;
+           (new Image()).src = url;
+        }
+})();
+</script></span><span class="kxtag kxinvisible" data-id="19547"><script>
+(function(){
+        var kuid = Krux('get', 'user');
+        var prefix = window.location.protocol == 'https:' ? 'https:' : 'http:';
+
+        if (kuid) {
+           var url = prefix + '//ps.eyeota.net/match?bid=i0r4o4v&uid=' + kuid;
+           (new Image()).src = url;
+        }
+})();
+</script></span><span class="kxtag kxinvisible" data-id="19548"></span><span class="kxtag kxinvisible" data-id="19549"><script>
+(function(){
+        var kuid = Krux('get', 'user');
+        var prefix = window.location.protocol == 'https:' ? 'https:' : 'http:';
+
+        if (kuid) {
+           var url = prefix + '//ps.eyeota.net/match?bid=i0r4o4v&uid=' + kuid;
+           (new Image()).src = url;
+        }
+})();
+</script></span><span class="kxtag kxinvisible" data-id="19550"><script>
+// Blank
+</script></span><span class="kxtag kxinvisible" data-id="19551"></span><span class="kxtag kxinvisible" data-id="19552"><script>
+(function(){
+        var kuid = Krux('get', 'user');
+        if (kuid) {
+        	new Image().src = "//pxl.jivox.com/tags/sync/usync.php?px=eZQcCLxB";
+        }
+})();
+</script></span><span class="kxtag kxinvisible" data-id="19553"><script>
+(function() {
+    var kuid = Krux('get', 'user');
+    var prefix = location.protocol;
+    if (kuid) {
+        var nativo_url = prefix + '//jadserve.postrelease.com/dmp/5?vk=KRUX_USER_ID&ntv_r=' + prefix + '//beacon.krxd.net/usermatch.gif?partner=nativo&partner_uid=NTV_USER_ID';
+        var i = new Image();
+        i.src = nativo_url;
+    }
+})();
+</script></span><span class="kxtag kxinvisible" data-id="19554"><script>
+    (function() {
+        var kuid = Krux('get', 'user');
+        if (kuid) {
+            var prefix = location.protocol == 'https:' ? "https:" : "http:";
+            var kurl_params = encodeURIComponent("_kuid=" + kuid + "&_kdpid=8da8b14d-5569-4bec-bcea-722864ee8d06&dlxid=<na_id>&dlxdata=<na_da>");
+            var kurl = prefix + "//beacon.krxd.net/data.gif?" + kurl_params;
+            var dlx_url = '//r.nexac.com/e/getdata.xgi?dt=br&pkey=iefs40iefsj26&ru=' + kurl;
+            var i = new Image();
+            i.src = dlx_url;
+        }
+    })();
+</script></span><span class="kxtag kxinvisible" data-id="19555"><script>
+    (function() {
+        var kuid = Krux('get', 'user');
+        if (kuid) {
+            var prefix = location.protocol == 'https:' ? "https:" : "http:";
+            var kurl_params = encodeURIComponent("_kuid=" + kuid + "&_kdpid=bef9f122-393d-4c45-8d8d-32d8be7ac433&dlxid=<na_id>&dlxdata=<na_da>");
+            var kurl = prefix + "//beacon.krxd.net/data.gif?" + kurl_params;
+            var dlx_url = '//r.nexac.com/e/getdata.xgi?dt=br&pkey=iyzu39iyzud95&ru=' + kurl;
+            var i = new Image();
+            i.src = dlx_url;
+        }
+    })();
+</script></span><span class="kxtag kxinvisible" data-id="19556"><script>
+    (function() {
+        var allowUserMatch = function() {
+            var GDN_SITE_ID = '1282650';
+ 
+            if (Krux('get', 'config').params.client_type === 'marketer') {
+                try {
+                    var params = Krux('require:marketer').getParams(
+                            Krux('require:sizzle').find('script[src*="' + Krux('get', 'confid') + '"]')
+                    );
+                    return GDN_SITE_ID !== (params.siteid || params.kxsiteid);
+                }
+                catch (e) {
+                    // In case we don't find the script tag or the URL parser fails, just allow matching.
+                }
+            }
+            return true;
+        };
+         
+        var kuid = Krux('get', 'user');
+        if (allowUserMatch() && kuid) {
+            var prefix = location.protocol == 'https:' ? "https:" : "http:";
+            var kurl_params = encodeURIComponent("_kuid=" + kuid + "&_kdpid=8bf57916-aac8-4f01-a386-4baf103b3e1f&dlxid=<na_id>&dlxdata=<na_da>");
+            var kurl = prefix + "//beacon.krxd.net/data.gif?" + kurl_params;
+            var dlx_url = '//r.nexac.com/e/getdata.xgi?dt=br&pkey=bckw15bckwu20&ru=' + kurl;
+            var i = new Image();
+            i.src = dlx_url;
+        }
+    })();
+</script></span><span class="kxtag kxinvisible" data-id="19557"><script>
+    (function() {
+        var allowUserMatch = function() {
+            var GDN_SITE_ID = '1282650';
+
+            if (Krux('get', 'config').params.client_type === 'marketer') {
+                try {
+                    var params = Krux('require:marketer').getParams(
+                            Krux('require:sizzle').find('script[src*="' + Krux('get', 'confid') + '"]')
+                    );
+                    return GDN_SITE_ID !== (params.siteid || params.kxsiteid);
+                }
+                catch (e) {
+                    // In case we don't find the script tag or the URL parser fails, just allow matching.
+                }
+            }
+            return true;
+        };
+
+        var kuid = Krux('get', 'user');
+        if (allowUserMatch() && kuid) {
+            var prefix = location.protocol == 'https:' ? "https:" : "http:";
+            var kurl_params = encodeURIComponent("_kuid=" + kuid + "&_kdpid=d7158cb7-a851-4e3c-b7ab-cc9e815b2399&dlxid=<na_id>&dlxdata=<na_da>");
+            var kurl = prefix + "//beacon.krxd.net/data.gif?" + kurl_params;
+            var dlx_url = '//r.nexac.com/e/getdata.xgi?dt=br&pkey=gwjn34gwjnh86&ru=' + kurl;
+            var i = new Image();
+            i.src = dlx_url;
+        }
+    })();
+</script></span><span class="kxtag kxinvisible" data-id="19558"><script>
+    (function() {
+        var kuid = Krux('get', 'user');
+        if (kuid) {
+            var prefix = location.protocol == 'https:' ? "https:" : "http:";
+            var kurl_params = encodeURIComponent("_kuid=" + kuid + "&_kdpid=536f0daa-aaaa-4d9e-9a25-dde40646786a&dlxid=<na_id>&dlxdata=<na_da>");
+            var kurl = prefix + "//beacon.krxd.net/data.gif?" + kurl_params;
+            var dlx_url = '//r.nexac.com/e/getdata.xgi?dt=br&pkey=iefs40iefsj26&ru=' + kurl;
+            var i = new Image();
+            i.src = dlx_url;
+        }
+    })();
+</script></span><span class="kxtag kxinvisible" data-id="19559"><script>
+    (function() {
+        var kuid = Krux('get', 'user');
+        if (kuid) {
+            var prefix = location.protocol == 'https:' ? "https:" : "http:";
+            var kurl_params = encodeURIComponent("_kuid=" + kuid + "&_kdpid=7c6392c9-e878-492c-8b14-bf06e3828ebd&dlxid=<na_id>&dlxdata=<na_da>");
+            var kurl = prefix + "//beacon.krxd.net/data.gif?" + kurl_params;
+            var dlx_url = '//r.nexac.com/e/getdata.xgi?dt=br&pkey=rowp70rowpu60&ru=' + kurl;
+            var i = new Image();
+            i.src = dlx_url;
+        }
+    })();
+</script></span><span class="kxtag kxinvisible" data-id="19560"><script>
+    (function() {
+        var allowUserMatch = function() {
+            var GDN_SITE_ID = '1282650';
+
+            if (Krux('get', 'config').params.client_type === 'marketer') {
+                try {
+                    var params = Krux('require:marketer').getParams(
+                            Krux('require:sizzle').find('script[src*="' + Krux('get', 'confid') + '"]')
+                    );
+                    return GDN_SITE_ID !== (params.siteid || params.kxsiteid);
+                }
+                catch (e) {
+                    // In case we don't find the script tag or the URL parser fails, just allow matching.
+                }
+            }
+            return true;
+        };
+        
+        var kuid = Krux('get', 'user');
+        if (allowUserMatch() && kuid) {
+            var prefix = location.protocol == 'https:' ? "https:" : "http:";
+            var kurl_params = encodeURIComponent("_kuid=" + kuid + "&_kdpid=bb8ae0e2-9cd7-45b2-ad37-7737269627d8&dlxid=<na_id>&dlxdata=<na_da>");
+            var kurl = prefix + "//beacon.krxd.net/data.gif?" + kurl_params;
+            var dlx_url = '//r.nexac.com/e/getdata.xgi?dt=br&pkey=rsxs71rsxsk73&ru=' + kurl;
+            var i = new Image();
+            i.src = dlx_url;
+        }
+    })();
+</script></span><iframe class="kxtag kxinvisible" data-id="19561" height="0" width="0" scrolling="no" style="overflow:hidden;" src="./Fibre Channel Protocol_files/saved_resource(3).html"></iframe><span class="kxtag kxinvisible" data-id="19562"><script>
+    (function() {
+        var allowUserMatch = function() {
+            var GDN_SITE_ID = '1282650';
+ 
+            if (Krux('get', 'config').params.client_type === 'marketer') {
+                try {
+                    var params = Krux('require:marketer').getParams(
+                            Krux('require:sizzle').find('script[src*="' + Krux('get', 'confid') + '"]')
+                    );
+                    return GDN_SITE_ID !== (params.siteid || params.kxsiteid);
+                }
+                catch (e) {
+                    // In case we don't find the script tag or the URL parser fails, just allow matching.
+                }
+            }
+            return true;
+        };
+         
+        var kuid = Krux('get', 'user');
+        if (allowUserMatch() && kuid) {
+            var prefix = location.protocol == 'https:' ? "https:" : "http:";
+            var kurl_params = encodeURIComponent("_kuid=" + kuid + "&_kdpid=afae52b8-1e27-4650-bd6a-ed7d982f5a6a&dlxid=<na_id>&dlxdata=<na_da>");
+            var kurl = prefix + "//beacon.krxd.net/data.gif?" + kurl_params;
+            var dlx_url = '//r.nexac.com/e/getdata.xgi?dt=br&pkey=iqbg41iqbgj68&ru=' + kurl;
+            new Image().src = dlx_url;
+          
+        }
+    })();
+</script></span><span class="kxtag kxinvisible" data-id="24694"><script>
+(function(){
+
+  var kuid = Krux('get', 'user');
+  var prefix = location.protocol == 'https:' ? "https:" : "http:";
+
+  if (kuid) {
+    new Image().src = prefix + '//s.thebrighttag.com/cs?tp=8RtgoqC&uid=' + kuid;
+  }
+  
+})();
+</script></span><span class="kxtag kxinvisible" data-id="20344"><script>
+(function(){
+  var kuid = Krux('get', 'user');
+  var cbust = Math.round(new Date().getTime() / 1000);
+  var prefix = location.protocol == 'https:' ? "https:" :"http:";
+  var url = prefix == 'https:' ? '//sb.scorecardresearch.com/p' : '//b.scorecardresearch.com/p';
+  if (kuid) {
+    Krux('require:http').pixel({
+      url: url,
+      data: {
+          c1: '9',
+          c2: '8188709',
+          cs_xi: kuid,
+          rn: cbust
+      }});
+  }
+  })();
+</script></span><span class="kxtag kxinvisible" data-id="27278"><script>
+    (function() {
+        var kuid = Krux('get', 'user');
+        if (kuid) {
+            var prefix = location.protocol == 'https:' ? "https:" : "http:";
+            var kurl_params = encodeURIComponent("_kuid=" + kuid + "&_kdpid=a8138b01-9fff-43bb-b649-99241ab62170&dlxid=<na_id>&dlxdata=<na_da>");
+            var kurl = prefix + "//beacon.krxd.net/data.gif?" + kurl_params;
+            var dlx_url = '//r.nexac.com/e/getdata.xgi?dt=br&pkey=qkgx66qkgxw46&ru=' + kurl;
+            var i = new Image();
+            i.src = dlx_url;
+        }
+    })();
+</script></span><span class="kxtag kxinvisible" data-id="28323"><script>
+(function(){
+  var kuid = Krux('get', 'user');
+  var prefix = window.location.protocol == 'https:' ? 'https:' : 'http:';
+
+  if (kuid) {
+      var partner_url = prefix +'//s.amazon-adsystem.com/ecm3?ex=krux.com&id=' + kuid;
+      new Image().src = partner_url;
+  }
+})();
+</script></span><span class="kxtag kxinvisible" data-id="28324"><script>
+(function(){
+  var kuid = Krux('get', 'user');
+  var prefix = window.location.protocol == 'https:' ? 'https:' : 'http:';
+
+  if (kuid) {
+      var partner_url = prefix +'//beacon.walmart.com/etap.gif?tap=krux&partner_uid=' + kuid;
+      new Image().src = partner_url;
+  }
+})();
+</script></span><span class="kxtag kxinvisible" data-id="28880"><script>
+(function(){
+        var kuid = Krux('get', 'user');
+        var prefix = window.location.protocol == 'https:' ? 'https:' : 'http:';
+        if (kuid) {
+           var url = prefix + '//px.surveywall-api.survata.com/k';
+           (new Image()).src = url;
+        }
+})();
+</script></span></div><iframe name="oauth2relay689519307" id="oauth2relay689519307" src="./Fibre Channel Protocol_files/postmessageRelay.html" tabindex="-1" aria-hidden="true" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe><iframe src="./Fibre Channel Protocol_files/saved_resource(4).html" style="height: 0px; width: 0px; visibility: hidden; border: none; display: none;">This frame prevents back/forward cache problems in Safari.</iframe><div style="position: absolute; visibility: hidden;"><div></div><div></div></div></body><iframe id="kx-proxy-Jd_KzIqn" src="./Fibre Channel Protocol_files/proxy.5e2dbc85682c7ee766b9048147c21374.html" style="display: none; visibility: hidden; height: 0; width: 0;"></iframe></html>
