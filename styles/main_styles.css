@@ -47,9 +47,9 @@ code {
     padding-left: 20px;
 }
 
-
-
-
+b {
+    margin-right:35px;
+}
 
 #lol a, #lol a:link, #lol a:visited {
     color: var(--fg-master);
