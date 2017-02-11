@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<!-- saved from url=(0414)https://disqus.com/embed/comments/?base=default&version=45c676608be3664f9d5285da34ca486d&f=mustbegeek&t_i=4920%20http%3A%2F%2Fwww.mustbegeek.com%2F%3Fp%3D4920&t_u=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F&t_e=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&t_d=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&t_t=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&s_o=default&l= -->
+<html lang="en" dir="ltr" class="js no-touch localstorage sessionstorage contenteditable use-opacity-transitions"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Disqus Comments</title>
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <style>
+        .alert--warning {
+            border-radius: 3px;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            background-color: #FFE070;
+            color: #A47703;
+        }
+
+        .alert--warning a,
+        .alert--warning a:hover,
+        .alert--warning strong {
+            color: #A47703;
+            font-weight: bold;
+        }
+
+        .alert--error p,
+        .alert--warning p {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        
+        </style>
+    
+    <style>
+        html {
+            overflow: hidden;
+        }
+
+        #error {
+            display: none;
+        }
+
+        .clearfix:after {
+            content: "";
+            display: block;
+            height: 0;
+            clear: both;
+            visibility: hidden;
+        }
+
+        
+    </style>
+
+<link rel="preload" as="script" href="./lounge.bundle.77c1e82236f406686ee953f81b301ec9.js.téléchargement"><link rel="preload" as="script" href="./config.js.téléchargement"><link rel="stylesheet" href="./lounge.d97e83aebb672a1bbd0b476734a4149f.css"><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="lounge/main" src="./lounge.bundle.77c1e82236f406686ee953f81b301ec9.js.téléchargement"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="remote/config" src="./config.js.téléchargement"></script><style id="css_1486816358462"></style><!--<base target="_parent">--><base href="." target="_parent"><link rel="stylesheet" href="./discovery.ec9371c4ef39ecee074c2acf24d5e0e2.css"><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="ga" src="./ga.js(1).téléchargement"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="discovery/main" src="./discovery.bundle.c1279f7b6402d990698b3b99593a7fa9.js.téléchargement"></script></head>
+<body>
+    
+
+    
+    <div id="error" class="alert--error">
+        <p>We were unable to load Disqus. If you are a moderator please see our <a href="https://docs.disqus.com/help/83/"> troubleshooting guide</a>. </p>
+    </div>
+
+    
+    <script type="text/json" id="disqus-forumData">{"session":{"canModerate":false,"audienceSyncVerified":false,"mustVerify":false,"canReply":true,"mustVerifyEmail":false},"features":{},"forum":{"raw_guidelines":null,"twitterName":"mustbegeek","guidelines":null,"favicon":{"permalink":"https://disqus.com/api/forums/favicons/mustbegeek.jpg","cache":"https://c.disquscdn.com/uploads/forums/160/9336/favicon.png"},"id":"mustbegeek","createdAt":"2012-08-11T05:00:00.163184","category":"Tech","founder":"30376449","daysAlive":0,"installCompleted":true,"pk":"1609336","channel":null,"description":"\u003cp>MustBeGeek\u003c/p>","raw_description":"MustBeGeek","permissions":{},"name":"MustBeGeek","language":"en","settings":{"supportLevel":0,"adsDRNativeEnabled":false,"colorScheme":"light","adsVideoEnabled":false,"allowAnonPost":true,"ssoRequired":false,"unapproveLinks":true,"linkAffiliationEnabled":false,"adsProductLinksThumbnailsEnabled":false,"adsProductStoriesEnabled":false,"organicDiscoveryEnabled":true,"disable3rdPartyTrackers":false,"adsProductDisplayEnabled":false,"discoveryMax":false,"adsProductLinksEnabled":false,"hasCustomAvatar":false,"moderatorText":"","adsEnabled":false,"adsPositionTopEnabled":false,"allowMedia":true,"adultContent":false,"promotedDiscoveryEnabled":false,"allowAnonVotes":false,"adsProductVideoEnabled":false,"mustVerify":true,"discoveryThumbnailsEnabled":false,"mustVerifyEmail":true,"audienceSyncEnabled":false,"typeface":"sans-serif","adsPositionBottomEnabled":false,"mediaembedEnabled":true,"discoveryLocked":false,"validateAllPosts":false,"adsSettingsLocked":false,"isVIP":false,"adsPositionInthreadEnabled":false},"url":"http://www.mustbegeek.com/","daysThreadAlive":0,"avatar":{"small":{"permalink":"https://disqus.com/api/forums/avatars/mustbegeek.jpg?size=32","cache":"//a.disquscdn.com/1485196591/images/noavatar32.png"},"large":{"permalink":"https://disqus.com/api/forums/avatars/mustbegeek.jpg?size=92","cache":"//a.disquscdn.com/1485196591/images/noavatar92.png"}},"signedUrl":"http://disq.us/?url=http%3A%2F%2Fwww.mustbegeek.com%2F&key=AiYh-otlG4-NhMK4-Y2vVQ"}}</script>
+
+    
+    <script type="text/json" id="disqus-threadData">{"cursor":{"hasPrev":false,"prev":null,"total":4,"hasNext":false,"next":"1:0:0"},"code":0,"response":{"lastModified":1484905122,"posts":[{"dislikes":0,"numReports":0,"likes":0,"message":"\u003cp>IIIIII lIke IT :D\u003c/p>","id":"3109338760","isHighlighted":false,"author":{"name":"yanyan08","url":"","profileUrl":"","emailHash":"","avatar":{"small":{"permalink":"//a.disquscdn.com/1485196591/images/noavatar32.png","cache":"//a.disquscdn.com/1485196591/images/noavatar32.png"},"large":{"permalink":"//a.disquscdn.com/1485196591/images/noavatar92.png","cache":"//a.disquscdn.com/1485196591/images/noavatar92.png"},"permalink":"//a.disquscdn.com/1485196591/images/noavatar92.png","cache":"//a.disquscdn.com/1485196591/images/noavatar92.png"},"signedUrl":"","isAnonymous":true},"media":[],"isSpam":false,"isDeletedByAuthor":false,"createdAt":"2017-01-20T09:38:41","parent":null,"isApproved":true,"isDeleted":false,"isFlagged":false,"raw_message":"IIIIII lIke IT :D","canVote":false,"thread":"2569853234","forum":"mustbegeek","depth":0,"points":0,"moderationLabels":["anonymous"],"isEdited":false},{"dislikes":0,"numReports":0,"likes":0,"message":"\u003cp>worked for me...thank for the details\u003c/p>","id":"2482663103","isHighlighted":false,"author":{"username":"tendyfish","about":"","name":"Tendy Fish","disable3rdPartyTrackers":false,"isPowerContributor":false,"isAnonymous":false,"rep":1.253242,"profileUrl":"https://disqus.com/by/tendyfish/","url":"","reputation":1.253242,"location":"","isPrivate":false,"signedUrl":"","isPrimary":true,"joinedAt":"2013-12-29T03:24:00","id":"88288080","reputationLabel":"Average","avatar":{"small":{"permalink":"https://disqus.com/api/users/avatars/tendyfish.jpg","cache":"https://c.disquscdn.com/uploads/users/8828/8080/avatar32.jpg?1388287441"},"isCustom":true,"permalink":"https://disqus.com/api/users/avatars/tendyfish.jpg","cache":"https://c.disquscdn.com/uploads/users/8828/8080/avatar92.jpg?1388287441","large":{"permalink":"https://disqus.com/api/users/avatars/tendyfish.jpg","cache":"https://c.disquscdn.com/uploads/users/8828/8080/avatar92.jpg?1388287441"}}},"media":[],"isSpam":false,"isDeletedByAuthor":false,"createdAt":"2016-01-28T10:19:56","parent":null,"isApproved":true,"isDeleted":false,"isFlagged":false,"raw_message":"worked for me...thank for the details","canVote":false,"thread":"2569853234","forum":"mustbegeek","depth":0,"points":0,"moderationLabels":[],"isEdited":false},{"dislikes":0,"numReports":0,"likes":0,"message":"\u003cp>so.. how exactly would you backup those VHD files with your HyperV Server connected to them?\u003c/p>","id":"1624512851","isHighlighted":false,"author":{"username":"razblack","about":"","name":"razblack","disable3rdPartyTrackers":false,"isPowerContributor":false,"isAnonymous":false,"rep":1.2681609999999999,"profileUrl":"https://disqus.com/by/razblack/","url":"","reputation":1.2681609999999999,"location":"","isPrivate":false,"signedUrl":"","isPrimary":true,"joinedAt":"2011-02-07T20:11:08","id":"7119996","reputationLabel":"Average","avatar":{"small":{"permalink":"https://disqus.com/api/users/avatars/razblack.jpg","cache":"https://c.disquscdn.com/uploads/users/711/9996/avatar32.jpg?1412731723"},"isCustom":true,"permalink":"https://disqus.com/api/users/avatars/razblack.jpg","cache":"https://c.disquscdn.com/uploads/users/711/9996/avatar92.jpg?1412731723","large":{"permalink":"https://disqus.com/api/users/avatars/razblack.jpg","cache":"https://c.disquscdn.com/uploads/users/711/9996/avatar92.jpg?1412731723"}}},"media":[],"isSpam":false,"isDeletedByAuthor":false,"createdAt":"2014-10-08T01:29:39","parent":null,"isApproved":true,"isDeleted":false,"isFlagged":false,"raw_message":"so.. how exactly would you backup those VHD files with your HyperV Server connected to them?","canVote":false,"thread":"2569853234","forum":"mustbegeek","depth":0,"points":0,"moderationLabels":[],"isEdited":false},{"dislikes":0,"numReports":0,"likes":1,"message":"\u003cp>Excellent Work!\u003c/p>","id":"1444345139","isHighlighted":false,"author":{"name":"Amir","url":"","profileUrl":"","emailHash":"","avatar":{"small":{"permalink":"//a.disquscdn.com/1485196591/images/noavatar32.png","cache":"//a.disquscdn.com/1485196591/images/noavatar32.png"},"large":{"permalink":"//a.disquscdn.com/1485196591/images/noavatar92.png","cache":"//a.disquscdn.com/1485196591/images/noavatar92.png"},"permalink":"//a.disquscdn.com/1485196591/images/noavatar92.png","cache":"//a.disquscdn.com/1485196591/images/noavatar92.png"},"signedUrl":"","isAnonymous":true},"media":[],"isSpam":false,"isDeletedByAuthor":false,"createdAt":"2014-06-19T18:46:57","parent":null,"isApproved":true,"isDeleted":false,"isFlagged":false,"raw_message":"Excellent Work!","canVote":false,"thread":"2569853234","forum":"mustbegeek","depth":0,"points":1,"moderationLabels":["anonymous"],"isEdited":false}],"thread":{"feed":"https://mustbegeek.disqus.com/configure_iscsi_san_in_server_2012_r2/latest.rss","identifiers":["4920 http://www.mustbegeek.com/?p=4920"],"dislikes":0,"likes":0,"message":"","id":"2569853234","createdAt":"2014-04-01T05:22:53","category":"1639558","author":"30376449","isSpam":false,"signedLink":"http://disq.us/?url=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F&key=kD0ZBDExpVEiPX0l0R71nA","isDeleted":false,"hasStreaming":false,"raw_message":"","isClosed":false,"link":"http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/","slug":"configure_iscsi_san_in_server_2012_r2","forum":"mustbegeek","clean_title":"Configure iSCSI SAN in Server 2012 R2","posts":4,"moderators":[30376449],"title":"Configure iSCSI SAN in Server 2012 R2","highlightedPost":null}},"order":"desc"}</script>
+
+    
+
+    <div id="fixed-content"></div>
+
+
+    
+        
+<script type="text/json" id="disqus-urls">{
+    "root":"//disqus.com",
+    "next":"https://a.disquscdn.com/next/current/embed"
+}</script>
+
+        <script src="./lounge.load.45c676608be3664f9d5285da34ca486d.js.téléchargement" id="bootstrap-script" data-app="lounge" crossorigin="anonymous" async=""></script>
+    
+
+
+<script src="./common.bundle.263d47ae7ed540c79ecbecffc299d01f.js.téléchargement"></script><iframe style="display: none;" src="./saved_resource(4).html"></iframe><div id="layout" data-tracking-area="layout">
+
+<div id="onboard" data-tracking-area="onboard"><div></div></div>
+
+<div id="highlighted-post" data-tracking-area="highlighted" class="highlighted-post" style="display: none;"></div>
+
+<div id="global-alert"></div>
+
+<header id="main-nav" data-tracking-area="main-nav">
+<nav class="nav nav-primary">
+<ul>
+<li class="nav-tab nav-tab--primary tab-conversation active" data-role="post-count"><a class="publisher-nav-color">
+<span class="comment-count">
+4 comments
+</span>
+
+<span class="comment-count-placeholder">
+Comments
+</span>
+</a>
+</li>
+<li class="nav-tab nav-tab--primary tab-community">
+<a href="https://disqus.com/home/forums/mustbegeek/" class="publisher-nav-color" data-action="community-sidebar" data-forum="mustbegeek" id="community-tab">
+<span class="community-name">
+<strong>MustBeGeek</strong>
+
+</span>
+
+<strong class="community-name-placeholder">Community</strong>
+</a>
+</li>
+<li class="nav-tab nav-tab--primary dropdown user-menu" data-role="logout"><a href="https://disqus.com/embed/comments/?base=default&amp;version=45c676608be3664f9d5285da34ca486d&amp;f=mustbegeek&amp;t_i=4920%20http%3A%2F%2Fwww.mustbegeek.com%2F%3Fp%3D4920&amp;t_u=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F&amp;t_e=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_d=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_t=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;s_o=default&amp;l=#" class="dropdown-toggle" data-toggle="dropdown">
+<span class="dropdown-toggle-wrapper">
+
+<span>
+Login
+</span>
+
+</span> <span class="caret"></span>
+</a>
+<ul class="dropdown-menu">
+
+
+<li>
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=45c676608be3664f9d5285da34ca486d&amp;f=mustbegeek&amp;t_i=4920%20http%3A%2F%2Fwww.mustbegeek.com%2F%3Fp%3D4920&amp;t_u=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F&amp;t_e=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_d=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_t=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;s_o=default&amp;l=#" data-action="auth:disqus">Disqus</a>
+</li>
+<li>
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=45c676608be3664f9d5285da34ca486d&amp;f=mustbegeek&amp;t_i=4920%20http%3A%2F%2Fwww.mustbegeek.com%2F%3Fp%3D4920&amp;t_u=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F&amp;t_e=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_d=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_t=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;s_o=default&amp;l=#" data-action="auth:facebook">Facebook</a>
+</li>
+<li>
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=45c676608be3664f9d5285da34ca486d&amp;f=mustbegeek&amp;t_i=4920%20http%3A%2F%2Fwww.mustbegeek.com%2F%3Fp%3D4920&amp;t_u=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F&amp;t_e=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_d=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_t=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;s_o=default&amp;l=#" data-action="auth:twitter">Twitter</a>
+</li>
+<li>
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=45c676608be3664f9d5285da34ca486d&amp;f=mustbegeek&amp;t_i=4920%20http%3A%2F%2Fwww.mustbegeek.com%2F%3Fp%3D4920&amp;t_u=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F&amp;t_e=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_d=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_t=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;s_o=default&amp;l=#" data-action="auth:google">Google</a>
+</li>
+
+
+
+</ul>
+</li>
+<li class="nav-tab nav-tab--primary notification-menu" data-role="notification-menu"><a href="https://disqus.com/home/inbox/" class="notification-container" data-action="home" data-home-path="home/inbox/">
+<span class="notification-icon icon-comment" aria-hidden=""></span>
+<span class="notification-count" data-role="notification-count"></span>
+</a>
+</li>
+</ul>
+</nav>
+</header>
+
+<section id="conversation" data-role="main" data-tracking-area="main">
+<div class="nav nav-secondary" data-tracking-area="secondary-nav">
+<ul>
+<li id="recommend-button" class="nav-tab nav-tab--secondary recommend dropdown">
+<div class="thread-likes"><a href="https://disqus.com/embed/comments/?base=default&amp;version=45c676608be3664f9d5285da34ca486d&amp;f=mustbegeek&amp;t_i=4920%20http%3A%2F%2Fwww.mustbegeek.com%2F%3Fp%3D4920&amp;t_u=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F&amp;t_e=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_d=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_t=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;s_o=default&amp;l=#" data-action="recommend" title="Recommend this discussion" class="dropdown-toggle ">
+<span class="icon-heart"></span>
+<span class="label label-default">Recommend</span>
+<span class="label label-recommended">Recommended</span>
+</a>
+<ul class="dropdown-menu dropdown-menu--coachmark">
+<li>
+<h2 class="coachmark__heading">Discussion Recommended!</h2>
+<p class="coachmark__description">Recommending means this is a discussion worth sharing. It gets shared to your followers' Disqus feeds, and gives the creator kudos!</p>
+<a href="https://disqus.com/home/?utm_source=disqus_embed&amp;utm_content=recommend_btn" class="btn btn-primary coachmark__button" target="_blank">
+ Find More Discussions 
+</a>
+</li>
+</ul>
+</div></li>
+<li id="thread-share-menu" class="nav-tab nav-tab--secondary dropdown share-menu hidden-sm"><a href="https://disqus.com/embed/comments/?base=default&amp;version=45c676608be3664f9d5285da34ca486d&amp;f=mustbegeek&amp;t_i=4920%20http%3A%2F%2Fwww.mustbegeek.com%2F%3Fp%3D4920&amp;t_u=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F&amp;t_e=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_d=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_t=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;s_o=default&amp;l=#" class="dropdown-toggle" data-toggle="dropdown" title="Share">
+<span class="icon-export"></span>
+<span class="label">Share</span>
+</a>
+<ul class="share-menu dropdown-menu">
+<li>
+<div class="share-menu__label">Share this discussion on</div>
+<ul>
+<li class="twitter">
+<a data-action="share:twitter" href="https://disqus.com/embed/comments/?base=default&amp;version=45c676608be3664f9d5285da34ca486d&amp;f=mustbegeek&amp;t_i=4920%20http%3A%2F%2Fwww.mustbegeek.com%2F%3Fp%3D4920&amp;t_u=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F&amp;t_e=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_d=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_t=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;s_o=default&amp;l=#">Twitter</a>
+</li>
+<li class="facebook">
+<a data-action="share:facebook" href="https://disqus.com/embed/comments/?base=default&amp;version=45c676608be3664f9d5285da34ca486d&amp;f=mustbegeek&amp;t_i=4920%20http%3A%2F%2Fwww.mustbegeek.com%2F%3Fp%3D4920&amp;t_u=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F&amp;t_e=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_d=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_t=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;s_o=default&amp;l=#">Facebook</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li data-role="post-sort" class="nav-tab nav-tab--secondary dropdown sorting pull-right">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=45c676608be3664f9d5285da34ca486d&amp;f=mustbegeek&amp;t_i=4920%20http%3A%2F%2Fwww.mustbegeek.com%2F%3Fp%3D4920&amp;t_u=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F&amp;t_e=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_d=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_t=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;s_o=default&amp;l=#" class="dropdown-toggle" data-toggle="dropdown">
+
+Sort by Newest
+
+<span class="caret"></span>
+</a>
+<ul class="dropdown-menu pull-right">
+<li>
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=45c676608be3664f9d5285da34ca486d&amp;f=mustbegeek&amp;t_i=4920%20http%3A%2F%2Fwww.mustbegeek.com%2F%3Fp%3D4920&amp;t_u=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F&amp;t_e=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_d=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_t=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;s_o=default&amp;l=#" data-action="sort" data-sort="popular">Best<i aria-hidden="true" class="icon-checkmark"></i></a>
+</li>
+
+<li class="selected">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=45c676608be3664f9d5285da34ca486d&amp;f=mustbegeek&amp;t_i=4920%20http%3A%2F%2Fwww.mustbegeek.com%2F%3Fp%3D4920&amp;t_u=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F&amp;t_e=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_d=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_t=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;s_o=default&amp;l=#" data-action="sort" data-sort="desc">Newest<i aria-hidden="true" class="icon-checkmark"></i></a>
+</li>
+
+<li>
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=45c676608be3664f9d5285da34ca486d&amp;f=mustbegeek&amp;t_i=4920%20http%3A%2F%2Fwww.mustbegeek.com%2F%3Fp%3D4920&amp;t_u=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F&amp;t_e=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_d=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_t=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;s_o=default&amp;l=#" data-action="sort" data-sort="asc">Oldest<i aria-hidden="true" class="icon-checkmark"></i></a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+<div id="posts">
+<div id="form" class="textarea-wrapper--top-level"><form class="reply">
+<div class="postbox">
+<div role="alert"></div>
+<div class="avatar">
+<span class="user">
+<img data-role="user-avatar" src="./noavatar92.7b2fde640943965cc88df0cdee365907.png" alt="Avatar">
+</span>
+</div>
+
+<div class="textarea-wrapper" data-role="textarea" dir="auto"><div><span class="placeholder">Join the discussion…</span><div class="textarea" tabindex="0" role="textbox" aria-multiline="true" contenteditable="PLAINTEXT-ONLY" data-role="editable" aria-label="Join the discussion…" style="overflow: auto; word-wrap: break-word; max-height: 350px;"><p><br></p></div><div style="display: none;"><ul class="user-mention__list">
+<li class="header user-mention__header">
+<h5>in this conversation</h5>
+</li>
+</ul>
+</div></div>
+<div data-role="drag-drop-placeholder" class="media-drag-hover" style="display: none">
+<div class="drag-text">
+⬇ Drag and drop your images here to upload them.
+</div>
+</div>
+<div class="media-preview empty" data-role="media-preview"><ul data-role="media-progress-list"></ul>
+<ul data-role="media-rich-list"></ul>
+<div class="media-expanded empty" data-role="media-preview-expanded">
+<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-role="media-preview-expanded-image" alt="Media preview placeholder">
+</div>
+</div>
+<div class="edit-alert" role="postbox-alert"></div>
+<div class="post-actions">
+<ul class="wysiwyg">
+<li class="wysiwyg__item" data-role="media-uploader"><a href="https://disqus.com/embed/comments/?base=default&amp;version=45c676608be3664f9d5285da34ca486d&amp;f=mustbegeek&amp;t_i=4920%20http%3A%2F%2Fwww.mustbegeek.com%2F%3Fp%3D4920&amp;t_u=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F&amp;t_e=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_d=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_t=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;s_o=default&amp;l=#" tabindex="-1" data-action="attach" class="attach" title="Upload Images"><span>Attach</span></a>
+<input type="file" data-role="media-upload" tabindex="-1" accept="image/*">
+</li>
+</ul>
+</div>
+</div>
+
+<div data-role="login-form"><div><section class="auth-section logged-out">
+<div class="connect">
+<h6>Log in with</h6>
+<ul data-role="login-menu" class="services login-buttons">
+
+<li class="auth-disqus">
+<button type="button" data-action="auth:disqus" title="Disqus" class="connect__button"><i class="icon-disqus"></i></button>
+</li>
+<li class="auth-facebook">
+<button type="button" data-action="auth:facebook" title="Facebook" class="connect__button"><i class="icon-facebook-circle"></i></button>
+</li>
+<li class="auth-twitter">
+<button type="button" data-action="auth:twitter" title="Twitter" class="connect__button"><i class="icon-twitter-circle"></i></button>
+</li>
+<li class="auth-google">
+<button type="button" data-action="auth:google" title="Google" class="connect__button"><i class="icon-google-plus-circle"></i></button>
+</li>
+</ul>
+</div>
+<div class="guest">
+<h6 class="guest-form-title">
+<span class="register-text"> or sign up with Disqus </span>
+<span class="guest-text"> or pick a name </span>
+</h6>
+
+<div class="help-tooltip__wrapper help-icon">
+<div id="rules" class="tooltip show help-tooltip">
+<h3 class="help-tooltip__heading">Disqus is a discussion network</h3>
+<ul class="help-tooltip__list">
+<li><span>Disqus never moderates or censors. The rules on this community are its own.</span></li>
+<li><span>Your email is safe with us. It's only used for moderation and optional notifications.</span></li>
+<li><span>Don't be a jerk or do anything illegal. Everything is easier that way.</span></li>
+</ul>
+<p class="clearfix"><a href="https://docs.disqus.com/kb/terms-and-policies/" class="btn btn-small help-tooltip__button" target="_blank">Read full terms and conditions</a></p>
+</div>
+</div>
+
+<p class="input-wrapper">
+<input dir="auto" type="text" placeholder="Name" name="display_name" id="view35_display_name" maxlength="30" class="input--text">
+</p>
+
+<div class="guest-details " data-role="guest-details">
+<p class="input-wrapper">
+<input dir="auto" type="email" placeholder="Email" name="email" id="view35_email" class="input--text">
+</p>
+
+<p class="input-wrapper">
+<input dir="auto" type="password" class="register-text input--text" placeholder="Password" name="password" id="view35_password">
+</p>
+
+<div class="acceptance-wrapper register-text">
+By signing up, you agree to the Disqus <a target="_blank" href="https://help.disqus.com/customer/portal/articles/1753105-basic-rules-for-disqus-powered-profiles-and-discussions">Basic Rules</a>, <a target="_blank" href="https://help.disqus.com/customer/portal/articles/466260-terms-of-service">Terms of Service</a>, and <a target="_blank" href="https://help.disqus.com/customer/portal/articles/466259-privacy-policy">Privacy Policy</a>.
+</div>
+<div class="acceptance-wrapper guest-text">
+By posting, you agree to the Disqus <a target="_blank" href="https://help.disqus.com/customer/portal/articles/1753105-basic-rules-for-disqus-powered-profiles-and-discussions">Basic Rules</a>, <a target="_blank" href="https://help.disqus.com/customer/portal/articles/466260-terms-of-service">Terms of Service</a>, and <a target="_blank" href="https://help.disqus.com/customer/portal/articles/466259-privacy-policy">Privacy Policy</a>.
+</div>
+
+<div class="guest-checkbox">
+<label>
+<input type="checkbox" name="author-guest">
+I'd rather post as a guest
+</label>
+</div>
+
+<div class="proceed" data-role="submit-btn-container">
+<button type="submit" class="proceed__button btn submit" aria-label="Post"><span class="icon-proceed"></span><div class="spinner"></div></button>
+<button type="submit" class="proceed__button btn next" aria-label="Next"><span class="icon-proceed"></span><div class="spinner"></div></button>
+</div>
+</div>
+</div>
+</section>
+
+</div></div>
+</div>
+</form></div>
+
+<button class="alert alert--realtime" style="display: none" data-role="realtime-notification">
+</button>
+
+<div id="no-posts" style="display:none"></div>
+
+<ul id="post-list" class="post-list"><li class="post" id="post-3109338760"><div role="alert"></div>
+<div data-role="post-content" class="post-content">
+<ul class="post-menu dropdown" data-role="menu">
+<li class="collapse">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=45c676608be3664f9d5285da34ca486d&amp;f=mustbegeek&amp;t_i=4920%20http%3A%2F%2Fwww.mustbegeek.com%2F%3Fp%3D4920&amp;t_u=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F&amp;t_e=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_d=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_t=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;s_o=default&amp;l=#" data-action="collapse" title="Collapse"><span>−</span></a>
+</li>
+<li class="expand">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=45c676608be3664f9d5285da34ca486d&amp;f=mustbegeek&amp;t_i=4920%20http%3A%2F%2Fwww.mustbegeek.com%2F%3Fp%3D4920&amp;t_u=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F&amp;t_e=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_d=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_t=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;s_o=default&amp;l=#" data-action="collapse" title="Expand"><span>+</span></a>
+</li>
+
+<li class="" role="menu">
+<a class="dropdown-toggle" href="https://disqus.com/embed/comments/?base=default&amp;version=45c676608be3664f9d5285da34ca486d&amp;f=mustbegeek&amp;t_i=4920%20http%3A%2F%2Fwww.mustbegeek.com%2F%3Fp%3D4920&amp;t_u=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F&amp;t_e=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_d=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_t=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;s_o=default&amp;l=#" data-action="flag" data-role="flag" title="Flag as inappropriate">
+<i aria-hidden="true" class="icon icon-flag"></i>
+</a>
+</li>
+</ul>
+
+<div class="indicator"></div>
+
+<div class="avatar">
+<div class="user"><img src="./noavatar92.png" class="user" alt="Avatar"></div>
+</div>
+
+<div class="post-body">
+<header class="comment__header">
+<span class="post-byline">
+<span class="author">yanyan08</span>
+
+</span>
+
+<span class="post-meta">
+<span class="bullet time-ago-bullet" aria-hidden="true">•</span>
+
+<a href="http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/#comment-3109338760" data-role="relative-time" class="time-ago" title="Friday, January 20, 2017 10:38 AM">
+22 days ago
+</a>
+</span>
+
+</header>
+
+<div class="post-body-inner">
+<div class="post-message-container" data-role="message-container">
+<div class="publisher-anchor-color" data-role="message-content">
+<div class="post-message " data-role="message" dir="auto">
+<p>IIIIII lIke IT :D</p>
+</div>
+
+<span class="post-media"><ul data-role="post-media-list"></ul></span>
+</div>
+</div>
+<a class="see-more hidden" title="see more" data-action="see-more">see more</a>
+</div>
+
+<footer class="comment__footer"><menu class="comment-footer__menu">
+<li class="voting" data-role="voting">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=45c676608be3664f9d5285da34ca486d&amp;f=mustbegeek&amp;t_i=4920%20http%3A%2F%2Fwww.mustbegeek.com%2F%3Fp%3D4920&amp;t_u=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F&amp;t_e=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_d=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_t=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;s_o=default&amp;l=#" class="vote-up  count-0" data-action="upvote" title="Vote up">
+
+<span class="updatable count" data-role="likes">0</span>
+<span class="control"><i aria-hidden="true" class="icon icon-arrow-2"></i></span>
+</a>
+<span role="button" class="vote-down  count-0" data-action="downvote" title="Vote down">
+
+<span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+</span>
+</li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+<li class="reply" data-role="reply-link">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=45c676608be3664f9d5285da34ca486d&amp;f=mustbegeek&amp;t_i=4920%20http%3A%2F%2Fwww.mustbegeek.com%2F%3Fp%3D4920&amp;t_u=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F&amp;t_e=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_d=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_t=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;s_o=default&amp;l=#" data-action="reply">
+<span class="text">Reply</span></a></li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+<li class="comment__share">
+<a class="toggle"><span class="text">Share ›</span></a>
+<ul class="comment-share__buttons">
+<li class="twitter">
+<button class="share__button" data-action="share:twitter">Twitter</button>
+</li>
+<li class="facebook">
+<button class="share__button" data-action="share:facebook">Facebook</button>
+</li>
+<li class="link">
+<input class="share__button" value="http://disq.us/p/1ff7x54" name="Link" title="Click to copy post link" data-action="copy-link" readonly="">
+</li>
+</ul>
+</li>
+
+<li class="realtime" data-role="realtime-notification:3109338760">
+<span style="display:none;" class="realtime-replies"></span>
+<a style="display:none;" href="https://disqus.com/embed/comments/?base=default&amp;version=45c676608be3664f9d5285da34ca486d&amp;f=mustbegeek&amp;t_i=4920%20http%3A%2F%2Fwww.mustbegeek.com%2F%3Fp%3D4920&amp;t_u=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F&amp;t_e=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_d=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_t=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;s_o=default&amp;l=#" class="realtime-button"></a>
+</li>
+
+</menu>
+</footer>
+</div>
+
+<div data-role="blacklist-form"></div>
+<div class="reply-form-container" data-role="reply-form"></div>
+</div>
+
+<ul data-role="children" class="children"></ul>
+
+</li><li class="post" id="post-2482663103"><div role="alert"></div>
+<div data-role="post-content" class="post-content">
+<ul class="post-menu dropdown" data-role="menu">
+<li class="collapse">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=45c676608be3664f9d5285da34ca486d&amp;f=mustbegeek&amp;t_i=4920%20http%3A%2F%2Fwww.mustbegeek.com%2F%3Fp%3D4920&amp;t_u=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F&amp;t_e=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_d=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_t=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;s_o=default&amp;l=#" data-action="collapse" title="Collapse"><span>−</span></a>
+</li>
+<li class="expand">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=45c676608be3664f9d5285da34ca486d&amp;f=mustbegeek&amp;t_i=4920%20http%3A%2F%2Fwww.mustbegeek.com%2F%3Fp%3D4920&amp;t_u=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F&amp;t_e=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_d=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_t=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;s_o=default&amp;l=#" data-action="collapse" title="Expand"><span>+</span></a>
+</li>
+
+<li class="" role="menu">
+<a class="dropdown-toggle" href="https://disqus.com/embed/comments/?base=default&amp;version=45c676608be3664f9d5285da34ca486d&amp;f=mustbegeek&amp;t_i=4920%20http%3A%2F%2Fwww.mustbegeek.com%2F%3Fp%3D4920&amp;t_u=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F&amp;t_e=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_d=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_t=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;s_o=default&amp;l=#" data-action="flag" data-role="flag" title="Flag as inappropriate">
+<i aria-hidden="true" class="icon icon-flag"></i>
+</a>
+</li>
+</ul>
+
+<div class="indicator"></div>
+
+<div class="avatar hovercard">
+<a href="https://disqus.com/by/tendyfish/" class="user" data-action="profile" data-username="tendyfish">
+<img data-role="user-avatar" data-user="88288080" src="./noavatar92.png" alt="Avatar">
+</a>
+</div>
+<div class="post-body">
+<header class="comment__header">
+<span class="post-byline">
+<span class="author publisher-anchor-color"><a href="https://disqus.com/by/tendyfish/" data-action="profile" data-username="tendyfish" data-role="username">Tendy Fish</a></span>
+
+</span>
+
+<span class="post-meta">
+<span class="bullet time-ago-bullet" aria-hidden="true">•</span>
+
+<a href="http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/#comment-2482663103" data-role="relative-time" class="time-ago" title="Thursday, January 28, 2016 11:19 AM">
+a year ago
+</a>
+</span>
+
+</header>
+
+<div class="post-body-inner">
+<div class="post-message-container" data-role="message-container">
+<div class="publisher-anchor-color" data-role="message-content">
+<div class="post-message " data-role="message" dir="auto">
+<p>worked for me...thank for the details</p>
+</div>
+
+<span class="post-media"><ul data-role="post-media-list"></ul></span>
+</div>
+</div>
+<a class="see-more hidden" title="see more" data-action="see-more">see more</a>
+</div>
+
+<footer class="comment__footer"><menu class="comment-footer__menu">
+<li class="voting" data-role="voting">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=45c676608be3664f9d5285da34ca486d&amp;f=mustbegeek&amp;t_i=4920%20http%3A%2F%2Fwww.mustbegeek.com%2F%3Fp%3D4920&amp;t_u=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F&amp;t_e=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_d=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_t=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;s_o=default&amp;l=#" class="vote-up  count-0" data-action="upvote" title="Vote up">
+
+<span class="updatable count" data-role="likes">0</span>
+<span class="control"><i aria-hidden="true" class="icon icon-arrow-2"></i></span>
+</a>
+<span role="button" class="vote-down  count-0" data-action="downvote" title="Vote down">
+
+<span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+</span>
+</li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+<li class="reply" data-role="reply-link">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=45c676608be3664f9d5285da34ca486d&amp;f=mustbegeek&amp;t_i=4920%20http%3A%2F%2Fwww.mustbegeek.com%2F%3Fp%3D4920&amp;t_u=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F&amp;t_e=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_d=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_t=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;s_o=default&amp;l=#" data-action="reply">
+<span class="text">Reply</span></a></li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+<li class="comment__share">
+<a class="toggle"><span class="text">Share ›</span></a>
+<ul class="comment-share__buttons">
+<li class="twitter">
+<button class="share__button" data-action="share:twitter">Twitter</button>
+</li>
+<li class="facebook">
+<button class="share__button" data-action="share:facebook">Facebook</button>
+</li>
+<li class="link">
+<input class="share__button" value="http://disq.us/p/152433z" name="Link" title="Click to copy post link" data-action="copy-link" readonly="">
+</li>
+</ul>
+</li>
+
+<li class="realtime" data-role="realtime-notification:2482663103">
+<span style="display:none;" class="realtime-replies"></span>
+<a style="display:none;" href="https://disqus.com/embed/comments/?base=default&amp;version=45c676608be3664f9d5285da34ca486d&amp;f=mustbegeek&amp;t_i=4920%20http%3A%2F%2Fwww.mustbegeek.com%2F%3Fp%3D4920&amp;t_u=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F&amp;t_e=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_d=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_t=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;s_o=default&amp;l=#" class="realtime-button"></a>
+</li>
+
+</menu>
+</footer>
+</div>
+
+<div data-role="blacklist-form"></div>
+<div class="reply-form-container" data-role="reply-form"></div>
+</div>
+
+<ul data-role="children" class="children"></ul>
+
+</li><li class="post" id="post-1624512851"><div role="alert"></div>
+<div data-role="post-content" class="post-content">
+<ul class="post-menu dropdown" data-role="menu">
+<li class="collapse">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=45c676608be3664f9d5285da34ca486d&amp;f=mustbegeek&amp;t_i=4920%20http%3A%2F%2Fwww.mustbegeek.com%2F%3Fp%3D4920&amp;t_u=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F&amp;t_e=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_d=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_t=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;s_o=default&amp;l=#" data-action="collapse" title="Collapse"><span>−</span></a>
+</li>
+<li class="expand">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=45c676608be3664f9d5285da34ca486d&amp;f=mustbegeek&amp;t_i=4920%20http%3A%2F%2Fwww.mustbegeek.com%2F%3Fp%3D4920&amp;t_u=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F&amp;t_e=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_d=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_t=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;s_o=default&amp;l=#" data-action="collapse" title="Expand"><span>+</span></a>
+</li>
+
+<li class="" role="menu">
+<a class="dropdown-toggle" href="https://disqus.com/embed/comments/?base=default&amp;version=45c676608be3664f9d5285da34ca486d&amp;f=mustbegeek&amp;t_i=4920%20http%3A%2F%2Fwww.mustbegeek.com%2F%3Fp%3D4920&amp;t_u=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F&amp;t_e=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_d=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_t=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;s_o=default&amp;l=#" data-action="flag" data-role="flag" title="Flag as inappropriate">
+<i aria-hidden="true" class="icon icon-flag"></i>
+</a>
+</li>
+</ul>
+
+<div class="indicator"></div>
+
+<div class="avatar hovercard">
+<a href="https://disqus.com/by/razblack/" class="user" data-action="profile" data-username="razblack">
+<img data-role="user-avatar" data-user="7119996" src="./noavatar92.png" alt="Avatar">
+</a>
+</div>
+<div class="post-body">
+<header class="comment__header">
+<span class="post-byline">
+<span class="author publisher-anchor-color"><a href="https://disqus.com/by/razblack/" data-action="profile" data-username="razblack" data-role="username">razblack</a></span>
+
+</span>
+
+<span class="post-meta">
+<span class="bullet time-ago-bullet" aria-hidden="true">•</span>
+
+<a href="http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/#comment-1624512851" data-role="relative-time" class="time-ago" title="Wednesday, October 8, 2014 3:29 AM">
+2 years ago
+</a>
+</span>
+
+</header>
+
+<div class="post-body-inner">
+<div class="post-message-container" data-role="message-container">
+<div class="publisher-anchor-color" data-role="message-content">
+<div class="post-message " data-role="message" dir="auto">
+<p>so.. how exactly would you backup those VHD files with your HyperV Server connected to them?</p>
+</div>
+
+<span class="post-media"><ul data-role="post-media-list"></ul></span>
+</div>
+</div>
+<a class="see-more hidden" title="see more" data-action="see-more">see more</a>
+</div>
+
+<footer class="comment__footer"><menu class="comment-footer__menu">
+<li class="voting" data-role="voting">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=45c676608be3664f9d5285da34ca486d&amp;f=mustbegeek&amp;t_i=4920%20http%3A%2F%2Fwww.mustbegeek.com%2F%3Fp%3D4920&amp;t_u=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F&amp;t_e=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_d=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_t=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;s_o=default&amp;l=#" class="vote-up  count-0" data-action="upvote" title="Vote up">
+
+<span class="updatable count" data-role="likes">0</span>
+<span class="control"><i aria-hidden="true" class="icon icon-arrow-2"></i></span>
+</a>
+<span role="button" class="vote-down  count-0" data-action="downvote" title="Vote down">
+
+<span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+</span>
+</li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+<li class="reply" data-role="reply-link">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=45c676608be3664f9d5285da34ca486d&amp;f=mustbegeek&amp;t_i=4920%20http%3A%2F%2Fwww.mustbegeek.com%2F%3Fp%3D4920&amp;t_u=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F&amp;t_e=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_d=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_t=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;s_o=default&amp;l=#" data-action="reply">
+<span class="text">Reply</span></a></li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+<li class="comment__share">
+<a class="toggle"><span class="text">Share ›</span></a>
+<ul class="comment-share__buttons">
+<li class="twitter">
+<button class="share__button" data-action="share:twitter">Twitter</button>
+</li>
+<li class="facebook">
+<button class="share__button" data-action="share:facebook">Facebook</button>
+</li>
+<li class="link">
+<input class="share__button" value="http://disq.us/p/qv6y4z" name="Link" title="Click to copy post link" data-action="copy-link" readonly="">
+</li>
+</ul>
+</li>
+
+<li class="realtime" data-role="realtime-notification:1624512851">
+<span style="display:none;" class="realtime-replies"></span>
+<a style="display:none;" href="https://disqus.com/embed/comments/?base=default&amp;version=45c676608be3664f9d5285da34ca486d&amp;f=mustbegeek&amp;t_i=4920%20http%3A%2F%2Fwww.mustbegeek.com%2F%3Fp%3D4920&amp;t_u=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F&amp;t_e=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_d=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_t=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;s_o=default&amp;l=#" class="realtime-button"></a>
+</li>
+
+</menu>
+</footer>
+</div>
+
+<div data-role="blacklist-form"></div>
+<div class="reply-form-container" data-role="reply-form"></div>
+</div>
+
+<ul data-role="children" class="children"></ul>
+
+</li><li class="post" id="post-1444345139"><div role="alert"></div>
+<div data-role="post-content" class="post-content">
+<ul class="post-menu dropdown" data-role="menu">
+<li class="collapse">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=45c676608be3664f9d5285da34ca486d&amp;f=mustbegeek&amp;t_i=4920%20http%3A%2F%2Fwww.mustbegeek.com%2F%3Fp%3D4920&amp;t_u=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F&amp;t_e=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_d=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_t=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;s_o=default&amp;l=#" data-action="collapse" title="Collapse"><span>−</span></a>
+</li>
+<li class="expand">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=45c676608be3664f9d5285da34ca486d&amp;f=mustbegeek&amp;t_i=4920%20http%3A%2F%2Fwww.mustbegeek.com%2F%3Fp%3D4920&amp;t_u=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F&amp;t_e=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_d=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_t=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;s_o=default&amp;l=#" data-action="collapse" title="Expand"><span>+</span></a>
+</li>
+
+<li class="" role="menu">
+<a class="dropdown-toggle" href="https://disqus.com/embed/comments/?base=default&amp;version=45c676608be3664f9d5285da34ca486d&amp;f=mustbegeek&amp;t_i=4920%20http%3A%2F%2Fwww.mustbegeek.com%2F%3Fp%3D4920&amp;t_u=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F&amp;t_e=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_d=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_t=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;s_o=default&amp;l=#" data-action="flag" data-role="flag" title="Flag as inappropriate">
+<i aria-hidden="true" class="icon icon-flag"></i>
+</a>
+</li>
+</ul>
+
+<div class="indicator"></div>
+
+<div class="avatar">
+<div class="user"><img src="./noavatar92.png" class="user" alt="Avatar"></div>
+</div>
+
+<div class="post-body">
+<header class="comment__header">
+<span class="post-byline">
+<span class="author">Amir</span>
+
+</span>
+
+<span class="post-meta">
+<span class="bullet time-ago-bullet" aria-hidden="true">•</span>
+
+<a href="http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/#comment-1444345139" data-role="relative-time" class="time-ago" title="Thursday, June 19, 2014 8:46 PM">
+3 years ago
+</a>
+</span>
+
+</header>
+
+<div class="post-body-inner">
+<div class="post-message-container" data-role="message-container">
+<div class="publisher-anchor-color" data-role="message-content">
+<div class="post-message " data-role="message" dir="auto">
+<p>Excellent Work!</p>
+</div>
+
+<span class="post-media"><ul data-role="post-media-list"></ul></span>
+</div>
+</div>
+<a class="see-more hidden" title="see more" data-action="see-more">see more</a>
+</div>
+
+<footer class="comment__footer"><menu class="comment-footer__menu">
+<li class="voting" data-role="voting">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=45c676608be3664f9d5285da34ca486d&amp;f=mustbegeek&amp;t_i=4920%20http%3A%2F%2Fwww.mustbegeek.com%2F%3Fp%3D4920&amp;t_u=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F&amp;t_e=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_d=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_t=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;s_o=default&amp;l=#" class="vote-up  count-1" data-action="upvote" title="">
+
+<span class="updatable count" data-role="likes">1</span>
+<span class="control"><i aria-hidden="true" class="icon icon-arrow-2"></i></span>
+</a>
+<span role="button" class="vote-down  count-0" data-action="downvote" title="Vote down">
+
+<span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+</span>
+</li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+<li class="reply" data-role="reply-link">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=45c676608be3664f9d5285da34ca486d&amp;f=mustbegeek&amp;t_i=4920%20http%3A%2F%2Fwww.mustbegeek.com%2F%3Fp%3D4920&amp;t_u=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F&amp;t_e=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_d=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_t=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;s_o=default&amp;l=#" data-action="reply">
+<span class="text">Reply</span></a></li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+<li class="comment__share">
+<a class="toggle"><span class="text">Share ›</span></a>
+<ul class="comment-share__buttons">
+<li class="twitter">
+<button class="share__button" data-action="share:twitter">Twitter</button>
+</li>
+<li class="facebook">
+<button class="share__button" data-action="share:facebook">Facebook</button>
+</li>
+<li class="link">
+<input class="share__button" value="http://disq.us/p/nvxbub" name="Link" title="Click to copy post link" data-action="copy-link" readonly="">
+</li>
+</ul>
+</li>
+
+<li class="realtime" data-role="realtime-notification:1444345139">
+<span style="display:none;" class="realtime-replies"></span>
+<a style="display:none;" href="https://disqus.com/embed/comments/?base=default&amp;version=45c676608be3664f9d5285da34ca486d&amp;f=mustbegeek&amp;t_i=4920%20http%3A%2F%2Fwww.mustbegeek.com%2F%3Fp%3D4920&amp;t_u=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F&amp;t_e=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_d=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_t=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;s_o=default&amp;l=#" class="realtime-button"></a>
+</li>
+
+</menu>
+</footer>
+</div>
+
+<div data-role="blacklist-form"></div>
+<div class="reply-form-container" data-role="reply-form"></div>
+</div>
+
+<ul data-role="children" class="children"></ul>
+
+</li></ul>
+
+<div class="load-more" data-role="more" style="display:none">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=45c676608be3664f9d5285da34ca486d&amp;f=mustbegeek&amp;t_i=4920%20http%3A%2F%2Fwww.mustbegeek.com%2F%3Fp%3D4920&amp;t_u=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F&amp;t_e=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_d=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_t=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;s_o=default&amp;l=#" data-action="more-posts" class="btn load-more__button">Load more comments</a>
+</div>
+</div>
+
+</section>
+
+<div id="placement-bottom" data-tracking-area="discovery-south"><div class="post-list" style="height: auto; visibility: visible;"><div style="display: block; width: 100%;"><div id="discovery-main-c146" class="discovery-main">
+
+<section id="col-organic-c164" class="col-organic">
+<header class="discovery-col-header">
+<h2>Also on <strong>MustBeGeek</strong>
+</h2>
+</header>
+<ul class="discovery-posts" data-role="discovery-posts"><li class="discovery-post post-0" id="discovery-link-organic-4238567608">
+<a href="http://disq.us/url?url=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-email-address-policy-in-exchange-2016%2F%3AoHjNsPyrMT-jKg0zDHaJSQL4m0Q&amp;imp=69kgspi3f05tm6&amp;prev_imp&amp;forum_id=1609336&amp;forum=mustbegeek&amp;thread_id=2569853234&amp;user_id=241059178&amp;thread=4238567608&amp;zone=thread&amp;area=bottom&amp;object_type=thread&amp;object_id=4238567608" class="publisher-anchor-color">
+
+<header class="discovery-post-header">
+<h3 title="Configure Email Address Policy in Exchange 2016">
+<span data-role="discovery-thread-title" class="title line-truncate" data-line-truncate="2">
+Configure Email Address Policy in Exchange 2016
+</span>
+</h3>
+
+<ul class="meta">
+<li class="comments">
+1 comment
+</li>
+<li class="time">a year ago</li>
+</ul>
+</header>
+
+</a><a href="http://disq.us/url?url=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-email-address-policy-in-exchange-2016%2F%3AoHjNsPyrMT-jKg0zDHaJSQL4m0Q&amp;imp=69kgspi3f05tm6&amp;prev_imp&amp;forum_id=1609336&amp;forum=mustbegeek&amp;thread_id=2569853234&amp;user_id=241059178&amp;thread=4238567608&amp;zone=thread&amp;area=bottom&amp;object_type=thread&amp;object_id=4238567608" class="top-comment" data-role="discovery-top-comment">
+<img data-src="https://c.disquscdn.com/uploads/users/11306/3156/avatar92.jpg?1485202171" alt="Avatar" data-role="discovery-avatar">
+<p><span class="user" data-role="discovery-top-comment-author">Manjurul Islam</span> — <span data-role="discovery-top-comment-snippet" class="line-truncate" data-line-truncate="3"> Hello, I need some helping hand here, I have a POP based MailEnable 7.5 server cluster, I want to migrate to Exchange 2016. Can you please provide me …</span></p>
+</a>
+
+</li>
+<li class="discovery-post post-1" id="discovery-link-organic-3479174921">
+<a href="http://disq.us/url?url=http%3A%2F%2Fwww.mustbegeek.com%2Fgenerate-new-sid-server-2012%2F%3AeU7wPq3-qCC1qeKtuxuxNiOqeuQ&amp;imp=69kgspi3f05tm6&amp;prev_imp&amp;forum_id=1609336&amp;forum=mustbegeek&amp;thread_id=2569853234&amp;user_id=241059178&amp;thread=3479174921&amp;zone=thread&amp;area=bottom&amp;object_type=thread&amp;object_id=3479174921" class="publisher-anchor-color">
+
+<header class="discovery-post-header">
+<h3 title="Generate New SID in Server 2012">
+<span data-role="discovery-thread-title" class="title line-truncate" data-line-truncate="2">
+Generate New SID in Server 2012
+</span>
+</h3>
+
+<ul class="meta">
+<li class="comments">
+1 comment
+</li>
+<li class="time">2 years ago</li>
+</ul>
+</header>
+
+</a><a href="http://disq.us/url?url=http%3A%2F%2Fwww.mustbegeek.com%2Fgenerate-new-sid-server-2012%2F%3AeU7wPq3-qCC1qeKtuxuxNiOqeuQ&amp;imp=69kgspi3f05tm6&amp;prev_imp&amp;forum_id=1609336&amp;forum=mustbegeek&amp;thread_id=2569853234&amp;user_id=241059178&amp;thread=3479174921&amp;zone=thread&amp;area=bottom&amp;object_type=thread&amp;object_id=3479174921" class="top-comment" data-role="discovery-top-comment">
+<img data-src="//a.disquscdn.com/1485196591/images/noavatar92.png" alt="Avatar" data-role="discovery-avatar">
+<p><span class="user" data-role="discovery-top-comment-author">DOA</span> — <span data-role="discovery-top-comment-snippet" class="line-truncate" data-line-truncate="3">Is it possible to change the SID of the administrator account?  I would like to rename the admin account AND change its SID to prevent account and password guessing.</span></p>
+</a>
+
+</li>
+<li class="discovery-post post-2" id="discovery-link-organic-2574282695">
+<a href="http://disq.us/url?url=http%3A%2F%2Fwww.mustbegeek.com%2Fcreate-odbc-database-connection-vcenter-server%2F%3AsdEkPy4jTKJLjiekm7Eid07D4dY&amp;imp=69kgspi3f05tm6&amp;prev_imp&amp;forum_id=1609336&amp;forum=mustbegeek&amp;thread_id=2569853234&amp;user_id=241059178&amp;thread=2574282695&amp;zone=thread&amp;area=bottom&amp;object_type=thread&amp;object_id=2574282695" class="publisher-anchor-color">
+
+<header class="discovery-post-header">
+<h3 title="Create ODBC Database Connection in vCenter Server">
+<span data-role="discovery-thread-title" class="title line-truncate" data-line-truncate="2">
+Create ODBC Database Connection in vCenter Server
+</span>
+</h3>
+
+<ul class="meta">
+<li class="comments">
+3 comments
+</li>
+<li class="time">3 years ago</li>
+</ul>
+</header>
+
+</a><a href="http://disq.us/url?url=http%3A%2F%2Fwww.mustbegeek.com%2Fcreate-odbc-database-connection-vcenter-server%2F%3AsdEkPy4jTKJLjiekm7Eid07D4dY&amp;imp=69kgspi3f05tm6&amp;prev_imp&amp;forum_id=1609336&amp;forum=mustbegeek&amp;thread_id=2569853234&amp;user_id=241059178&amp;thread=2574282695&amp;zone=thread&amp;area=bottom&amp;object_type=thread&amp;object_id=2574282695" class="top-comment" data-role="discovery-top-comment">
+<img data-src="https://c.disquscdn.com/uploads/users/20006/6651/avatar92.jpg?1483546773" alt="Avatar" data-role="discovery-avatar">
+<p><span class="user" data-role="discovery-top-comment-author">Abubakkar Sithik</span> — <span data-role="discovery-top-comment-snippet" class="line-truncate" data-line-truncate="3">Hi BipinI've some problem, please find attached snapshot for your reference.</span></p>
+</a>
+
+</li>
+<li class="discovery-post post-3" id="discovery-link-organic-3198166734">
+<a href="http://disq.us/url?url=http%3A%2F%2Fwww.mustbegeek.com%2Fdelete-mailbox-without-deleting-user-account-in-exchange-2013%2F%3ACADc5UUfzsLKjYp6c61IY4QBX-g&amp;imp=69kgspi3f05tm6&amp;prev_imp&amp;forum_id=1609336&amp;forum=mustbegeek&amp;thread_id=2569853234&amp;user_id=241059178&amp;thread=3198166734&amp;zone=thread&amp;area=bottom&amp;object_type=thread&amp;object_id=3198166734" class="publisher-anchor-color">
+
+<header class="discovery-post-header">
+<h3 title="Delete Mailbox Without Deleting User Account in Exchange 2013">
+<span data-role="discovery-thread-title" class="title line-truncate" data-line-truncate="2">
+Delete Mailbox Without Deleting User Account in Exchange 2013
+</span>
+</h3>
+
+<ul class="meta">
+<li class="comments">
+2 comments
+</li>
+<li class="time">2 years ago</li>
+</ul>
+</header>
+
+</a><a href="http://disq.us/url?url=http%3A%2F%2Fwww.mustbegeek.com%2Fdelete-mailbox-without-deleting-user-account-in-exchange-2013%2F%3ACADc5UUfzsLKjYp6c61IY4QBX-g&amp;imp=69kgspi3f05tm6&amp;prev_imp&amp;forum_id=1609336&amp;forum=mustbegeek&amp;thread_id=2569853234&amp;user_id=241059178&amp;thread=3198166734&amp;zone=thread&amp;area=bottom&amp;object_type=thread&amp;object_id=3198166734" class="top-comment" data-role="discovery-top-comment">
+<img data-src="//a.disquscdn.com/1485196591/images/noavatar92.png" alt="Avatar" data-role="discovery-avatar">
+<p><span class="user" data-role="discovery-top-comment-author">juan</span> — <span data-role="discovery-top-comment-snippet" class="line-truncate" data-line-truncate="3">best site ever really good info for sys admins . cheers bud</span></p>
+</a>
+
+</li>
+</ul>
+</section>
+
+</div>
+</div></div></div>
+
+<div id="footer" data-tracking-area="footer" class="disqus-footer__wrapper">
+<ul class="disqus-footer">
+<li class="disqus-footer__logo"><a href="https://disqus.com/" rel="nofollow" title="Powered by Disqus" class="disqus-footer__link">Powered by Disqus</a></li>
+<li id="thread-subscribe-button" class="email disqus-footer__item"> 
+<div class="default">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=45c676608be3664f9d5285da34ca486d&amp;f=mustbegeek&amp;t_i=4920%20http%3A%2F%2Fwww.mustbegeek.com%2F%3Fp%3D4920&amp;t_u=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F&amp;t_e=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_d=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;t_t=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;s_o=default&amp;l=#" rel="nofollow" data-action="subscribe" title="Subscribe and get email updates from this discussion" class="disqus-footer__link"><i aria-hidden="true" class="icon icon-mail"></i><span class="clip">Subscribe</span> <i aria-hidden="true" class="icon icon-checkmark"></i></a>
+</div>
+<div class="form">
+<div class="input-wrapper"><input id="thread-subscribe-email" type="email" placeholder="yourname@email.com" class="disqus-footer__input input--text"></div>
+</div>
+</li>
+<li class="install disqus-footer__item">
+<a href="https://publishers.disqus.com/engage?utm_source=mustbegeek&amp;utm_medium=Disqus-Footer" rel="nofollow" target="_blank" class="disqus-footer__link">
+<i aria-hidden="true" class="icon icon-disqus"></i>
+<span class="clip hidden-sm">Add Disqus to your site</span>
+<span class="clip visible-sm hidden-xs">Add Disqus</span>
+<span class="clip visible-xs">Add</span>
+</a>
+</li>
+<li class="privacy disqus-footer__item">
+<a href="https://help.disqus.com/customer/portal/articles/1657951?utm_source=disqus&amp;utm_medium=embed-footer&amp;utm_content=privacy-btn" rel="nofollow" target="_blank" class="disqus-footer__link">
+<i aria-hidden="true" class="icon icon-lock"></i>
+<span class="clip">Privacy</span>
+</a>
+</li>
+</ul>
+</div>
+</div><img src="./23096" style="display: none;"><img src="./saved_resource(1)" style="display: none;"><img src="./tpid=c1d3guft2acdmtf" style="display: none;"><img src="./pixel.gif" style="display: none;"><iframe src="./sync.html" style="display: none;"></iframe></body></html>
