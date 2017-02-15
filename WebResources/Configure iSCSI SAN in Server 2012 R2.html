@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<!-- saved from url=(0064)http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/ -->
+<html lang="en-US" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#" class="js-enabled"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="http://www.mustbegeek.com/xmlrpc.php">
+	<!--[if lt IE 9]>
+	<script src="http://www.mustbegeek.com/wp-content/themes/newsplus/js/html5.js"></script>
+	<![endif]-->
+	<title>Configure iSCSI SAN in Server 2012 R2</title>
+
+<!-- This site is optimized with the Yoast SEO plugin v4.0.2 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta name="description" content="iSCSI is a protocol using underlying TCP/IP protocol for data transmission. Here, I will show steps to configure iSCSI SAN in Server 2012 R2">
+<meta name="robots" content="noodp">
+<meta name="keywords" content="Server 2012, iSCSI, SAN">
+<link rel="canonical" href="http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/">
+<link rel="publisher" href="https://plus.google.com/+Mustbegeek1/">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Configure iSCSI SAN in Server 2012 R2">
+<meta property="og:description" content="iSCSI is a protocol using underlying TCP/IP protocol for data transmission. Here, I will show steps to configure iSCSI SAN in Server 2012 R2">
+<meta property="og:url" content="http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/">
+<meta property="og:site_name" content="MustBeGeek">
+<meta property="article:publisher" content="https://www.facebook.com/mustbegeek">
+<meta property="article:author" content="https://www.facebook.com/bipingiri">
+<meta property="article:tag" content="iSCSI">
+<meta property="article:tag" content="SAN">
+<meta property="article:tag" content="Server 2012">
+<meta property="article:section" content="Windows Server 2012">
+<meta property="article:published_time" content="2014-04-01T11:07:24+00:00">
+<meta property="article:modified_time" content="2015-10-24T16:06:18+00:00">
+<meta property="og:updated_time" content="2015-10-24T16:06:18+00:00">
+<meta property="fb:admins" content="515315997">
+<meta property="og:image" content="http://www.mustbegeek.com/wp-content/uploads/2014/03/23.-View-in-Volumes.png">
+<meta property="og:image:width" content="721">
+<meta property="og:image:height" content="344">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:description" content="iSCSI is a protocol using underlying TCP/IP protocol for data transmission. Here, I will show steps to configure iSCSI SAN in Server 2012 R2">
+<meta name="twitter:title" content="Configure iSCSI SAN in Server 2012 R2">
+<meta name="twitter:site" content="@mustbegeek">
+<meta name="twitter:image" content="http://www.mustbegeek.com/wp-content/uploads/2014/03/23.-View-in-Volumes.png">
+<meta name="twitter:creator" content="@giribipin">
+<!-- / Yoast SEO plugin. -->
+
+<link rel="dns-prefetch" href="http://s0.wp.com/">
+<link rel="dns-prefetch" href="http://w.sharethis.com/">
+<link rel="dns-prefetch" href="http://s.w.org/">
+<link rel="alternate" type="application/rss+xml" title="MustBeGeek » Feed" href="http://www.mustbegeek.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="MustBeGeek » Comments Feed" href="http://www.mustbegeek.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="MustBeGeek » Configure iSCSI SAN in Server 2012 R2 Comments Feed" href="http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/feed/">
+		<script async="" src="./Configure iSCSI SAN in Server 2012 R2_files/saved_resource"></script><script type="text/javascript" async="" src="./Configure iSCSI SAN in Server 2012 R2_files/ga.js.téléchargement"></script><script id="facebook-jssdk" src="./Configure iSCSI SAN in Server 2012 R2_files/sdk.js.téléchargement"></script><script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/www.mustbegeek.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.7.2"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),!(j.toDataURL().length<3e3)&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,65039,8205,55356,57096),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,55356,57096),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55357,56425,55356,57341,8205,55357,56507),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55357,56425,55356,57341,55357,56507),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script src="./Configure iSCSI SAN in Server 2012 R2_files/wp-emoji-release.min.js.téléchargement" type="text/javascript" defer=""></script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel="stylesheet" id="newsplus-fontawesome-css" href="./Configure iSCSI SAN in Server 2012 R2_files/font-awesome.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="newsplus-shortcodes-css" href="./Configure iSCSI SAN in Server 2012 R2_files/newsplus-shortcodes.css" type="text/css" media="all">
+<link rel="stylesheet" id="contact-form-7-css" href="./Configure iSCSI SAN in Server 2012 R2_files/styles.css" type="text/css" media="all">
+<link rel="stylesheet" id="ts_fab_css-css" href="./Configure iSCSI SAN in Server 2012 R2_files/ts-fab.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-pagenavi-css" href="./Configure iSCSI SAN in Server 2012 R2_files/pagenavi-css.css" type="text/css" media="all">
+<!-- Inline jetpack_facebook_likebox -->
+<style id="jetpack_facebook_likebox-inline-css" type="text/css">
+.widget_facebook_likebox {
+	overflow: hidden;
+}
+
+</style>
+<link rel="stylesheet" id="newsplus-style-css" href="./Configure iSCSI SAN in Server 2012 R2_files/style.css" type="text/css" media="all">
+<!--[if lt IE 9]>
+<link rel='stylesheet' id='newsplus-ie-css'  href='http://www.mustbegeek.com/wp-content/themes/newsplus/css/ie.css?ver=4.7.2' type='text/css' media='all' />
+<![endif]-->
+<link rel="stylesheet" id="newsplus-responsive-css" href="./Configure iSCSI SAN in Server 2012 R2_files/responsive.css" type="text/css" media="all">
+<link rel="stylesheet" id="prettyphoto-css" href="./Configure iSCSI SAN in Server 2012 R2_files/prettyPhoto.css" type="text/css" media="all">
+<link rel="stylesheet" id="newsplus-user-css" href="./Configure iSCSI SAN in Server 2012 R2_files/user.css" type="text/css" media="all">
+<link rel="stylesheet" id="newsplus-child-style-css" href="./Configure iSCSI SAN in Server 2012 R2_files/style(1).css" type="text/css" media="all">
+<link rel="stylesheet" id="fancybox-css" href="./Configure iSCSI SAN in Server 2012 R2_files/jquery.fancybox-1.3.8.min.css" type="text/css" media="screen">
+<link rel="stylesheet" id="jetpack_css-css" href="./Configure iSCSI SAN in Server 2012 R2_files/jetpack.css" type="text/css" media="all">
+<script type="text/javascript" src="./Configure iSCSI SAN in Server 2012 R2_files/jquery.js.téléchargement"></script>
+<script type="text/javascript" src="./Configure iSCSI SAN in Server 2012 R2_files/jquery-migrate.min.js.téléchargement"></script>
+<script type="text/javascript" src="./Configure iSCSI SAN in Server 2012 R2_files/ts-fab.min.js.téléchargement"></script>
+<script id="st_insights_js" type="text/javascript" src="./Configure iSCSI SAN in Server 2012 R2_files/st_insights.js.téléchargement"></script>
+<link rel="https://api.w.org/" href="http://www.mustbegeek.com/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.mustbegeek.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.mustbegeek.com/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 4.7.2">
+<link rel="shortlink" href="http://wp.me/p2xdpD-1hm">
+<link rel="alternate" type="application/json+oembed" href="http://www.mustbegeek.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F">
+<link rel="alternate" type="text/xml+oembed" href="http://www.mustbegeek.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fwww.mustbegeek.com%2Fconfigure-iscsi-san-in-server-2012-r2%2F&amp;format=xml">
+<script type="text/javascript">
+	window._zem_rp_post_id = '4920';
+	window._zem_rp_thumbnails = true;
+	window._zem_rp_post_title = 'Configure+iSCSI+SAN+in+Server+2012+R2';
+	window._zem_rp_post_tags = ['san', 'iscsi', 'server+2012', 'windows+server+2012', 'system', 'server', 'da', 'storag', 'internet', 'na', 'firewal', 'comput', 'unit', 'san', 'network', 'router', 'fiber', 'r2', 'softwar'];
+	window._zem_rp_static_base_url = 'https://content.zemanta.com/static/';
+	window._zem_rp_wp_ajax_url = 'http://www.mustbegeek.com/wp-admin/admin-ajax.php';
+	window._zem_rp_plugin_version = '1.14';
+	window._zem_rp_num_rel_posts = '7';
+</script>
+<link rel="stylesheet" href="./Configure iSCSI SAN in Server 2012 R2_files/vertical-m.css">
+<style type="text/css">
+.related_post_title {
+}
+ul.related_post {
+}
+ul.related_post li {
+}
+ul.related_post li a {
+}
+ul.related_post li img {
+}</style>
+<script>(function(d, s, id){
+                 var js, fjs = d.getElementsByTagName(s)[0];
+                 if (d.getElementById(id)) {return;}
+                 js = d.createElement(s); js.id = id;
+                 js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+                 fjs.parentNode.insertBefore(js, fjs);
+               }(document, 'script', 'facebook-jssdk'));</script><style type="text/css">	.ssba {
+									
+									
+									
+									
+								}
+								.ssba img
+								{
+									width: 28px !important;
+									padding: 5px;
+									border:  0;
+									box-shadow: none !important;
+									display: inline !important;
+									vertical-align: middle;
+								}
+								.ssba, .ssba a
+								{
+									text-decoration:none;
+									border:0;
+									background: none;
+									
+									font-size: 	14px;
+									color: 		#020202!important;
+									font-weight: bold;
+								}
+								.ssba_sharecount:after, .ssba_sharecount:before {
+									right: 100%;
+									border: solid transparent;
+									content: " ";
+									height: 0;
+									width: 0;
+									position: absolute;
+									pointer-events: none;
+								}
+								.ssba_sharecount:after {
+									border-color: rgba(224, 221, 221, 0);
+									border-right-color: #f5f5f5;
+									border-width: 5px;
+									top: 50%;
+									margin-top: -5px;
+								}
+								.ssba_sharecount:before {
+									border-color: rgba(85, 94, 88, 0);
+									border-right-color: #e0dddd;
+									border-width: 6px;
+									top: 50%;
+									margin-top: -6px;
+								}
+								.ssba_sharecount {
+									font: 11px Arial, Helvetica, sans-serif;
+
+									padding: 5px;
+									-khtml-border-radius: 6px;
+									-o-border-radius: 6px;
+									-webkit-border-radius: 6px;
+									-moz-border-radius: 6px;
+									border-radius: 6px;
+									position: relative;
+									border: 1px solid #e0dddd;color: #ffffff;
+										background: #42a7e2;
+									}
+									.ssba_sharecount:after {
+										border-right-color: #42a7e2;
+									}</style>        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-72804830-1']);
+          _gaq.push(['_trackPageview']);
+
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+    <meta name="google-site-verification" content="yotYWO4MmEL46ItsnFnBXRXZ-CIolZz6_RtqD8VXdJc"><style type="text/css">img#wpstats{display:none}</style><style type="text/css">
+	.primary-nav {
+	background-color:#386795;
+	}
+	ul.nav-menu > li > a {
+	text-shadow: none;
+	color:#ffffff;
+	}
+	.primary-nav li:hover > a {
+	color:#e0e0e0;
+	border-bottom-color: #a5bb4e;
+	}
+	ul.nav-menu > li.current-menu-item > a,
+	ul.nav-menu > li.current-menu-ancestor > a,
+	ul.nav-menu > li.current_page_item > a,
+	ul.nav-menu > li.current_page_ancestor > a {
+	border-bottom-color: #a5bb4e;
+	}
+	.primary-nav li ul {
+	background-color:#386795;
+	}
+	.primary-nav li ul li a {
+	color:#ffffff;
+	}
+	.primary-nav li ul li:hover > a {
+	color:;
+	background-color:#e8e8e8;
+	}
+	h3.sb-title {
+	color:;
+	}
+	#secondary {
+	color:;
+	background-color:#ffffff;
+	}
+	#secondary .sep {
+	color:;
+	}
+	#secondary a,
+	#secondary ul a,
+	#secondary ul .entry-meta a,
+	#secondary ul .widget .entry-meta a {
+	color:#002c70;
+	}
+	#secondary a:hover,
+	#secondary ul a:hover,
+	#secondary ul .entry-meta a:hover,
+	#secondary ul .widget .entry-meta a:hover {
+	color:#297c00;
+	}
+	h3.sc-title {
+	color:#0a0a0a;
+	}
+	#secondary .widget ul li {
+	border-bottom-color: ;
+	}
+
+	#secondary .widget ul ul {
+	border-top-color: ;
+	}
+	#footer {
+	color:#000000;
+	background-color:#ffffff;
+	}
+	body.is-stretched.custom-background {
+	background-color:#ffffff;
+	}
+	#footer a {
+	color:#0a0000;
+	}
+	#footer a:hover {
+	color:#004993;
+	}
+</style>
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+		<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+		<style type="text/css">.broken_link, a.broken_link {
+	text-decoration: line-through;
+}</style><style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #d1d1d1; }
+</style>
+<link rel="icon" href="http://www.mustbegeek.com/wp-content/uploads/2013/06/cropped-favicon-main-110x110.png" sizes="32x32">
+<link rel="icon" href="http://www.mustbegeek.com/wp-content/uploads/2013/06/cropped-favicon-main-300x300.png" sizes="192x192">
+<link rel="apple-touch-icon-precomposed" href="http://www.mustbegeek.com/wp-content/uploads/2013/06/cropped-favicon-main-300x300.png">
+<meta name="msapplication-TileImage" content="http://www.mustbegeek.com/wp-content/uploads/2013/06/cropped-favicon-main-300x300.png">
+
+<!-- Easy FancyBox 1.5.8.2 using FancyBox 1.3.8 - RavanH (http://status301.net/wordpress-plugins/easy-fancybox/) -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var fb_timeout = null;
+var fb_opts = { 'overlayShow' : true, 'hideOnOverlayClick' : true, 'showCloseButton' : true, 'margin' : 20, 'centerOnScroll' : true, 'enableEscapeButton' : true, 'autoScale' : true };
+var easy_fancybox_handler = function(){
+	/* IMG */
+	var fb_IMG_select = 'a[href*=".jpg"]:not(.nolightbox,li.nolightbox>a), area[href*=".jpg"]:not(.nolightbox), a[href*=".jpeg"]:not(.nolightbox,li.nolightbox>a), area[href*=".jpeg"]:not(.nolightbox), a[href*=".png"]:not(.nolightbox,li.nolightbox>a), area[href*=".png"]:not(.nolightbox)';
+	jQuery(fb_IMG_select).addClass('fancybox image');
+	var fb_IMG_sections = jQuery('div.gallery');
+	fb_IMG_sections.each(function() { jQuery(this).find(fb_IMG_select).attr('rel', 'gallery-' + fb_IMG_sections.index(this)); });
+	jQuery('a.fancybox, area.fancybox, li.fancybox a').fancybox( jQuery.extend({}, fb_opts, { 'transitionIn' : 'elastic', 'easingIn' : 'easeOutBack', 'transitionOut' : 'elastic', 'easingOut' : 'easeInBack', 'opacity' : false, 'hideOnContentClick' : false, 'titleShow' : false, 'titlePosition' : 'over', 'titleFromAlt' : true, 'showNavArrows' : true, 'enableKeyboardNav' : true, 'cyclic' : false }) );
+}
+var easy_fancybox_auto = function(){
+	/* Auto-click */
+	setTimeout(function(){jQuery('#fancybox-auto').trigger('click')},1000);
+}
+/* ]]> */
+</script>
+<meta data-pso-pv="1.2.1" data-pso-pt="singlePost" data-pso-th="051890113695d84ee760015d8ce33ff7"><script async="" src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script pagespeed_no_defer="" data-pso-version="20170116_202517">window.dynamicgoogletags={config:[]};dynamicgoogletags.config=["ca-pub-2674883270655958",[[[["ARTICLE",0,,[],-1],["10px","10px",0],3,[0],"4847358626",0,,,11],[["ARTICLE",0,,[],0],["10px","10px",0],0,[0],"6324091822",0,,,11]]],[[[],[[["BODY",0,,[]],["10px","10px",1],1,[4],,0,,,2],[["BODY",0,,[]],["10px","24px",1],2,[5],,0,,,2],[["DIV",,"page",[]],["10px","10px",0],2,[5],,0,,,3],[["DIV",,"page",[]],["10px","10px",0],3,[5],,0,,,3],[["DIV",,"utility-top",[]],["24px","10px",1],0,[4],,0,,,4],[["NAV",0,,[]],["10px","10px",1],0,[4],,0,,,6],[["DIV",,"search-bar",[]],["10px","10px",1],3,[4],,0,,,6],[["HEADER",0,,[]],["10px","10px",1],0,[4],,0,,,4],[["HEADER",0,,[]],["10px","10px",1],3,[2],,0,,,4],[["DIV",,"main",[]],["10px","10px",1],0,[2],,0,,,4],[["DIV",,"main",[]],["10px","10px",0],3,[1],,0,,,4],[["DIV",,,["breadcrumbs"]],["10px","10px",1],2,[2],,0,,,9],[["DIV",,"disqus_thread",[]],["12px","24px",0],3,[1],,0,,,9],[["ASIDE",,"recent-posts-7",[]],["10px","16px",0],3,[1],,0,,,7],[["ASIDE",,"recent-comments-8",[]],["10px","16px",0],3,[3],,0,,,7],[["DIV",,,["notes-right"]],["10px","10px",0],0,[5],,0,,,6],[["ARTICLE",0,,[],1],["10px","20px",0],0,[0],,0,,,11],[["ARTICLE",0,,[],2],["10px","24px",0],0,[0],,0,,,11],[["ARTICLE",0,,[],-1],["10px","10px",0],3,[0],,0,,,11],[["DIV",,"disqus_thread",[]],["10px","24px",0],1,[1],,0,,,9],[["DIV",,"secondary",[]],["10px","10px",0],3,[3],,0,,,4],[["ASIDE",,"newsplus-social-6",[]],["10px","16px",0],3,[3],,0,,,7],[["ARTICLE",0,,[],3],["10px","24px",0],0,[0],,0,,,11]],["1385861428","2862594623","4339327828","5816061029","7292794228"],["ARTICLE",,,[]],"20170207_040734",1]],"WordPressSinglePost","7940425825",,0.01,,[,1487876948375],0.01,1,,,"http://www.mustbegeek.com"];(function(){var h=this,aa=function(a){var b=typeof a;if("object"==b)if(a){if(a instanceof Array)return"array";if(a instanceof Object)return b;var c=Object.prototype.toString.call(a);if("[object Window]"==c)return"object";if("[object Array]"==c||"number"==typeof a.length&&"undefined"!=typeof a.splice&&"undefined"!=typeof a.propertyIsEnumerable&&!a.propertyIsEnumerable("splice"))return"array";if("[object Function]"==c||"undefined"!=typeof a.call&&"undefined"!=typeof a.propertyIsEnumerable&&!a.propertyIsEnumerable("call"))return"function"}else return"null";
+else if("function"==b&&"undefined"==typeof a.call)return"object";return b},p=function(a){return"number"==typeof a},ba=function(a,b){var c=Array.prototype.slice.call(arguments,1);return function(){var b=c.slice();b.push.apply(b,arguments);return a.apply(this,b)}},r=function(a,b){function c(){}c.prototype=b.prototype;a.Pa=b.prototype;a.prototype=new c;a.prototype.constructor=a;a.Ra=function(a,c,f){for(var d=Array(arguments.length-2),e=2;e<arguments.length;e++)d[e-2]=arguments[e];return b.prototype[c].apply(a,
+d)}};var ca=String.prototype.trim?function(a){return a.trim()}:function(a){return a.replace(/^[\s\xa0]+|[\s\xa0]+$/g,"")},da=function(a,b){return a<b?-1:a>b?1:0},ea=function(a){return String(a).replace(/\-([a-z])/g,function(a,c){return c.toUpperCase()})};var fa=Array.prototype.forEach?function(a,b,c){Array.prototype.forEach.call(a,b,c)}:function(a,b,c){for(var d=a.length,e="string"==typeof a?a.split(""):a,f=0;f<d;f++)f in e&&b.call(c,e[f],f,a)},ga=Array.prototype.map?function(a,b,c){return Array.prototype.map.call(a,b,c)}:function(a,b,c){for(var d=a.length,e=Array(d),f="string"==typeof a?a.split(""):a,g=0;g<d;g++)g in f&&(e[g]=b.call(c,f[g],g,a));return e};var ha=function(){var a=!1;try{var b=Object.defineProperty({},"passive",{get:function(){a=!0}});h.addEventListener("test",null,b)}catch(c){}return a}();var t;a:{var ia=h.navigator;if(ia){var ja=ia.userAgent;if(ja){t=ja;break a}}t=""}var v=function(a){return-1!=t.indexOf(a)};var ka=function(a){ka[" "](a);return a};ka[" "]=function(){};var ma=function(a,b){var c=la;Object.prototype.hasOwnProperty.call(c,a)||(c[a]=b(a))};var na=v("Opera"),w=v("Trident")||v("MSIE"),oa=v("Edge"),pa=v("Gecko")&&!(-1!=t.toLowerCase().indexOf("webkit")&&!v("Edge"))&&!(v("Trident")||v("MSIE"))&&!v("Edge"),qa=-1!=t.toLowerCase().indexOf("webkit")&&!v("Edge"),ra=function(){var a=h.document;return a?a.documentMode:void 0},sa;
+a:{var ta="",ua=function(){var a=t;if(pa)return/rv\:([^\);]+)(\)|;)/.exec(a);if(oa)return/Edge\/([\d\.]+)/.exec(a);if(w)return/\b(?:MSIE|rv)[: ]([^\);]+)(\)|;)/.exec(a);if(qa)return/WebKit\/(\S+)/.exec(a);if(na)return/(?:Version)[ \/]?(\S+)/.exec(a)}();ua&&(ta=ua?ua[1]:"");if(w){var va=ra();if(null!=va&&va>parseFloat(ta)){sa=String(va);break a}}sa=ta}
+var wa=sa,la={},xa=function(a){ma(a,function(){for(var b=0,c=ca(String(wa)).split("."),d=ca(String(a)).split("."),e=Math.max(c.length,d.length),f=0;0==b&&f<e;f++){var g=c[f]||"",k=d[f]||"";do{g=/(\d*)(\D*)(.*)/.exec(g)||["","","",""];k=/(\d*)(\D*)(.*)/.exec(k)||["","","",""];if(0==g[0].length&&0==k[0].length)break;b=da(0==g[1].length?0:parseInt(g[1],10),0==k[1].length?0:parseInt(k[1],10))||da(0==g[2].length,0==k[2].length)||da(g[2],k[2]);g=g[3];k=k[3]}while(0==b)}return 0<=b})},ya;var za=h.document;
+ya=za&&w?ra()||("CSS1Compat"==za.compatMode?parseInt(wa,10):5):void 0;var x=function(){},Aa="function"==typeof Uint8Array,z=function(a,b,c){a.a=null;b||(b=[]);a.Ta=void 0;a.M=-1;a.l=b;a:{if(a.l.length){b=a.l.length-1;var d=a.l[b];if(d&&"object"==typeof d&&"array"!=aa(d)&&!(Aa&&d instanceof Uint8Array)){a.R=b-a.M;a.G=d;break a}}a.R=Number.MAX_VALUE}a.Sa={};if(c)for(b=0;b<c.length;b++)d=c[b],d<a.R?(d+=a.M,a.l[d]=a.l[d]||y):a.G[d]=a.G[d]||y},y=[],A=function(a,b){if(b<a.R){b+=a.M;var c=a.l[b];return c===y?a.l[b]=[]:c}c=a.G[b];return c===y?a.G[b]=[]:c},Ca=function(a){a=
+A(Ba,a);return null==a?a:+a},B=function(a,b,c){b<a.R?a.l[b+a.M]=c:a.G[b]=c},C=function(a,b,c){a.a||(a.a={});if(!a.a[c]){var d=A(a,c);d&&(a.a[c]=new b(d))}return a.a[c]},D=function(a,b,c){a.a||(a.a={});if(!a.a[c]){for(var d=A(a,c),e=[],f=0;f<d.length;f++)e[f]=new b(d[f]);a.a[c]=e}b=a.a[c];b==y&&(b=a.a[c]=[]);return b},Da=function(a,b,c){a.a||(a.a={});c=c||[];for(var d=[],e=0;e<c.length;e++)d[e]=E(c[e]);a.a[b]=c;B(a,b,d)},Ea=function(a){if(a.a)for(var b in a.a){var c=a.a[b];if("array"==aa(c))for(var d=
+0;d<c.length;d++)c[d]&&E(c[d]);else c&&E(c)}},E=function(a){Ea(a);return a.l};x.prototype.toString=function(){Ea(this);return this.l.toString()};var Fa=function(a){var b;if("array"==aa(a)){for(var c=Array(a.length),d=0;d<a.length;d++)null!=(b=a[d])&&(c[d]="object"==typeof b?Fa(b):b);return c}if(Aa&&a instanceof Uint8Array)return new Uint8Array(a);c={};for(d in a)null!=(b=a[d])&&(c[d]="object"==typeof b?Fa(b):b);return c};var Ga=function(a,b){this.enabled=Math.random()<a;this.events=[];this.Ea=b||h;b&&(b.google_js_reporting_queue=b.google_js_reporting_queue||[],this.events=b.google_js_reporting_queue)};Ga.prototype.disable=function(){fa(this.events,this.wa,this);this.events.length=0;this.enabled=!1};Ga.prototype.wa=function(a){a="goog_"+a.label+"_"+a.type+"_"+a.eventId;var b=this.Ea.performance;b&&b.clearMarks&&(b.clearMarks(a+"_start"),b.clearMarks(a+"_end"))};var Ia=function(){var a=Ha;try{var b;if(b=!!a&&null!=a.location.href)a:{try{ka(a.foo);b=!0;break a}catch(c){}b=!1}return b}catch(c){return!1}},Ja=function(a,b){for(var c in a)Object.prototype.hasOwnProperty.call(a,c)&&b.call(void 0,a[c],c,a)};var Ka=function(a,b,c,d,e){this.ja=c||4E3;this.H=a||"&";this.ua=b||",$";this.S=void 0!==d?d:"trn";this.Qa=e||null;this.ta=!1;this.U={};this.Ha=0;this.L=[]},Na=function(a,b,c,d){b=b+"//"+c+d;var e=La(a)-d.length-0;if(0>e)return"";a.L.sort(function(a,b){return a-b});d=null;c="";for(var f=0;f<a.L.length;f++)for(var g=a.L[f],k=a.U[g],m=0;m<k.length;m++){if(!e){d=null==d?g:d;break}var l=Ma(k[m],a.H,a.ua);if(l){l=c+l;if(e>=l.length){e-=l.length;b+=l;c=a.H;break}else a.ta&&(c=e,l[c-1]==a.H&&--c,b+=l.substr(0,
+c),c=a.H,e=0);d=null==d?g:d}}f="";a.S&&null!=d&&(f=c+a.S+"="+(a.Qa||d));return b+f+""},La=function(a){if(!a.S)return a.ja;var b=1,c;for(c in a.U)b=c.length>b?c.length:b;return a.ja-a.S.length-b-a.H.length-1},Ma=function(a,b,c,d,e){var f=[];Ja(a,function(a,k){(a=Pa(a,b,c,d,e))&&f.push(k+"="+a)});return f.join(b)},Pa=function(a,b,c,d,e){if(null==a)return"";b=b||"&";c=c||",$";"string"==typeof c&&(c=c.split(""));if(a instanceof Array){if(d=d||0,d<c.length){for(var f=[],g=0;g<a.length;g++)f.push(Pa(a[g],
+b,c,d+1,e));return f.join(c[d])}}else if("object"==typeof a)return e=e||0,2>e?encodeURIComponent(Ma(a,b,c,d,e+1)):"...";return encodeURIComponent(String(a))};var Sa=function(a,b,c,d){var e=Qa;if((c?e.Na:Math.random())<(d||e.xa))try{var f;b instanceof Ka?f=b:(f=new Ka,Ja(b,function(a,b){var c=f,d=c.Ha++,e={};e[b]=a;a=[e];c.L.push(d);c.U[d]=a}));var g=Na(f,e.Ka,e.za,e.Ja+a+"&");g&&Ra(g)}catch(k){}},Ra=function(a){h.google_image_requests||(h.google_image_requests=[]);var b=h.document.createElement("img");b.src=a;h.google_image_requests.push(b)};var Ta;if(!(Ta=!pa&&!w)){var Ua;if(Ua=w)Ua=9<=Number(ya);Ta=Ua}Ta||pa&&xa("1.9.1");w&&xa("9");var F=function(a,b,c,d){this.top=a;this.right=b;this.bottom=c;this.left=d};F.prototype.floor=function(){this.top=Math.floor(this.top);this.right=Math.floor(this.right);this.bottom=Math.floor(this.bottom);this.left=Math.floor(this.left);return this};var Va=document,Wa=window;var Xa=!!window.google_async_iframe_id,Ha=Xa&&window.parent||window;var Qa,G;if(Xa&&!Ia()){var Ya="."+Va.domain;try{for(;2<Ya.split(".").length&&!Ia();)Va.domain=Ya=Ya.substr(Ya.indexOf(".")+1),Ha=window.parent}catch(a){}Ia()||(Ha=window)}G=Ha;var Za=new Ga(1,G),$a=function(){G.google_measure_js_timing||Za.disable()};Qa=new function(){this.Ka="http:"===Wa.location.protocol?"http:":"https:";this.za="pagead2.googlesyndication.com";this.Ja="/pagead/gen_204?id=";this.xa=.01;this.Na=Math.random()};
+"complete"==G.document.readyState?$a():G.addEventListener?G.addEventListener("load",$a,ha?void 0:!1):G.attachEvent&&G.attachEvent("onload",$a);var H=function(a){this.la={};this.la.c=a;this.o=[];this.u=null;this.v=[];this.da=0};H.prototype.g=function(a){for(var b=0;b<this.o.length;b++)if(this.o[b]==a)return this;this.o.push(a);return this};var ab=function(a,b){a.u=a.u?a.u:b;return a};H.prototype.C=function(a){for(var b=0;b<this.v.length;b++)if(this.v[b]==a)return this;this.v.push(a);return this};
+H.prototype.getData=function(a){var b=this.la,c={},d;for(d in b)c[d]=b[d];0<this.da&&(c.t=this.da);c.err=this.o.join();c.warn=this.v.join();if(this.u){c.excp_n=this.u.name;c.excp_m=this.u.message&&this.u.message.substring(0,512);if(b=this.u.stack){d=this.u.stack;try{-1==d.indexOf("")&&(d="\n"+d);for(var e;d!=e;)e=d,d=d.replace(/((https?:\/..*\/)[^\/:]*:\d+(?:.|\n)*)\2/,"$1");b=d.replace(/\n */g,"\n")}catch(f){b=""}}c.excp_s=b}c.w=0<a.innerWidth?a.innerWidth:null;c.h=0<a.innerHeight?a.innerHeight:
+null;return c};var cb=function(a,b){bb(a,a.Ca,a.W,b)},bb=function(a,b,c,d){var e=d.u;d=d.getData(a.K);a.Fa?(d.type=b,a.K.console.log(d),e&&a.K.console.error(e)):0<c&&(d.r=c,Sa(b,d,"jserror"!=b,c))};var I=function(a){return a.dynamicgoogletags=a.dynamicgoogletags||{}};var J=function(a){z(this,a,db)};r(J,x);var db=[4];J.prototype.getId=function(){return A(this,3)};var K=function(a){z(this,a,null)};r(K,x);var eb=function(a){z(this,a,null)};r(eb,x);var L=function(a){return C(a,J,1)},gb=function(a){z(this,a,fb)};r(gb,x);var fb=[1];gb.prototype.i=function(){return D(this,eb,1)};gb.prototype.na=function(a){Da(this,1,a)};var M=function(a){z(this,a,hb)};r(M,x);var hb=[2];M.prototype.ia=function(){return A(this,3)};M.prototype.oa=function(a){B(this,3,a)};var ib=function(a){z(this,a,null)};r(ib,x);var N=function(a){z(this,a,jb)};r(N,x);var jb=[1,2,3];N.prototype.i=function(){return D(this,eb,2)};
+N.prototype.na=function(a){Da(this,2,a)};var O=function(a){z(this,a,kb)};r(O,x);var kb=[3];O.prototype.A=function(){return A(this,1)};O.prototype.D=function(){return C(this,gb,2)};O.prototype.O=function(){return A(this,4)};O.prototype.ia=function(){return A(this,5)};O.prototype.oa=function(a){B(this,5,a)};O.prototype.N=function(){return C(this,lb,9)};var lb=function(a){z(this,a,null)};r(lb,x);var mb=function(a){this.m=a;this.qa=[]};mb.prototype.f=function(){return 0<D(this.m,N,3).length?D(this.m,N,3)[0]:null};var nb=function(a){var b=["adsbygoogle-placeholder"];a=a.className?a.className.split(/\s+/):[];for(var c={},d=0;d<a.length;++d)c[a[d]]=!0;for(d=0;d<b.length;++d)if(!c[b[d]])return!1;return!0};var ob=function(a,b){for(var c=0;c<b.length;c++){var d=b[c],e=ea(d.Ua);a[e]=d.value}},rb=function(a,b){var c=pb;b.setAttribute("data-adsbygoogle-status","reserved");b={element:b};(c=c&&c.La)&&(b.params=c);qb(a).push(b)},qb=function(a){return a.adsbygoogle=a.adsbygoogle||[]};var sb=function(a,b){if(!a)return!1;a=b.getComputedStyle?b.getComputedStyle(a,null):a.currentStyle;if(!a)return!1;a=a.cssFloat||a.styleFloat;return"left"==a||"right"==a},tb=function(a){for(a=a.previousSibling;a&&1!=a.nodeType;)a=a.previousSibling;return a?a:null},ub=function(a){return!!a.nextSibling||!!a.parentNode&&ub(a.parentNode)};var vb=function(a,b){var c=a.length;if(null!=c)for(var d=0;d<c;d++)b.call(void 0,a[d],d)};var wb=function(a,b,c,d){this.ka=a;this.Z=b;this.$=c;this.P=d};wb.prototype.query=function(a){var b=[];try{b=a.querySelectorAll(this.ka)}catch(f){}if(!b.length)return[];a=b;b=a.length;if(0<b){for(var c=Array(b),d=0;d<b;d++)c[d]=a[d];a=c}else a=[];a=xb(this,a);p(this.Z)&&(b=this.Z,0>b&&(b+=a.length),a=0<=b&&b<a.length?[a[b]]:[]);if(p(this.$)){b=[];for(c=0;c<a.length;c++){var d=yb(a[c]),e=this.$;0>e&&(e+=d.length);0<=e&&e<d.length&&b.push(d[e])}a=b}return a};
+wb.prototype.toString=function(){return JSON.stringify({nativeQuery:this.ka,occurrenceIndex:this.Z,paragraphIndex:this.$,ignoreMode:this.P})};
+var xb=function(a,b){if(null==a.P)return b;switch(a.P){case 1:return b.slice(1);case 2:return b.slice(0,b.length-1);case 3:return b.slice(1,b.length-1);case 0:return b;default:throw Error("Unknown ignore mode: "+a.P);}},yb=function(a){var b=[];vb(a.getElementsByTagName("p"),function(a){100<=zb(a)&&b.push(a)});return b},zb=function(a){if(3==a.nodeType)return a.length;if(1!=a.nodeType||"SCRIPT"==a.tagName)return 0;var b=0;vb(a.childNodes,function(a){b+=zb(a)});return b},Ab=function(a){return 0==a.length||
+isNaN(a[0])?a:"\\"+(30+parseInt(a[0],10))+" "+a.substring(1)};var Bb=function(a,b){var c=0,d=A(a,6);if(void 0!==d)switch(d){case 0:c=1;break;case 1:c=2;break;case 2:c=3}var d=null,e=A(a,7);if(A(a,1)||a.getId()||0<A(a,4).length){var f=a.getId(),g=A(a,1),e=A(a,4),d=A(a,2);a=A(a,5);var k="";g&&(k+=g);f&&(k+="#"+Ab(f));if(e)for(f=0;f<e.length;f++)k+="."+Ab(e[f]);d=(e=k)?new wb(e,d,a,c):null}else e&&(d=new wb(e,A(a,2),A(a,5),c));return d?d.query(b):[]},Cb=function(a,b){if(a==b)return!0;if(!a||!b||A(a,1)!=A(b,1)||A(a,2)!=A(b,2)||a.getId()!=b.getId()||A(a,7)!=A(b,
+7)||A(a,5)!=A(b,5)||A(a,6)!=A(b,6))return!1;a=A(a,4);b=A(b,4);if(a||b)if(a&&b&&a.length==b.length)for(var c=0;c<a.length;c++){if(a[c]!=b[c])return!1}else return!1;return!0};var Db=function(a){a=a.document;return("CSS1Compat"==a.compatMode?a.documentElement:a.body)||{}},Eb=function(a){return void 0===a.pageYOffset?(a.document.documentElement||a.document.body.parentNode||a.document.body).scrollTop:a.pageYOffset};var Fb=function(a,b){b=L(b);if(!b)return null;a=Bb(b,a);return 0<a.length?a[0]:null},Hb=function(a,b){b=Gb(a,b,!0);return p(b)&&!(b<=Db(a).clientHeight)},Ib=function(a,b){return a.body?b-a.body.getBoundingClientRect().top:b},Gb=function(a,b,c){if(!c||!p(A(b,8))){var d=Fb(a.document,b);if(d){var e=null!=C(b,K,2)?A(C(b,K,2),3):void 0;c=a.document.createElement("div");c.className="googlepublisherpluginad";var f=c.style;f.textAlign="center";f.width="100%";f.height="0px";f.clear=e?"both":"none";Jb(c,d,
+A(b,3));d=c.getBoundingClientRect().top+Eb(a);c.parentNode.removeChild(c);B(b,8,d)}}b=A(b,8);return p(b)?b-Eb(a):null},Kb={0:0,1:1,2:2,3:3},Lb={0:"auto",1:"horizontal",2:"vertical",3:"rectangle"},Mb=function(a,b){a.sort(function(a,d){a=Gb(b,a,!0);a=p(a)?a:Number.POSITIVE_INFINITY;d=Gb(b,d,!0);d=p(d)?d:Number.POSITIVE_INFINITY;return a-d})},Jb=function(a,b,c){switch(Kb[c]){case 0:b.parentNode&&b.parentNode.insertBefore(a,b);break;case 3:if(c=b.parentNode){var d=b.nextSibling;if(d&&d.parentNode!=c)for(;d&&
+8==d.nodeType;)d=d.nextSibling;c.insertBefore(a,d)}break;case 1:b.insertBefore(a,b.firstChild);break;case 2:b.appendChild(a)}if(1!=b.nodeType?0:"INS"==b.tagName&&nb(b))b.style.display="block"};var pb=new function(){this.ga="googlepublisherpluginad";this.La={google_tag_origin:"pso"}},P=function(a){this.b=a;this.j=[];this.ca=0;this.o=[];this.v=[];this.X=null;this.ma=!1},Nb=function(a,b){a=C(a.f(),J,4);if(!(a&&b&&A(b,1)==A(a,1)&&b.getId()==a.getId()&&p(A(b,2))&&p(A(b,5))))return!1;a=A(a,4);b=A(b,4);if(a.length!=b.length)return!1;for(var c=0;c<a.length;++c)if(b[c]!=a[c])return!1;return!0},Ob=function(a){var b=p(void 0)?void 0:20,c=a.f(),d=c.i(),e=C(c,J,4);if(!(a.ma||0>=b)&&e&&0!=Bb(e,a.b.document).length){a.ma=
+!0;for(var c=[],f=0;f<d.length;++f){var g=d[f],k=L(g);if(Nb(a,k)){var m=A(k,2),k=A(k,5);null!=m&&null!=k&&0<=m&&0<=k&&(!c[m]||A(L(c[m]),5)<k)&&(c[m]=g)}}k=0;d=Bb(e,a.b.document);for(m=0;m<c.length&&k<b;++m){var e=k,f=a,l=d[m],g=c[m],k=b-k,u=f.f().i(),q=0;if(l&&g){l=yb(l).length;switch(A(L(g),6)){case 0:case 1:--l;break;case 2:l-=2}for(var n=A(L(g),5)+1;n<l&&q<k;++n){var Oa=new g.constructor(Fa(E(g))),Ic=L(Oa);B(Ic,5,n);u.push(Oa);q++}}q&&f.f().na(u);k=e+q}}};
+P.prototype.g=function(a){for(var b=0;b<this.o.length;++b)if(this.o[b]==a)return;this.o.push(a)};P.prototype.C=function(a){for(var b=0;b<this.v.length;++b)if(this.v[b]==a)return;this.v.push(a)};
+var Pb=function(a,b,c){var d=Kb[A(b,3)],e=Fb(a.b.document,b);if(e){var f=L(b)?A(L(b),2):void 0,g;a:{g=a.b;if(null!=f)switch(d){case 0:g=sb(tb(e),g);break a;case 3:g=sb(e,g);break a;case 2:f=e.lastChild;g=sb(f?1==f.nodeType?f:tb(f):null,g);break a}g=!1}if(!g&&(c||2!=d||ub(e))&&(c=1==d||2==d?e:e.parentNode,!c||(1!=c.nodeType?0:"INS"==c.tagName&&nb(c))||!(0>=c.offsetWidth)))a:if(A(b,7))a.C(8);else{b:if(A(b,5))c=A(b,5);else{if(c=Q(a).f())if(c=A(c,3),a.ca<c.length){c=c[a.ca++];break b}a.g(4);c=null}if(null!=
+c){B(b,7,!0);d=[];(g=a.O())&&d.push(g);g=Q(a).qa;for(f=0;f<g.length;++f)d.push(g[f]);p(A(b,9))&&d.push("pso-lv-"+A(b,9));var k=a.b.document;g=a.A();var f=A(b,6),f=null!=f?Lb[f]:f,m=C(b,K,2),l={};m&&(l.pa=A(m,1),l.fa=A(m,2),l.va=!!A(m,3));var m=c,u=pb,q=k.createElement("div"),n=q.style;n.textAlign="center";n.width="100%";n.height="auto";n.clear=l.va?"both":"none";l.Ia&&ob(n,l.Ia);k=k.createElement("ins");n=k.style;n.display="block";n.margin="auto";n.backgroundColor="transparent";l.pa&&(n.marginTop=
+l.pa);l.fa&&(n.marginBottom=l.fa);l.ra&&ob(n,l.ra);q.appendChild(k);k.setAttribute("data-ad-format",f?f:"auto");if(f=u&&u.ga)q.className=f;k.className="adsbygoogle";k.setAttribute("data-ad-client",g);m&&k.setAttribute("data-ad-slot",m);d.length&&k.setAttribute("data-ad-channel",d.join("+"));Jb(q,e,A(b,3));try{rb(a.b,k)}catch(Oa){A(b,5)!=c&&a.ca--;B(b,7,!1);a.C(6);q&&q.parentNode&&q.parentNode.removeChild(q);break a}a.j.push(q)}}}},Qb=function(a,b){for(var c=Number.POSITIVE_INFINITY,d=0;d<a.j.length;++d)var e=
+a.j[d].getBoundingClientRect().top,f=a.j[d].getBoundingClientRect().bottom,c=Math.min(c,b<e?e-b:f<b?b-f:0);return c},Q=function(a){a=I(a.b).ps||null;if(!a)throw Error("No placementState");return a},Rb=function(a,b){var c=Q(a).m;if(!c||!c.A())return a.g(5),!1;c=D(c,N,3)[0];return c?A(c,3).length<b?(a.g(4),a.g(5),!1):!0:(a.g(5),!1)};P.prototype.A=function(){return Q(this).m.A()||""};P.prototype.O=function(){return Q(this).m.O()||void 0};P.prototype.D=function(){return Q(this).m.D()||new gb};
+P.prototype.f=function(){var a=Q(this).f();if(!a)throw Error("No mConfig");return a};var Sb=function(a){a=A(a.f(),6);return null!=a&&0<a};var Tb=function(){this.I=this.J=this.aa=null};var R=function(a){P.call(this,a)};r(R,P);R.prototype.apply=function(a){var b;(b=Q(this).m)&&b.A()&&b.D()?b=!0:(this.g(5),b=!1);if(b){b=this.D().i();for(var c=0;c<b.length;c++){var d=b[c];A(d,7)||Pb(this,d,a)}}};R.prototype.B=function(){return(0==this.D().i().length||0<this.j.length)&&0==this.o.length};var Ub=function(a){P.call(this,a);if(Rb(this,0)){a=this.D().i();for(var b=this.f().i(),c=0;c<a.length;c++){var d=a[c],e;a:{e=d;var f=b;if(e&&L(e))for(var g=0;g<f.length;g++){var k=f[g];if(A(e,3)==A(k,3)&&Cb(L(e),L(k))){e=k;break a}}e=null}e&&C(e,K,2)&&(e=C(e,K,2),d.a||(d.a={}),f=e?E(e):e,d.a[2]=e,B(d,2,f))}}};r(Ub,R);var Wb=function(a,b){var c=void 0===b.pageXOffset?(b.document.documentElement||b.document.body.parentNode||b.document.body).scrollLeft:b.pageXOffset,d=Eb(b);if(a.getBoundingClientRect)return a=a.getBoundingClientRect(),Vb(a)?new F(a.top+d,a.right+c,a.bottom+d,a.left+c):new F(0,0,0,0);b=b.document.createRange();b.selectNodeContents(a);return b.collapsed?new F(0,0,0,0):b.getBoundingClientRect?(a=b.getBoundingClientRect(),Vb(a)?new F(a.top+d,a.right+c,a.bottom+d,a.left+c):new F(0,0,0,0)):new F(0,0,0,
+0)},Vb=function(a){return!!a&&p(a.top)&&!isNaN(a.top)&&p(a.right)&&!isNaN(a.right)&&p(a.bottom)&&!isNaN(a.bottom)&&p(a.left)&&!isNaN(a.left)};var ac=function(a){this.K=a;this.Da=Xb(a);this.sa=S("ins.adsbygoogle",a);this.ea=Yb(a);this.Ma=S("[__lsu_res=reserved]",a);this.T=[];a=Zb(this);for(var b=0;b<a.length;b++)this.T.push(new $b(a[b]))},Xb=function(a){var b=a.googletag;if(!b||"function"!=typeof b.pubads)return S("div[id^=div-gpt-ad]",a);var c=[];try{for(var d=b.pubads().getSlots(),b=0;b<d.length;b++){var e=d[b].getSlotElementId(),f=a.document.getElementById(e);null!=f&&c.push(f)}}catch(g){Sa("ladd_evt",{ok:0,err:g.toString()},!0,.1)}return c},
+Yb=function(a){return S("iframe[id^=aswift_],iframe[id^=google_ads_frame]",a)},S=function(a,b){return ga(b.document.querySelectorAll(a),function(a){return a})},Zb=function(a){return[].concat(a.Da,a.sa,a.ea,a.Ma)},$b=function(a){this.Aa=a;this.V=null};var T=function(a){P.call(this,a)};r(T,P);T.prototype.apply=function(){};T.prototype.B=function(){var a;if(Sb(this)){var b=this.b;a=Xb(b);var c=S("ins.adsbygoogle",b),d=Yb(b),b=S("[__lsu_res=reserved]",b);a=0<[].concat(a,c,d,b).length}else a=!0;return a};var bc=function(a){P.call(this,a);this.F=null};r(bc,P);
+bc.prototype.apply=function(a){if(a&&Rb(this,2)){Ob(this);a=Db(this.b).clientHeight||640;null==this.F&&(this.F=new ac(this.b));var b=this.F.ea.length;if(!(5<=b)){var b=Math.min(2,5-b),c=this.f().i();Mb(c,this.b);for(var d=0;d<c.length&&this.j.length<b;++d){var e=c[d];if(Hb(this.b,e)){var f=Gb(this.b,e,!0);if(void 0!==f){var g;a:{g=this.F;for(var k=a,m=f,l=0;l<g.T.length;l++){var u=m,q=k,n;n=g.T[l];n.V||(n.V=Wb(n.Aa,g.K));n=n.V;if(n.top-q<u&&u<n.bottom+q){g=!0;break a}}g=!1}g||Qb(this,f)<a||Pb(this,
+e,!0)}}}0==this.j.length&&this.C(1)}}};bc.prototype.B=function(){return Sb(this)?0<Zb(this.F).length:!0};var cc=function(a){P.call(this,a);this.Y=!1};r(cc,T);
+cc.prototype.apply=function(a){if(a&&!this.Y){var b;a:{var c=this.b.document;b=c.body;if(a&&b){a=this.A();var d=pb,e=c.createElement("div");e.style.display="block";if(d=d&&d.ga)e.className=d;c=c.createElement("ins");c.className="adsbygoogle";c.setAttribute("data-ad-client",a);c.setAttribute("data-reactive-ad-format","1");c.style.display="none";e.appendChild(c);Jb(e,b,2);try{rb(this.b,c)}catch(f){this.C(6);e&&e.parentNode&&e.parentNode.removeChild(e);b=5;break a}this.j.push(e);b=0}else b=4}this.Y=
+0==b}};cc.prototype.B=function(){return this.Y&&T.prototype.B.call(this)};var dc=function(a){P.call(this,a);a=Db(a).clientHeight;this.ya=.1*a;this.Ga=.75*a};r(dc,P);
+dc.prototype.apply=function(a){if(Rb(this,3)&&!this.B()){Ob(this);var b=this.f().i();Mb(b,this.b);var c;c=this.ya;var d;d=document;d=d.querySelectorAll?d.querySelectorAll("header,#header,#masthead,.header,.site-header"):[];for(var e=d.length,f=0<e?d[0]:null,g=1;g<e;g++)d[g].getBoundingClientRect().top<f.getBoundingClientRect().top&&(f=d[g]);(d=f)&&(d=d.getBoundingClientRect())&&d.top!=d.bottom&&d.left!=d.right&&(c=Math.min(c,Ib(document,d.bottom)));for(d=0;d<b.length&&3>this.j.length;d++){e=b[d];
+var f=c,g=this.b.document,k=Gb(this.b,e,!1);!p(k)||Ib(g,k)<f?f=!1:(f=Qb(this,k),f=this.Ga<f);f&&(f=Hb(this.b,e),g=A(e,6)||0,f&&0==g&&B(e,6,3),!f&&a||Pb(this,e,a))}}};dc.prototype.B=function(){return 3==this.j.length};var U={};U[16]=R;U[17]=R;U[19]=T;U[29]=bc;U[33]=T;U[30]=cc;U[28]=dc;U[34]=dc;U[32]=Ub;U[1]=R;U[8]=T;U[11]=R;var ec=[19,29,33,30,16,32,17,34],fc=[16,19,33,30,17,1,6,8,11];var gc=function(a,b){a=a.google_ad_modifications=a.google_ad_modifications||{};(a.ad_channels=a.ad_channels||[]).push(b)};var hc=function(a){return 0>a||99<a?null:10>a?"0"+a:""+a};var ic=function(a,b){a=a.google_ad_modifications=a.google_ad_modifications||{};a=a.loeids=a.loeids||[];for(var c=0;c<b.length;c++)a.push(b[c])};var jc=function(a,b,c){this.ha=a;this.Ba=c?c:new lb};jc.prototype.N=function(){return this.Ba||new lb};var kc=function(a){if(!p(a))return!1;for(var b=0;b<ec.length;++b)if(a==ec[b])return!1;return!0},pc=function(){var a=V,b=lc,c=mc,d=b.f();if(!d)return nc(16);var e=null,f;a:{var g=D(d,M,1);for(f=0;f<g.length;++f){for(var k=!0,m=0;m<fc.length;++m)A(g[f],4)==fc[m]&&(k=!1);if(k){g=[];0==d.i().length&&g.push("PsoInvalidVariant");0==A(d,3).length&&g.push("PsoNoAdSlotCodes");f=g;break a}}f=[]}g=c.ha;if(0==f.length)a:{e=D(d,M,1);if(p(g))for(f=0;f<e.length;f++)if(k=e[f],U[A(k,4)])for(var m=D(k,ib,2),l=0;l<
+m.length;l++){var u=m[l],q=A(u,1),u=A(u,2);if(p(q)&&p(u)&&g>=q&&g<=u){e=k;break a}}e=null}else for(k=0;k<f.length;++k)b.qa.push(f[k]);if(!e){f=D(d,M,1);e={};for(k=0;k<f.length;k++)e[A(f[k],4)]=!0;f=null;e[19]||e[8]?f=19:e[16]||e[1]?f=16:0<d.i().length&&0<A(d,3).length&&e[34]&&(f=34);null!=f?(e=new M,B(e,6,3),B(e,4,f),16!=f&&19!=f&&e.oa("pso-ama-fallback")):e=null}(f=!e)||(!p(g)||800>g?f=!1:820>g?(ic(a,["26835111"]),f=!0):(840>g&&ic(a,["26835112"]),f=!1));if(f)return nc(16);(g=e.ia())&&gc(a,g);g=!0;
+A(c.N(),2)&&(Date.now?Date.now():+new Date)<A(c.N(),2)||(gc(a,"pso-ama-exd"),g=!1);A(b.m,11)&&(gc(a,"pso-ama-stl-tmp"),g=!1);g&&gc(a,"pso-ama-elig");2==A(e,6)&&(b=A(e,1),null!=b&&ic(a,[""+b]));if(g&&(2==A(e,6)||1==A(e,6))){d=D(d,M,1);if(null===c.ha)c=[];else{b={};c=[];for(g=0;g<d.length;g++)f=oc(d[g]),null==f||b[f]||(b[f]=!0,c.push(f));b=oc(e);if(null!=b){d=[];b=hc(b);g=!1;if(b)for(f=0;f<c.length;f++)k=hc(c[f]),b==k&&(g=!0),k&&d.push("950"+b+k);g||(d=[]);c=d}else c=[]}ic(a,c)}a=new Tb;a.aa=A(e,5);
+a.J=A(e,4);return a},nc=function(a){var b=new Tb;b.J=a;return b},qc=function(a){a=a.google_ad_modifications=a.google_ad_modifications||{};a.remove_ads_by_default=!0;a.ad_whitelist=[{ad_tag_origin:"pso"}];a.ad_blacklist=[];a.space_collapsing="slot"},oc=function(a){var b;switch(A(a,6)){case 1:b=A(a,4);break;case 2:b=A(a,7)}return null!=b?b:null};var rc=function(a){this.document=a};var W=function(a){H.call(this,a)};r(W,H);W.prototype.getData=function(a){var b=W.Pa.getData.call(this,a),c;a:{c=(new rc(a.document)).document.getElementsByTagName("script");for(var d=0;d<c.length;++d)if(c[d].hasAttribute("data-pso-version")){c=c[d].getAttribute("data-pso-version");break a}c=null}b.sv=c;if(d=I(a).ps||null){c=d.m;var d=d.f(),e=b.wpc;b.wpc=null!=e?e:c.A();b.su=A(c,14);b.tn=c.O();b.ev=d&&A(d,5)}if(a=I(a).ss||null)b.s=a.J,b.st=a.aa;return b};var sc=null,tc=!1,wc=function(a){var b=uc,c=vc;b.addEventListener?(a&&b.addEventListener("DOMContentLoaded",a,!1),c&&b.addEventListener("load",c,!1)):b.attachEvent&&c&&b.attachEvent("onload",c)},yc=function(a){p(sc)&&a.clearInterval&&(a.clearInterval(sc),sc=null);tc||xc(a,!1);xc(a,!0)},zc=function(a,b){try{yc(b);var c=I(b).ss||null;if(c&&c.I){var d=c.I,e=d.B(),f=d.o,g=d.v,k=d.X,m=d.j.length;e||0!=m||f.push(6);for(var l=new W(m),c=0;c<g.length;c++)l.C(g[c]);if(e&&0==f.length&&null===k)bb(a,a.Oa,a.ba,
+l);else{for(e=0;e<f.length;e++)l.g(f[e]);cb(a,ab(l,k))}}else cb(a,(new W(0)).g(2))}catch(u){cb(a,ab((new W(0)).g(1),u))}I(b).loaded=!0},xc=function(a,b){b||(tc=!0);if((a=I(a).ss||null)&&a.I){a=a.I;try{a.apply(b)}catch(c){a.g(1),null===a.X&&(a.X=c)}}},Ac=function(){xc(window,!1)};var X=new function(a){this.Oa="pso_success";this.Ca="pso_failure";this.W=this.ba=.01;this.Fa=!1;this.K=a}(window);
+try{var V=window,Ba,Bc=I(V).config;Ba=Bc?new O(Bc):null;if(!Ba)throw Error("No config");var Cc=Ca(10),Dc=Ca(7);X.ba=null!=Cc?Cc:X.ba;X.W=null!=Dc?Dc:X.W;var lc=new mb(Ba),Ec=lc;I(V).ps=Ec;var Y,mc;if(v("iPad")||v("Android")&&!v("Mobile")||v("Silk")||!(v("iPod")||v("iPhone")||v("Android")||v("IEMobile")))Y=nc(16);else{var Fc,Gc=/^#([^=]*)=(\d+)$/.exec(V.location.hash);if((Fc=Gc&&3==Gc.length&&"pso_strategy"==Gc[1]?+Gc[2]:null)&&U[Fc]){Y=nc(Fc);var Hc=V;kc(Fc)&&qc(Hc)}else{var Jc=V,Kc=lc.m.N(),Z;try{var Lc=
+parseInt(Jc.localStorage.getItem("PSO_EXP0"),10);Z=isNaN(Lc)?null:Lc}catch(a){Z=null}if(null==Z){Z=Math.floor(1024*Math.random());var Mc=Z;try{Jc.localStorage.setItem("PSO_EXP0",Mc.toString())}catch(a){}}mc=new jc(Z,0,Kc);Y=pc()}if(1==Y.aa){var Nc=V;kc(Y.J)&&qc(Nc)}}if(!Y)throw Error("No strategyState created!");var Oc=Y;I(V).ss=Oc;var Pc=V,Qc=Y,Rc=Qc.J;if(p(Rc)){var Sc=U[Rc];Rc&&Sc&&(Qc.I=new Sc(Pc))}var uc=V,vc=ba(zc,X,uc),Tc=ba(yc,uc);switch(uc.document.readyState){case "complete":vc();break;case "interactive":Tc();
+wc();break;default:var Uc=uc,Vc=qb(Uc);Vc.loaded||(Vc.onload=Ac);sc=Uc.setInterval(Ac,10);wc(Tc)}}catch(a){cb(X,ab(new W(0),a))};})();
+</script><script type="text/javascript" async="" src="./Configure iSCSI SAN in Server 2012 R2_files/embed.js.téléchargement"></script><iframe id="stSegmentFrame" name="stSegmentFrame" frameborder="0" scrolling="no" width="0px" height="0px" sandbox="allow-scripts allow-same-origin" style="display:none;" src="./Configure iSCSI SAN in Server 2012 R2_files/saved_resource.html"></iframe><script async="" type="text/javascript" src="./Configure iSCSI SAN in Server 2012 R2_files/count.js.téléchargement"></script><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_reposition{overflow:hidden;position:relative}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}.fb_link img{border:none}@keyframes fb_transform{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.fb_animate{animation:fb_transform .3s forwards}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_reset .fb_dialog_legacy{overflow:visible}.fb_dialog_advanced{padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}.fb_dialog_content{background:#fff;color:#333}.fb_dialog_close_icon{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yL/r/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yL/r/s816eWC-2sl.gif)}.fb_dialog_close_icon:active{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yL/r/s816eWC-2sl.gif)}.fb_dialog_loader{background-color:#f6f7f9;border:1px solid #606060;font-size:24px;padding:20px}.fb_dialog_top_left,.fb_dialog_top_right,.fb_dialog_bottom_left,.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}.fb_dialog_top_left{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}.fb_dialog_top_right{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}.fb_dialog_bottom_left{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}.fb_dialog_bottom_right{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}.fb_dialog_vert_left,.fb_dialog_vert_right,.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}.fb_dialog_vert_left,.fb_dialog_vert_right{width:10px;height:100%}.fb_dialog_vert_left{margin-left:-10px}.fb_dialog_vert_right{right:0;margin-right:-10px}.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{width:100%;height:10px}.fb_dialog_horiz_top{margin-top:-10px}.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #365899;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{-webkit-transform:none;height:100%;margin:0;overflow:visible;position:absolute;top:-10000px;left:0;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{width:auto;height:auto;min-height:initial;min-width:initial;background:none}.fb_dialog.fb_dialog_mobile.loading.centered #fb_dialog_loader_spinner{width:100%}.fb_dialog.fb_dialog_mobile.loading.centered .fb_dialog_content{background:none}.loading.centered #fb_dialog_loader_close{color:#fff;display:block;padding-top:20px;clear:both;font-size:18px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;bottom:0;left:0;right:0;top:0;width:100%;min-height:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#4966A6), color-stop(.5, #355492), to(#2A4887));border:1px solid #29487d;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset, rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f6f7f9;border:1px solid #555;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}#fb_dialog_loader_spinner{animation:rotateSpinner 1.2s linear infinite;background-color:transparent;background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/t-wz8gw1xG1.png);background-repeat:no-repeat;background-position:50% 50%;height:24px;width:24px}@keyframes rotateSpinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_hide_iframes iframe{position:relative;left:-10000px}.fb_iframe_widget_loader{position:relative;display:inline-block}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}.fb_iframe_widget_loader .FB_Loader{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}</style></head>
+
+<body class="post-template-default single single-post postid-4920 single-format-standard custom-background">
+	    <div id="page" class="hfeed site clear">
+            <div id="utility-top">
+            <div class="wrap clear">
+                                <nav id="optional-nav" class="secondary-nav">
+                    <ul id="menu-bottom" class="sec-menu clear"><li id="menu-item-7854" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-7854"><a href="http://www.mustbegeek.com/">Home</a></li>
+<li id="menu-item-24" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-24"><a href="http://www.mustbegeek.com/about-us/">About Us</a></li>
+<li id="menu-item-23" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-23"><a href="http://www.mustbegeek.com/contact-us/">Contact Us</a></li>
+<li id="menu-item-5607" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5607"><a href="http://www.mustbegeek.com/advertise/">Advertise</a></li>
+</ul>                </nav><!-- #optional-nav -->
+                                <div id="search-bar" role="complementary">
+                    
+<form role="search" method="get" class="search-form" action="http://www.mustbegeek.com/">
+<label>
+<span class="screen-reader-text">Search for:</span>
+<input type="search" class="search-field" placeholder="Search this site …" value="" name="s" title="Search for:">
+</label>
+<input type="submit" class="search-submit" value="Search">
+</form>                </div><!-- #search-bar -->
+                            </div><!-- #utility-top .wrap -->
+        </div><!-- #utility-top-->
+		        <header id="header" class="site-header" role="banner">
+            <div class="wrap full-width clear">
+			    <div class="brand column one-fourth" role="banner">
+        <h4 class="site-title"><a href="http://www.mustbegeek.com/" title="MustBeGeek" rel="home"><img src="./Configure iSCSI SAN in Server 2012 R2_files/logo-4.jpg" alt="MustBeGeek" title="MustBeGeek" scale="0"></a>
+			</h4>    </div><!-- .column one-third -->
+        <div class="column header-widget-area right last">
+        <aside id="text-24" class="hwa-wrap widget_text">			<div class="textwidget"><script async="" src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Responsive Ad -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2674883270655958" data-ad-slot="8359228226" data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+		</aside>        </div><!-- .header-widget-area -->
+	            </div><!-- #header .wrap -->
+        </header><!-- #header -->
+                        <nav id="responsive-menu">
+                <h3 id="menu-button-1" class="menu-button">Menu<span class="toggle-icon"><span class="bar-1"></span><span class="bar-2"></span><span class="bar-3"></span></span></h3>
+                <div class="menu-drop"><ul id="menu-home" class="clear"><li id="menu-item-7858" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-7858"><a href="http://www.mustbegeek.com/">Home</a></li>
+<li id="menu-item-4" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-4"><a rel="author" href="http://www.mustbegeek.com/cisco/">Cisco</a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-7878" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-7878"><a href="http://www.mustbegeek.com/cisco/routing-and-switching/">Routing and Switching</a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-7879" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7879"><a href="http://www.mustbegeek.com/cisco/routing-and-switching/ccna-rs/">CCNA R&amp;S</a></li>
+		<li id="menu-item-7880" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7880"><a href="http://www.mustbegeek.com/cisco/routing-and-switching/ccnp-rs/">CCNP R&amp;S</a></li>
+	</ul>
+<a class="expand-menu" href="http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/#" title="Expand or collapse menu items."><i class="fa fa-angle-down"></i></a></li>
+	<li id="menu-item-7881" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-7881"><a href="http://www.mustbegeek.com/cisco/security-cisco/">Security</a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-7882" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7882"><a href="http://www.mustbegeek.com/cisco/security-cisco/ccna-security-cisco/">CCNA SEC</a></li>
+		<li id="menu-item-7883" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7883"><a href="http://www.mustbegeek.com/cisco/security-cisco/ccnp-security-cisco/">CCNP SEC</a></li>
+	</ul>
+<a class="expand-menu" href="http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/#" title="Expand or collapse menu items."><i class="fa fa-angle-down"></i></a></li>
+</ul>
+<a class="expand-menu" href="http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/#" title="Expand or collapse menu items."><i class="fa fa-angle-down"></i></a></li>
+<li id="menu-item-5" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-5"><a rel="author" href="http://www.mustbegeek.com/juniper/">Juniper</a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-7887" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-7887"><a href="http://www.mustbegeek.com/juniper/routing-and-switching-juniper/">Routing and Switching</a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-1226" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1226"><a rel="author" href="http://www.mustbegeek.com/juniper/routing-and-switching-juniper/jncia/">JNCIA</a></li>
+		<li id="menu-item-1790" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1790"><a rel="author" href="http://www.mustbegeek.com/juniper/routing-and-switching-juniper/jncis-ent/">JNCIS-ENT</a></li>
+	</ul>
+<a class="expand-menu" href="http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/#" title="Expand or collapse menu items."><i class="fa fa-angle-down"></i></a></li>
+	<li id="menu-item-7888" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-7888"><a href="http://www.mustbegeek.com/juniper/junos-security-juniper/">JunOS Security</a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-1227" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1227"><a rel="author" href="http://www.mustbegeek.com/juniper/junos-security-juniper/jncis-sec/">JNCIS-SEC</a></li>
+	</ul>
+<a class="expand-menu" href="http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/#" title="Expand or collapse menu items."><i class="fa fa-angle-down"></i></a></li>
+</ul>
+<a class="expand-menu" href="http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/#" title="Expand or collapse menu items."><i class="fa fa-angle-down"></i></a></li>
+<li id="menu-item-200" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor menu-item-has-children menu-item-200"><a rel="author" href="http://www.mustbegeek.com/microsoft/">Microsoft</a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-4012" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor menu-item-has-children menu-item-4012"><a href="http://www.mustbegeek.com/microsoft/windows-server/">Windows Server</a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-2614" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-2614"><a rel="author" href="http://www.mustbegeek.com/microsoft/windows-server/windows-server-2012/">Windows Server 2012</a></li>
+		<li id="menu-item-9588" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-9588"><a href="http://www.mustbegeek.com/microsoft/windows-server/windows-server-2008/">Windows Server 2008</a></li>
+	</ul>
+<a class="expand-menu" href="http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/#" title="Expand or collapse menu items."><i class="fa fa-angle-down"></i></a></li>
+	<li id="menu-item-4007" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-4007"><a href="http://www.mustbegeek.com/microsoft/microsoft-exchange-server/">Exchange Server</a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-7857" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7857"><a href="http://www.mustbegeek.com/microsoft/microsoft-exchange-server/exchange-server-2016/">Exchange Server 2016</a></li>
+		<li id="menu-item-4009" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4009"><a href="http://www.mustbegeek.com/microsoft/microsoft-exchange-server/exchange-server-2013/">Exchange Server 2013</a></li>
+		<li id="menu-item-1550" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1550"><a rel="author" href="http://www.mustbegeek.com/microsoft/microsoft-exchange-server/exchange-server-2010/">Exchange Server 2010</a></li>
+	</ul>
+<a class="expand-menu" href="http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/#" title="Expand or collapse menu items."><i class="fa fa-angle-down"></i></a></li>
+	<li id="menu-item-1765" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-1765"><a rel="author" href="http://www.mustbegeek.com/microsoft/windows-client-os/">Windows Client OS</a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-7875" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7875"><a href="http://www.mustbegeek.com/microsoft/windows-client-os/windows-8/">Windows 8.X</a></li>
+		<li id="menu-item-7874" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7874"><a href="http://www.mustbegeek.com/microsoft/windows-client-os/windows-7/">Windows 7</a></li>
+	</ul>
+<a class="expand-menu" href="http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/#" title="Expand or collapse menu items."><i class="fa fa-angle-down"></i></a></li>
+	<li id="menu-item-3209" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-3209"><a rel="author" href="http://www.mustbegeek.com/microsoft/windows-powershell/">Windows PowerShell</a></li>
+	<li id="menu-item-7102" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7102"><a href="http://www.mustbegeek.com/microsoft/office-365/">Office 365</a></li>
+	<li id="menu-item-1489" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1489"><a rel="author" href="http://www.mustbegeek.com/microsoft/hyper-v/">Hyper V</a></li>
+</ul>
+<a class="expand-menu" href="http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/#" title="Expand or collapse menu items."><i class="fa fa-angle-down"></i></a></li>
+<li id="menu-item-1228" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-1228"><a rel="author" href="http://www.mustbegeek.com/vmware-virtualization/">VMware</a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-7889" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-7889"><a href="http://www.mustbegeek.com/vmware-virtualization/data-center-and-cloud/">Data Center and Cloud</a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-8911" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8911"><a href="http://www.mustbegeek.com/vmware-virtualization/data-center-and-cloud/vsphere-6-x/">vSphere 6.x</a></li>
+		<li id="menu-item-6323" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6323"><a href="http://www.mustbegeek.com/vmware-virtualization/data-center-and-cloud/vsphere-5-x/">vSphere 5.x</a></li>
+	</ul>
+<a class="expand-menu" href="http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/#" title="Expand or collapse menu items."><i class="fa fa-angle-down"></i></a></li>
+	<li id="menu-item-7890" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-7890"><a href="http://www.mustbegeek.com/vmware-virtualization/desktop-and-app-virtualization/">Desktop and App Virtualization</a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-7892" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7892"><a href="http://www.mustbegeek.com/vmware-virtualization/desktop-and-app-virtualization/horizon-view-6-x/">Horizon View 6.x</a></li>
+		<li id="menu-item-6326" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6326"><a href="http://www.mustbegeek.com/vmware-virtualization/desktop-and-app-virtualization/horizon-view-5-x/">Horizon View 5.x</a></li>
+	</ul>
+<a class="expand-menu" href="http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/#" title="Expand or collapse menu items."><i class="fa fa-angle-down"></i></a></li>
+	<li id="menu-item-7891" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-7891"><a href="http://www.mustbegeek.com/vmware-virtualization/personal-desktop/">Personal Desktop</a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-6327" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6327"><a href="http://www.mustbegeek.com/vmware-virtualization/personal-desktop/vmware-workstation/">VMware Workstation</a></li>
+	</ul>
+<a class="expand-menu" href="http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/#" title="Expand or collapse menu items."><i class="fa fa-angle-down"></i></a></li>
+</ul>
+<a class="expand-menu" href="http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/#" title="Expand or collapse menu items."><i class="fa fa-angle-down"></i></a></li>
+<li id="menu-item-7" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7"><a rel="author" href="http://www.mustbegeek.com/security/">Security</a></li>
+<li id="menu-item-2205" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-2205"><a rel="author" href="http://www.mustbegeek.com/open-source/">Open Source</a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-2206" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2206"><a rel="author" href="http://www.mustbegeek.com/open-source/centos/">CentOS</a></li>
+</ul>
+<a class="expand-menu" href="http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/#" title="Expand or collapse menu items."><i class="fa fa-angle-down"></i></a></li>
+<li id="menu-item-397" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-397"><a rel="author" href="http://www.mustbegeek.com/tips-n-tricks/">Tips N Tricks</a></li>
+</ul><ul id="menu-bottom" class="clear optional-menu"><li id="menu-item-7854" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-7854"><a href="http://www.mustbegeek.com/">Home</a></li>
+<li id="menu-item-24" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-24"><a href="http://www.mustbegeek.com/about-us/">About Us</a></li>
+<li id="menu-item-23" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-23"><a href="http://www.mustbegeek.com/contact-us/">Contact Us</a></li>
+<li id="menu-item-5607" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5607"><a href="http://www.mustbegeek.com/advertise/">Advertise</a></li>
+</ul></div></nav>
+                    <nav id="main-nav" class="primary-nav" role="navigation">
+            <div class="wrap">
+                <ul id="menu-home" class="nav-menu clear"><li id="menu-item-7858" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-7858"><a href="http://www.mustbegeek.com/">Home</a></li>
+<li id="menu-item-4" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-4"><a rel="author" href="http://www.mustbegeek.com/cisco/">Cisco</a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-7878" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-7878"><a href="http://www.mustbegeek.com/cisco/routing-and-switching/">Routing and Switching</a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-7879" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7879"><a href="http://www.mustbegeek.com/cisco/routing-and-switching/ccna-rs/">CCNA R&amp;S</a></li>
+		<li id="menu-item-7880" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7880"><a href="http://www.mustbegeek.com/cisco/routing-and-switching/ccnp-rs/">CCNP R&amp;S</a></li>
+	</ul>
+</li>
+	<li id="menu-item-7881" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-7881"><a href="http://www.mustbegeek.com/cisco/security-cisco/">Security</a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-7882" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7882"><a href="http://www.mustbegeek.com/cisco/security-cisco/ccna-security-cisco/">CCNA SEC</a></li>
+		<li id="menu-item-7883" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7883"><a href="http://www.mustbegeek.com/cisco/security-cisco/ccnp-security-cisco/">CCNP SEC</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li id="menu-item-5" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-5"><a rel="author" href="http://www.mustbegeek.com/juniper/">Juniper</a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-7887" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-7887"><a href="http://www.mustbegeek.com/juniper/routing-and-switching-juniper/">Routing and Switching</a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-1226" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1226"><a rel="author" href="http://www.mustbegeek.com/juniper/routing-and-switching-juniper/jncia/">JNCIA</a></li>
+		<li id="menu-item-1790" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1790"><a rel="author" href="http://www.mustbegeek.com/juniper/routing-and-switching-juniper/jncis-ent/">JNCIS-ENT</a></li>
+	</ul>
+</li>
+	<li id="menu-item-7888" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-7888"><a href="http://www.mustbegeek.com/juniper/junos-security-juniper/">JunOS Security</a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-1227" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1227"><a rel="author" href="http://www.mustbegeek.com/juniper/junos-security-juniper/jncis-sec/">JNCIS-SEC</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li id="menu-item-200" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor menu-item-has-children menu-item-200"><a rel="author" href="http://www.mustbegeek.com/microsoft/">Microsoft</a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-4012" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor menu-item-has-children menu-item-4012"><a href="http://www.mustbegeek.com/microsoft/windows-server/">Windows Server</a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-2614" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-2614"><a rel="author" href="http://www.mustbegeek.com/microsoft/windows-server/windows-server-2012/">Windows Server 2012</a></li>
+		<li id="menu-item-9588" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-9588"><a href="http://www.mustbegeek.com/microsoft/windows-server/windows-server-2008/">Windows Server 2008</a></li>
+	</ul>
+</li>
+	<li id="menu-item-4007" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-4007"><a href="http://www.mustbegeek.com/microsoft/microsoft-exchange-server/">Exchange Server</a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-7857" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7857"><a href="http://www.mustbegeek.com/microsoft/microsoft-exchange-server/exchange-server-2016/">Exchange Server 2016</a></li>
+		<li id="menu-item-4009" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4009"><a href="http://www.mustbegeek.com/microsoft/microsoft-exchange-server/exchange-server-2013/">Exchange Server 2013</a></li>
+		<li id="menu-item-1550" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1550"><a rel="author" href="http://www.mustbegeek.com/microsoft/microsoft-exchange-server/exchange-server-2010/">Exchange Server 2010</a></li>
+	</ul>
+</li>
+	<li id="menu-item-1765" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-1765"><a rel="author" href="http://www.mustbegeek.com/microsoft/windows-client-os/">Windows Client OS</a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-7875" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7875"><a href="http://www.mustbegeek.com/microsoft/windows-client-os/windows-8/">Windows 8.X</a></li>
+		<li id="menu-item-7874" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7874"><a href="http://www.mustbegeek.com/microsoft/windows-client-os/windows-7/">Windows 7</a></li>
+	</ul>
+</li>
+	<li id="menu-item-3209" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-3209"><a rel="author" href="http://www.mustbegeek.com/microsoft/windows-powershell/">Windows PowerShell</a></li>
+	<li id="menu-item-7102" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7102"><a href="http://www.mustbegeek.com/microsoft/office-365/">Office 365</a></li>
+	<li id="menu-item-1489" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1489"><a rel="author" href="http://www.mustbegeek.com/microsoft/hyper-v/">Hyper V</a></li>
+</ul>
+</li>
+<li id="menu-item-1228" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-1228"><a rel="author" href="http://www.mustbegeek.com/vmware-virtualization/">VMware</a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-7889" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-7889"><a href="http://www.mustbegeek.com/vmware-virtualization/data-center-and-cloud/">Data Center and Cloud</a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-8911" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8911"><a href="http://www.mustbegeek.com/vmware-virtualization/data-center-and-cloud/vsphere-6-x/">vSphere 6.x</a></li>
+		<li id="menu-item-6323" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6323"><a href="http://www.mustbegeek.com/vmware-virtualization/data-center-and-cloud/vsphere-5-x/">vSphere 5.x</a></li>
+	</ul>
+</li>
+	<li id="menu-item-7890" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-7890"><a href="http://www.mustbegeek.com/vmware-virtualization/desktop-and-app-virtualization/">Desktop and App Virtualization</a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-7892" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7892"><a href="http://www.mustbegeek.com/vmware-virtualization/desktop-and-app-virtualization/horizon-view-6-x/">Horizon View 6.x</a></li>
+		<li id="menu-item-6326" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6326"><a href="http://www.mustbegeek.com/vmware-virtualization/desktop-and-app-virtualization/horizon-view-5-x/">Horizon View 5.x</a></li>
+	</ul>
+</li>
+	<li id="menu-item-7891" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-7891"><a href="http://www.mustbegeek.com/vmware-virtualization/personal-desktop/">Personal Desktop</a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-6327" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6327"><a href="http://www.mustbegeek.com/vmware-virtualization/personal-desktop/vmware-workstation/">VMware Workstation</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li id="menu-item-7" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7"><a rel="author" href="http://www.mustbegeek.com/security/">Security</a></li>
+<li id="menu-item-2205" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-2205"><a rel="author" href="http://www.mustbegeek.com/open-source/">Open Source</a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-2206" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2206"><a rel="author" href="http://www.mustbegeek.com/open-source/centos/">CentOS</a></li>
+</ul>
+</li>
+<li id="menu-item-397" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-397"><a rel="author" href="http://www.mustbegeek.com/tips-n-tricks/">Tips N Tricks</a></li>
+</ul>            </div><!-- .primary-nav .wrap -->
+        </nav><!-- #main-nav -->
+                <div id="main">
+            <div class="wrap clear">
+            	<div class="content-row"><div id="primary" class="site-content">
+    <div id="content" role="main">
+	<div class="breadcrumbs"><a href="http://www.mustbegeek.com/">Home</a> <span class="sep"> » </span> <a href="http://www.mustbegeek.com/microsoft/">Microsoft</a> <span class="sep"> » </span> <a href="http://www.mustbegeek.com/microsoft/windows-server/">Windows Server</a> <span class="sep"> » </span> <a href="http://www.mustbegeek.com/microsoft/windows-server/windows-server-2012/">Windows Server 2012</a> <span class="sep"> » </span> <span class="current">Configure iSCSI SAN in Server 2012 R2</span></div>			 <article id="post-4920" class="post-4920 post type-post status-publish format-standard has-post-thumbnail hentry category-windows-server-2012 tag-iscsi tag-san tag-server-2012">
+                <header class="entry-header">
+                    <h1 class="entry-title">Configure iSCSI SAN in Server 2012 R2</h1>
+                                                <aside id="meta-4920" class="entry-meta"><span class="posted-on">Posted on </span><a href="http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/" title="11:07 AM" class="post-time"><time class="entry-date updated" datetime="2014-04-01T11:07:24+00:00">April 1, 2014</time></a><span class="by-author"> by </span><span class="author vcard"><a class="url fn n" href="http://www.mustbegeek.com/author/bipin/" title="View all posts by Bipin" rel="author">Bipin</a></span><span class="posted-in"> in </span><a href="http://www.mustbegeek.com/microsoft/windows-server/windows-server-2012/" rel="tag">Windows Server 2012</a> <span class="with-comments"> with </span><a href="http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/#comments" class="post-comment" title="Comment on Configure iSCSI SAN in Server 2012 R2">4 Comments</a></aside>
+                                        </header>
+                <div class="entry-content">
+					<!-- Simple Share Buttons Adder (6.3.4) simplesharebuttons.com --><div class="ssba ssba-wrap"><div style="text-align:left">Share This Article: <a data-site="" class="ssba_facebook_share" href="http://www.facebook.com/sharer.php?u=http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/" target="_blank" rel="nofollow"><img src="./Configure iSCSI SAN in Server 2012 R2_files/facebook.png" title="Facebook" class="ssba ssba-img" alt="Share on Facebook" scale="0"></a><span class="ssba_sharecount">8</span><a data-site="" class="ssba_google_share" href="https://plus.google.com/share?url=http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/" target="_blank" rel="nofollow"><img src="./Configure iSCSI SAN in Server 2012 R2_files/google.png" title="Google+" class="ssba ssba-img" alt="Share on Google+" scale="0"></a><span class="ssba_sharecount">0</span><a data-site="" class="ssba_twitter_share" href="http://twitter.com/share?url=http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/&amp;text=Configure+iSCSI+SAN+in+Server+2012+R2+" target="_blank" rel="nofollow"><img src="./Configure iSCSI SAN in Server 2012 R2_files/twitter.png" title="Twitter" class="ssba ssba-img" alt="Tweet about this on Twitter" scale="0"></a><a data-site="linkedin" class="ssba_linkedin_share ssba_share_link" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/" target="_blank" rel="nofollow"><img src="./Configure iSCSI SAN in Server 2012 R2_files/linkedin.png" title="LinkedIn" class="ssba ssba-img" alt="Share on LinkedIn" scale="0"></a><span class="ssba_sharecount">4</span><a data-site="pinterest" class="ssba_pinterest_share" href="javascript:void((function()%7Bvar%20e=document.createElement(&#39;script&#39;);e.setAttribute(&#39;type&#39;,&#39;text/javascript&#39;);e.setAttribute(&#39;charset&#39;,&#39;UTF-8&#39;);e.setAttribute(&#39;src&#39;,&#39;//assets.pinterest.com/js/pinmarklet.js?r=&#39;+Math.random()*99999999);document.body.appendChild(e)%7D)());"><img src="./Configure iSCSI SAN in Server 2012 R2_files/pinterest.png" title="Pinterest" class="ssba ssba-img" alt="Pin on Pinterest" scale="0"></a><span class="ssba_sharecount">0</span><a data-site="email" class="ssba_email_share" href="mailto:?subject=Configure%20iSCSI%20SAN%20in%20Server%202012%20R2&amp;body=%20http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/"><img src="./Configure iSCSI SAN in Server 2012 R2_files/email.png" title="Email" class="ssba ssba-img" alt="Email this to someone" scale="0"></a></div></div><div class="googlepublisherpluginad" style="text-align: center; width: 100%; height: auto; clear: none;"><ins data-ad-format="auto" class="adsbygoogle" data-ad-client="ca-pub-2674883270655958" data-ad-slot="6324091822" data-ad-channel="WordPressSinglePost+pso-lv-11" data-adsbygoogle-status="reserved" style="display: block; margin: 10px auto; background-color: transparent;"></ins></div><p style="text-align: justify;"><strong>iSCSI</strong> (Internet Small Computer System Interface) is a protocol that uses underlying TCP/IP protocol for transmission of data. Unlike <strong>FC (Fiber Channel)</strong> which requires dedicated hardware like HBAs (Host Bus Adapters), fiber optics, etc., iSCSI uses existing network devices (routers, switches, firewalls) making it very cost effective storage solution. In iSCSI, data is transferred in block by block in raw form between the host and SAN. This makes operating systems to think as if the disk is locally connected or DAS (Direct Attached Storage). You can create LUNs (Logian Unit Numbers) or virtual disks in SAN which will be used by operating systems as a volume as if they were DAS. Note, NAS (Network Attached Storage) uses protocols like SMB, CIFS, or NFS to transfer data between operating systems and NAS device. In this post, I will show steps to configure iSCSI SAN in <a title="Server 2012 R2 Official Page" href="http://www.microsoft.com/en-us/server-cloud/products/windows-server-2012-r2/default.aspx" target="_blank" rel="nofollow"><strong>Server 2012 R2</strong></a>.</p>
+<h2><strong>Configure iSCSI SAN in Server 2012 R2</strong></h2>
+<p style="text-align: justify;">Server 2012 now includes iSCSI software components, which means you can create SAN in server 2012. Two main components of iSCSI are, <strong>iSCSI initiators</strong> and <strong>iSCSI target</strong>. <strong>iSCSI initiator</strong> is a client or system that will be using the storage from SAN. <strong>iSCSI target</strong> is the SAN box or storage box or the server where iSCSI target component is installed. You can use Server 2012 iSCSI SAN feature to configure shared storage for fail-over clustering for Hyper V and VMware vSphere, and others. Now, let’s begin installing iSCSI in Server 2012. Here is my Vmware Workstation machine configuration.</p>
+<p style="text-align: justify;"><a href="./Configure iSCSI SAN in Server 2012 R2_files/1.-VM-Setting.png" class="fancybox image"><img class="alignnone size-full wp-image-4942" src="./Configure iSCSI SAN in Server 2012 R2_files/1.-VM-Setting.png" alt="VM Setting" width="251" height="225" srcset="http://www.mustbegeek.com/wp-content/uploads/2014/03/1.-VM-Setting.png 251w, http://www.mustbegeek.com/wp-content/uploads/2014/03/1.-VM-Setting-110x99.png 110w, http://www.mustbegeek.com/wp-content/uploads/2014/03/1.-VM-Setting-178x160.png 178w, http://www.mustbegeek.com/wp-content/uploads/2014/03/1.-VM-Setting-151x135.png 151w" sizes="(max-width: 251px) 100vw, 251px"></a></p>
+<p style="text-align: justify;">The snapshot above shows the virtual machine configuration. The machine is configured with hard disk 2 and 3 each with 500 GB for iSCSI SAN configuration. I have already <a title="Install Server 2012 in Vmware Workstation" href="http://www.mustbegeek.com/install-windows-server-2012-as-virtual-machine-in-vmware-workstation/" target="_blank"><strong>installed Server 2012</strong></a> <strong>R2</strong> in this machine with following configuration.</p>
+<p style="text-align: justify;"><a href="./Configure iSCSI SAN in Server 2012 R2_files/2.-iSCSI-Server-Information.png" class="fancybox image"><img class="alignnone size-full wp-image-4947" src="./Configure iSCSI SAN in Server 2012 R2_files/2.-iSCSI-Server-Information.png" alt="iSCSI Server Information" width="501" height="284" srcset="http://www.mustbegeek.com/wp-content/uploads/2014/03/2.-iSCSI-Server-Information.png 501w, http://www.mustbegeek.com/wp-content/uploads/2014/03/2.-iSCSI-Server-Information-300x170.png 300w, http://www.mustbegeek.com/wp-content/uploads/2014/03/2.-iSCSI-Server-Information-110x62.png 110w, http://www.mustbegeek.com/wp-content/uploads/2014/03/2.-iSCSI-Server-Information-259x147.png 259w, http://www.mustbegeek.com/wp-content/uploads/2014/03/2.-iSCSI-Server-Information-180x102.png 180w" sizes="(max-width: 501px) 100vw, 501px"></a></p>
+<p style="text-align: justify;">Now, follow these steps to install iSCSI target component in the server.</p>
+<p style="text-align: justify;">Step 1. From the <strong>Server Manager</strong>, click <strong>Manage</strong> and click <strong>Add Roles and Features</strong>.</p>
+<p style="text-align: justify;"><a href="./Configure iSCSI SAN in Server 2012 R2_files/3.-Add-Roles-and-Features.png" class="fancybox image"><img class="alignnone size-full wp-image-4950" src="./Configure iSCSI SAN in Server 2012 R2_files/3.-Add-Roles-and-Features.png" alt="Add Roles and Features" width="227" height="183" srcset="http://www.mustbegeek.com/wp-content/uploads/2014/03/3.-Add-Roles-and-Features.png 227w, http://www.mustbegeek.com/wp-content/uploads/2014/03/3.-Add-Roles-and-Features-110x89.png 110w, http://www.mustbegeek.com/wp-content/uploads/2014/03/3.-Add-Roles-and-Features-198x160.png 198w, http://www.mustbegeek.com/wp-content/uploads/2014/03/3.-Add-Roles-and-Features-167x135.png 167w" sizes="(max-width: 227px) 100vw, 227px"></a></p>
+<p style="text-align: justify;">Step 2. Click <strong>Next</strong> on <strong>Before you begin page</strong>.</p>
+<p style="text-align: justify;">Step 3. On <strong>select installation type</strong> page, select <strong>Role-based or feature-based installation</strong> and click <strong>Next</strong> button.</p>
+<p style="text-align: justify;"><a href="./Configure iSCSI SAN in Server 2012 R2_files/5.-Role-Based-Installation-type.png" class="fancybox image"><img class="alignnone size-full wp-image-4952" src="./Configure iSCSI SAN in Server 2012 R2_files/5.-Role-Based-Installation-type.png" alt="Role Based Installation type" width="777" height="147" srcset="http://www.mustbegeek.com/wp-content/uploads/2014/03/5.-Role-Based-Installation-type.png 777w, http://www.mustbegeek.com/wp-content/uploads/2014/03/5.-Role-Based-Installation-type-300x57.png 300w, http://www.mustbegeek.com/wp-content/uploads/2014/03/5.-Role-Based-Installation-type-110x21.png 110w, http://www.mustbegeek.com/wp-content/uploads/2014/03/5.-Role-Based-Installation-type-600x114.png 600w, http://www.mustbegeek.com/wp-content/uploads/2014/03/5.-Role-Based-Installation-type-259x49.png 259w, http://www.mustbegeek.com/wp-content/uploads/2014/03/5.-Role-Based-Installation-type-180x34.png 180w" sizes="(max-width: 777px) 100vw, 777px"></a></p>
+<p style="text-align: justify;">Step 4. On <strong>select destination server option</strong>, choose <strong>select a server from the server pool</strong>&nbsp;option and select the server. Click <strong>Next</strong>.</p>
+<p style="text-align: justify;"><a href="./Configure iSCSI SAN in Server 2012 R2_files/6.-Select-Server-from-the-pool.png" class="fancybox image"><img class="alignnone size-full wp-image-4954" src="./Configure iSCSI SAN in Server 2012 R2_files/6.-Select-Server-from-the-pool.png" alt="Select Server from the pool" width="794" height="259" srcset="http://www.mustbegeek.com/wp-content/uploads/2014/03/6.-Select-Server-from-the-pool.png 794w, http://www.mustbegeek.com/wp-content/uploads/2014/03/6.-Select-Server-from-the-pool-300x98.png 300w, http://www.mustbegeek.com/wp-content/uploads/2014/03/6.-Select-Server-from-the-pool-110x36.png 110w, http://www.mustbegeek.com/wp-content/uploads/2014/03/6.-Select-Server-from-the-pool-600x196.png 600w, http://www.mustbegeek.com/wp-content/uploads/2014/03/6.-Select-Server-from-the-pool-259x84.png 259w, http://www.mustbegeek.com/wp-content/uploads/2014/03/6.-Select-Server-from-the-pool-180x59.png 180w" sizes="(max-width: 794px) 100vw, 794px"></a></p>
+<p style="text-align: justify;">Step 5. On the <strong>select server roles page</strong>, expand <strong>File and Storage Services</strong> role, and again expand <strong>File and iSCSI Services</strong> feature, now select <strong>iSCSI Target Server</strong> feature. Then click <strong>Next</strong>.</p>
+<p style="text-align: justify;"><a href="./Configure iSCSI SAN in Server 2012 R2_files/7.-Select-iSCSI-Target-Server-role.png" class="fancybox image"><img class="alignnone size-full wp-image-4955" src="./Configure iSCSI SAN in Server 2012 R2_files/7.-Select-iSCSI-Target-Server-role.png" alt="7. Select iSCSI Target Server role" width="796" height="354" srcset="http://www.mustbegeek.com/wp-content/uploads/2014/03/7.-Select-iSCSI-Target-Server-role.png 796w, http://www.mustbegeek.com/wp-content/uploads/2014/03/7.-Select-iSCSI-Target-Server-role-300x133.png 300w, http://www.mustbegeek.com/wp-content/uploads/2014/03/7.-Select-iSCSI-Target-Server-role-110x49.png 110w, http://www.mustbegeek.com/wp-content/uploads/2014/03/7.-Select-iSCSI-Target-Server-role-600x267.png 600w, http://www.mustbegeek.com/wp-content/uploads/2014/03/7.-Select-iSCSI-Target-Server-role-259x115.png 259w, http://www.mustbegeek.com/wp-content/uploads/2014/03/7.-Select-iSCSI-Target-Server-role-180x80.png 180w" sizes="(max-width: 796px) 100vw, 796px"></a></p>
+<p style="text-align: justify;">Step 6. On features page, click Next without checking any feature.</p>
+<p style="text-align: justify;">Step 7. Review the confirmation page and click <strong>Install</strong> button.</p>
+<p style="text-align: justify;">Step 8. After the installation is complete, click <strong>Finish</strong> button.</p>
+<p style="text-align: justify;"><a href="./Configure iSCSI SAN in Server 2012 R2_files/11.-Feature-Installation.png" class="fancybox image"><img class="alignnone size-full wp-image-4959" src="./Configure iSCSI SAN in Server 2012 R2_files/11.-Feature-Installation.png" alt="Feature Installation" width="796" height="250" srcset="http://www.mustbegeek.com/wp-content/uploads/2014/03/11.-Feature-Installation.png 796w, http://www.mustbegeek.com/wp-content/uploads/2014/03/11.-Feature-Installation-300x94.png 300w, http://www.mustbegeek.com/wp-content/uploads/2014/03/11.-Feature-Installation-110x35.png 110w, http://www.mustbegeek.com/wp-content/uploads/2014/03/11.-Feature-Installation-600x188.png 600w, http://www.mustbegeek.com/wp-content/uploads/2014/03/11.-Feature-Installation-259x81.png 259w, http://www.mustbegeek.com/wp-content/uploads/2014/03/11.-Feature-Installation-180x57.png 180w" sizes="(max-width: 796px) 100vw, 796px"></a></p>
+<p style="text-align: justify;">We have successfully installed iSCSI target service in this server. Now before creating any virtual disks or LUNs we need to bring the disks online and create a NTFS partition on these disks. To bring the disks online, go to <strong>Server Manager</strong>, click <strong>File and Storage services</strong> tab, select <strong>Disks</strong> tab again, here you will see the lists of disks. Now right-click the disk and click <strong>Bring Online</strong>. Repeat this step for each disks. You will get a little warning after you click <strong>Bring Online</strong>, read it and click <strong>Yes</strong>.</p>
+<p style="text-align: justify;"><a href="./Configure iSCSI SAN in Server 2012 R2_files/12.-Bring-Online-Disks-both-disks.png" class="fancybox image"><img class="alignnone size-full wp-image-4961" title="Configure iSCSI SAN in Server 2012 R2" src="./Configure iSCSI SAN in Server 2012 R2_files/12.-Bring-Online-Disks-both-disks.png" alt="Configure iSCSI SAN in Server 2012 R2" width="726" height="385" srcset="http://www.mustbegeek.com/wp-content/uploads/2014/03/12.-Bring-Online-Disks-both-disks.png 726w, http://www.mustbegeek.com/wp-content/uploads/2014/03/12.-Bring-Online-Disks-both-disks-300x159.png 300w, http://www.mustbegeek.com/wp-content/uploads/2014/03/12.-Bring-Online-Disks-both-disks-110x58.png 110w, http://www.mustbegeek.com/wp-content/uploads/2014/03/12.-Bring-Online-Disks-both-disks-600x318.png 600w, http://www.mustbegeek.com/wp-content/uploads/2014/03/12.-Bring-Online-Disks-both-disks-259x137.png 259w, http://www.mustbegeek.com/wp-content/uploads/2014/03/12.-Bring-Online-Disks-both-disks-180x95.png 180w" sizes="(max-width: 726px) 100vw, 726px"></a></p>
+<p style="text-align: justify;">Now create volumes in these disks. From the same window, right-click the disk and click <strong>New Volume</strong>.</p>
+<p style="text-align: justify;"><a href="./Configure iSCSI SAN in Server 2012 R2_files/14.-Create-New-Volume-on-these-online-disks.png" class="fancybox image"><img class="alignnone size-full wp-image-4963" src="./Configure iSCSI SAN in Server 2012 R2_files/14.-Create-New-Volume-on-these-online-disks.png" alt="Create New Volume on these online disks" width="653" height="411" srcset="http://www.mustbegeek.com/wp-content/uploads/2014/03/14.-Create-New-Volume-on-these-online-disks.png 653w, http://www.mustbegeek.com/wp-content/uploads/2014/03/14.-Create-New-Volume-on-these-online-disks-300x189.png 300w, http://www.mustbegeek.com/wp-content/uploads/2014/03/14.-Create-New-Volume-on-these-online-disks-110x69.png 110w, http://www.mustbegeek.com/wp-content/uploads/2014/03/14.-Create-New-Volume-on-these-online-disks-600x378.png 600w, http://www.mustbegeek.com/wp-content/uploads/2014/03/14.-Create-New-Volume-on-these-online-disks-254x160.png 254w, http://www.mustbegeek.com/wp-content/uploads/2014/03/14.-Create-New-Volume-on-these-online-disks-180x113.png 180w" sizes="(max-width: 653px) 100vw, 653px"></a></p>
+<p style="text-align: justify;">New volume wizard will pop up. Click <strong>Next</strong> on <strong>before you begin page</strong>. Choose the server and disk and click Next.</p>
+<p style="text-align: justify;"><a href="./Configure iSCSI SAN in Server 2012 R2_files/16.-Choose-Server-and-Disk-and-click-Next.png" class="fancybox image"><img class="alignnone size-full wp-image-4967" src="./Configure iSCSI SAN in Server 2012 R2_files/16.-Choose-Server-and-Disk-and-click-Next.png" alt="Choose Server and Disk and click Next" width="772" height="553" srcset="http://www.mustbegeek.com/wp-content/uploads/2014/03/16.-Choose-Server-and-Disk-and-click-Next.png 772w, http://www.mustbegeek.com/wp-content/uploads/2014/03/16.-Choose-Server-and-Disk-and-click-Next-300x215.png 300w, http://www.mustbegeek.com/wp-content/uploads/2014/03/16.-Choose-Server-and-Disk-and-click-Next-110x79.png 110w, http://www.mustbegeek.com/wp-content/uploads/2014/03/16.-Choose-Server-and-Disk-and-click-Next-558x400.png 558w, http://www.mustbegeek.com/wp-content/uploads/2014/03/16.-Choose-Server-and-Disk-and-click-Next-223x160.png 223w, http://www.mustbegeek.com/wp-content/uploads/2014/03/16.-Choose-Server-and-Disk-and-click-Next-180x129.png 180w" sizes="(max-width: 772px) 100vw, 772px"></a></p>
+<p style="text-align: justify;">Click <strong>OK</strong> on the warning.</p>
+<p style="text-align: justify;"><a href="./Configure iSCSI SAN in Server 2012 R2_files/17.-Click-OK-on-Warning.png" class="fancybox image"><img class="alignnone size-full wp-image-4968" src="./Configure iSCSI SAN in Server 2012 R2_files/17.-Click-OK-on-Warning.png" alt="Click OK on Warning" width="494" height="183" srcset="http://www.mustbegeek.com/wp-content/uploads/2014/03/17.-Click-OK-on-Warning.png 494w, http://www.mustbegeek.com/wp-content/uploads/2014/03/17.-Click-OK-on-Warning-300x111.png 300w, http://www.mustbegeek.com/wp-content/uploads/2014/03/17.-Click-OK-on-Warning-110x41.png 110w, http://www.mustbegeek.com/wp-content/uploads/2014/03/17.-Click-OK-on-Warning-259x96.png 259w, http://www.mustbegeek.com/wp-content/uploads/2014/03/17.-Click-OK-on-Warning-180x67.png 180w" sizes="(max-width: 494px) 100vw, 494px"></a></p>
+<p style="text-align: justify;">Now specify the size of the volume and click Next.</p>
+<p style="text-align: justify;"><a href="./Configure iSCSI SAN in Server 2012 R2_files/18.-Configure-the-SIZE.png" class="fancybox image"><img class="alignnone size-full wp-image-4970" src="./Configure iSCSI SAN in Server 2012 R2_files/18.-Configure-the-SIZE.png" alt="Configure the SIZE" width="484" height="204" srcset="http://www.mustbegeek.com/wp-content/uploads/2014/03/18.-Configure-the-SIZE.png 484w, http://www.mustbegeek.com/wp-content/uploads/2014/03/18.-Configure-the-SIZE-300x126.png 300w, http://www.mustbegeek.com/wp-content/uploads/2014/03/18.-Configure-the-SIZE-110x46.png 110w, http://www.mustbegeek.com/wp-content/uploads/2014/03/18.-Configure-the-SIZE-259x109.png 259w, http://www.mustbegeek.com/wp-content/uploads/2014/03/18.-Configure-the-SIZE-180x76.png 180w" sizes="(max-width: 484px) 100vw, 484px"></a></p>
+<p style="text-align: justify;">Assign drive letter to the new volume and click <strong>Next</strong>.</p>
+<p style="text-align: justify;"><a href="./Configure iSCSI SAN in Server 2012 R2_files/19.-Choose-Drive-Letter.png" class="fancybox image"><img class="alignnone size-full wp-image-4971" src="./Configure iSCSI SAN in Server 2012 R2_files/19.-Choose-Drive-Letter.png" alt="Choose Drive Letter" width="769" height="297" srcset="http://www.mustbegeek.com/wp-content/uploads/2014/03/19.-Choose-Drive-Letter.png 769w, http://www.mustbegeek.com/wp-content/uploads/2014/03/19.-Choose-Drive-Letter-300x116.png 300w, http://www.mustbegeek.com/wp-content/uploads/2014/03/19.-Choose-Drive-Letter-110x42.png 110w, http://www.mustbegeek.com/wp-content/uploads/2014/03/19.-Choose-Drive-Letter-600x232.png 600w, http://www.mustbegeek.com/wp-content/uploads/2014/03/19.-Choose-Drive-Letter-259x100.png 259w, http://www.mustbegeek.com/wp-content/uploads/2014/03/19.-Choose-Drive-Letter-180x70.png 180w" sizes="(max-width: 769px) 100vw, 769px"></a></p>
+<p style="text-align: justify;">Select file system and click <strong>Next</strong>.</p>
+<p style="text-align: justify;"><a href="./Configure iSCSI SAN in Server 2012 R2_files/20.-Select-the-File-System.png" class="fancybox image"><img class="alignnone size-full wp-image-4973" src="./Configure iSCSI SAN in Server 2012 R2_files/20.-Select-the-File-System.png" alt="Select the File System" width="771" height="291" srcset="http://www.mustbegeek.com/wp-content/uploads/2014/03/20.-Select-the-File-System.png 771w, http://www.mustbegeek.com/wp-content/uploads/2014/03/20.-Select-the-File-System-300x113.png 300w, http://www.mustbegeek.com/wp-content/uploads/2014/03/20.-Select-the-File-System-110x42.png 110w, http://www.mustbegeek.com/wp-content/uploads/2014/03/20.-Select-the-File-System-600x226.png 600w, http://www.mustbegeek.com/wp-content/uploads/2014/03/20.-Select-the-File-System-259x98.png 259w, http://www.mustbegeek.com/wp-content/uploads/2014/03/20.-Select-the-File-System-180x68.png 180w" sizes="(max-width: 771px) 100vw, 771px"></a></p>
+<p style="text-align: justify;">Review the confirmation page and click Create.</p>
+<p style="text-align: justify;"><a href="./Configure iSCSI SAN in Server 2012 R2_files/21.-Confirmation.png" class="fancybox image"><img class="alignnone size-full wp-image-4974" src="./Configure iSCSI SAN in Server 2012 R2_files/21.-Confirmation.png" alt="21. Confirmation" width="769" height="423" srcset="http://www.mustbegeek.com/wp-content/uploads/2014/03/21.-Confirmation.png 769w, http://www.mustbegeek.com/wp-content/uploads/2014/03/21.-Confirmation-300x165.png 300w, http://www.mustbegeek.com/wp-content/uploads/2014/03/21.-Confirmation-110x61.png 110w, http://www.mustbegeek.com/wp-content/uploads/2014/03/21.-Confirmation-600x330.png 600w, http://www.mustbegeek.com/wp-content/uploads/2014/03/21.-Confirmation-259x142.png 259w, http://www.mustbegeek.com/wp-content/uploads/2014/03/21.-Confirmation-180x99.png 180w" sizes="(max-width: 769px) 100vw, 769px"></a></p>
+<p style="text-align: justify;">Repeat the same step for other disk to create another volume. To view the volumes, click <strong>volumes</strong> tab.</p>
+<p style="text-align: justify;"><a href="./Configure iSCSI SAN in Server 2012 R2_files/23.-View-in-Volumes.png" class="fancybox image"><img class="alignnone size-full wp-image-4975" src="./Configure iSCSI SAN in Server 2012 R2_files/23.-View-in-Volumes.png" alt="View in Volumes" width="721" height="344" srcset="http://www.mustbegeek.com/wp-content/uploads/2014/03/23.-View-in-Volumes.png 721w, http://www.mustbegeek.com/wp-content/uploads/2014/03/23.-View-in-Volumes-300x143.png 300w, http://www.mustbegeek.com/wp-content/uploads/2014/03/23.-View-in-Volumes-110x52.png 110w, http://www.mustbegeek.com/wp-content/uploads/2014/03/23.-View-in-Volumes-600x286.png 600w, http://www.mustbegeek.com/wp-content/uploads/2014/03/23.-View-in-Volumes-259x124.png 259w, http://www.mustbegeek.com/wp-content/uploads/2014/03/23.-View-in-Volumes-180x86.png 180w" sizes="(max-width: 721px) 100vw, 721px"></a></p>
+<p style="text-align: justify;">Now the volumes are ready to be configured as LUNs or virtual disks. Now the last step is to create LUNs or virtual disks. In the <strong>Server Manager</strong>, select <strong>File and Storage services</strong> tab and then click <strong>iSCSI</strong> tab. Click <strong>Tasks</strong> and select <strong>New iSCSI Virtual Disk</strong>.</p>
+<p style="text-align: justify;"><a href="./Configure iSCSI SAN in Server 2012 R2_files/24.-New-iSCSI-Virtual-DIsk.png" class="fancybox image"><img class="alignnone size-full wp-image-4978" src="./Configure iSCSI SAN in Server 2012 R2_files/24.-New-iSCSI-Virtual-DIsk.png" alt="New iSCSI Virtual DIsk" width="1136" height="289" srcset="http://www.mustbegeek.com/wp-content/uploads/2014/03/24.-New-iSCSI-Virtual-DIsk.png 1136w, http://www.mustbegeek.com/wp-content/uploads/2014/03/24.-New-iSCSI-Virtual-DIsk-300x76.png 300w, http://www.mustbegeek.com/wp-content/uploads/2014/03/24.-New-iSCSI-Virtual-DIsk-1024x261.png 1024w, http://www.mustbegeek.com/wp-content/uploads/2014/03/24.-New-iSCSI-Virtual-DIsk-800x204.png 800w, http://www.mustbegeek.com/wp-content/uploads/2014/03/24.-New-iSCSI-Virtual-DIsk-1000x254.png 1000w, http://www.mustbegeek.com/wp-content/uploads/2014/03/24.-New-iSCSI-Virtual-DIsk-110x28.png 110w, http://www.mustbegeek.com/wp-content/uploads/2014/03/24.-New-iSCSI-Virtual-DIsk-600x153.png 600w, http://www.mustbegeek.com/wp-content/uploads/2014/03/24.-New-iSCSI-Virtual-DIsk-259x66.png 259w, http://www.mustbegeek.com/wp-content/uploads/2014/03/24.-New-iSCSI-Virtual-DIsk-180x46.png 180w" sizes="(max-width: 1136px) 100vw, 1136px"></a></p>
+<p style="text-align: justify;">New iSCSI virtual disk wizard will open. Here, select the server and select volume and click <strong>Next</strong>.</p>
+<p style="text-align: justify;"><a href="./Configure iSCSI SAN in Server 2012 R2_files/25.-Select-iSCSI-virtual-disk.png" class="fancybox image"><img class="alignnone size-full wp-image-4979" src="./Configure iSCSI SAN in Server 2012 R2_files/25.-Select-iSCSI-virtual-disk.png" alt="Select iSCSI virtual disk" width="849" height="554" srcset="http://www.mustbegeek.com/wp-content/uploads/2014/03/25.-Select-iSCSI-virtual-disk.png 849w, http://www.mustbegeek.com/wp-content/uploads/2014/03/25.-Select-iSCSI-virtual-disk-300x196.png 300w, http://www.mustbegeek.com/wp-content/uploads/2014/03/25.-Select-iSCSI-virtual-disk-800x522.png 800w, http://www.mustbegeek.com/wp-content/uploads/2014/03/25.-Select-iSCSI-virtual-disk-110x72.png 110w, http://www.mustbegeek.com/wp-content/uploads/2014/03/25.-Select-iSCSI-virtual-disk-600x392.png 600w, http://www.mustbegeek.com/wp-content/uploads/2014/03/25.-Select-iSCSI-virtual-disk-245x160.png 245w, http://www.mustbegeek.com/wp-content/uploads/2014/03/25.-Select-iSCSI-virtual-disk-180x117.png 180w" sizes="(max-width: 849px) 100vw, 849px"></a></p>
+<p style="text-align: justify;">Type name of the virtual disk. Here, I will give LUN-1 and click <strong>Next</strong>. As you can see below its a <strong>VHDX</strong> file, the same file format that Hyper V uses for virtual disks of Hyper V virtual machines.</p>
+<p style="text-align: justify;"><a href="./Configure iSCSI SAN in Server 2012 R2_files/26.-Name-the-LUN.png" class="fancybox image"><img class="alignnone size-full wp-image-4981" src="./Configure iSCSI SAN in Server 2012 R2_files/26.-Name-the-LUN.png" alt="26. Name the LUN" width="849" height="330" srcset="http://www.mustbegeek.com/wp-content/uploads/2014/03/26.-Name-the-LUN.png 849w, http://www.mustbegeek.com/wp-content/uploads/2014/03/26.-Name-the-LUN-300x117.png 300w, http://www.mustbegeek.com/wp-content/uploads/2014/03/26.-Name-the-LUN-800x311.png 800w, http://www.mustbegeek.com/wp-content/uploads/2014/03/26.-Name-the-LUN-110x43.png 110w, http://www.mustbegeek.com/wp-content/uploads/2014/03/26.-Name-the-LUN-600x233.png 600w, http://www.mustbegeek.com/wp-content/uploads/2014/03/26.-Name-the-LUN-259x101.png 259w, http://www.mustbegeek.com/wp-content/uploads/2014/03/26.-Name-the-LUN-180x70.png 180w" sizes="(max-width: 849px) 100vw, 849px"></a></p>
+<p style="text-align: justify;">Specify the virtual disk’s size. Choose the disk type, here I have chosen <strong>Dynamically expanding&nbsp;</strong>so that that the disk space won’t be over utilized. Click <strong>Next</strong>.</p>
+<p style="text-align: justify;"><a href="./Configure iSCSI SAN in Server 2012 R2_files/27.-Virtual-Disk-Dynamically-expanding.png" class="fancybox image"><img class="alignnone size-full wp-image-4984" src="./Configure iSCSI SAN in Server 2012 R2_files/27.-Virtual-Disk-Dynamically-expanding.png" alt="Virtual Disk Dynamically expanding" width="848" height="553" srcset="http://www.mustbegeek.com/wp-content/uploads/2014/03/27.-Virtual-Disk-Dynamically-expanding.png 848w, http://www.mustbegeek.com/wp-content/uploads/2014/03/27.-Virtual-Disk-Dynamically-expanding-300x196.png 300w, http://www.mustbegeek.com/wp-content/uploads/2014/03/27.-Virtual-Disk-Dynamically-expanding-800x522.png 800w, http://www.mustbegeek.com/wp-content/uploads/2014/03/27.-Virtual-Disk-Dynamically-expanding-110x72.png 110w, http://www.mustbegeek.com/wp-content/uploads/2014/03/27.-Virtual-Disk-Dynamically-expanding-600x391.png 600w, http://www.mustbegeek.com/wp-content/uploads/2014/03/27.-Virtual-Disk-Dynamically-expanding-245x160.png 245w, http://www.mustbegeek.com/wp-content/uploads/2014/03/27.-Virtual-Disk-Dynamically-expanding-180x117.png 180w" sizes="(max-width: 848px) 100vw, 848px"></a></p>
+<p style="text-align: justify;">In the <strong>Assign iSCSI target</strong> page, choose <strong>new iSCSI target</strong> option and click <strong>Next</strong>.</p>
+<p style="text-align: justify;"><a href="./Configure iSCSI SAN in Server 2012 R2_files/28.-Create-iSCSI-Target.png" class="fancybox image"><img class="alignnone size-full wp-image-4986" src="./Configure iSCSI SAN in Server 2012 R2_files/28.-Create-iSCSI-Target.png" alt="Create iSCSI Target" width="848" height="394" srcset="http://www.mustbegeek.com/wp-content/uploads/2014/03/28.-Create-iSCSI-Target.png 848w, http://www.mustbegeek.com/wp-content/uploads/2014/03/28.-Create-iSCSI-Target-300x139.png 300w, http://www.mustbegeek.com/wp-content/uploads/2014/03/28.-Create-iSCSI-Target-800x372.png 800w, http://www.mustbegeek.com/wp-content/uploads/2014/03/28.-Create-iSCSI-Target-110x51.png 110w, http://www.mustbegeek.com/wp-content/uploads/2014/03/28.-Create-iSCSI-Target-600x279.png 600w, http://www.mustbegeek.com/wp-content/uploads/2014/03/28.-Create-iSCSI-Target-259x120.png 259w, http://www.mustbegeek.com/wp-content/uploads/2014/03/28.-Create-iSCSI-Target-180x84.png 180w" sizes="(max-width: 848px) 100vw, 848px"></a></p>
+<p style="text-align: justify;">Type the name for the new target.</p>
+<p style="text-align: justify;"><a href="./Configure iSCSI SAN in Server 2012 R2_files/29.-Target-Name.png" class="fancybox image"><img class="alignnone size-full wp-image-4988" src="./Configure iSCSI SAN in Server 2012 R2_files/29.-Target-Name.png" alt="29. Target Name" width="530" height="233" srcset="http://www.mustbegeek.com/wp-content/uploads/2014/03/29.-Target-Name.png 530w, http://www.mustbegeek.com/wp-content/uploads/2014/03/29.-Target-Name-300x132.png 300w, http://www.mustbegeek.com/wp-content/uploads/2014/03/29.-Target-Name-110x48.png 110w, http://www.mustbegeek.com/wp-content/uploads/2014/03/29.-Target-Name-259x114.png 259w, http://www.mustbegeek.com/wp-content/uploads/2014/03/29.-Target-Name-180x79.png 180w" sizes="(max-width: 530px) 100vw, 530px"></a></p>
+<p style="text-align: justify;">In access servers tab, click <strong>Add</strong> button. Add initiator id dialog box will open. There are three ways you can identify the initiator (device that will use this virtual disk). Here I will choose IP and type the initiator IP of 192.168.80.80. Then click <strong>OK.&nbsp;</strong></p>
+<p style="text-align: justify;"><a href="./Configure iSCSI SAN in Server 2012 R2_files/31.-IP-of-Initiator.png" class="fancybox image"><img class="alignnone size-full wp-image-4991" src="./Configure iSCSI SAN in Server 2012 R2_files/31.-IP-of-Initiator.png" alt="31. IP of Initiator" width="849" height="553" srcset="http://www.mustbegeek.com/wp-content/uploads/2014/03/31.-IP-of-Initiator.png 849w, http://www.mustbegeek.com/wp-content/uploads/2014/03/31.-IP-of-Initiator-300x195.png 300w, http://www.mustbegeek.com/wp-content/uploads/2014/03/31.-IP-of-Initiator-800x521.png 800w, http://www.mustbegeek.com/wp-content/uploads/2014/03/31.-IP-of-Initiator-110x72.png 110w, http://www.mustbegeek.com/wp-content/uploads/2014/03/31.-IP-of-Initiator-600x391.png 600w, http://www.mustbegeek.com/wp-content/uploads/2014/03/31.-IP-of-Initiator-246x160.png 246w, http://www.mustbegeek.com/wp-content/uploads/2014/03/31.-IP-of-Initiator-180x117.png 180w" sizes="(max-width: 849px) 100vw, 849px"></a></p>
+<p style="text-align: justify;">Here you can see the lists of iSCSI initiators. To add other iSCSI initiators click Add and repeat the steps above. Then click <strong>Next</strong>.</p>
+<p style="text-align: justify;"><a href="./Configure iSCSI SAN in Server 2012 R2_files/32.-List-of-Access-Servers.png" class="fancybox image"><img class="alignnone size-full wp-image-4993" src="./Configure iSCSI SAN in Server 2012 R2_files/32.-List-of-Access-Servers.png" alt="List of Access Servers" width="848" height="393" srcset="http://www.mustbegeek.com/wp-content/uploads/2014/03/32.-List-of-Access-Servers.png 848w, http://www.mustbegeek.com/wp-content/uploads/2014/03/32.-List-of-Access-Servers-300x139.png 300w, http://www.mustbegeek.com/wp-content/uploads/2014/03/32.-List-of-Access-Servers-800x371.png 800w, http://www.mustbegeek.com/wp-content/uploads/2014/03/32.-List-of-Access-Servers-110x51.png 110w, http://www.mustbegeek.com/wp-content/uploads/2014/03/32.-List-of-Access-Servers-600x278.png 600w, http://www.mustbegeek.com/wp-content/uploads/2014/03/32.-List-of-Access-Servers-259x120.png 259w, http://www.mustbegeek.com/wp-content/uploads/2014/03/32.-List-of-Access-Servers-180x83.png 180w" sizes="(max-width: 848px) 100vw, 848px"></a></p>
+<p style="text-align: justify;">In the <strong>Enable Authentication</strong> page, you have option to use CHAP or reverse CHAP for authenticating iSCSI initiators and iSCSI target. Here, I will leave it empty and click Next.</p><div class="googlepublisherpluginad" style="text-align: center; width: 100%; height: auto; clear: none;"><ins data-ad-format="auto" class="adsbygoogle" data-ad-client="ca-pub-2674883270655958" data-ad-slot="4847358626" data-ad-channel="WordPressSinglePost+pso-lv-11" data-adsbygoogle-status="reserved" style="display: block; margin: 10px auto; background-color: transparent;"></ins></div>
+<p style="text-align: justify;"><a href="./Configure iSCSI SAN in Server 2012 R2_files/33.-Enable-Authentication.png" class="fancybox image"><img class="alignnone size-full wp-image-4995" src="./Configure iSCSI SAN in Server 2012 R2_files/33.-Enable-Authentication.png" alt="33. Enable Authentication" width="847" height="441" srcset="http://www.mustbegeek.com/wp-content/uploads/2014/03/33.-Enable-Authentication.png 847w, http://www.mustbegeek.com/wp-content/uploads/2014/03/33.-Enable-Authentication-300x156.png 300w, http://www.mustbegeek.com/wp-content/uploads/2014/03/33.-Enable-Authentication-800x417.png 800w, http://www.mustbegeek.com/wp-content/uploads/2014/03/33.-Enable-Authentication-110x57.png 110w, http://www.mustbegeek.com/wp-content/uploads/2014/03/33.-Enable-Authentication-600x312.png 600w, http://www.mustbegeek.com/wp-content/uploads/2014/03/33.-Enable-Authentication-259x135.png 259w, http://www.mustbegeek.com/wp-content/uploads/2014/03/33.-Enable-Authentication-180x94.png 180w" sizes="(max-width: 847px) 100vw, 847px"></a></p>
+<p style="text-align: justify;">Now review the configuration and click Create to create a new virtual disk or LUN.</p>
+<p style="text-align: justify;"><a href="./Configure iSCSI SAN in Server 2012 R2_files/34.-Confirmation.png" class="fancybox image"><img class="alignnone size-full wp-image-4996" src="./Configure iSCSI SAN in Server 2012 R2_files/34.-Confirmation.png" alt="34. Confirmation" width="848" height="548" srcset="http://www.mustbegeek.com/wp-content/uploads/2014/03/34.-Confirmation.png 848w, http://www.mustbegeek.com/wp-content/uploads/2014/03/34.-Confirmation-300x194.png 300w, http://www.mustbegeek.com/wp-content/uploads/2014/03/34.-Confirmation-800x517.png 800w, http://www.mustbegeek.com/wp-content/uploads/2014/03/34.-Confirmation-110x71.png 110w, http://www.mustbegeek.com/wp-content/uploads/2014/03/34.-Confirmation-600x388.png 600w, http://www.mustbegeek.com/wp-content/uploads/2014/03/34.-Confirmation-248x160.png 248w, http://www.mustbegeek.com/wp-content/uploads/2014/03/34.-Confirmation-180x116.png 180w" sizes="(max-width: 848px) 100vw, 848px"></a></p>
+<p style="text-align: justify;">After the installation you can view the virtual disks in iSCSI tab.</p>
+<p style="text-align: justify;"><a href="./Configure iSCSI SAN in Server 2012 R2_files/36.-View-LUNs.png" class="fancybox image"><img class="alignnone size-full wp-image-4997" src="./Configure iSCSI SAN in Server 2012 R2_files/36.-View-LUNs.png" alt="View LUNs" width="1086" height="322" srcset="http://www.mustbegeek.com/wp-content/uploads/2014/03/36.-View-LUNs.png 1086w, http://www.mustbegeek.com/wp-content/uploads/2014/03/36.-View-LUNs-300x89.png 300w, http://www.mustbegeek.com/wp-content/uploads/2014/03/36.-View-LUNs-1024x304.png 1024w, http://www.mustbegeek.com/wp-content/uploads/2014/03/36.-View-LUNs-800x237.png 800w, http://www.mustbegeek.com/wp-content/uploads/2014/03/36.-View-LUNs-1000x297.png 1000w, http://www.mustbegeek.com/wp-content/uploads/2014/03/36.-View-LUNs-110x33.png 110w, http://www.mustbegeek.com/wp-content/uploads/2014/03/36.-View-LUNs-600x178.png 600w, http://www.mustbegeek.com/wp-content/uploads/2014/03/36.-View-LUNs-259x77.png 259w, http://www.mustbegeek.com/wp-content/uploads/2014/03/36.-View-LUNs-180x53.png 180w" sizes="(max-width: 1086px) 100vw, 1086px"></a></p>
+<p style="text-align: justify;">Now you can use these virtual disk in Hyper V or vSphere for various high availability purposes.</p>
+
+<div class="zem_rp_wrap zem_rp_th_vertical_m" id="zem_rp_first"><div class="zem_rp_content"><h3 class="related_post_title">You may also like -</h3><ul class="related_post zem_rp"><li data-position="0" data-poid="in-3217" data-post-type="none"><a href="http://www.mustbegeek.com/create-user-account-in-server-2012-domain-controller/" class="zem_rp_thumbnail"><img src="./Configure iSCSI SAN in Server 2012 R2_files/User-Configuration-150x150.png" alt="Create User Account in Server 2012 Domain Controller" width="150" height="150" scale="0"></a><a href="http://www.mustbegeek.com/create-user-account-in-server-2012-domain-controller/" class="zem_rp_title">Create User Account in Server 2012 Domain Controller</a></li><li data-position="1" data-poid="in-3331" data-post-type="none"><a href="http://www.mustbegeek.com/configure-storage-space-in-server-2012/" class="zem_rp_thumbnail"><img src="./Configure iSCSI SAN in Server 2012 R2_files/Storage-Services-Role-150x150.png" alt="Configure Storage Space in Server 2012" width="150" height="150" scale="0"></a><a href="http://www.mustbegeek.com/configure-storage-space-in-server-2012/" class="zem_rp_title">Configure Storage Space in Server 2012</a></li><li data-position="2" data-poid="in-3448" data-post-type="none"><a href="http://www.mustbegeek.com/setup-shared-folder-in-windows-server-2012/" class="zem_rp_thumbnail"><img src="./Configure iSCSI SAN in Server 2012 R2_files/Permissions-150x150.png" alt="Setup Shared Folder in Windows Server 2012" width="150" height="150" scale="0"></a><a href="http://www.mustbegeek.com/setup-shared-folder-in-windows-server-2012/" class="zem_rp_title">Setup Shared Folder in Windows Server 2012</a></li><li data-position="3" data-poid="in-6351" data-post-type="none"><a href="http://www.mustbegeek.com/generate-new-sid-server-2012/" class="zem_rp_thumbnail"><img src="./Configure iSCSI SAN in Server 2012 R2_files/SysPrep-Tool-150x150.png" alt="Generate New SID in Server 2012" width="150" height="150" scale="0"></a><a href="http://www.mustbegeek.com/generate-new-sid-server-2012/" class="zem_rp_title">Generate New SID in Server 2012</a></li><li data-position="4" data-poid="in-3406" data-post-type="none"><a href="http://www.mustbegeek.com/server-2012-ntfs-file-and-folder-permissions/" class="zem_rp_thumbnail"><img src="./Configure iSCSI SAN in Server 2012 R2_files/Folder-Properties-150x150.png" alt="Server 2012 NTFS File and Folder Permissions" width="150" height="150" scale="0"></a><a href="http://www.mustbegeek.com/server-2012-ntfs-file-and-folder-permissions/" class="zem_rp_title">Server 2012 NTFS File and Folder Permissions</a></li><li data-position="5" data-poid="in-6847" data-post-type="none"><a href="http://www.mustbegeek.com/install-remote-desktop-services-in-windows-server-2012/" class="zem_rp_thumbnail"><img src="./Configure iSCSI SAN in Server 2012 R2_files/Server-Selection-150x150.png" alt="Install Remote Desktop Services in Windows Server 2012" width="150" height="150" scale="0"></a><a href="http://www.mustbegeek.com/install-remote-desktop-services-in-windows-server-2012/" class="zem_rp_title">Install Remote Desktop Services in Windows Server 2012</a></li><li data-position="6" data-poid="in-2829" data-post-type="none"><a href="http://www.mustbegeek.com/install-domain-controller-in-windows-server-2012/" class="zem_rp_thumbnail"><img src="./Configure iSCSI SAN in Server 2012 R2_files/promote-server-to-DC-150x150.png" alt="Install Domain Controller in Windows Server 2012" width="150" height="150" scale="0"></a><a href="http://www.mustbegeek.com/install-domain-controller-in-windows-server-2012/" class="zem_rp_title">Install Domain Controller in Windows Server 2012</a></li></ul></div></div>
+<div id="ts-fab-below" class="ts-fab-wrapper"><span class="screen-reader-text">The following two tabs change content below.</span><ul class="ts-fab-list"><li class="ts-fab-bio-link active"><a href="http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/#ts-fab-bio-below">Bio</a></li><li class="ts-fab-latest-posts-link"><a href="http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/#ts-fab-latest-posts-below">Latest Posts</a></li></ul><div class="ts-fab-tabs">
+	<div class="ts-fab-tab" id="ts-fab-bio-below" style="display: block;">
+		<div class="ts-fab-avatar"><img alt="" src="./Configure iSCSI SAN in Server 2012 R2_files/14d5e24eccf5f8ed529bf814e467acf6" srcset="http://1.gravatar.com/avatar/14d5e24eccf5f8ed529bf814e467acf6?s=160&amp;d=wavatar&amp;r=g 2x" class="avatar avatar-80 photo" height="80" width="80" originals="80" scale="0.800000011920929"><div class="ts-fab-social-links"><a href="http://twitter.com/giribipin" title="Twitter" rel="nofollow"><img src="./Configure iSCSI SAN in Server 2012 R2_files/twitter(1).png" width="24" height="24" alt="My Twitter profile" scale="0"></a><a href="http://facebook.com/bipingiri" title="Facebook" rel="nofollow"><img src="./Configure iSCSI SAN in Server 2012 R2_files/facebook(1).png" width="24" height="24" alt="My Facebook profile" scale="0"></a><a href="http://plus.google.com/116321830250449646953?rel=author" title="Google+"><img src="./Configure iSCSI SAN in Server 2012 R2_files/googleplus.png" width="24" height="24" alt="My Google+ profile" scale="0"></a><a href="http://www.linkedin.com/in/bipingiri" title="LinkedIn" rel="nofollow"><img src="./Configure iSCSI SAN in Server 2012 R2_files/linkedin(1).png" width="24" height="24" alt="My LinkedIn profile" scale="0"></a></div>
+		</div>
+		
+		<div class="ts-fab-text">
+			<div class="ts-fab-header"><h4><a href="http://www.mustbegeek.com/" rel="nofollow">Bipin</a></h4></div><!-- /.ts-fab-header -->
+			<div class="ts-fab-content">Bipin is a freelance Network and System Engineer with expertise on Cisco, Juniper, Microsoft, VMware, and other technologies. You can hire him on <a href="https://www.upwork.com/freelancers/~01723371b6bd46ec67"> UpWork </a>. Follow Bipin Giri on <a href="https://plus.google.com/+BipinGiri/posts">Google+</a>. Bipin enjoys writing articles and tutorials related to Network technologies. Some of his certifications are, MCSE:Messaging, JNCIP-SEC, JNCIS-ENT, and others.</div>
+		</div>
+	</div>
+	<div class="ts-fab-tab" id="ts-fab-latest-posts-below" style="display: none;">
+		<div class="ts-fab-avatar"><img alt="" src="./Configure iSCSI SAN in Server 2012 R2_files/14d5e24eccf5f8ed529bf814e467acf6" srcset="http://1.gravatar.com/avatar/14d5e24eccf5f8ed529bf814e467acf6?s=160&amp;d=wavatar&amp;r=g 2x" class="avatar avatar-80 photo" height="80" width="80" originals="80" scale="0.800000011920929"><div class="ts-fab-social-links"><a href="http://twitter.com/giribipin" title="Twitter" rel="nofollow"><img src="./Configure iSCSI SAN in Server 2012 R2_files/twitter(1).png" width="24" height="24" alt="My Twitter profile" scale="0"></a><a href="http://facebook.com/bipingiri" title="Facebook" rel="nofollow"><img src="./Configure iSCSI SAN in Server 2012 R2_files/facebook(1).png" width="24" height="24" alt="My Facebook profile" scale="0"></a><a href="http://plus.google.com/116321830250449646953?rel=author" title="Google+" rel="nofollow"><img src="./Configure iSCSI SAN in Server 2012 R2_files/googleplus.png" width="24" height="24" alt="My Google+ profile" scale="0"></a><a href="http://www.linkedin.com/in/bipingiri" title="LinkedIn" rel="nofollow"><img src="./Configure iSCSI SAN in Server 2012 R2_files/linkedin(1).png" width="24" height="24" alt="My LinkedIn profile" scale="0"></a></div>
+		</div>
+		<div class="ts-fab-text">
+			<div class="ts-fab-header">
+				<h4>Latest posts by Bipin <span class="latest-see-all">(<a href="http://www.mustbegeek.com/author/bipin/" rel="nofollow">see all</a>)</span></h4>
+			</div>
+			<ul class="ts-fab-latest">
+				<li>
+					<a href="http://www.mustbegeek.com/restore-accidentally-deleted-public-folder-database-from-edb-file/">Restore Accidentally Deleted Public Folder Database from EDB File</a><span> - May 23, 2016</span> 
+				</li>
+				<li>
+					<a href="http://www.mustbegeek.com/create-dynamic-distribution-group-in-exchange-2016/">Create Dynamic Distribution Group in Exchange 2016</a><span> - April 21, 2016</span> 
+				</li>
+				<li>
+					<a href="http://www.mustbegeek.com/create-distribution-group-in-exchange-2016/">Create Distribution Group in Exchange 2016</a><span> - April 21, 2016</span> 
+				</li>
+		</ul></div>
+	</div>
+		</div>
+	</div>                </div><!-- .entry-content -->
+                <footer>
+                                </footer><!-- .entry-meta -->
+			</article><!-- #post-4920 -->
+            
+			
+	<nav class="navigation post-navigation" role="navigation">
+		<h2 class="screen-reader-text">Post navigation</h2>
+		<div class="nav-links"><div class="nav-previous"><a href="http://www.mustbegeek.com/migrating-user-profiles-from-old-domain-to-new-domain/" rel="prev"><span class="meta-nav" aria-hidden="true">Previous</span> <span class="screen-reader-text">Previous post:</span> <span class="post-title">Migrating User Profiles from Old Domain to New Domain</span></a></div><div class="nav-next"><a href="http://www.mustbegeek.com/install-sql-server-2012-windows-server-2012-r2/" rel="next"><span class="meta-nav" aria-hidden="true">Next</span> <span class="screen-reader-text">Next post:</span> <span class="post-title">Install SQL Server 2012 in Windows Server 2012 R2</span></a></div></div>
+	</nav>
+<div id="disqus_thread"><iframe id="dsq-app1" name="dsq-app1" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" width="100%" src="./Configure iSCSI SAN in Server 2012 R2_files/saved_resource(2).html" style="width: 1px !important; min-width: 100% !important; border: none !important; overflow: hidden !important; height: 824px !important;" horizontalscrolling="no" verticalscrolling="no"></iframe></div>
+
+<script type="text/javascript">
+var disqus_url = 'http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/';
+var disqus_identifier = '4920 http://www.mustbegeek.com/?p=4920';
+var disqus_container_id = 'disqus_thread';
+var disqus_shortname = 'mustbegeek';
+var disqus_title = "Configure iSCSI SAN in Server 2012 R2";
+var disqus_config_custom = window.disqus_config;
+var disqus_config = function () {
+    /*
+    All currently supported events:
+    onReady: fires when everything is ready,
+    onNewComment: fires when a new comment is posted,
+    onIdentify: fires when user is authenticated
+    */
+    
+    
+    this.language = '';
+        this.callbacks.onReady.push(function () {
+
+        // sync comments in the background so we don't block the page
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = '?cf_action=sync_comments&post_id=4920';
+
+        var firstScript = document.getElementsByTagName('script')[0];
+        firstScript.parentNode.insertBefore(script, firstScript);
+    });
+    
+    if (disqus_config_custom) {
+        disqus_config_custom.call(this);
+    }
+};
+
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+    </div><!-- #content -->
+</div><!-- #primary -->
+<div id="sidebar" class="widget-area" role="complementary">
+<aside id="newsplus-social-5" class="widget newsplus_social"><h3 class="sb-title">Connect with us</h3>        <ul class="ss_social clear">
+		<li><a href="https://twitter.com/mustbegeek" class="twitter" title="Twitter" target="_blank"><span class="sr-only">twitter</span></a></li><li><a href="https://www.facebook.com/mustbegeek" class="facebook" title="Facebook" target="_blank"><span class="sr-only">facebook</span></a></li><li><a href="https://np.linkedin.com/in/bipingiri" class="in" title="LinkedIn" target="_blank"><span class="sr-only">linkedin</span></a></li><li><a href="https://google.com/+Mustbegeek1" class="gplus" title="Google Plus" target="_blank"><span class="sr-only">google plus</span></a></li><li><a href="https://www.youtube.com/user/MustBeGeek" class="utube" title="YouTube" target="_blank"><span class="sr-only">youtube</span></a></li><li><a href="mailto:contact@mustbegeek.com" class="mail" title="email" target="_blank"><span class="sr-only">email</span></a></li></ul></aside><aside id="text-8" class="widget widget_text"><h3 class="sb-title">Subscribe To MustBeGeek</h3>			<div class="textwidget"><!-- Begin MailChimp Signup Form -->
+<div id="optin">
+<form action="http://mustbegeek.us7.list-manage1.com/subscribe/post?u=79af162e4fd935ed08ac2a9d2&amp;id=e5fde64063" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
+
+	<input type="text" value="Enter your name" name="FNAME" class="thename" id="mce-FNAME" size="20" onfocus="if(this.value==this.defaultValue)this.value=&#39;&#39;;" onblur="if(this.value==&#39;&#39;)this.value=this.defaultValue;">
+	<input type="email" value="Enter your email" name="EMAIL" class="required theemail" id="mce-EMAIL" size="20" onfocus="if(this.value==this.defaultValue)this.value=&#39;&#39;;" onblur="if(this.value==&#39;&#39;)this.value=this.defaultValue;">
+	<div id="mce-responses">
+		<div class="response" id="mce-error-response" style="display:none"></div>
+		<div class="response" id="mce-success-response" style="display:none"></div>
+	</div>	
+	<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
+</form>
+</div>
+
+<!--End mc_embed_signup--></div>
+		</aside><aside id="text-25" class="widget widget_text"><h3 class="sb-title">Sponsored</h3>			<div class="textwidget"><a href="http://bit.ly/2ealxDK" rel="nofollow" target="_blank"><img src="./Configure iSCSI SAN in Server 2012 R2_files/Desk-2.jpg" frameborder="0px" scale="0"></a>
+
+
+
+</div>
+		</aside></div><!-- #sidebar -->		</div><!-- .row -->
+    </div><!-- #main .wrap -->
+</div><!-- #main -->
+        <div id="secondary" role="complementary">
+            <div class="wrap clear">
+                <div class="column one-fourth">
+							<aside id="recent-posts-7" class="widget widget_recent_entries">		<h3 class="sc-title">Recent Posts</h3>		<ul>
+					<li>
+				<a href="http://www.mustbegeek.com/restore-accidentally-deleted-public-folder-database-from-edb-file/">Restore Accidentally Deleted Public Folder Database from EDB File</a>
+							<span class="post-date">May 23, 2016</span>
+						</li>
+					<li>
+				<a href="http://www.mustbegeek.com/create-dynamic-distribution-group-in-exchange-2016/">Create Dynamic Distribution Group in Exchange 2016</a>
+							<span class="post-date">April 21, 2016</span>
+						</li>
+					<li>
+				<a href="http://www.mustbegeek.com/create-distribution-group-in-exchange-2016/">Create Distribution Group in Exchange 2016</a>
+							<span class="post-date">April 21, 2016</span>
+						</li>
+					<li>
+				<a href="http://www.mustbegeek.com/export-and-import-certificate-in-exchange-2016/">Export and Import Certificate in Exchange 2016</a>
+							<span class="post-date">April 6, 2016</span>
+						</li>
+				</ul>
+		</aside>		                </div><!-- .column one-fourth -->
+                <div class="column one-fourth">
+					<aside id="recent-comments-8" class="widget widget_recent_comments"><h3 class="sc-title">Recent Comments</h3><ul id="recentcomments"><li class="recentcomments"><span class="comment-author-link">Marshal Anson</span> on <a href="http://www.mustbegeek.com/delete-default-mailbox-database-exchange-2016/#comment-791">Delete Default Mailbox Database in Exchange 2016</a></li><li class="recentcomments"><span class="comment-author-link">Gosse Vih'Torr</span> on <a href="http://www.mustbegeek.com/configure-ip-monitoring-in-srx-cluster/#comment-790">Configure IP Monitoring in SRX Cluster</a></li><li class="recentcomments"><span class="comment-author-link">Rex Uriel Miñoza</span> on <a href="http://www.mustbegeek.com/difference-between-vsphere-esxi-and-vcenter/#comment-789">Difference between vSphere, ESXi and vCenter</a></li><li class="recentcomments"><span class="comment-author-link">Anup Bhavsar</span> on <a href="http://www.mustbegeek.com/configure-hyper-v-virtual-machine-with-internet-connection/#comment-788">Configure Hyper V Virtual Machine With Internet Connection</a></li></ul></aside>                </div><!-- .column one-fourth -->
+                <div class="column one-fourth">
+					<aside id="newsplus-social-6" class="widget newsplus_social"><h3 class="sc-title">Connect with us</h3>        <ul class="ss_social clear">
+		<li><a href="https://twitter.com/mustbegeek" class="twitter" title="Twitter" target="_blank"><span class="sr-only">twitter</span></a></li><li><a href="https://www.facebook.com/mustbegeek" class="facebook" title="Facebook" target="_blank"><span class="sr-only">facebook</span></a></li><li><a href="https://np.linkedin.com/in/bipingiri" class="in" title="LinkedIn" target="_blank"><span class="sr-only">linkedin</span></a></li><li><a href="https://google.com/+Mustbegeek1" class="gplus" title="Google Plus" target="_blank"><span class="sr-only">google plus</span></a></li><li><a href="https://www.youtube.com/user/MustBeGeek" class="utube" title="YouTube" target="_blank"><span class="sr-only">youtube</span></a></li><li><a href="mailto:contact@mustbegeek.com" class="mail" title="email" target="_blank"><span class="sr-only">email</span></a></li></ul></aside>                </div><!-- .column one-fourth -->
+                <div class="column one-fourth last">
+					<aside id="text-23" class="widget widget_text"><h3 class="sc-title">Subscribe To MustBeGeek</h3>			<div class="textwidget"><!-- Begin MailChimp Signup Form -->
+<div id="optin">
+<form action="http://mustbegeek.us7.list-manage1.com/subscribe/post?u=79af162e4fd935ed08ac2a9d2&amp;id=e5fde64063" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
+
+	<input type="text" value="Enter your name" name="FNAME" class="thename" id="mce-FNAME" size="20" onfocus="if(this.value==this.defaultValue)this.value=&#39;&#39;;" onblur="if(this.value==&#39;&#39;)this.value=this.defaultValue;">
+	<input type="email" value="Enter your email" name="EMAIL" class="required theemail" id="mce-EMAIL" size="20" onfocus="if(this.value==this.defaultValue)this.value=&#39;&#39;;" onblur="if(this.value==&#39;&#39;)this.value=this.defaultValue;">
+	<div id="mce-responses">
+		<div class="response" id="mce-error-response" style="display:none"></div>
+		<div class="response" id="mce-success-response" style="display:none"></div>
+	</div>	
+	<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
+</form>
+</div>
+
+<!--End mc_embed_signup--></div>
+		</aside>                </div><!-- .column one-fourth .last -->
+            </div><!-- #secondary .wrap -->
+        </div><!-- #secondary -->
+	<footer id="footer" role="contentinfo">
+    <div class="wrap clear">
+        <div class="notes-left">© 2012 - 2016 MustBeGeek. All rights reserved.</div><!-- .notes-left -->
+        <div class="notes-right">.</div><!-- .notes-right -->
+    </div><!-- #footer wrap -->
+</footer><!-- #footer -->
+
+<div class="fixed-widget-bar fixed-left">
+	</div>
+
+<div class="fixed-widget-bar fixed-right">
+	</div>
+
+</div> <!-- #page -->
+<div class="scroll-to-top" style="display: none;"><a href="http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/#" title="Scroll to top"><span class="sr-only">Top</span></a></div><!-- .scroll-to-top -->
+        <script type="text/javascript">
+        // <![CDATA[
+        var disqus_shortname = 'mustbegeek';
+        (function () {
+            var nodes = document.getElementsByTagName('span');
+            for (var i = 0, url; i < nodes.length; i++) {
+                if (nodes[i].className.indexOf('dsq-postid') != -1 && nodes[i].parentNode.tagName == 'A') {
+                    nodes[i].parentNode.setAttribute('data-disqus-identifier', nodes[i].getAttribute('data-dsqidentifier'));
+                    url = nodes[i].parentNode.href.split('#', 1);
+                    if (url.length == 1) { url = url[0]; }
+                    else { url = url[1]; }
+                    nodes[i].parentNode.href = url + '#disqus_thread';
+                }
+            }
+            var s = document.createElement('script');
+            s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+        // ]]>
+        </script>
+        <script type="text/javascript" src="./Configure iSCSI SAN in Server 2012 R2_files/core.min.js.téléchargement"></script>
+<script type="text/javascript" src="./Configure iSCSI SAN in Server 2012 R2_files/widget.min.js.téléchargement"></script>
+<script type="text/javascript" src="./Configure iSCSI SAN in Server 2012 R2_files/tabs.min.js.téléchargement"></script>
+<script type="text/javascript" src="./Configure iSCSI SAN in Server 2012 R2_files/accordion.min.js.téléchargement"></script>
+<script type="text/javascript" src="./Configure iSCSI SAN in Server 2012 R2_files/custom.js.téléchargement"></script>
+<script type="text/javascript" src="./Configure iSCSI SAN in Server 2012 R2_files/jquery.easing.min.js.téléchargement"></script>
+<script type="text/javascript" src="./Configure iSCSI SAN in Server 2012 R2_files/froogaloop2.min.js.téléchargement"></script>
+<script type="text/javascript" src="./Configure iSCSI SAN in Server 2012 R2_files/jquery.flexslider-min.js.téléchargement"></script>
+<script type="text/javascript" src="./Configure iSCSI SAN in Server 2012 R2_files/jquery.form.min.js.téléchargement"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var _wpcf7 = {"recaptcha":{"messages":{"empty":"Please verify that you are not a robot."}}};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Configure iSCSI SAN in Server 2012 R2_files/scripts.js.téléchargement"></script>
+<script type="text/javascript" src="./Configure iSCSI SAN in Server 2012 R2_files/devicepx-jetpack.js.téléchargement"></script>
+<script type="text/javascript" src="./Configure iSCSI SAN in Server 2012 R2_files/ssba.min.js.téléchargement"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var jpfbembed = {"appid":"249643311490","locale":"en_US"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Configure iSCSI SAN in Server 2012 R2_files/facebook-embed.js.téléchargement"></script><div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe name="fb_xdm_frame_http" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" id="fb_xdm_frame_http" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="./Configure iSCSI SAN in Server 2012 R2_files/0eWevUAMuoH.html" style="border: none;"></iframe><iframe name="fb_xdm_frame_https" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" id="fb_xdm_frame_https" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="./Configure iSCSI SAN in Server 2012 R2_files/0eWevUAMuoH(1).html" style="border: none;"></iframe></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div></div></div></div>
+<script type="text/javascript" src="./Configure iSCSI SAN in Server 2012 R2_files/jquery.hoverIntent.minified.js.téléchargement"></script>
+<script type="text/javascript" src="./Configure iSCSI SAN in Server 2012 R2_files/jquery.prettyPhoto.js.téléchargement"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var ss_custom = {"top_bar_sticky":"","main_bar_sticky":"true","expand_menu_text":"Expand or collapse menu items.","enable_responsive_menu":"true"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Configure iSCSI SAN in Server 2012 R2_files/custom.js(1).téléchargement"></script>
+<script type="text/javascript" src="./Configure iSCSI SAN in Server 2012 R2_files/wp-embed.min.js.téléchargement"></script>
+<script type="text/javascript" src="./Configure iSCSI SAN in Server 2012 R2_files/jquery.fancybox-1.3.8.min.js.téléchargement"></script>
+<script type="text/javascript" src="./Configure iSCSI SAN in Server 2012 R2_files/jquery.easing.min.js(1).téléchargement"></script>
+<script type="text/javascript" src="./Configure iSCSI SAN in Server 2012 R2_files/jquery.mousewheel.min.js.téléchargement"></script>
+<script type="text/javascript" src="./Configure iSCSI SAN in Server 2012 R2_files/e-201706.js.téléchargement" async="" defer=""></script>
+<script type="text/javascript">
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:4.4.2',blog:'37469057',post:'4920',tz:'-6',srv:'www.mustbegeek.com'} ]);
+	_stq.push([ 'clickTrackerInit', '37469057', '4920' ]);
+</script>
+<script type="text/javascript">
+jQuery(document).on('ready post-load', function(){ jQuery('.nofancybox,a.pin-it-button,a[href*="pinterest.com/pin/create/button"]').addClass('nolightbox'); });
+jQuery(document).on('ready post-load',easy_fancybox_handler);
+jQuery(document).on('ready',easy_fancybox_auto);</script>
+
+<nav id="responsive-menu-2" class="resp-sticky" style="display: block; opacity: 0.8775;">
+                <h3 id="menu-button-2" class="menu-button">Menu<span class="toggle-icon"><span class="bar-1"></span><span class="bar-2"></span><span class="bar-3"></span></span></h3>
+                <div class="menu-drop" style="max-height: 1145px;"><ul id="menu-home" class="clear"><li id="menu-item-7858" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-7858"><a href="http://www.mustbegeek.com/">Home</a></li>
+<li id="menu-item-4" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-4"><a rel="author" href="http://www.mustbegeek.com/cisco/">Cisco</a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-7878" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-7878"><a href="http://www.mustbegeek.com/cisco/routing-and-switching/">Routing and Switching</a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-7879" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7879"><a href="http://www.mustbegeek.com/cisco/routing-and-switching/ccna-rs/">CCNA R&amp;S</a></li>
+		<li id="menu-item-7880" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7880"><a href="http://www.mustbegeek.com/cisco/routing-and-switching/ccnp-rs/">CCNP R&amp;S</a></li>
+	</ul>
+<a class="expand-menu" href="http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/#" title="Expand or collapse menu items."><i class="fa fa-angle-down"></i></a></li>
+	<li id="menu-item-7881" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-7881"><a href="http://www.mustbegeek.com/cisco/security-cisco/">Security</a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-7882" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7882"><a href="http://www.mustbegeek.com/cisco/security-cisco/ccna-security-cisco/">CCNA SEC</a></li>
+		<li id="menu-item-7883" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7883"><a href="http://www.mustbegeek.com/cisco/security-cisco/ccnp-security-cisco/">CCNP SEC</a></li>
+	</ul>
+<a class="expand-menu" href="http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/#" title="Expand or collapse menu items."><i class="fa fa-angle-down"></i></a></li>
+</ul>
+<a class="expand-menu" href="http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/#" title="Expand or collapse menu items."><i class="fa fa-angle-down"></i></a></li>
+<li id="menu-item-5" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-5"><a rel="author" href="http://www.mustbegeek.com/juniper/">Juniper</a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-7887" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-7887"><a href="http://www.mustbegeek.com/juniper/routing-and-switching-juniper/">Routing and Switching</a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-1226" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1226"><a rel="author" href="http://www.mustbegeek.com/juniper/routing-and-switching-juniper/jncia/">JNCIA</a></li>
+		<li id="menu-item-1790" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1790"><a rel="author" href="http://www.mustbegeek.com/juniper/routing-and-switching-juniper/jncis-ent/">JNCIS-ENT</a></li>
+	</ul>
+<a class="expand-menu" href="http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/#" title="Expand or collapse menu items."><i class="fa fa-angle-down"></i></a></li>
+	<li id="menu-item-7888" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-7888"><a href="http://www.mustbegeek.com/juniper/junos-security-juniper/">JunOS Security</a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-1227" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1227"><a rel="author" href="http://www.mustbegeek.com/juniper/junos-security-juniper/jncis-sec/">JNCIS-SEC</a></li>
+	</ul>
+<a class="expand-menu" href="http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/#" title="Expand or collapse menu items."><i class="fa fa-angle-down"></i></a></li>
+</ul>
+<a class="expand-menu" href="http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/#" title="Expand or collapse menu items."><i class="fa fa-angle-down"></i></a></li>
+<li id="menu-item-200" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor menu-item-has-children menu-item-200"><a rel="author" href="http://www.mustbegeek.com/microsoft/">Microsoft</a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-4012" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor menu-item-has-children menu-item-4012"><a href="http://www.mustbegeek.com/microsoft/windows-server/">Windows Server</a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-2614" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-2614"><a rel="author" href="http://www.mustbegeek.com/microsoft/windows-server/windows-server-2012/">Windows Server 2012</a></li>
+		<li id="menu-item-9588" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-9588"><a href="http://www.mustbegeek.com/microsoft/windows-server/windows-server-2008/">Windows Server 2008</a></li>
+	</ul>
+<a class="expand-menu" href="http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/#" title="Expand or collapse menu items."><i class="fa fa-angle-down"></i></a></li>
+	<li id="menu-item-4007" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-4007"><a href="http://www.mustbegeek.com/microsoft/microsoft-exchange-server/">Exchange Server</a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-7857" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7857"><a href="http://www.mustbegeek.com/microsoft/microsoft-exchange-server/exchange-server-2016/">Exchange Server 2016</a></li>
+		<li id="menu-item-4009" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4009"><a href="http://www.mustbegeek.com/microsoft/microsoft-exchange-server/exchange-server-2013/">Exchange Server 2013</a></li>
+		<li id="menu-item-1550" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1550"><a rel="author" href="http://www.mustbegeek.com/microsoft/microsoft-exchange-server/exchange-server-2010/">Exchange Server 2010</a></li>
+	</ul>
+<a class="expand-menu" href="http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/#" title="Expand or collapse menu items."><i class="fa fa-angle-down"></i></a></li>
+	<li id="menu-item-1765" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-1765"><a rel="author" href="http://www.mustbegeek.com/microsoft/windows-client-os/">Windows Client OS</a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-7875" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7875"><a href="http://www.mustbegeek.com/microsoft/windows-client-os/windows-8/">Windows 8.X</a></li>
+		<li id="menu-item-7874" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7874"><a href="http://www.mustbegeek.com/microsoft/windows-client-os/windows-7/">Windows 7</a></li>
+	</ul>
+<a class="expand-menu" href="http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/#" title="Expand or collapse menu items."><i class="fa fa-angle-down"></i></a></li>
+	<li id="menu-item-3209" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-3209"><a rel="author" href="http://www.mustbegeek.com/microsoft/windows-powershell/">Windows PowerShell</a></li>
+	<li id="menu-item-7102" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7102"><a href="http://www.mustbegeek.com/microsoft/office-365/">Office 365</a></li>
+	<li id="menu-item-1489" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1489"><a rel="author" href="http://www.mustbegeek.com/microsoft/hyper-v/">Hyper V</a></li>
+</ul>
+<a class="expand-menu" href="http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/#" title="Expand or collapse menu items."><i class="fa fa-angle-down"></i></a></li>
+<li id="menu-item-1228" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-1228"><a rel="author" href="http://www.mustbegeek.com/vmware-virtualization/">VMware</a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-7889" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-7889"><a href="http://www.mustbegeek.com/vmware-virtualization/data-center-and-cloud/">Data Center and Cloud</a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-8911" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8911"><a href="http://www.mustbegeek.com/vmware-virtualization/data-center-and-cloud/vsphere-6-x/">vSphere 6.x</a></li>
+		<li id="menu-item-6323" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6323"><a href="http://www.mustbegeek.com/vmware-virtualization/data-center-and-cloud/vsphere-5-x/">vSphere 5.x</a></li>
+	</ul>
+<a class="expand-menu" href="http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/#" title="Expand or collapse menu items."><i class="fa fa-angle-down"></i></a></li>
+	<li id="menu-item-7890" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-7890"><a href="http://www.mustbegeek.com/vmware-virtualization/desktop-and-app-virtualization/">Desktop and App Virtualization</a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-7892" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7892"><a href="http://www.mustbegeek.com/vmware-virtualization/desktop-and-app-virtualization/horizon-view-6-x/">Horizon View 6.x</a></li>
+		<li id="menu-item-6326" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6326"><a href="http://www.mustbegeek.com/vmware-virtualization/desktop-and-app-virtualization/horizon-view-5-x/">Horizon View 5.x</a></li>
+	</ul>
+<a class="expand-menu" href="http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/#" title="Expand or collapse menu items."><i class="fa fa-angle-down"></i></a></li>
+	<li id="menu-item-7891" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-7891"><a href="http://www.mustbegeek.com/vmware-virtualization/personal-desktop/">Personal Desktop</a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-6327" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6327"><a href="http://www.mustbegeek.com/vmware-virtualization/personal-desktop/vmware-workstation/">VMware Workstation</a></li>
+	</ul>
+<a class="expand-menu" href="http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/#" title="Expand or collapse menu items."><i class="fa fa-angle-down"></i></a></li>
+</ul>
+<a class="expand-menu" href="http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/#" title="Expand or collapse menu items."><i class="fa fa-angle-down"></i></a></li>
+<li id="menu-item-7" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7"><a rel="author" href="http://www.mustbegeek.com/security/">Security</a></li>
+<li id="menu-item-2205" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-2205"><a rel="author" href="http://www.mustbegeek.com/open-source/">Open Source</a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-2206" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2206"><a rel="author" href="http://www.mustbegeek.com/open-source/centos/">CentOS</a></li>
+</ul>
+<a class="expand-menu" href="http://www.mustbegeek.com/configure-iscsi-san-in-server-2012-r2/#" title="Expand or collapse menu items."><i class="fa fa-angle-down"></i></a></li>
+<li id="menu-item-397" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-397"><a rel="author" href="http://www.mustbegeek.com/tips-n-tricks/">Tips N Tricks</a></li>
+</ul><ul id="menu-bottom" class="clear optional-menu"><li id="menu-item-7854" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-7854"><a href="http://www.mustbegeek.com/">Home</a></li>
+<li id="menu-item-24" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-24"><a href="http://www.mustbegeek.com/about-us/">About Us</a></li>
+<li id="menu-item-23" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-23"><a href="http://www.mustbegeek.com/contact-us/">Contact Us</a></li>
+<li id="menu-item-5607" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5607"><a href="http://www.mustbegeek.com/advertise/">Advertise</a></li>
+</ul></div></nav><nav id="main-nav-2" class="primary-nav main-sticky" role="navigation" style="display: none;">
+            <div class="wrap">
+                <ul id="menu-home" class="nav-menu clear"><li id="menu-item-7858" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-7858"><a href="http://www.mustbegeek.com/">Home</a></li>
+<li id="menu-item-4" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-4"><a rel="author" href="http://www.mustbegeek.com/cisco/">Cisco</a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-7878" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-7878"><a href="http://www.mustbegeek.com/cisco/routing-and-switching/">Routing and Switching</a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-7879" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7879"><a href="http://www.mustbegeek.com/cisco/routing-and-switching/ccna-rs/">CCNA R&amp;S</a></li>
+		<li id="menu-item-7880" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7880"><a href="http://www.mustbegeek.com/cisco/routing-and-switching/ccnp-rs/">CCNP R&amp;S</a></li>
+	</ul>
+</li>
+	<li id="menu-item-7881" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-7881"><a href="http://www.mustbegeek.com/cisco/security-cisco/">Security</a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-7882" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7882"><a href="http://www.mustbegeek.com/cisco/security-cisco/ccna-security-cisco/">CCNA SEC</a></li>
+		<li id="menu-item-7883" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7883"><a href="http://www.mustbegeek.com/cisco/security-cisco/ccnp-security-cisco/">CCNP SEC</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li id="menu-item-5" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-5"><a rel="author" href="http://www.mustbegeek.com/juniper/">Juniper</a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-7887" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-7887"><a href="http://www.mustbegeek.com/juniper/routing-and-switching-juniper/">Routing and Switching</a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-1226" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1226"><a rel="author" href="http://www.mustbegeek.com/juniper/routing-and-switching-juniper/jncia/">JNCIA</a></li>
+		<li id="menu-item-1790" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1790"><a rel="author" href="http://www.mustbegeek.com/juniper/routing-and-switching-juniper/jncis-ent/">JNCIS-ENT</a></li>
+	</ul>
+</li>
+	<li id="menu-item-7888" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-7888"><a href="http://www.mustbegeek.com/juniper/junos-security-juniper/">JunOS Security</a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-1227" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1227"><a rel="author" href="http://www.mustbegeek.com/juniper/junos-security-juniper/jncis-sec/">JNCIS-SEC</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li id="menu-item-200" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor menu-item-has-children menu-item-200"><a rel="author" href="http://www.mustbegeek.com/microsoft/">Microsoft</a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-4012" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor menu-item-has-children menu-item-4012"><a href="http://www.mustbegeek.com/microsoft/windows-server/">Windows Server</a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-2614" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-2614"><a rel="author" href="http://www.mustbegeek.com/microsoft/windows-server/windows-server-2012/">Windows Server 2012</a></li>
+		<li id="menu-item-9588" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-9588"><a href="http://www.mustbegeek.com/microsoft/windows-server/windows-server-2008/">Windows Server 2008</a></li>
+	</ul>
+</li>
+	<li id="menu-item-4007" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-4007"><a href="http://www.mustbegeek.com/microsoft/microsoft-exchange-server/">Exchange Server</a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-7857" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7857"><a href="http://www.mustbegeek.com/microsoft/microsoft-exchange-server/exchange-server-2016/">Exchange Server 2016</a></li>
+		<li id="menu-item-4009" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4009"><a href="http://www.mustbegeek.com/microsoft/microsoft-exchange-server/exchange-server-2013/">Exchange Server 2013</a></li>
+		<li id="menu-item-1550" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1550"><a rel="author" href="http://www.mustbegeek.com/microsoft/microsoft-exchange-server/exchange-server-2010/">Exchange Server 2010</a></li>
+	</ul>
+</li>
+	<li id="menu-item-1765" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-1765"><a rel="author" href="http://www.mustbegeek.com/microsoft/windows-client-os/">Windows Client OS</a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-7875" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7875"><a href="http://www.mustbegeek.com/microsoft/windows-client-os/windows-8/">Windows 8.X</a></li>
+		<li id="menu-item-7874" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7874"><a href="http://www.mustbegeek.com/microsoft/windows-client-os/windows-7/">Windows 7</a></li>
+	</ul>
+</li>
+	<li id="menu-item-3209" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-3209"><a rel="author" href="http://www.mustbegeek.com/microsoft/windows-powershell/">Windows PowerShell</a></li>
+	<li id="menu-item-7102" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7102"><a href="http://www.mustbegeek.com/microsoft/office-365/">Office 365</a></li>
+	<li id="menu-item-1489" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1489"><a rel="author" href="http://www.mustbegeek.com/microsoft/hyper-v/">Hyper V</a></li>
+</ul>
+</li>
+<li id="menu-item-1228" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-1228"><a rel="author" href="http://www.mustbegeek.com/vmware-virtualization/">VMware</a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-7889" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-7889"><a href="http://www.mustbegeek.com/vmware-virtualization/data-center-and-cloud/">Data Center and Cloud</a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-8911" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8911"><a href="http://www.mustbegeek.com/vmware-virtualization/data-center-and-cloud/vsphere-6-x/">vSphere 6.x</a></li>
+		<li id="menu-item-6323" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6323"><a href="http://www.mustbegeek.com/vmware-virtualization/data-center-and-cloud/vsphere-5-x/">vSphere 5.x</a></li>
+	</ul>
+</li>
+	<li id="menu-item-7890" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-7890"><a href="http://www.mustbegeek.com/vmware-virtualization/desktop-and-app-virtualization/">Desktop and App Virtualization</a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-7892" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7892"><a href="http://www.mustbegeek.com/vmware-virtualization/desktop-and-app-virtualization/horizon-view-6-x/">Horizon View 6.x</a></li>
+		<li id="menu-item-6326" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6326"><a href="http://www.mustbegeek.com/vmware-virtualization/desktop-and-app-virtualization/horizon-view-5-x/">Horizon View 5.x</a></li>
+	</ul>
+</li>
+	<li id="menu-item-7891" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-7891"><a href="http://www.mustbegeek.com/vmware-virtualization/personal-desktop/">Personal Desktop</a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-6327" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6327"><a href="http://www.mustbegeek.com/vmware-virtualization/personal-desktop/vmware-workstation/">VMware Workstation</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li id="menu-item-7" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7"><a rel="author" href="http://www.mustbegeek.com/security/">Security</a></li>
+<li id="menu-item-2205" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-2205"><a rel="author" href="http://www.mustbegeek.com/open-source/">Open Source</a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-2206" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2206"><a rel="author" href="http://www.mustbegeek.com/open-source/centos/">CentOS</a></li>
+</ul>
+</li>
+<li id="menu-item-397" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-397"><a rel="author" href="http://www.mustbegeek.com/tips-n-tricks/">Tips N Tricks</a></li>
+</ul>            </div><!-- .primary-nav .wrap -->
+        </nav><div id="fancybox-tmp"></div><div id="fancybox-loading"><div></div></div><div id="fancybox-overlay"></div><div id="fancybox-wrap"><div id="fancybox-outer"><div class="fancybox-bg" id="fancybox-bg-n"></div><div class="fancybox-bg" id="fancybox-bg-ne"></div><div class="fancybox-bg" id="fancybox-bg-e"></div><div class="fancybox-bg" id="fancybox-bg-se"></div><div class="fancybox-bg" id="fancybox-bg-s"></div><div class="fancybox-bg" id="fancybox-bg-sw"></div><div class="fancybox-bg" id="fancybox-bg-w"></div><div class="fancybox-bg" id="fancybox-bg-nw"></div><div id="fancybox-content"></div><a id="fancybox-close"></a><div id="fancybox-title"></div><a href="javascript:;" id="fancybox-left"><span class="fancy-ico" id="fancybox-left-ico"></span></a><a href="javascript:;" id="fancybox-right"><span class="fancy-ico" id="fancybox-right-ico"></span></a></div></div><img src="./Configure iSCSI SAN in Server 2012 R2_files/g.gif" alt=":)" width="6" height="5" id="wpstats" scale="0"><iframe style="display: none;" src="./Configure iSCSI SAN in Server 2012 R2_files/saved_resource(3).html"></iframe></body></html>
