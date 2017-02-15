@@ -1,0 +1,585 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0097)https://www.supinfo.com/articles/single/1841-cluster-san-iscsi-replication-windows-server-2012-r2 -->
+<html lang="FR"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+ 
+<link href="./Cluster SAN ISCSI_files/site.css" type="text/css" rel="stylesheet">
+<link href="./Cluster SAN ISCSI_files/site_menumap.css" type="text/css" rel="stylesheet">
+<link rel="icon" type="image/png" href="https://www.supinfo.com/favicon.png">
+
+<meta name="ROBOTS" content="INDEX,FOLLOW ALL">
+<meta name="resource-type" content="document">
+<meta name="viewport" content="width=device-width">
+<meta name="google-site-verification" content="9IYGwcea8yL5I4j-p49VY0YHrRox0mf0_ZQC97YFfgY">
+<meta name="msvalidate.01" content="FD9D49466E075099E68E374696D57591">
+<link rel="stylesheet" href="./Cluster SAN ISCSI_files/jquery-ui-1.8.21.custom.css" type="text/css" media="all">
+<title>Cluster SAN iSCSI &amp; Réplication sous Windows Server 2012
+R2 | SUPINFO, École Supérieure d'Informatique</title>
+<meta name="identifier-url" content="https://www.supinfo.com">
+<meta http-equiv="content-language" content="FR">
+<meta name="author" content="SUPINFO - Ecole Informatique - Formation en Informatique - Paris, Lyon, Strasbourg, Bordeaux, Toulouse, Nantes, Nice, Montpellier, Marseille, Grenoble, Macon, Lille, Valenciennes, Caen, Rennes, Tours, Orléans, Troyes, Reims, Metz, Clermont-Ferrand,...">
+<meta name="copyright" content="supinfo.com">
+<meta name="keywords" content="ecole informatique">
+<link rel="stylesheet" href="./Cluster SAN ISCSI_files/articles.css" media="screen" title="no title" charset="utf-8">
+<link rel="stylesheet" href="./Cluster SAN ISCSI_files/docbook.css">
+<link rel="stylesheet" href="./Cluster SAN ISCSI_files/monokai_sublime.css">
+<script async="" charset="utf-8" src="./Cluster SAN ISCSI_files/saved_resource" type="text/javascript"></script><script src="./Cluster SAN ISCSI_files/jquery-1.7.2.min.js.téléchargement" type="text/javascript"></script>
+<script src="./Cluster SAN ISCSI_files/jquery-ui-1.8.21.custom.min.js.téléchargement" type="text/javascript"></script>
+<link rel="stylesheet" href="./Cluster SAN ISCSI_files/jquery-ui-1.8.21.custom.css" type="text/css" media="all">
+<script type="text/javascript">
+window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
+d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+_.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
+$.src='//cdn.zopim.com/?7dtvU9eSukTHjiUmVDgDDFWF374lPo4x';z.t=+new Date;$.
+type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
+</script>
+<style media="print" class="jx_ui_StyleSheet" __jx__id="___$_2" type="text/css">.zopim { display: none !important }</style><link rel="stylesheet" type="text/css" href="./Cluster SAN ISCSI_files/css-topbar.css"></head>
+<body><div class="zopim" __jx__id="___$_61 ___$_61" style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; padding: 0px; border: 0px; background: transparent; overflow: hidden; position: fixed; z-index: 16000002; height: 30px; right: 10px; bottom: 0px; display: none; width: 300px;"><iframe frameborder="0" src="./Cluster SAN ISCSI_files/saved_resource.html" style="background-color: transparent; vertical-align: text-bottom; position: relative; width: 100%; height: 100%; min-width: 100%; min-height: 100%; max-width: 100%; max-height: 100%; margin: 0px; overflow: hidden; display: block;"></iframe></div><div class="zopim" __jx__id="___$_4 ___$_4" style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; padding: 0px; border: 0px; background: transparent; overflow: hidden; position: fixed; z-index: 16000001; right: 10px; bottom: 0px; border-top-left-radius: 5px; border-top-right-radius: 5px; display: none; width: 290px; height: 400px; box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 3px 2px;"><iframe frameborder="0" src="./Cluster SAN ISCSI_files/saved_resource(1).html" style="background-color: transparent; vertical-align: text-bottom; position: relative; width: 100%; height: 100%; min-width: 100%; min-height: 100%; max-width: 100%; max-height: 100%; margin: 0px; overflow: hidden; display: block;"></iframe></div>
+<form name="frmMain" method="post" action="https://www.supinfo.com/frmMain.aspx?Culture=fr" id="frmMain">
+<div>
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTE1MTQ0ODQ4NDIPZBYCAgEPZBYCAgEPZBYCZg9kFgQCBg8PZBYCHgpvbktleVByZXNzBW5pZiAod2luZG93LmV2ZW50LmtleUNvZGUgPT0gMTMpICB7IGRvY3VtZW50LmFsbFsnY3RsMDBfYnRuU2VhcmNoJ10uY2xpY2soKTsgcmV0dXJuIGZhbHNlOyB9IGVsc2UgIHJldHVybiB0cnVlO2QCCg9kFgJmD2QWAgIBDxYCHglpbm5lcmh0bWwFvyA8Q0VOVEVSPg0KPFRBQkxFIHN0eWxlPSJQQURESU5HLVRPUDogMjBweCIgY2VsbFNwYWNpbmc9MCBjZWxsUGFkZGluZz0wIHdpZHRoPSIxMDAlIj4NCjxUQk9EWT4NCjxUUj4NCjxURCBhbGlnbj1jZW50ZXI+PEZPTlQgY29sb3I9YmxhY2s+PElNRyBib3JkZXI9MCBzcmM9Imh0dHA6Ly93d3cuc3VwaW5mby5jb20vaW1hZ2VzL3BhcnRuZXJzL0Npc2NvTG9nby5qcGciIGFsdD0iTG9nbyBkZSBsYSBzb2NpJmVhY3V0ZTt0JmVhY3V0ZTsgQ2lzY28sIHBhcnRlbmFpcmUgcCZlYWN1dGU7ZGFnb2dpcXVlIGRlIFNVUElORk8sIGxhIEdyYW5kZSAmRWFjdXRlO2NvbGUgZGUgbCdpbmZvcm1hdGlxdWUsIGR1IG51bSZlYWN1dGU7cmlxdWUgZXQgZHUgbWFuYWdlbWVudCI+PC9GT05UPjwvVEQ+DQo8VEQgYWxpZ249Y2VudGVyPjxGT05UIGNvbG9yPWJsYWNrPjxJTUcgYm9yZGVyPTAgc3JjPSJodHRwOi8vd3d3LnN1cGluZm8uY29tL2ltYWdlcy9wYXJ0bmVycy9JYm1Mb2dvLmpwZyIgYWx0PSJMb2dvIGRlIGxhIHNvY2kmZWFjdXRlO3QmZWFjdXRlOyBJQk0sIHBhcnRlbmFpcmUgcCZlYWN1dGU7ZGFnb2dpcXVlIGRlIFNVUElORk8sIGxhIEdyYW5kZSAmRWFjdXRlO2NvbGUgZGUgbCdpbmZvcm1hdGlxdWUsIGR1IG51bSZlYWN1dGU7cmlxdWUgZXQgZHUgbWFuYWdlbWVudCI+PC9GT05UPjwvVEQ+DQo8VEQgYWxpZ249Y2VudGVyPjxGT05UIGNvbG9yPWJsYWNrPjxJTUcgYm9yZGVyPTAgc3JjPSJodHRwOi8vd3d3LnN1cGluZm8uY29tL2ltYWdlcy9wYXJ0bmVycy9PcmFjbGVTdW5Mb2dvLmpwZyIgYWx0PSJMb2dvIGRlIGxhIHNvY2kmZWFjdXRlO3QmZWFjdXRlOyBTdW4tT3JhY2xlLCBwYXJ0ZW5haXJlIHAmZWFjdXRlO2RhZ29naXF1ZSBkZSBTVVBJTkZPLCBsYSBHcmFuZGUgJkVhY3V0ZTtjb2xlIGRlIGwnaW5mb3JtYXRpcXVlLCBkdSBudW0mZWFjdXRlO3JpcXVlIGV0IGR1IG1hbmFnZW1lbnQiPjwvRk9OVD48L1REPg0KPFREIGFsaWduPWNlbnRlcj48Rk9OVCBjb2xvcj1ibGFjaz48SU1HIGJvcmRlcj0wIHNyYz0iaHR0cDovL3d3dy5zdXBpbmZvLmNvbS9pbWFnZXMvcGFydG5lcnMvQXBwbGVMb2dvLmpwZyIgYWx0PSJMb2dvIGRlIGxhIHNvY2kmZWFjdXRlO3QmZWFjdXRlOyBBcHBsZSwgcGFydGVuYWlyZSBwJmVhY3V0ZTtkYWdvZ2lxdWUgZGUgU1VQSU5GTywgbGEgR3JhbmRlICZFYWN1dGU7Y29sZSBkZSBsJ2luZm9ybWF0aXF1ZSwgZHUgbnVtJmVhY3V0ZTtyaXF1ZSBldCBkdSBtYW5hZ2VtZW50Ij48L0ZPTlQ+PC9URD4NCjxURCBhbGlnbj1jZW50ZXI+PEZPTlQgY29sb3I9YmxhY2s+PElNRyBib3JkZXI9MCBzcmM9Imh0dHA6Ly93d3cuc3VwaW5mby5jb20vaW1hZ2VzL3BhcnRuZXJzL1N5YmFzZUxvZ28uanBnIiBhbHQ9IkxvZ28gZGUgbGEgc29jaSZlYWN1dGU7dCZlYWN1dGU7IFN5YmFzZSwgcGFydGVuYWlyZSBwJmVhY3V0ZTtkYWdvZ2lxdWUgZGUgU1VQSU5GTywgbGEgR3JhbmRlICZFYWN1dGU7Y29sZSBkZSBsJ2luZm9ybWF0aXF1ZSwgZHUgbnVtJmVhY3V0ZTtyaXF1ZSBldCBkdSBtYW5hZ2VtZW50Ij48L0ZPTlQ+PC9URD4NCjxURCBhbGlnbj1jZW50ZXI+PEZPTlQgY29sb3I9YmxhY2s+PElNRyBib3JkZXI9MCBzcmM9Imh0dHA6Ly93d3cuc3VwaW5mby5jb20vaW1hZ2VzL3BhcnRuZXJzL05vdmVsbExvZ28uanBnIiBhbHQ9IkxvZ28gZGUgbGEgc29jaSZlYWN1dGU7dCZlYWN1dGU7IE5vdmVsbCwgcGFydGVuYWlyZSBwJmVhY3V0ZTtkYWdvZ2lxdWUgZGUgU1VQSU5GTywgbGEgR3JhbmRlICZFYWN1dGU7Y29sZSBkZSBsJ2luZm9ybWF0aXF1ZSwgZHUgbnVtJmVhY3V0ZTtyaXF1ZSBldCBkdSBtYW5hZ2VtZW50Ij48L0ZPTlQ+PC9URD4NCjxURCBhbGlnbj1jZW50ZXI+PEZPTlQgY29sb3I9YmxhY2s+PElNRyBib3JkZXI9MCBzcmM9Imh0dHA6Ly93d3cuc3VwaW5mby5jb20vaW1hZ2VzL3BhcnRuZXJzL0ludGVsTG9nby5qcGciIGFsdD0iTG9nbyBkZSBsYSBzb2NpJmVhY3V0ZTt0JmVhY3V0ZTsgSW50ZWwsIHBhcnRlbmFpcmUgcCZlYWN1dGU7ZGFnb2dpcXVlIGRlIFNVUElORk8sIGxhIEdyYW5kZSAmRWFjdXRlO2NvbGUgZGUgbCdpbmZvcm1hdGlxdWUsIGR1IG51bSZlYWN1dGU7cmlxdWUgZXQgZHUgbWFuYWdlbWVudCI+PC9GT05UPjwvVEQ+DQo8VEQgYWxpZ249Y2VudGVyPjxGT05UIGNvbG9yPWJsYWNrPjxJTUcgYm9yZGVyPTAgc3JjPSJodHRwOi8vd3d3LnN1cGluZm8uY29tL2ltYWdlcy9wYXJ0bmVycy9hY2NlbnR1cmVMb2dvLmpwZyIgYWx0PSJMb2dvIGRlIGxhIHNvY2kmZWFjdXRlO3QmZWFjdXRlOyBBY2NlbnR1cmUsIHBhcnRlbmFpcmUgcCZlYWN1dGU7ZGFnb2dpcXVlIGRlIFNVUElORk8sIGxhIEdyYW5kZSAmRWFjdXRlO2NvbGUgZGUgbCdpbmZvcm1hdGlxdWUsIGR1IG51bSZlYWN1dGU7cmlxdWUgZXQgZHUgbWFuYWdlbWVudCI+PC9GT05UPjwvVEQ+DQo8VEQgYWxpZ249Y2VudGVyPjxGT05UIGNvbG9yPWJsYWNrPjxJTUcgYm9yZGVyPTAgc3JjPSJodHRwOi8vd3d3LnN1cGluZm8uY29tL2ltYWdlcy9wYXJ0bmVycy9TQVBMb2dvLmpwZyIgYWx0PSJMb2dvIGRlIGxhIHNvY2kmZWFjdXRlO3QmZWFjdXRlOyBTQVAsIHBhcnRlbmFpcmUgcCZlYWN1dGU7ZGFnb2dpcXVlIGRlIFNVUElORk8sIGxhIEdyYW5kZSAmRWFjdXRlO2NvbGUgZGUgbCdpbmZvcm1hdGlxdWUsIGR1IG51bSZlYWN1dGU7cmlxdWUgZXQgZHUgbWFuYWdlbWVudCI+PC9GT05UPjwvVEQ+DQo8VEQgYWxpZ249Y2VudGVyPjxGT05UIGNvbG9yPWJsYWNrPjxJTUcgYm9yZGVyPTAgc3JjPSJodHRwOi8vd3d3LnN1cGluZm8uY29tL2ltYWdlcy9wYXJ0bmVycy9Qcm9tZXRyaWNMb2dvLmpwZyIgYWx0PSJMb2dvIGRlIGxhIHNvY2kmZWFjdXRlO3QmZWFjdXRlOyBQcm9tZXRyaWMsIHBhcnRlbmFpcmUgcCZlYWN1dGU7ZGFnb2dpcXVlIGRlIFNVUElORk8sIGxhIEdyYW5kZSAmRWFjdXRlO2NvbGUgZGUgbCdpbmZvcm1hdGlxdWUsIGR1IG51bSZlYWN1dGU7cmlxdWUgZXQgZHUgbWFuYWdlbWVudCI+PC9GT05UPjwvVEQ+DQo8VEQgYWxpZ249Y2VudGVyPjxGT05UIGNvbG9yPWJsYWNrPjxJTUcgYm9yZGVyPTAgc3JjPSJodHRwOi8vd3d3LnN1cGluZm8uY29tL2ltYWdlcy9wYXJ0bmVycy9Ub2VpY0xvZ28uanBnIiBhbHQ9IkxvZ28gZGUgbGEgc29jaSZlYWN1dGU7dCZlYWN1dGU7IFRvZWljLCBwYXJ0ZW5haXJlIHAmZWFjdXRlO2RhZ29naXF1ZSBkZSBTVVBJTkZPLCBsYSBHcmFuZGUgJkVhY3V0ZTtjb2xlIGRlIGwnaW5mb3JtYXRpcXVlLCBkdSBudW0mZWFjdXRlO3JpcXVlIGV0IGR1IG1hbmFnZW1lbnQiPjwvRk9OVD48L1REPg0KPFREIHdpZHRoPTE5MCBhbGlnbj1jZW50ZXI+PEZPTlQgY29sb3I9YmxhY2s+PElNRyBib3JkZXI9MCBzcmM9Imh0dHA6Ly93d3cuc3VwaW5mby5jb20vaW1hZ2VzL3BhcnRuZXJzL01pY3Jvc29mdElUQUxvZ28uanBnIiBhbHQ9IkxvZ28gZHUgSVQgQWNhZGVteSBQcm9ncmFtIHBhciBNaWNyb3NvZnQsIHBhcnRlbmFpcmUgcCZlYWN1dGU7ZGFnb2dpcXVlIGRlIFNVUElORk8sIGxhIEdyYW5kZSAmRWFjdXRlO2NvbGUgZGUgbCdpbmZvcm1hdGlxdWUsIGR1IG51bSZlYWN1dGU7cmlxdWUgZXQgZHUgbWFuYWdlbWVudCI+PC9GT05UPjwvVEQ+PC9UUj48L1RCT0RZPjwvVEFCTEU+PC9DRU5URVI+DQo8YnIvPg0KPFAgYWxpZ249Y2VudGVyPjxTUEFOPjxGT05UIGNvbG9yPWJsYWNrIHNpemU9MT4NCjxzdHJvbmc+U1VQSU5GTyBJbnRlcm5hdGlvbmFsIFVuaXZlcnNpdHk8L3N0cm9uZz48YnI+DQpFY29sZSBkJ0luZm9ybWF0aXF1ZSAtIElUIFNjaG9vbDxicj4NCiZFYWN1dGU7Y29sZSBTdXAmZWFjdXRlO3JpZXVyZSBkJ0luZm9ybWF0aXF1ZSBkZSBQYXJpcywgbGVhZGVyIGVuIEZyYW5jZTxicj4NCkxhIEdyYW5kZSBFY29sZSBkZSBsJ2luZm9ybWF0aXF1ZSwgZHUgbnVtJmVhY3V0ZTtyaXF1ZSBldCBkdSBtYW5hZ2VtZW50PGJyPg0KRm9uZCZlYWN1dGU7ZSBlbiAxOTY1LCByZWNvbm51ZSBwYXIgbCcmRWFjdXRlO3RhdC4gVGl0cmUgQmFjKzUgY2VydGlmaSZlYWN1dGU7IGF1IG5pdmVhdSBJLjxicj4NClNVUElORk8gSW50ZXJuYXRpb25hbCBVbml2ZXJzaXR5IGlzIGdsb2JhbGx5IG9wZXJhdGVkIGJ5IEVEVUNJTlZFU1QgQmVsZ2l1bSAtIFJ1ZSBEdWNhbGUsIDI5IC0gMTAwMCBCcnVzc2VsczwvRk9OVD48L1A+ZGSiSFAgKLJPb1mzZZvNwhCsDBjzLg==">
+</div>
+<script type="text/javascript">
+            //<![CDATA[
+                var theForm = document.forms['frmMain'];
+                if (!theForm) {
+                    theForm = document.frmMain;
+                }
+                function __doPostBack(eventTarget, eventArgument) {
+                    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+                        theForm.__EVENTTARGET.value = eventTarget;
+                        theForm.__EVENTARGUMENT.value = eventArgument;
+                        theForm.submit();
+                    }
+                }
+            //]]>
+        </script>
+<script src="./Cluster SAN ISCSI_files/js-topbar.js.téléchargement"></script>
+<div align="center">
+<table cellspacing="0" cellpadding="0" width="962" border="0">
+<tbody><tr>
+<td colspan="3">
+<table class="header_top" cellspacing="0" cellpadding="0" width="962" border="0">
+<tbody><tr>
+<td rowspan="2" class="topHeader" width="220px">
+<a id="ctl00_lnkWebSiteRoot" href="https://www.supinfo.com/fr/Default.aspx">
+<img src="./Cluster SAN ISCSI_files/SupInfoLogo.png" id="ctl00_imgSupinfoLogo" title="Ecole informatique SUPINFO" alt="Ecole informatique - SUPINFO" border="0">
+</a>
+</td>
+<td rowspan="2" class="topHeader" width="512px" align="center" valign="middle">
+</td>
+<td class="topFlags" align="center" width="230px">
+<table border="0">
+<tbody><tr>
+<td><a id="ctl00_lnkMenuMap" title="Plan du site" class="topMenuMap" href="https://www.supinfo.com/articles/single/fr/Map.aspx">Plan du site</a>
+<span id="ctl00_spnFlags" class="topFlagSeparator"> &nbsp;</span>
+</td>
+<td></td>
+</tr>
+</tbody></table>
+<div id="lien-rapide-oc" style="position: absolute;top: 0px; right: -92px;"><a href="http://www.campus-booster.net/" target="_blank">
+Accéder à Open-Campus </a></div>
+</td>
+</tr>
+<tr>
+<td class="topHeader" height="57" align="left" width="190px">
+<img src="./Cluster SAN ISCSI_files/logo-top-sos@x2.png" class="logo-sos" style="margin-top: 13px;">
+</td>
+</tr>
+<tr>
+<td colspan="3" height="8px;" style="background:url(&#39;https://www.supinfo.com/Images/Common/Trame_up.png&#39;) repeat-x 0px 0px;">
+<img src="./Cluster SAN ISCSI_files/Pixel.gif" border="0" alt="pixel">
+</td>
+</tr>
+</tbody></table>
+<table cellspacing="0" cellpadding="0" width="962" border="0">
+<tbody><tr>
+<td class="topMenuLeft">
+<span id="ctl00_lblTopMenu">
+<ul>
+<li>
+<a class="linka" href="https://www.supinfo.com/fr/Default.aspx">Accueil</a>
+</li>
+<li>
+<a class="linka" href="https://www.supinfo.com/Cursus/">Cursus</a>
+</li>
+<li>
+<a class="linka" href="https://www.supinfo.com/cours/">Cours</a>
+</li>
+<li>
+<a class="linka" href="https://www.supinfo.com/Admission/">Admissions</a>
+</li>
+<li onmouseover="showcampus();" onmouseout="hidecampus()">
+<a class="linka" href="https://www.supinfo.com/campus/">Campus</a>
+</li>
+<li>
+<a class="linka" href="https://www.supinfo.com/brochure/">Documentation</a>
+</li>
+<li>
+<a class="linka" href="https://www.supinfo.com/anciens/">Anciens</a>
+</li>
+<li>
+<a class="linka" href="https://www.supinfo.com/entreprise/">Entreprises</a>
+</li>
+<li>
+<a class="linka" href="http://libraries.supinfo.com/">Librairies</a>
+</li>
+<li>
+<a class="linka" href="https://www.supinfo.com/articles">Publications</a>
+</li>
+</ul>
+</span>
+</td>
+<td class="topMenuRight" align="right">
+<input name="ctl00$txtSearch" type="text" id="ctl00_txtSearch" class="Search" onkeypress="if (window.event.keyCode == 13)  { document.all[&#39;ctl00_btnSearch&#39;].click(); return false; } else  return true;">
+<a onclick="window.location=&#39;https://supinfo.com/fr/Search.aspx?&#39; + document.querySelector(&#39;#ctl00_txtSearch&#39;).value;" id="ctl00_btnSearch" class="SearchButton"></a>
+</td>
+</tr>
+<tr>
+<td colspan="2" class="topLineSeparator">
+<img src="./Cluster SAN ISCSI_files/Pixel.gif" border="0" alt="pixel">
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+<tr>
+<td width="962" bgcolor="white" style="border-bottom: none 0px White;">
+<table border="0" cellspacing="0" cellpadding="0" width="962" class="tableNews page-base">
+<tbody><tr>
+<td valign="top" width="100%">
+<table id="ctl00_ctl01_tblPageContent" border="0" cellspacing="0" cellpadding="0" width="100%">
+<tbody><tr>
+<td id="ctl00_ctl01_tdNewsTitle" class="tdNews-MOOC" valign="bottom" style="background:url(&#39;https://www.supinfo.com/SupinfoCommonResources/SUPINFO-MOOCS/titles/2WEB.jpg&#39;) no-repeat 0px 0px" height="125px">
+<h1 style="font-weight:bold; font-size: 16px; font-family:Verdana; color: Black; text-align: right; margin-top:10px; margin-right:10px;">
+<span id="ctl00_ctl01_lblPageTitle">Articles - Étudiants SUPINFO</span>
+</h1>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px; padding-right: 15px;" valign="top">
+<div>
+<span id="ctl00_ctl01_lblIntroduction"></span>
+</div>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px; padding-right: 5px; padding-bottom: 20px;" valign="top">
+<span id="ctl00_ctl01_lblContent">
+<style type="text/css">@import "https://www.supinfo.com/SupinfoCommonResources/SUPINFO-CSS/css-base.css";@import "https://www.supinfo.com/SupinfoCommonResources/SUPINFO-CSS/css-doc0-2015.css";</style>
+<div style="background-image:url(&#39;https://www.supinfo.com/SupinfoCommonResources/SUPINFO-PICTURES/moocs/covers/cover-8.jpg&#39;); height:150px; background-size: cover; border-radius:0px 0px 4px 4px;">
+</div>
+<div class="page-base" id="courseDocZero">
+<div id="courseHeader">
+<h1>Cluster SAN iSCSI &amp; Réplication sous Windows Server 2012
+R2</h1>
+<div id="courseMetas">
+<span>Par
+<a href="https://www.supinfo.com/articles/author/204105-achraf-harrag">
+Achraf HARRAG </a>
+</span>
+<span>Publié le 29/06/2016 à 14:31:26</span>
+<span>Noter cet article:</span>
+<div class="stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div> (<span class="cntVotes">5</span> votes)
+<br><div class="not-published"><em>Avis favorable du comité de lecture</em></div>
+</div>
+<div class="clr"></div>
+</div>
+<div class="space"></div>
+<div class="courseArea" id="header">
+<div class="course-md-6" id="author-infos">
+<span class="macaron"><object data="./Cluster SAN ISCSI_files/204105.jpg"><img src="./Cluster SAN ISCSI_files/macaron-anonyme.png"></object></span><h1>Achraf HARRAG</h1>
+<p>Promotion:&nbsp;M.Sc. 2</p>
+<p>Campus de Clermont-Ferrand</p>
+</div>
+<nav class="course-md-4" id="cartouche"><ul class="nav campus-nav" id="cartouche-cours">
+<div id="cartouche-tete" style="text-align: center; padding: 0px 0px;"><img src="./Cluster SAN ISCSI_files/icone-page-financement@x2.png" width="375px"></div>
+<li><span class="section"><a href="https://www.supinfo.com/articles/single/1841-cluster-san-iscsi-replication-windows-server-2012-r2#idm140445290580480">Introduction</a></span></li>
+<li><span class="section"><a href="https://www.supinfo.com/articles/single/1841-cluster-san-iscsi-replication-windows-server-2012-r2#idm140445263798944">Pourquoi utiliser iSCSI ?</a></span></li>
+<li><span class="section"><a href="https://www.supinfo.com/articles/single/1841-cluster-san-iscsi-replication-windows-server-2012-r2#idm140445263797408">Mise en place d'un Cluster ISCSI avec Réplication</a></span></li>
+<li><span class="section"><a href="https://www.supinfo.com/articles/single/1841-cluster-san-iscsi-replication-windows-server-2012-r2#idm140445263722160">Conclusion</a></span></li>
+</ul></nav>
+</div><div class="section">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm140445290580480"></a>Introduction</h3></div></div></div>
+<p>Dans cet article, nous allons parler de La technologie <span class="bold"><strong>ISCSI</strong></span> (<span class="bold"><strong>Internet Small
+Computer System Interface</strong></span>) qui est un protocole réseau de
+stockage basé sur le modèle TCP/IP. Le principe de base consiste à
+encapsuler des commandes SCSI dans des paquets IP transmis entre un hôte
+et une unité de disque. Comme les paquets IP peuvent être perdus (et/ou)
+retransmis, ils peuvent très bien ne pas arriver dans l'ordre d'émission.
+Le protocole iSCSI doit donc conserver une trace de la séquence de
+transmission de commandes SCSI. Les commandes sont placées dans une file
+d'attente dans l'ordre d'émission.</p>
+<p>La technologie iSCSI a initialement été développée par IBM et a
+ensuite été soumise à l'IETF (Internet Engineering Task Force). Le
+standard a été publié par le comité IP Storage Working Group en août
+2002.</p>
+<p>On peut identifier deux fonctions principales dans la technologie
+iSCSI. La première est la fonction target. C'est un système simple qui
+possède le volume de stockage à publier sur le réseau IP. Ce système peut
+être matériel ou logiciel. Dans le cas de ces travaux pratiques, il s'agit
+d'un poste de travail utilisant son second disque dur ou bien un fichier
+comme unité de stockage SAN. La seconde fonction est baptisée initiator.
+Elle correspond au «client» qui utilise le volume de stockage réseau. Dans
+le contexte de ce document, l'autre poste de travaux pratiques joue ce
+rôle de client.</p>
+<p>Fondamentalement, iSCSI est un protocole de la famille Storage Area
+Network (SAN). Le client ou initiator accède à une unité de stockage en
+mode bloc. Ce mode de fonctionnement est quasi identique à la technologie
+Fibre Channel. Le type de réseau constitue la principale différence entre
+ces deux technologies. La technologie iSCSI s'appuie sur TCP/IP alors que
+Fibre Channel comprend une définition de réseau propre (FC) qui nécessite
+des équipements spécifiques.</p>
+</div><div class="section">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm140445263798944"></a>Pourquoi utiliser iSCSI ?</h3></div></div></div>
+<p>Ces dernières années, la technologie iSCSI gagne en popularité
+relativement à son ainée pour plusieurs raisons. Notamment, le prix des
+configurations iSCSI peut être bien meilleur marché qu'avec la technologie
+Fibre Channel. Si les performances d'un réseau au Gigabit Ethernet
+suffisent, un réseau de stockage iSCSI devient très attractif.</p>
+</div><div class="section">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm140445263797408"></a>Mise en place d'un Cluster ISCSI avec Réplication</h3></div></div></div>
+<div class="section">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="idm140445263796768"></a>Prérequis</h4></div></div></div>
+<p>Il faut créer deux machines Windows Server 2012 R2. (RAM : 4096MB,
+disque 1 : 20 GO, disque 2 : 500 GO) choisir Windows Server 2012 R2 avec
+interface graphique et créer deux partitions.</p>
+<p>Esuite, il faut changer le nom de la machine (clique droit sur CE
+PC-&gt;Propriétés-&gt;Modifies les paramètres-&gt;Modifier).</p>
+<p>Enfin, il faut attribuer une IP Fixe (Panneau de
+configuration\Réseau et Internet\Connexions réseau).</p>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="idm140445263794368"></a>Installation des rôles et création de l’ISCSI Target</h4></div></div></div>
+<div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Important">
+<tbody><tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Important]" src="./Cluster SAN ISCSI_files/important.png"></td>
+<th align="left"></th>
+</tr>
+<tr><td align="left" valign="top"><p>Ces opérations devront être faites de la même manière pour le
+serveur SRVSAN02.</p></td></tr>
+</tbody></table></div>
+<p>Afin de créer le target iSCSI, se diriger vers la MMC
+(Microsoft Management Console) et ajouter un nouveau rôle au serveur
+SRVSAN01.</p>
+<p>Aller dans l’Assistant Ajout de rôle et de fonctionnalités et
+cocher :</p>
+<p>- Serveur de fichier : Permet aux utilisateurs d’accéder aux
+fichiers stockés dedans.</p>
+<p>- BranchCache pour fichiers réseau : Optimise la Bande Passante
+sur le réseau.</p>
+<p>- Déduplication des données : Economie de l’espace disque en ne
+stockant qu’une seule copie des données identiques sur le volume.</p>
+<p>- Dossier de travail : Permet une utilisation des fichiers de
+travail depuis de nombreux appareils, et plusieurs utilisateurs
+simultanés depuis le réseau ou depuis internet.</p>
+<p>- Fournisseur de stockage cible ISCSI : Permet aux applications
+des serveurs d’accéder aux volumes.</p>
+<p>- Réplication DFS : Permet une réplication des données sur
+d’autres serveurs maitre pour garder la disponibilité des
+données.</p>
+<p>- Serveur Cible ISCSI : Fournit des services et des outils de
+gestion.</p>
+<div class="mediaobject"><img src="./Cluster SAN ISCSI_files/0.png"></div>
+<p>Ensuite, il faut lancer l’installation des rôles.</p>
+<p>Une fois l’installation terminée, dans la console Gestionnaire de
+serveur, accéder au service de stockage et de fichiers pour paramétrer
+le ISCSI TARGET.</p>
+<div class="mediaobject"><img src="./Cluster SAN ISCSI_files/1.png"></div>
+<p>Choisir l’espace de stockage, qui sera utilisé comme Volume de
+stockage ISCSI Storage.</p>
+<div class="mediaobject"><img src="./Cluster SAN ISCSI_files/2.png"></div>
+<p>Indiquer le nom du disque virtuel ISCSI.</p>
+<div class="mediaobject"><img src="./Cluster SAN ISCSI_files/3.png"></div>
+<p>Il faut choisir <span class="bold"><strong>Taille fixe</strong></span> : La
+taille du disque virtuel est fixée et ne pourra être changée
+ultérieurement. Ce type de disque fournit de meilleures performances sur
+les applications les plus gourmandes en activité de disque.</p>
+<div class="mediaobject"><img src="./Cluster SAN ISCSI_files/4.png"></div>
+<p>Affecter un nom au disque dur virtuel ISCSI. Choisir quels
+serveurs seront autorisés à accéder à l’ISCSI STORAGE.</p>
+<p>Les serveurs choisis seront les serveurs qui auront droit
+d'accéder aux ISCSI TARGETS depuis un ISCSI INITIATOR</p>
+<div class="mediaobject"><img src="./Cluster SAN ISCSI_files/5.png"></div>
+<p>En suite il faut sécuriser l’accès á l’ISCSI STORAGE avec la
+sécurité CHAP.</p>
+<div class="mediaobject"><img src="./Cluster SAN ISCSI_files/6.png"></div>
+<p>Ensuite créer le ISCSI STORAGE.</p>
+<div class="mediaobject"><img src="./Cluster SAN ISCSI_files/7.png"></div>
+<p>La cible ISCSI STORAGE est créée.</p>
+<div class="mediaobject"><img src="./Cluster SAN ISCSI_files/8.png"></div>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="idm140445263770352"></a>Création du cluster SAN avec basculement</h4></div></div></div>
+<p>Il faut Aller dans Gestionnaire du serveur puis ajouter des rôles
+et des fonctionnalités, ensuite Installer la fonctionnalité clustering
+avec basculement, ce qui va permettre aux données d’être accessibles
+sans interruption en cas de panne d’un serveur.</p>
+<div class="mediaobject"><img src="./Cluster SAN ISCSI_files/9.png"></div>
+<p>Une fois l’installation terminée, se rendre dans Gestionnaire du
+cluster de basculement Puis créer le cluster.</p>
+<div class="mediaobject"><img src="./Cluster SAN ISCSI_files/10.png"></div>
+<p>Ensuite lancer le test de validation des serveurs du
+cluster.</p>
+<div class="mediaobject"><img src="./Cluster SAN ISCSI_files/11.png"></div>
+<p>Il faut cliquer sur créer, pour lancer la création du
+cluster.</p>
+<div class="mediaobject"><img src="./Cluster SAN ISCSI_files/12.png"></div>
+<p>Notre Cluster qu'on vient de créer est disponible.</p>
+<div class="mediaobject"><img src="./Cluster SAN ISCSI_files/13.png"></div>
+<div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Important">
+<tbody><tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Important]" src="./Cluster SAN ISCSI_files/important.png"></td>
+<th align="left"></th>
+</tr>
+<tr><td align="left" valign="top"><p>Il ne faut pas oublier de créer le QUORUM pour le Vote.</p></td></tr>
+</tbody></table></div>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="idm140445263757120"></a>Configuration de la Réplication ISCSI</h4></div></div></div>
+<p>Pour que les donnes soient accessibles en cas de problème sur un
+serveur, il faut mettre en place une réplication des données qui se
+trouve dans le ISCSI STORAGE entre le SRVSAN01 et SRVSAN02 qui sont en
+cluster.</p>
+<p>Pour cela, il faut aller dans Gestion du système de fichier
+distribués DFS.</p>
+<p><span class="bold"><strong>Réplication-&gt;Nouveau groupe de
+réplication :</strong></span></p>
+<p>Choisir groupe de réplication multi-usage</p>
+<p>Renseigner le nom du groupe de réplication, le domaine est déjà
+renseigné</p>
+<p>Renseigner les serveurs qui formeront le groupe de
+réplication</p>
+<div class="mediaobject"><img src="./Cluster SAN ISCSI_files/14.png"></div>
+<div class="mediaobject"><img src="./Cluster SAN ISCSI_files/15.png"></div>
+<p>Il faut Choisir la topologie de réplication Maile Pleine ce qui
+permettra une réplication entre les deux serveurs qui contiennent les
+ISCSI Storage dans les deux sens en cas de panne du serveur
+maitre.</p>
+<div class="mediaobject"><img src="./Cluster SAN ISCSI_files/16.png"></div>
+<p>Il faut Mettre la planification de la réplication en 24h/24 et
+7j/7.</p>
+<p>Puis Mettre la bande passante á complète pour que la réplication
+soit le plus rapide possible.</p>
+<div class="mediaobject"><img src="./Cluster SAN ISCSI_files/17.png"></div>
+<p>Il faut Choisir le serveur principal du cluster, pour définir le
+sens de la première réplication.</p>
+<p>Puis Définir le ISCSI Storage pour la réplication.</p>
+<div class="mediaobject"><img src="./Cluster SAN ISCSI_files/18.png"></div>
+<p>Activer la synchronisation avec les membres du cluster.</p>
+<p>Puis créer.</p>
+<p>A la fin, nous pouvons voir toutes les options que nous avions
+paramétré avant.</p>
+<div class="mediaobject"><img src="./Cluster SAN ISCSI_files/19.png"></div>
+<p>La création de la réplication se termine avec succès.</p>
+<div class="mediaobject"><img src="./Cluster SAN ISCSI_files/20.png"></div>
+<p>Après la création de notre réplication nous pouvons accéder aux
+informations ci-dessous.</p>
+<div class="mediaobject"><img src="./Cluster SAN ISCSI_files/21.png"></div>
+<div class="mediaobject"><img src="./Cluster SAN ISCSI_files/22.png"></div>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="idm140445263732144"></a>Connexion de l'ISCSI INITIATOR avec l'ISCSI TRAGET</h4></div></div></div>
+<p>Sur le poste client, aller Dans Gestionnaire du serveur, aller
+dans outils puis Initiateur ISCSI. Entrer l’adresse IP du SRVSAN01
+connecter le iscsi target (iscsi Storage), ensuite faire la même
+manipulation pour connecter le iscsi Storage du SRVSAN02.</p>
+<div class="mediaobject"><img src="./Cluster SAN ISCSI_files/23.png"></div>
+<p>Nous pouvons constater que le ISCSI Storage01 est détecté et
+connecté.</p>
+<div class="mediaobject"><img src="./Cluster SAN ISCSI_files/24.png"></div>
+<p>Ensuite les ISCSI Storage apparaitront sur le serveur.</p>
+<div class="mediaobject"><img src="./Cluster SAN ISCSI_files/25.png"></div>
+<p>Nous pouvons aussi les voir connectés dans Ordinateur.</p>
+<div class="mediaobject"><img src="./Cluster SAN ISCSI_files/26.png"></div>
+</div>
+</div><div class="section">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm140445263722160"></a>Conclusion</h3></div></div></div>
+<p>La mise en place d’un SAN devra passer par une étude préliminaire
+afin de trouver la solution qui nous corresponde le mieux.</p>
+<p>De plus, le choix d'un SAN ISCSI devra lui aussi faire l’objet d’une
+étude.</p>
+<p>En effet,le ISCSI dans bien des cas suffit et demande un
+investissement moins lourd contrairement au FIBER CHANNEL, comme nous
+avions pu le constater lors de la mise en place de notre SAN ISCSI.</p>
+</div>
+<div class="clr space"></div>
+</div>
+</span>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+<tr>
+<td class="tdCopyright" align="left">
+<span id="ctl00_lblCopyright">
+<a href="https://www.supinfo.com/ecole-informatique/" title="A propos de ecole informatique SUPINFO">A propos de SUPINFO</a> |
+<a href="https://www.supinfo.com/fr/contact.aspx">Contacts &amp; adresses</a> |
+<a href="https://www.supinfo.com/enseignant/">Enseigner à SUPINFO</a> |
+<a href="https://www.supinfo.com/presse/">Presse</a> |
+<a href="https://www.supinfo.com/fr/conditions_utilisation_et_copyright.aspx">Conditions d'utilisation &amp; Copyright</a> |
+<a href="https://www.supinfo.com/fr/respect_de_la_vie_privee.aspx">Respect de la vie privée</a> |
+<a href="https://www.supinfo.com/fr/investors.aspx">Investir</a>
+</span>
+</td>
+</tr>
+<tr id="ctl00_trPartners">
+<td align="left">
+<span id="ctl00_spnPartner">
+<center>
+<table style="PADDING-TOP: 20px" cellspacing="0" cellpadding="0" width="100%">
+<tbody>
+<tr>
+<td align="center">
+<font color="black">
+<img border="0" src="./Cluster SAN ISCSI_files/CiscoLogo.jpg" alt="Logo de la société Cisco, partenaire pédagogique de SUPINFO, la Grande École de l&#39;informatique, du numérique et du management">
+</font>
+</td>
+<td align="center">
+<font color="black">
+<img border="0" src="./Cluster SAN ISCSI_files/IbmLogo.jpg" alt="Logo de la société IBM, partenaire pédagogique de SUPINFO, la Grande École de l&#39;informatique, du numérique et du management">
+</font>
+</td>
+<td align="center">
+<font color="black">
+<img border="0" src="./Cluster SAN ISCSI_files/OracleSunLogo.jpg" alt="Logo de la société Sun-Oracle, partenaire pédagogique de SUPINFO, la Grande École de l&#39;informatique, du numérique et du management">
+</font>
+</td>
+<td align="center">
+<font color="black">
+<img border="0" src="./Cluster SAN ISCSI_files/AppleLogo.jpg" alt="Logo de la société Apple, partenaire pédagogique de SUPINFO, la Grande École de l&#39;informatique, du numérique et du management">
+</font>
+</td>
+<td align="center">
+<font color="black">
+<img border="0" src="./Cluster SAN ISCSI_files/SybaseLogo.jpg" alt="Logo de la société Sybase, partenaire pédagogique de SUPINFO, la Grande École de l&#39;informatique, du numérique et du management">
+</font>
+</td>
+<td align="center">
+<font color="black">
+<img border="0" src="./Cluster SAN ISCSI_files/NovellLogo.jpg" alt="Logo de la société Novell, partenaire pédagogique de SUPINFO, la Grande École de l&#39;informatique, du numérique et du management">
+</font>
+</td>
+<td align="center">
+<font color="black">
+<img border="0" src="./Cluster SAN ISCSI_files/IntelLogo.jpg" alt="Logo de la société Intel, partenaire pédagogique de SUPINFO, la Grande École de l&#39;informatique, du numérique et du management">
+</font>
+</td>
+<td align="center">
+<font color="black">
+<img border="0" src="./Cluster SAN ISCSI_files/accentureLogo.jpg" alt="Logo de la société Accenture, partenaire pédagogique de SUPINFO, la Grande École de l&#39;informatique, du numérique et du management">
+</font>
+</td>
+<td align="center">
+<font color="black">
+<img border="0" src="./Cluster SAN ISCSI_files/SAPLogo.jpg" alt="Logo de la société SAP, partenaire pédagogique de SUPINFO, la Grande École de l&#39;informatique, du numérique et du management">
+</font>
+</td>
+<td align="center">
+<font color="black">
+<img border="0" src="./Cluster SAN ISCSI_files/PrometricLogo.jpg" alt="Logo de la société Prometric, partenaire pédagogique de SUPINFO, la Grande École de l&#39;informatique, du numérique et du management">
+</font>
+</td>
+<td align="center">
+<font color="black">
+<img border="0" src="./Cluster SAN ISCSI_files/ToeicLogo.jpg" alt="Logo de la société Toeic, partenaire pédagogique de SUPINFO, la Grande École de l&#39;informatique, du numérique et du management">
+</font>
+</td>
+<td width="190" align="center">
+<font color="black">
+<img border="0" src="./Cluster SAN ISCSI_files/MicrosoftITALogo.jpg" alt="Logo du IT Academy Program par Microsoft, partenaire pédagogique de SUPINFO, la Grande École de l&#39;informatique, du numérique et du management">
+</font>
+</td>
+</tr>
+</tbody>
+</table>
+</center>
+<br>
+<p align="center">
+<span>
+<font color="black" size="1">
+<strong>SUPINFO International University</strong>
+<br> Ecole d'Informatique - IT School
+<br> École Supérieure d'Informatique de Paris, leader en France
+<br> La Grande Ecole de l'informatique, du numérique et du management
+<br> Fondée en 1965, reconnue par l'État. Titre Bac+5 certifié au niveau I.
+<br> SUPINFO International University is globally operated by EDUCINVEST Belgium - Avenue Louise, 534 - 1050 Brussels</font>
+</span>
+</p>
+</span>
+</td>
+</tr>
+</tbody></table>
+</div>
+</form>
+<script src="./Cluster SAN ISCSI_files/d3.min.js.téléchargement"></script>
+<script src="./Cluster SAN ISCSI_files/d3.layout.cloud.js.téléchargement"></script>
+<script src="./Cluster SAN ISCSI_files/highlight.min.js.téléchargement"></script>
+<script>Array.prototype.slice.apply(document.querySelectorAll('pre.programlisting')).forEach(hljs.highlightBlock);</script>
+<script src="./Cluster SAN ISCSI_files/swfobject-2.2.min.js.téléchargement"></script>
+<script type="text/javascript" src="./Cluster SAN ISCSI_files/dtjava.js.téléchargement"></script>
+<script src="./Cluster SAN ISCSI_files/evercookie.js.téléchargement"></script>
+<script src="./Cluster SAN ISCSI_files/stars.js.téléchargement"></script>
+<script>
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'https://www.supinfo.com/api/supinfo?action=getArticleRank&articleId=1841', true);
+
+        xhr.onreadystatechange = function() {
+
+            if(xhr.readyState === 4 && xhr.status === 200) {
+                var res = JSON.parse(xhr.response),
+                    s = new stars({
+                        container: document.querySelector('.stars'),
+                        cb: function(note) {
+                            var xhr = new XMLHttpRequest();
+                            xhr.open('GET', 'https://www.supinfo.com/api/supinfo?action=rating&articleId=1841&articleRate=' + note, true);
+                            xhr.send();
+                        },
+                        max: 5,
+                        curr: res.rank,
+                        clicksNumber: res.clicks,
+						articleId: 1841                    });
+
+            }
+        };
+        xhr.send();
+    </script>
+<script src="./Cluster SAN ISCSI_files/words.js.téléchargement"></script>
+
+
+<div id="top-menu-bar" style="display: none;"><div id="top-menu-bar-first"><div class="inner"><img src="./Cluster SAN ISCSI_files/SupInfoLogo.png" class="logo"><div class="sos"><img src="./Cluster SAN ISCSI_files/logo-top-top-sos@x2.png"></div><ul><li><a href="https://www.twitter.com/SUPINFO"><img src="./Cluster SAN ISCSI_files/logo-twitter-topbar@x2.png"> <span>@SUPINFO</span></a></li><li><a href="https://www.supinfo.com/contact/"><img src="./Cluster SAN ISCSI_files/icone-contact-topbar@x2.png"><span>Contact</span></a></li></ul></div></div><div id="top-menu-bar-inner"><div id="top-site-nav"><ul><li>
+<a class="linka" href="https://www.supinfo.com/fr/Default.aspx">Accueil</a>
+</li><li>
+<a class="linka" href="https://www.supinfo.com/Cursus/">Cursus</a>
+</li><li>
+<a class="linka" href="https://www.supinfo.com/cours/">Cours</a>
+</li><li>
+<a class="linka" href="https://www.supinfo.com/Admission/">Admissions</a>
+</li><li>
+<a class="linka" href="https://www.supinfo.com/campus/">Campus</a>
+</li><li>
+<a class="linka" href="https://www.supinfo.com/brochure/">Documentation</a>
+</li><li>
+<a class="linka" href="https://www.supinfo.com/anciens/">Anciens</a>
+</li><li>
+<a class="linka" href="https://www.supinfo.com/entreprise/">Entreprises</a>
+</li><li>
+<a class="linka" href="http://libraries.supinfo.com/">Librairies</a>
+</li><li>
+<a class="linka" href="https://www.supinfo.com/articles">Publications</a>
+</li></ul></div><div id="inner-nav"><ul><li>Naviguer sur la page</li><li><span class="section"><a href="https://www.supinfo.com/articles/single/1841-cluster-san-iscsi-replication-windows-server-2012-r2#idm140445290580480">Introduction</a></span></li><li><span class="section"><a href="https://www.supinfo.com/articles/single/1841-cluster-san-iscsi-replication-windows-server-2012-r2#idm140445263798944">Pourquoi utiliser iSCSI ?</a></span></li><li><span class="section"><a href="https://www.supinfo.com/articles/single/1841-cluster-san-iscsi-replication-windows-server-2012-r2#idm140445263797408">Mise en place d'un Cluster ISCSI avec Réplication</a></span></li><li><span class="section"><a href="https://www.supinfo.com/articles/single/1841-cluster-san-iscsi-replication-windows-server-2012-r2#idm140445263722160">Conclusion</a></span></li></ul></div></div></div></body></html>

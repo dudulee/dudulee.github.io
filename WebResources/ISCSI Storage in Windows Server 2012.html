@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<!-- saved from url=(0067)https://garvis.ca/2013/01/10/iscsi-storage-in-windows-server-20122/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<title>iSCSI Storage in Windows Server 2012 « The World According to Mitch</title>
+
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="https://garvis.ca/xmlrpc.php">
+
+		<script defer="" src="./ISCSI Storage in Windows Server 2012_files/beacon.js.téléchargement"></script><script id="twitter-wjs" src="./ISCSI Storage in Windows Server 2012_files/widgets.js.téléchargement"></script><script type="text/javascript" async="" src="./ISCSI Storage in Windows Server 2012_files/platform.js.téléchargement"></script><script src="./ISCSI Storage in Windows Server 2012_files/remote-login.php" type="text/javascript"></script>
+		<script type="text/javascript">
+		/* <![CDATA[ */
+			if ( 'function' === typeof WPRemoteLogin ) {
+				document.cookie = "wordpress_test_cookie=test; path=/";
+				if ( document.cookie.match( /(;|^)\s*wordpress_test_cookie\=/ ) ) {
+					WPRemoteLogin();
+				}
+			}
+		/* ]]> */
+		</script>
+		<link rel="dns-prefetch" href="https://s2.wp.com/">
+<link rel="dns-prefetch" href="https://s0.wp.com/">
+<link rel="dns-prefetch" href="https://mgarvis.wordpress.com/">
+<link rel="dns-prefetch" href="https://s1.wp.com/">
+<link rel="alternate" type="application/rss+xml" title="The World According to Mitch » Feed" href="https://garvis.ca/feed/">
+<link rel="alternate" type="application/rss+xml" title="The World According to Mitch » Comments Feed" href="https://garvis.ca/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="The World According to Mitch » iSCSI Storage in Windows Server 2012 Comments Feed" href="https://garvis.ca/2013/01/10/iscsi-storage-in-windows-server-20122/feed/">
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		function addLoadEvent(func) {
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func;
+			} else {
+				window.onload = function () {
+					oldonload();
+					func();
+				}
+			}
+		}
+		/* ]]> */
+	</script>
+			<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/s1.wp.com\/wp-includes\/js\/wp-emoji-release.min.js?m=1473172720h&ver=4.6.1-RC1-38499"}};
+			!function(a,b,c){function d(a){var c,d,e,f,g,h=b.createElement("canvas"),i=h.getContext&&h.getContext("2d"),j=String.fromCharCode;if(!i||!i.fillText)return!1;switch(i.textBaseline="top",i.font="600 32px Arial",a){case"flag":return i.fillText(j(55356,56806,55356,56826),0,0),!(h.toDataURL().length<3e3)&&(i.clearRect(0,0,h.width,h.height),i.fillText(j(55356,57331,65039,8205,55356,57096),0,0),c=h.toDataURL(),i.clearRect(0,0,h.width,h.height),i.fillText(j(55356,57331,55356,57096),0,0),d=h.toDataURL(),c!==d);case"diversity":return i.fillText(j(55356,57221),0,0),e=i.getImageData(16,16,1,1).data,f=e[0]+","+e[1]+","+e[2]+","+e[3],i.fillText(j(55356,57221,55356,57343),0,0),e=i.getImageData(16,16,1,1).data,g=e[0]+","+e[1]+","+e[2]+","+e[3],f!==g;case"simple":return i.fillText(j(55357,56835),0,0),0!==i.getImageData(16,16,1,1).data[0];case"unicode8":return i.fillText(j(55356,57135),0,0),0!==i.getImageData(16,16,1,1).data[0];case"unicode9":return i.fillText(j(55358,56631),0,0),0!==i.getImageData(16,16,1,1).data[0]}return!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i;for(i=Array("simple","flag","unicode8","diversity","unicode9"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script src="./ISCSI Storage in Windows Server 2012_files/wp-emoji-release.min.js.téléchargement" type="text/javascript"></script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel="stylesheet" id="all-css-0-1" href="./ISCSI Storage in Windows Server 2012_files/saved_resource" type="text/css" media="all">
+<script type="text/javascript" src="./ISCSI Storage in Windows Server 2012_files/saved_resource(1)"></script>
+<link rel="stylesheet" id="all-css-0-2" href="./ISCSI Storage in Windows Server 2012_files/style.css" type="text/css" media="all">
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='highlander-comments-ie7-css'  href='https://s1.wp.com/wp-content/mu-plugins/highlander-comments/style-ie7.css?m=1351637563h&#038;ver=20110606' type='text/css' media='all' />
+<![endif]-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://mgarvis.wordpress.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://s1.wp.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Shared Nothing Live Migration: Goodbye Shared Storage?" href="https://garvis.ca/2013/01/07/shared-nothing-live-migration-goodbye-shared-storage/">
+<link rel="next" title="Failover Clustering: Let’s spread the Hyper-V love across hosts!" href="https://garvis.ca/2013/01/14/failover-clustering-let-s-spread-the-hyper-v-love-across-hosts/">
+<meta name="generator" content="WordPress.com">
+<link rel="canonical" href="https://garvis.ca/2013/01/10/iscsi-storage-in-windows-server-20122/">
+<link rel="shortlink" href="http://wp.me/p1bbHH-F7">
+<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/1.0/?format=json&amp;url=https%3A%2F%2Fgarvis.ca%2F2013%2F01%2F10%2Fiscsi-storage-in-windows-server-20122%2F&amp;for=wpcom-auto-discovery"><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/1.0/?format=xml&amp;url=https%3A%2F%2Fgarvis.ca%2F2013%2F01%2F10%2Fiscsi-storage-in-windows-server-20122%2F&amp;for=wpcom-auto-discovery">
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="iSCSI Storage in Windows Server 2012">
+<meta property="og:url" content="https://garvis.ca/2013/01/10/iscsi-storage-in-windows-server-20122/">
+<meta property="og:description" content="Storage is one of the most important aspects of our IT infrastructure.  In this day and age of virtualization it is even more important because our entire server infrastructure may be stored on a l…">
+<meta property="article:published_time" content="2013-01-10T13:00:00+00:00">
+<meta property="article:modified_time" content="2013-01-04T02:35:37+00:00">
+<meta property="og:site_name" content="The World According to Mitch">
+<meta property="og:image" content="http://blogs.technet.com/cfs-file.ashx/__key/communityserver-blogs-components-weblogfiles/00-00-00-48-12-metablogapi/7411.image_5F00_thumb_5F00_3F990E67.png">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:site" content="@MGarvis">
+<meta name="twitter:image" content="http://blogs.technet.com/cfs-file.ashx/__key/communityserver-blogs-components-weblogfiles/00-00-00-48-12-metablogapi/8176.image_5F00_thumb_5F00_4AE2E44B.png?w=240">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@MGarvis">
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom">
+<link rel="shortcut icon" type="image/x-icon" href="https://secure.gravatar.com/blavatar/10c3ec1192caa9e22336044eada86f53?s=32" sizes="16x16">
+<link rel="icon" type="image/x-icon" href="https://secure.gravatar.com/blavatar/10c3ec1192caa9e22336044eada86f53?s=32" sizes="16x16">
+<link rel="apple-touch-icon-precomposed" href="https://secure.gravatar.com/blavatar/10c3ec1192caa9e22336044eada86f53?s=114">
+<link rel="openid.server" href="https://mgarvis.wordpress.com/?openidserver=1">
+<link rel="openid.delegate" href="https://mgarvis.wordpress.com/">
+<link rel="search" type="application/opensearchdescription+xml" href="https://garvis.ca/osd.xml" title="The World According to Mitch">
+<link rel="search" type="application/opensearchdescription+xml" href="https://s1.wp.com/opensearch.xml" title="WordPress.com">
+<style type="text/css">
+.widget_twitter li {
+	word-wrap: break-word;
+}
+</style>
+
+<meta name="geo.position" content="43.450000;-79.683333">
+<meta name="ICBM" content="43.450000, -79.683333">
+<meta name="application-name" content="The World According to Mitch"><meta name="msapplication-window" content="width=device-width;height=device-height"><meta name="msapplication-tooltip" content="The day to day ramblings of an IT Professional and Community Leader"><meta name="msapplication-task" content="name=Subscribe;action-uri=https://garvis.ca/feed/;icon-uri=https://secure.gravatar.com/blavatar/10c3ec1192caa9e22336044eada86f53?s=16"><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=https://s2.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=https://s2.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=https://s2.wp.com/i/favicon.ico"><meta name="title" content="iSCSI Storage in Windows Server 2012 | The World According to Mitch on WordPress.com">
+<meta name="description" content="Storage is one of the most important aspects of our IT infrastructure.  In this day and age of virtualization it is even more important because our entire server infrastructure may be stored on a limited set of devices. Of course that is a lot easier said than done, especially for smaller companies with limited IT…">
+		<script type="text/javascript" src="https://c.amazon-adsystem.com/aax2/amzn_ads.js"></script>
+		<script type="text/javascript">
+		try { amznads.getAds("3033"); } catch(e) { /* ignore */ }
+		</script>
+		<script type="text/javascript">
+		try {
+			var a9_p = amznads.getKeys(),
+			_ipw_custom = {
+				wordAds: '0',
+				adSafe: '1',
+				domain: 'garvis.ca',
+				pageURL: 'https://garvis.ca/2013/01/10/iscsi-storage-in-windows-server-20122/'
+			};
+			if("undefined"!=typeof a9_p&&""!=a9_p&&null!==a9_p&&"[object Array]"===Object.prototype.toString.call(a9_p)){var a="",b=0,c=a9_p.length;a9_p.sort();for(var d=0;d<c;d++){a9_p[d-b]=a9_p[d-b].replace(/a1x6p/,"a160x600p");var e=a9_p[d-b].split("p");e[0]==a&&(a9_p.splice(d-b,1),b++);a=e[0]}_ipw_custom.amznPay=a9_p};document.close();
+		} catch(e) {}
+		</script> 		<script type="text/javascript" src="./ISCSI Storage in Windows Server 2012_files/publishertag.js.téléchargement"></script>
+ 		<script type="text/javascript" src="https://s.pubmine.com/head.js"></script>
+		<script type="text/javascript">
+		jQuery(window).ready(function () {
+			jQuery("a.wpa-about").text("Advertisements");
+		});
+		</script><link rel="amphtml" href="https://garvis.ca/2013/01/10/iscsi-storage-in-windows-server-20122/amp/"><style type="text/css" id="syntaxhighlighteranchor"></style>
+<script type="text/javascript">
+	window.google_analytics_uacct = "UA-52447-2";
+</script>
+
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-52447-2']);
+	_gaq.push(['_setDomainName', 'none']);
+	_gaq.push(['_setAllowLinker', true]);
+	_gaq.push(['_initData']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+	})();
+</script><script type="text/javascript" async="" src="./ISCSI Storage in Windows Server 2012_files/ga.js.téléchargement"></script>
+<script charset="utf-8" src="./ISCSI Storage in Windows Server 2012_files/rate.php"></script><style type="text/css"></style><script type="text/javascript" async="" src="./ISCSI Storage in Windows Server 2012_files/saved_resource(2)"></script><link rel="stylesheet" type="text/css" id="gravatar-card-css" href="./ISCSI Storage in Windows Server 2012_files/hovercard.css"><link rel="stylesheet" type="text/css" id="gravatar-card-services-css" href="./ISCSI Storage in Windows Server 2012_files/services.css"><script type="text/javascript" charset="utf-8" async="" src="./ISCSI Storage in Windows Server 2012_files/timeline.49f19f9e34b1f8ffe443c6d5e80fea48.js.téléchargement"></script><script type="text/javascript" async="" src="./ISCSI Storage in Windows Server 2012_files/saved_resource(3)"></script><style type="text/css" id="pd_popup_holder_style_4433917_post_2549">#pd_popup_holder_4433917_post_2549 { position:absolute; display:none; width:350px; height:auto; top:0px; left:0px; z-index:10000; border:solid 1px #CCC; background-color:white; padding:0px 15px;font-family:Arial,Sans;box-shadow: -10px 10px 20px rgba(0, 0, 0, .5);-webkit-box-shadow: 0px 0px 6px rgba(0, 0, 0, .25);-moz-box-shadow: 0px 0px 6px rgba(0, 0, 0, .25); }</style><script type="text/javascript" async="" src="./ISCSI Storage in Windows Server 2012_files/link"></script><script type="text/javascript" async="" src="./ISCSI Storage in Windows Server 2012_files/track.php"></script></head>
+<body class="single single-post postid-2549 single-format-standard mp6 customizer-styles-applied highlander-enabled highlander-light">
+	<div id="wrap">
+		<div id="header" class="clearfix">
+
+			<div id="main-nav">
+				<div id="menuhead" class="menu"><ul><li><a href="https://garvis.ca/">Home</a></li><li class="page_item page-item-2"><a href="https://garvis.ca/about/">About</a></li></ul></div>
+			</div><!-- end #main-nav -->
+
+			<div id="logo">
+				<h1 id="site-title">
+					<a href="https://garvis.ca/" title="The World According to Mitch - The day to day ramblings of an IT Professional and Community Leader" rel="home">
+						The World According to Mitch					</a>
+				</h1>
+				<p id="site-description">The day to day ramblings of an IT Professional and Community Leader</p>
+			</div><!-- end #logo -->
+
+			<div id="search">
+				<form method="get" id="searchform" action="https://garvis.ca/">
+	<label for="s" class="assistive-text hidden">Search</label>
+	<input id="s" type="text" name="s" placeholder="Search">
+	<button id="searchsubmit" name="submit" type="submit">Search</button>
+</form>			</div><!-- end #search -->
+
+			
+<div id="social">
+	<ul>
+			</ul>
+</div>
+		</div><!-- end #header -->
+
+		<hr class="sepinside">
+<div id="content" class="clearfix">
+
+	
+	<div class="column column-title">
+		<div id="crumbs">
+	<p><a href="https://garvis.ca/">Home</a> » <a href="https://garvis.ca/category/iscsi-software-target/">iSCSI Software Target</a> » <span class="current">iSCSI Storage in Windows Server&nbsp;2012</span></p>
+</div><!-- end #crumbs -->		<h1 class="title-header">iSCSI Storage in Windows Server&nbsp;2012</h1>	</div><!-- end .column-title -->
+
+		<div class="column column-narrow">
+		<div id="image-5" class="widget clearfix widget_image"><h3 class="heading">If you value or enjoy this blog please feel free to donate.  I receive no compensation for it and do not sell my endorsements.</h3><div style="overflow:hidden;"><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=3HFQPS687SHAS"><img src="./ISCSI Storage in Windows Server 2012_files/btn_donateCC_LG.gif" class="aligncenter" width="147" height="47"></a></div>
+</div><div id="search-3" class="widget clearfix widget_search"><form method="get" id="searchform" action="https://garvis.ca/">
+	<label for="s" class="assistive-text hidden">Search</label>
+	<input id="s" type="text" name="s" placeholder="Search">
+	<button id="searchsubmit" name="submit" type="submit">Search</button>
+</form></div><div id="linkcat-1356" class="widget clearfix widget_links"><h3 class="heading">Blogroll</h3>
+	<ul class="xoxo blogroll">
+<li><a href="http://jeffwouters.nl/" title="A geeky mind is a joy forever…" target="_top">Jeff Wouters's Blog</a></li>
+<li><a href="http://rubelkhan.wordpress.com/" rel="acquaintance colleague" title="All about IT Training and Certification">Rubel Khan's Blog</a></li>
+<li><a href="http://www.bennettbusinessconnections.com/" rel="friend met colleague co-resident">Sharon Bennett's SMB Tech Support</a></li>
+<li><a href="https://garvis.ca/blogs/mitch/default.aspx" title="The day to day ramblings of an IT Professional and Community Leader">The World According to Mitch</a></li>
+
+	</ul>
+</div>
+<div id="twitter_timeline-2" class="widget clearfix widget_twitter_timeline"><h3 class="heading">Follow me on Twitter</h3><iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="twitter-timeline twitter-timeline-rendered" style="position: static; visibility: visible; display: inline-block; width: 225px; height: 400px; padding: 0px; border: none; max-width: 100%; min-width: 180px; margin-top: 0px; margin-bottom: 0px; min-height: 200px;" data-widget-id="426095177141194752" title="Twitter Timeline" src="./ISCSI Storage in Windows Server 2012_files/saved_resource.html"></iframe></div><div id="archives-3" class="widget clearfix widget_archive"><h3 class="heading">Archives</h3>		<label class="screen-reader-text" for="archives-dropdown-3">Archives</label>
+		<select id="archives-dropdown-3" name="archive-dropdown" onchange="document.location.href=this.options[this.selectedIndex].value;">
+			
+			<option value="">Select Month</option>
+				<option value="https://garvis.ca/2017/02/"> February 2017 &nbsp;(1)</option>
+	<option value="https://garvis.ca/2017/01/"> January 2017 &nbsp;(4)</option>
+	<option value="https://garvis.ca/2016/11/"> November 2016 &nbsp;(5)</option>
+	<option value="https://garvis.ca/2016/09/"> September 2016 &nbsp;(2)</option>
+	<option value="https://garvis.ca/2016/08/"> August 2016 &nbsp;(4)</option>
+	<option value="https://garvis.ca/2016/06/"> June 2016 &nbsp;(3)</option>
+	<option value="https://garvis.ca/2016/05/"> May 2016 &nbsp;(4)</option>
+	<option value="https://garvis.ca/2016/03/"> March 2016 &nbsp;(9)</option>
+	<option value="https://garvis.ca/2016/02/"> February 2016 &nbsp;(5)</option>
+	<option value="https://garvis.ca/2016/01/"> January 2016 &nbsp;(4)</option>
+	<option value="https://garvis.ca/2015/12/"> December 2015 &nbsp;(11)</option>
+	<option value="https://garvis.ca/2015/11/"> November 2015 &nbsp;(9)</option>
+	<option value="https://garvis.ca/2015/10/"> October 2015 &nbsp;(8)</option>
+	<option value="https://garvis.ca/2015/09/"> September 2015 &nbsp;(8)</option>
+	<option value="https://garvis.ca/2015/08/"> August 2015 &nbsp;(16)</option>
+	<option value="https://garvis.ca/2015/07/"> July 2015 &nbsp;(15)</option>
+	<option value="https://garvis.ca/2015/06/"> June 2015 &nbsp;(5)</option>
+	<option value="https://garvis.ca/2015/04/"> April 2015 &nbsp;(8)</option>
+	<option value="https://garvis.ca/2015/03/"> March 2015 &nbsp;(11)</option>
+	<option value="https://garvis.ca/2015/02/"> February 2015 &nbsp;(9)</option>
+	<option value="https://garvis.ca/2015/01/"> January 2015 &nbsp;(6)</option>
+	<option value="https://garvis.ca/2014/12/"> December 2014 &nbsp;(11)</option>
+	<option value="https://garvis.ca/2014/11/"> November 2014 &nbsp;(14)</option>
+	<option value="https://garvis.ca/2014/10/"> October 2014 &nbsp;(25)</option>
+	<option value="https://garvis.ca/2014/09/"> September 2014 &nbsp;(14)</option>
+	<option value="https://garvis.ca/2014/08/"> August 2014 &nbsp;(7)</option>
+	<option value="https://garvis.ca/2014/07/"> July 2014 &nbsp;(4)</option>
+	<option value="https://garvis.ca/2014/05/"> May 2014 &nbsp;(7)</option>
+	<option value="https://garvis.ca/2014/04/"> April 2014 &nbsp;(3)</option>
+	<option value="https://garvis.ca/2014/03/"> March 2014 &nbsp;(10)</option>
+	<option value="https://garvis.ca/2014/02/"> February 2014 &nbsp;(10)</option>
+	<option value="https://garvis.ca/2014/01/"> January 2014 &nbsp;(7)</option>
+	<option value="https://garvis.ca/2013/12/"> December 2013 &nbsp;(17)</option>
+	<option value="https://garvis.ca/2013/11/"> November 2013 &nbsp;(8)</option>
+	<option value="https://garvis.ca/2013/10/"> October 2013 &nbsp;(22)</option>
+	<option value="https://garvis.ca/2013/09/"> September 2013 &nbsp;(26)</option>
+	<option value="https://garvis.ca/2013/08/"> August 2013 &nbsp;(15)</option>
+	<option value="https://garvis.ca/2013/07/"> July 2013 &nbsp;(13)</option>
+	<option value="https://garvis.ca/2013/06/"> June 2013 &nbsp;(19)</option>
+	<option value="https://garvis.ca/2013/05/"> May 2013 &nbsp;(14)</option>
+	<option value="https://garvis.ca/2013/04/"> April 2013 &nbsp;(15)</option>
+	<option value="https://garvis.ca/2013/03/"> March 2013 &nbsp;(12)</option>
+	<option value="https://garvis.ca/2013/02/"> February 2013 &nbsp;(12)</option>
+	<option value="https://garvis.ca/2013/01/"> January 2013 &nbsp;(9)</option>
+	<option value="https://garvis.ca/2012/12/"> December 2012 &nbsp;(12)</option>
+	<option value="https://garvis.ca/2012/11/"> November 2012 &nbsp;(13)</option>
+	<option value="https://garvis.ca/2012/10/"> October 2012 &nbsp;(25)</option>
+	<option value="https://garvis.ca/2012/09/"> September 2012 &nbsp;(17)</option>
+	<option value="https://garvis.ca/2012/08/"> August 2012 &nbsp;(32)</option>
+	<option value="https://garvis.ca/2012/07/"> July 2012 &nbsp;(12)</option>
+	<option value="https://garvis.ca/2012/06/"> June 2012 &nbsp;(31)</option>
+	<option value="https://garvis.ca/2012/05/"> May 2012 &nbsp;(22)</option>
+	<option value="https://garvis.ca/2012/04/"> April 2012 &nbsp;(34)</option>
+	<option value="https://garvis.ca/2012/03/"> March 2012 &nbsp;(23)</option>
+	<option value="https://garvis.ca/2012/02/"> February 2012 &nbsp;(13)</option>
+	<option value="https://garvis.ca/2012/01/"> January 2012 &nbsp;(25)</option>
+	<option value="https://garvis.ca/2011/12/"> December 2011 &nbsp;(7)</option>
+	<option value="https://garvis.ca/2011/11/"> November 2011 &nbsp;(17)</option>
+	<option value="https://garvis.ca/2011/10/"> October 2011 &nbsp;(14)</option>
+	<option value="https://garvis.ca/2011/09/"> September 2011 &nbsp;(17)</option>
+	<option value="https://garvis.ca/2011/08/"> August 2011 &nbsp;(16)</option>
+	<option value="https://garvis.ca/2011/07/"> July 2011 &nbsp;(29)</option>
+	<option value="https://garvis.ca/2011/06/"> June 2011 &nbsp;(5)</option>
+	<option value="https://garvis.ca/2011/05/"> May 2011 &nbsp;(5)</option>
+	<option value="https://garvis.ca/2011/04/"> April 2011 &nbsp;(6)</option>
+	<option value="https://garvis.ca/2011/03/"> March 2011 &nbsp;(2)</option>
+	<option value="https://garvis.ca/2011/02/"> February 2011 &nbsp;(4)</option>
+	<option value="https://garvis.ca/2011/01/"> January 2011 &nbsp;(5)</option>
+	<option value="https://garvis.ca/2010/12/"> December 2010 &nbsp;(1)</option>
+	<option value="https://garvis.ca/2010/11/"> November 2010 &nbsp;(8)</option>
+	<option value="https://garvis.ca/2010/10/"> October 2010 &nbsp;(2)</option>
+	<option value="https://garvis.ca/2010/09/"> September 2010 &nbsp;(2)</option>
+	<option value="https://garvis.ca/2010/08/"> August 2010 &nbsp;(5)</option>
+	<option value="https://garvis.ca/2010/07/"> July 2010 &nbsp;(4)</option>
+	<option value="https://garvis.ca/2010/06/"> June 2010 &nbsp;(1)</option>
+	<option value="https://garvis.ca/2010/05/"> May 2010 &nbsp;(4)</option>
+	<option value="https://garvis.ca/2010/04/"> April 2010 &nbsp;(4)</option>
+	<option value="https://garvis.ca/2010/03/"> March 2010 &nbsp;(8)</option>
+	<option value="https://garvis.ca/2010/02/"> February 2010 &nbsp;(2)</option>
+	<option value="https://garvis.ca/2010/01/"> January 2010 &nbsp;(1)</option>
+	<option value="https://garvis.ca/2009/12/"> December 2009 &nbsp;(8)</option>
+	<option value="https://garvis.ca/2009/11/"> November 2009 &nbsp;(6)</option>
+	<option value="https://garvis.ca/2009/10/"> October 2009 &nbsp;(4)</option>
+	<option value="https://garvis.ca/2009/09/"> September 2009 &nbsp;(2)</option>
+	<option value="https://garvis.ca/2009/07/"> July 2009 &nbsp;(7)</option>
+	<option value="https://garvis.ca/2009/06/"> June 2009 &nbsp;(5)</option>
+	<option value="https://garvis.ca/2009/05/"> May 2009 &nbsp;(11)</option>
+	<option value="https://garvis.ca/2009/04/"> April 2009 &nbsp;(2)</option>
+	<option value="https://garvis.ca/2009/03/"> March 2009 &nbsp;(3)</option>
+	<option value="https://garvis.ca/2009/01/"> January 2009 &nbsp;(10)</option>
+	<option value="https://garvis.ca/2008/12/"> December 2008 &nbsp;(5)</option>
+	<option value="https://garvis.ca/2008/11/"> November 2008 &nbsp;(4)</option>
+	<option value="https://garvis.ca/2008/10/"> October 2008 &nbsp;(3)</option>
+	<option value="https://garvis.ca/2008/09/"> September 2008 &nbsp;(6)</option>
+	<option value="https://garvis.ca/2008/08/"> August 2008 &nbsp;(3)</option>
+	<option value="https://garvis.ca/2008/07/"> July 2008 &nbsp;(2)</option>
+	<option value="https://garvis.ca/2008/06/"> June 2008 &nbsp;(4)</option>
+	<option value="https://garvis.ca/2008/05/"> May 2008 &nbsp;(2)</option>
+	<option value="https://garvis.ca/2008/04/"> April 2008 &nbsp;(5)</option>
+	<option value="https://garvis.ca/2008/03/"> March 2008 &nbsp;(8)</option>
+	<option value="https://garvis.ca/2008/02/"> February 2008 &nbsp;(3)</option>
+	<option value="https://garvis.ca/2008/01/"> January 2008 &nbsp;(4)</option>
+
+		</select>
+		</div><div id="top-posts-2" class="widget clearfix widget_top-posts"><h3 class="heading">Top Posts</h3><ul>				<li>
+										<a href="https://garvis.ca/2013/02/21/converting-an-sd-card-to-permanent-storage-in-windows-devices/" class="bump-view" data-bump-view="tp">
+						Converting an SD Card to Permanent Storage in Windows Devices					</a>
+									</li>
+							<li>
+										<a href="https://garvis.ca/2013/01/04/installing-netfx3-on-windows-server-2012/" class="bump-view" data-bump-view="tp">
+						Installing NetFx3 on Windows Server 2012					</a>
+									</li>
+							<li>
+										<a href="https://garvis.ca/2013/06/20/activating-office-2013-headaches-heres-your-aspirin/" class="bump-view" data-bump-view="tp">
+						Activating Office 2013 Headaches… Here’s your Aspirin!					</a>
+									</li>
+							<li>
+										<a href="https://garvis.ca/2015/08/05/what-happened-to-my-start-turning-off-metro-in-windows-10/" class="bump-view" data-bump-view="tp">
+						What Happened to My Start? Turning off ‘Metro’ in Windows 10					</a>
+									</li>
+							<li>
+										<a href="https://garvis.ca/2015/01/05/keep-up-how-to-configure-scom-to-monitor-the-running-state-of-services-and-restart-them-when-they-stop/" class="bump-view" data-bump-view="tp">
+						Keep Up: How to configure SCOM to monitor the running state of services and restart them when they stop					</a>
+									</li>
+			</ul></div><div id="blog_subscription-3" class="widget clearfix widget_blog_subscription"><h3 class="heading"><label for="subscribe-field">Email Subscription</label></h3>
+				<form action="https://subscribe.wordpress.com/" method="post" accept-charset="utf-8" id="subscribe-blog">
+											<p>Enter your email address to subscribe to this blog and receive notifications of new posts by email.</p>
+<p>Join 2,508 other followers</p>
+						<p><input type="text" name="email" style="width: 95%; padding: 1px 2px" placeholder="Enter your email address" value="" id="subscribe-field"></p>
+					
+					<p>
+						<input type="hidden" name="action" value="subscribe">
+						<input type="hidden" name="blog_id" value="17442937">
+						<input type="hidden" name="source" value="https://garvis.ca/2013/01/10/iscsi-storage-in-windows-server-20122/">
+						<input type="hidden" name="sub-type" value="widget">
+						<input type="hidden" name="redirect_fragment" value="blog_subscription-3">
+						<input type="hidden" id="_wpnonce" name="_wpnonce" value="46629cbe6a">						<input type="submit" value="Sign me up!">
+					</p>
+				</form>
+			
+</div><div id="wp_tag_cloud-3" class="widget clearfix wp_widget_tag_cloud"><h3 class="heading">Tags</h3><div style="overflow:hidden"><a href="https://garvis.ca/tag/active-directory/" class="tag-link-35699 tag-link-position-1" title="4 topics" style="font-size: 9.0852713178295pt;">Active Directory</a>
+<a href="https://garvis.ca/tag/article/" class="tag-link-3867 tag-link-position-2" title="6 topics" style="font-size: 10.713178294574pt;">Article</a>
+<a href="https://garvis.ca/tag/australia/" class="tag-link-4330 tag-link-position-3" title="4 topics" style="font-size: 9.0852713178295pt;">Australia</a>
+<a href="https://garvis.ca/tag/black-belt/" class="tag-link-405305 tag-link-position-4" title="6 topics" style="font-size: 10.713178294574pt;">black belt</a>
+<a href="https://garvis.ca/tag/business/" class="tag-link-179 tag-link-position-5" title="4 topics" style="font-size: 9.0852713178295pt;">Business</a>
+<a href="https://garvis.ca/tag/canada/" class="tag-link-2443 tag-link-position-6" title="22 topics" style="font-size: 16.248062015504pt;">Canada</a>
+<a href="https://garvis.ca/tag/canadian/" class="tag-link-9282 tag-link-position-7" title="4 topics" style="font-size: 9.0852713178295pt;">Canadian</a>
+<a href="https://garvis.ca/tag/certification/" class="tag-link-11198 tag-link-position-8" title="12 topics" style="font-size: 13.53488372093pt;">Certification</a>
+<a href="https://garvis.ca/tag/certifications-microsoft-learning/" class="tag-link-69519064 tag-link-position-9" title="7 topics" style="font-size: 11.255813953488pt;">certifications; Microsoft Learning</a>
+<a href="https://garvis.ca/tag/certs/" class="tag-link-912494 tag-link-position-10" title="4 topics" style="font-size: 9.0852713178295pt;">Certs</a>
+<a href="https://garvis.ca/tag/cloud-computing/" class="tag-link-1715866 tag-link-position-11" title="4 topics" style="font-size: 9.0852713178295pt;">Cloud computing</a>
+<a href="https://garvis.ca/tag/dvd/" class="tag-link-1181 tag-link-position-12" title="3 topics" style="font-size: 8pt;">DVD</a>
+<a href="https://garvis.ca/tag/facebook/" class="tag-link-81819 tag-link-position-13" title="5 topics" style="font-size: 9.953488372093pt;">Facebook</a>
+<a href="https://garvis.ca/tag/fitbit/" class="tag-link-10930235 tag-link-position-14" title="5 topics" style="font-size: 9.953488372093pt;">FitBit</a>
+<a href="https://garvis.ca/tag/grandmaster/" class="tag-link-990702 tag-link-position-15" title="5 topics" style="font-size: 9.953488372093pt;">GrandMaster</a>
+<a href="https://garvis.ca/tag/hp-elitebook/" class="tag-link-10910722 tag-link-position-16" title="4 topics" style="font-size: 9.0852713178295pt;">HP EliteBook</a>
+<a href="https://garvis.ca/tag/hyper-v/" class="tag-link-2660314 tag-link-position-17" title="40 topics" style="font-size: 18.961240310078pt;">Hyper-V</a>
+<a href="https://garvis.ca/tag/hyper-v-2012/" class="tag-link-88527388 tag-link-position-18" title="8 topics" style="font-size: 11.798449612403pt;">Hyper-V 2012</a>
+<a href="https://garvis.ca/tag/ip-address/" class="tag-link-267172 tag-link-position-19" title="4 topics" style="font-size: 9.0852713178295pt;">IP address</a>
+<a href="https://garvis.ca/tag/iscsi/" class="tag-link-42965 tag-link-position-20" title="3 topics" style="font-size: 8pt;">ISCSI</a>
+<a href="https://garvis.ca/tag/it/" class="tag-link-3072 tag-link-position-21" title="4 topics" style="font-size: 9.0852713178295pt;">IT</a>
+<a href="https://garvis.ca/tag/japan/" class="tag-link-2062 tag-link-position-22" title="20 topics" style="font-size: 15.813953488372pt;">Japan</a>
+<a href="https://garvis.ca/tag/japanese-cuisine/" class="tag-link-177851 tag-link-position-23" title="4 topics" style="font-size: 9.0852713178295pt;">Japanese cuisine</a>
+<a href="https://garvis.ca/tag/martial-arts/" class="tag-link-15031 tag-link-position-24" title="9 topics" style="font-size: 12.341085271318pt;">Martial arts</a>
+<a href="https://garvis.ca/tag/microsoft/" class="tag-link-637 tag-link-position-25" title="77 topics" style="font-size: 22pt;">Microsoft</a>
+<a href="https://garvis.ca/tag/microsoft-certified-professional/" class="tag-link-435299 tag-link-position-26" title="12 topics" style="font-size: 13.53488372093pt;">Microsoft Certified Professional</a>
+<a href="https://garvis.ca/tag/microsoft-deployment-toolkit/" class="tag-link-8624925 tag-link-position-27" title="4 topics" style="font-size: 9.0852713178295pt;">Microsoft Deployment Toolkit</a>
+<a href="https://garvis.ca/tag/microsoft-press/" class="tag-link-929844 tag-link-position-28" title="4 topics" style="font-size: 9.0852713178295pt;">Microsoft Press</a>
+<a href="https://garvis.ca/tag/microsoft-servers/" class="tag-link-1606332 tag-link-position-29" title="4 topics" style="font-size: 9.0852713178295pt;">Microsoft Servers</a>
+<a href="https://garvis.ca/tag/microsoft-store/" class="tag-link-6995044 tag-link-position-30" title="6 topics" style="font-size: 10.713178294574pt;">Microsoft Store</a>
+<a href="https://garvis.ca/tag/microsoft-surface-2/" class="tag-link-48941511 tag-link-position-31" title="5 topics" style="font-size: 9.953488372093pt;">Microsoft Surface</a>
+<a href="https://garvis.ca/tag/microsoft-windows/" class="tag-link-5496 tag-link-position-32" title="48 topics" style="font-size: 19.829457364341pt;">Microsoft Windows</a>
+<a href="https://garvis.ca/tag/montreal/" class="tag-link-7116 tag-link-position-33" title="8 topics" style="font-size: 11.798449612403pt;">Montreal</a>
+<a href="https://garvis.ca/tag/oakville-ontario/" class="tag-link-9307326 tag-link-position-34" title="3 topics" style="font-size: 8pt;">Oakville Ontario</a>
+<a href="https://garvis.ca/tag/operating-system/" class="tag-link-5495 tag-link-position-35" title="21 topics" style="font-size: 16.031007751938pt;">Operating system</a>
+<a href="https://garvis.ca/tag/orlando-florida/" class="tag-link-973115 tag-link-position-36" title="4 topics" style="font-size: 9.0852713178295pt;">Orlando Florida</a>
+<a href="https://garvis.ca/tag/personal-computer/" class="tag-link-34084 tag-link-position-37" title="8 topics" style="font-size: 11.798449612403pt;">Personal computer</a>
+<a href="https://garvis.ca/tag/politics/" class="tag-link-398 tag-link-position-38" title="4 topics" style="font-size: 9.0852713178295pt;">Politics</a>
+<a href="https://garvis.ca/tag/powershell/" class="tag-link-178495 tag-link-position-39" title="7 topics" style="font-size: 11.255813953488pt;">PowerShell</a>
+<a href="https://garvis.ca/tag/private-cloud/" class="tag-link-10669702 tag-link-position-40" title="6 topics" style="font-size: 10.713178294574pt;">Private Cloud</a>
+<a href="https://garvis.ca/tag/quebec/" class="tag-link-56943 tag-link-position-41" title="3 topics" style="font-size: 8pt;">Quebec</a>
+<a href="https://garvis.ca/tag/servers/" class="tag-link-298 tag-link-position-42" title="5 topics" style="font-size: 9.953488372093pt;">Servers</a>
+<a href="https://garvis.ca/tag/skype/" class="tag-link-812 tag-link-position-43" title="4 topics" style="font-size: 9.0852713178295pt;">Skype</a>
+<a href="https://garvis.ca/tag/small-business/" class="tag-link-10585 tag-link-position-44" title="4 topics" style="font-size: 9.0852713178295pt;">Small business</a>
+<a href="https://garvis.ca/tag/surface/" class="tag-link-21689 tag-link-position-45" title="4 topics" style="font-size: 9.0852713178295pt;">Surface</a>
+<a href="https://garvis.ca/tag/system-center-2012/" class="tag-link-53682889 tag-link-position-46" title="4 topics" style="font-size: 9.0852713178295pt;">System Center 2012</a>
+<a href="https://garvis.ca/tag/taekwondo/" class="tag-link-19815 tag-link-position-47" title="11 topics" style="font-size: 13.209302325581pt;">Taekwondo</a>
+<a href="https://garvis.ca/tag/teched/" class="tag-link-133888 tag-link-position-48" title="5 topics" style="font-size: 9.953488372093pt;">TechEd</a>
+<a href="https://garvis.ca/tag/tokyo/" class="tag-link-10466 tag-link-position-49" title="17 topics" style="font-size: 15.162790697674pt;">Tokyo</a>
+<a href="https://garvis.ca/tag/toronto/" class="tag-link-2444 tag-link-position-50" title="8 topics" style="font-size: 11.798449612403pt;">Toronto</a>
+<a href="https://garvis.ca/tag/twitter/" class="tag-link-599182 tag-link-position-51" title="9 topics" style="font-size: 12.341085271318pt;">Twitter</a>
+<a href="https://garvis.ca/tag/united-states/" class="tag-link-5850 tag-link-position-52" title="3 topics" style="font-size: 8pt;">United States</a>
+<a href="https://garvis.ca/tag/usb/" class="tag-link-57231 tag-link-position-53" title="4 topics" style="font-size: 9.0852713178295pt;">USB</a>
+<a href="https://garvis.ca/tag/usb-flash-drive/" class="tag-link-233097 tag-link-position-54" title="4 topics" style="font-size: 9.0852713178295pt;">USB flash drive</a>
+<a href="https://garvis.ca/tag/vancouver/" class="tag-link-6682 tag-link-position-55" title="4 topics" style="font-size: 9.0852713178295pt;">Vancouver</a>
+<a href="https://garvis.ca/tag/vhd/" class="tag-link-1023984 tag-link-position-56" title="4 topics" style="font-size: 9.0852713178295pt;">VHD</a>
+<a href="https://garvis.ca/tag/virtualization/" class="tag-link-40559 tag-link-position-57" title="7 topics" style="font-size: 11.255813953488pt;">Virtualization</a>
+<a href="https://garvis.ca/tag/virtual-machine/" class="tag-link-95007 tag-link-position-58" title="11 topics" style="font-size: 13.209302325581pt;">Virtual machine</a>
+<a href="https://garvis.ca/tag/vmware/" class="tag-link-38600 tag-link-position-59" title="12 topics" style="font-size: 13.53488372093pt;">VMware</a>
+<a href="https://garvis.ca/tag/vmware-vsphere/" class="tag-link-19528666 tag-link-position-60" title="6 topics" style="font-size: 10.713178294574pt;">VMware vSphere</a>
+<a href="https://garvis.ca/tag/windows/" class="tag-link-800 tag-link-position-61" title="26 topics" style="font-size: 17.007751937984pt;">Windows</a>
+<a href="https://garvis.ca/tag/windows-7/" class="tag-link-729864 tag-link-position-62" title="9 topics" style="font-size: 12.341085271318pt;">Windows 7</a>
+<a href="https://garvis.ca/tag/windows-8/" class="tag-link-4502980 tag-link-position-63" title="40 topics" style="font-size: 18.961240310078pt;">Windows 8</a>
+<a href="https://garvis.ca/tag/windows-intune-2/" class="tag-link-40651106 tag-link-position-64" title="6 topics" style="font-size: 10.713178294574pt;">Windows InTune</a>
+<a href="https://garvis.ca/tag/windows-powershell/" class="tag-link-926032 tag-link-position-65" title="8 topics" style="font-size: 11.798449612403pt;">Windows PowerShell</a>
+<a href="https://garvis.ca/tag/windows-server/" class="tag-link-8830 tag-link-position-66" title="27 topics" style="font-size: 17.22480620155pt;">Windows Server</a>
+<a href="https://garvis.ca/tag/windows-server-2003/" class="tag-link-51457 tag-link-position-67" title="6 topics" style="font-size: 10.713178294574pt;">Windows Server 2003</a>
+<a href="https://garvis.ca/tag/windows-server-2008/" class="tag-link-1093996 tag-link-position-68" title="13 topics" style="font-size: 13.968992248062pt;">Windows Server 2008</a>
+<a href="https://garvis.ca/tag/windows-server-2008-r2/" class="tag-link-10163538 tag-link-position-69" title="6 topics" style="font-size: 10.713178294574pt;">Windows Server 2008 R2</a>
+<a href="https://garvis.ca/tag/windows-server-2012/" class="tag-link-30743506 tag-link-position-70" title="25 topics" style="font-size: 16.790697674419pt;">Windows Server 2012</a>
+<a href="https://garvis.ca/tag/windows-server-2012-r2/" class="tag-link-159543117 tag-link-position-71" title="6 topics" style="font-size: 10.713178294574pt;">Windows Server 2012 R2</a>
+<a href="https://garvis.ca/tag/windows-small-business-server/" class="tag-link-6925100 tag-link-position-72" title="4 topics" style="font-size: 9.0852713178295pt;">Windows Small Business Server</a>
+<a href="https://garvis.ca/tag/windows-to-go-2/" class="tag-link-83171868 tag-link-position-73" title="4 topics" style="font-size: 9.0852713178295pt;">Windows To Go</a>
+<a href="https://garvis.ca/tag/windows-vista/" class="tag-link-3003 tag-link-position-74" title="4 topics" style="font-size: 9.0852713178295pt;">Windows Vista</a>
+<a href="https://garvis.ca/tag/xbox/" class="tag-link-502 tag-link-position-75" title="3 topics" style="font-size: 8pt;">Xbox</a></div></div>	</div><!-- end .column-narrow -->
+	
+	<div class="column column-content single">
+
+		
+<div id="post-2549" class="post-2549 post type-post status-publish format-standard hentry category-iscsi-software-target category-sans category-storage category-windows-server-2012 tag-iscsi tag-san tag-software-san">
+
+	<div class="entry-content clearfix">
+		<p>Storage is one of the most important aspects of our IT infrastructure.&nbsp; In this day and age of virtualization it is even more important because our entire server infrastructure may be stored on a limited set of devices.</p>
+<p>Of course that is a lot easier said than done, especially for smaller companies with limited IT budgets.&nbsp; Even the simplest SAN devices can be expensive, and the temptation to save our virtual machines on <em>direct attached storage </em>often wins over the ability to live-migrate virtual machines between hosts.</p>
+<p>In April, 2011 Microsoft released the<strong> iSCSI Software Target 3.3</strong> as a free (and supported) download, and suddenly iSCSI SANs were available to the masses.&nbsp; At the time Pierre and I wrote a series of articles in this space as guest bloggers (<a href="http://blogs.technet.com/b/canitpro/archive/2011/04/05/the-microsoft-iscsi-software-target-is-now-free.aspx">The Microsoft iSCSI Software Target is now free</a>, <a href="http://blogs.technet.com/b/canitpro/archive/2011/04/07/all-for-san-and-san-for-all.aspx">All for SAN and SAN for All!</a>, <a href="http://blogs.technet.com/b/canitpro/archive/2011/04/12/creating-a-san-using-microsoft-iscsi-software-target-3-3.aspx">Creating a SAN using Microsoft iSCSI Software Target 3.3</a>, <a href="http://blogs.technet.com/b/canitpro/archive/2011/04/18/creating-ha-vms-for-hyper-v-with-failover-clustering-using-free-microsoft-iscsi-target-3-3.aspx">Creating HA VMs for Hyper-V with Failover Clustering using FREE Microsoft iSCSI Target 3.3</a>).</p>
+<p>While Hyper-V has made virtualization available to the masses, I feel the <strong>iSCSI Software Target </strong>has been one of the tools that has best enabled me to teach true datacentre virtualization to the masses, because after all without Live Migration and Failover Clustering virtualization is really limited to the capacity of a single box.</p>
+<p>In Windows Server 2012 Microsoft has taken us one step further: The ISCSI Software Target is actually included in the box.&nbsp; Enabling and creating a target is as simple as following the steps in this article.</p>
+<p><strong>Environment</strong></p>
+<p>As with most of my articles, the screen captures will be from servers in my production environment.&nbsp; As with any technology, if you are going to play with this one I strongly suggest you do it in a lab environment before bringing it into your production network.</p>
+<p><strong>Target Server:</strong></p>
+<p>I have created a virtual machine called <strong>SWMITarget</strong> on one of my virtualization hosts.&nbsp; The resource requirements are pretty simple… as it is not performing any other function, it seldom needs more than 512 MB of RAM; using <em>dynamic memory </em>I give it that as a minimum, but allow it up to 2048 (2GB) for a maximum… in case it <em>really </em>needs it.&nbsp; I should mention that in a production environment I would never recommend virtualizing your SAN… try to pick up an inexpensive server with a bunch of good drives in it.</p>
+<p>While I do not recommend this in most companies, For this environment I am using the same network as my production environment.&nbsp; In a production environment I would recommend a separate network for the SAN environment for two reasons: security and bandwidth.&nbsp; As my network is a closed loop with 10GigE switches neither is an issue.</p>
+<p>The storage for the target is separated into two: a 40GB system disk attached to an IDE Controller for the Windows Partition, and a 150GB disk attached to a SCSI controller for the LUN (Logical Unit Number).&nbsp; In reality I will have a Storage Pool of three 150GB disks for my production environment.&nbsp; To learn about Storage Pools read my recent article <strong><a href="http://blogs.technet.com/b/canitpro/archive/2012/12/13/storage-pools-dive-right-in.aspx">Storage Pools: Dive right in!</a></strong></p>
+<p><strong>Host Servers:</strong></p>
+<p>Because the iSCSI security model will only expose its LUNs to a server (<em>Initiator</em>) that is pre-specified, you should know the IP Addresses of the servers that will be connecting to the shared storage before building the iSCSI Target.&nbsp; I will be connecting two hosts to this target, and have checked their addresses: 192.168.0.9 and 192.168.0.10.&nbsp; This could also be done by DNS Name or IQN (iSCSI Qualified Name), but IP is the easiest.</p>
+<p><strong>Preparing the Target Server:</strong></p>
+<p><a href="http://blogs.technet.com/cfs-file.ashx/__key/communityserver-blogs-components-weblogfiles/00-00-00-48-12-metablogapi/7571.image_5F00_14553907.png"><img title="image" alt="image" src="./ISCSI Storage in Windows Server 2012_files/8176.image_5F00_thumb_5F00_4AE2E44B.png" width="449" height="320" align="right" border="0"></a>Although the iSCSI Software Target is included in the box, it is not installed by default.&nbsp; It is a Role that has to be enabled:</p>
+<ol>
+<li>From the <strong>Server Manager </strong>click <strong>Manage</strong>, and select <strong>Add Roles and Features</strong>.&nbsp; This will launch the <strong><em>Add Roles and Features Wizard</em></strong>.</li>
+<li>On the <em>Before you begin</em> page read the instructions and click <strong>Next&gt;</strong></li>
+<li>On the <em>Select installation type</em> screen ensure that the <strong>Role-based or feature-based installation</strong> radio is selected and click <strong>Next&gt;</strong></li>
+<li>On the <em>Select destination server</em> screen ensure that the <strong>Select a server from the server pool</strong> radio is selected, and under <strong>Server Pool</strong> select the server onto which you want to install the role, then click <strong>Next&gt;</strong></li>
+<li>On the <em>Select server roles</em> screen under <strong>Roles</strong> expand <strong>File and iSCSI Services</strong>, select <strong>File Server </strong>and <strong>iSCSI Target Software</strong>, then click <strong>Next&gt; </strong></li>
+<li>On the <em>Select features</em> screen click <strong>Next&gt;</strong></li>
+<li>On the <em>Confirm installation selections </em>page review the options and click <strong>Install</strong>.&nbsp; Optionally, you could also select the <strong>Restart the destination server automatically if required</strong> box, but if you are only installing these roles then a reboot should not be necessary.</li>
+</ol>
+<p>Now that the role is installed, you should now see the <strong>iSCSI</strong> option under the <strong>File and Storage Services</strong> tab.</p>
+<p><strong>Creating the iSCSI LUN</strong></p>
+<p>Before you actually create the iSCSI Target you first have to create the iSCSI virtual disk, and from within the <strong>New iSCSI Virtual Disk Wizard</strong> you will create the target.</p>
+<p><strong>NOTE:</strong> If you will be using this target for a Failover Cluster you may want to create a second virtual disk that is 1GB and add it to the same iSCSI Target.&nbsp; This disk will be used as the disk witness (or Quorum Disk).</p>
+<ul>
+<li>From the <strong>Server Manager </strong>console navigate to the <strong>File and Storage Services </strong>tab.</li>
+<li>In <strong>File and Storage Services </strong>click on <strong>iSCSI </strong>in the navigation pane.</li>
+<li>In the details pane under <strong>iSCSI VIRTUAL DISKS </strong>click <em>To create an iSCSI virtual disk, start the New iSCSI Virtual Disk Wizard</em>.</li>
+<li>In the <strong>New iSCSI Virtual Disk Wizard</strong> ensure that your server is selected under <em>Server</em>, and the disk where you want to store the Target disk is selected under <em>Select by volume</em>.&nbsp; Click <strong>Next&gt;</strong></li>
+<li><a href="http://blogs.technet.com/cfs-file.ashx/__key/communityserver-blogs-components-weblogfiles/00-00-00-48-12-metablogapi/3683.image_5F00_03AD184C.png"><img title="image" alt="image" src="./ISCSI Storage in Windows Server 2012_files/4452.image_5F00_thumb_5F00_22EFBF1F.png" width="334" height="347" align="right" border="0"></a>In the <em>Specify iSCSI virtual disk name </em>screen type a name for the disk and click <strong>Next&gt;</strong></li>
+<li>In the <em>Specify iSCSI virtual disk size</em> screen enter the size for the target disk and click <strong>Next&gt;</strong></li>
+<li>In the <em>Assign iSCSI target</em> screen ensure the <strong>New iSCSI target</strong> radio is selected and click <strong>Next&gt;</strong></li>
+<li>In the <em>Specify target name</em> screen type a name for your target.&nbsp; Remember that this target name will be integrated into the IQN which is replete with dashes… I strongly recommend avoiding them here!</li>
+<li>In the <em>Specify access servers</em> screen click <strong>Add..</strong>. to open the <strong>Add initiator</strong> <strong>ID</strong> window.
+<ul>
+<li>Ensure the <strong>Enter a value for the selected type</strong> radio is selected.</li>
+<li>In the <strong>Type:</strong> dropdown select <strong>IP Address</strong></li>
+<li>In the <strong>Value</strong> box type the IP Address of the first host that you want to connect, then click <strong>OK</strong>.</li>
+</ul>
+<p><strong>NOTE: </strong>You will have to run this process separately for each server that you plan to add.</p></li>
+<li>In the <em>Specify access servers</em> screen click <strong>Add..</strong>. to open the <strong>Add initiator</strong> <strong>ID</strong> window.
+<ul>
+<li>Ensure the <strong>Enter a value for the selected type</strong> radio is selected.</li>
+<li>In the <strong>Type:</strong> dropdown select <strong>IP Address</strong></li>
+<li>In the <strong>Value</strong> box type the IP Address of the first host that you want to connect, then click <strong>OK</strong>.</li>
+</ul>
+</li>
+<li>Before going forward make sure that all of the hosts that you want to access this target are listed in the <strong>Specify access servers </strong>list, then click <strong>Next&gt;</strong><a href="http://blogs.technet.com/cfs-file.ashx/__key/communityserver-blogs-components-weblogfiles/00-00-00-48-12-metablogapi/7506.image_5F00_004B80A4.png"><img style="float:none;margin-left:auto;display:block;margin-right:auto;" title="image" alt="image" src="./ISCSI Storage in Windows Server 2012_files/7411.image_5F00_thumb_5F00_1F8E2777.png" width="489" height="164" border="0"></a></li>
+<li>In the <strong>Enable Authentication</strong> screen click <strong>Next&gt;</strong>.&nbsp; While CHAP and reverse CHAP are options, I will not go into them here.&nbsp; Because iSCSI is an open protocol, CHAP (Control Handshake Authentication Protocol) is the only authentication method available for iSCSI SANs, and it has not changed or advanced in over a dozen years.&nbsp; As such it is not considered very secure.</li>
+<li>In the <strong>Confirm selections </strong>screen ensure that your selections are correct, and click <strong>Create</strong>.Once the wizard is complete you should see a <em>results</em> screen like this.&nbsp; You can close it… your target is done!
+<p><a href="http://blogs.technet.com/cfs-file.ashx/__key/communityserver-blogs-components-weblogfiles/00-00-00-48-12-metablogapi/2211.image_5F00_49FA5894.png"><img style="float:none;margin-left:auto;display:block;margin-right:auto;" title="image" alt="image" src="./ISCSI Storage in Windows Server 2012_files/5344.image_5F00_thumb_5F00_054DBE53.png" width="526" height="289" border="0"></a></p>
+<p><strong>Accessing the Target:</strong></p>
+<p>The iSCSI loop consists of two distinct parts – the <em><strong>Target</strong></em>, which is the device being accessed, and the <strong><em>Initiator</em></strong>, which is the server (or client) accessing it.&nbsp; Every Microsoft OS that you might use in a business has the <strong>iSCSI Initiator </strong>software included… it is simply a matter of enabling it, and once it is enabled it will start automatically every time your system reboots.</p>
+<p><strong>NOTE:</strong> The following steps must be performed on each server that will be connecting to the iSCSI Target.</p>
+<p>To enable the iSCSI Initiator, simply search for <strong>iSCSI Initiator </strong>and run it.&nbsp; You will get a dialog box that says:</p>
+<blockquote><p>The Microsoft iSCSI service is not running. The service is required to be started for iSCSI to function correctly. To start the service now and have the service start automatically each time the computer restarts, click the Yes button.</p></blockquote>
+<p>Click the Yes button.&nbsp; The iSCSI Initiator Properties box will come up.&nbsp; To connect to your target:</p></li>
+<li>In the <strong>Target</strong> box (in the <strong>Targets </strong>tab) enter the IP address of your Target Server, and click <strong>Quick Connect…</strong><a href="http://blogs.technet.com/cfs-file.ashx/__key/communityserver-blogs-components-weblogfiles/00-00-00-48-12-metablogapi/4774.image_5F00_26E9E724.png"><img style="float:none;margin-left:auto;display:block;margin-right:auto;" title="image" alt="image" src="./ISCSI Storage in Windows Server 2012_files/5857.image_5F00_thumb_5F00_6CFAA437.png" width="373" height="416" border="0"></a>
+<p>If your initiator connects successfully to the target it should take only a second or two for the <strong>Quick Connect</strong> window to appear with the successful acknowledgement (see screen capture).&nbsp; If it takes longer than more likely than not something went wrong.&nbsp; Make sure that the IP address of the Target is right, and if it is then go back into the Target and confirm that you correctly entered the IP address of the Initiators.</p></li>
+<li>Click <strong>Done</strong></li>
+<li>In the <strong>iSCSI Initiator Properties </strong>box navigate to the <strong><em>Volumes and Devices</em></strong> tab and click <strong>Auto Configure</strong>.&nbsp; You should get entries for your LUNs that look like this:<a href="http://blogs.technet.com/cfs-file.ashx/__key/communityserver-blogs-components-weblogfiles/00-00-00-48-12-metablogapi/3617.image_5F00_0113C0C1.png"><img title="image" alt="image" src="./ISCSI Storage in Windows Server 2012_files/5873.image_5F00_thumb_5F00_52BA3B13.png" width="588" height="104" border="0"></a>
+<p>There will be one entry for each disk that you connected to the iSCSI Target.</p></li>
+<li>Click <strong>OK</strong>.<strong>NOTE:</strong> The following steps must be performed on only one server that will be connecting to the iSCSI Target.
+<ul>
+<li>Open the <strong>Disk Management</strong> console (right-click in the bottom left corner of the screen and click <strong>Disk Management</strong>).</li>
+<li>There should be disks that are offline and unallocated – if you created two then there will be two, and so forth.&nbsp; Right-click on the disks and bring them both on-line.</li>
+<li>Right-click on one of the disks and select <strong>Initialize Disk</strong>.&nbsp; All of the uninitialized disks should appear.&nbsp; Ensure they are all selected and click <strong>OK</strong>.</li>
+<li>Right-click on each disk and create a simple volume, and format them.</li>
+</ul>
+<p>If you were to return to the iSCSI Initiator Properties now, select the <strong><em>Volumes and Devices </em></strong>tab and click <strong>Auto Configure</strong> again, you would get entries that look like this:</p>
+<p><a href="http://blogs.technet.com/cfs-file.ashx/__key/communityserver-blogs-components-weblogfiles/00-00-00-48-12-metablogapi/1256.image_5F00_1FEA349F.png"><img title="image" alt="image" src="./ISCSI Storage in Windows Server 2012_files/7411.image_5F00_thumb_5F00_3F990E67.png" width="590" height="99" border="0"></a></p>
+<p>However this step is unnecessary.</p>
+<p><strong>You’re Done!</strong></p>
+<p>Okay, you aren’t quite <em>done</em>, but you have created your iSCSI Target, and connected your hosts to it.&nbsp; In my next article I will show you how to enable and configure <strong><em>Failover Clustering</em></strong>, how to make your existing virtual machines <em>highly available</em>, and how to create new <em><strong>Highly Available Virtual Machines</strong>.</em></p></li>
+</ul>
+<h6 class="zemanta-related-title" style="font-size:1em;">Related articles</h6>
+<ul class="zemanta-article-ul">
+<li class="zemanta-article-ul-li"><a href="https://garvis.ca/2012/12/17/storage-pools-dive-right-in/" target="_blank" rel="nofollow">Storage Pools… Dive right in!</a> (<span class="skimlinks-unlinked">garvis.ca</span>)</li>
+</ul>
+		<div id="geo-post-2549" class="geo geo-post" style="display: none">
+			<span class="latitude">43.450000</span>
+			<span class="longitude">-79.683333</span>
+		</div>		<div class="wpcnt">
+			<div class="wpa wpmrec" style="display: inline-block !important;">
+				<a class="wpa-about" href="https://en.support.wordpress.com/about-these-ads/" rel="nofollow">Advertisements</a>
+				        <div id="crt-585044953" style="width: 300px; height: 250px; display: block !important;"><iframe src="./ISCSI Storage in Windows Server 2012_files/afr.html" id="crt-585044953_cto_iframe" frameborder="0" marginwidth="0px" marginheight="0px" width="100%" height="100%" scrolling="no"></iframe></div>
+        <script type="text/javascript">
+        var o = document.getElementById('crt-585044953');
+        if ("undefined"!=typeof Criteo) {
+            var p = o.parentNode;
+            p.style.setProperty('display', 'inline-block', 'important');
+            o.style.setProperty('display', 'block', 'important');
+            Criteo.DisplayAcceptableAdIfAdblocked({zoneid:388248,containerid:"crt-585044953",collapseContainerIfNotAdblocked:true,"callifnotadblocked": function () {var o = document.getElementById('crt-585044953'); o.style.setProperty('display','none','important');o.style.setProperty('visbility','hidden','important'); }
+        });
+        } else {
+            o.style.setProperty('display', 'none', 'important');
+            o.style.setProperty('visibility', 'hidden', 'important');
+        }
+        </script>
+				<div class="u">
+								<script type="text/javascript">
+				(function(g){if("undefined"!=typeof g.__ATA){g.__ATA.initAd({sectionId:26942, width:300, height:250});}})(window);
+			</script>
+				</div>
+			</div>
+		</div><div id="jp-post-flair" class="sharedaddy sd-rating-enabled sd-like-enabled sd-sharing-enabled"><div class="sd-block sd-rating"><h3 class="sd-title">Rate this:</h3><div class="pd-rating" id="pd_rating_holder_4433917_post_2549" style="display: inline-block;"><div class="rating-icons" id="pd_rate_4433917_post_2549" style="float:left;"><div class="rating-star-icon" onmouseout="PDRTJS_4433917_post_2549.rebuild();" onclick="PDRTJS_4433917_post_2549.rate(1);" onmouseover="PDRTJS_4433917_post_2549.hover(1);" id="PDRTJS_4433917_post_2549_stars_1" style="background-size: 32px 48px !important; cursor: pointer; width: 16px; height: 16px; line-height: 16px; background: url(https://polldaddy.com/images/ratings/star-yellow-sml.png) top left; float: left; padding: 0px; margin: 0px; margin-right: 1px;">&nbsp;</div><div class="rating-star-icon" onmouseout="PDRTJS_4433917_post_2549.rebuild();" onclick="PDRTJS_4433917_post_2549.rate(2);" onmouseover="PDRTJS_4433917_post_2549.hover(2);" id="PDRTJS_4433917_post_2549_stars_2" style="background-size: 32px 48px !important; cursor: pointer; width: 16px; height: 16px; line-height: 16px; background: url(https://polldaddy.com/images/ratings/star-yellow-sml.png) top left; float: left; padding: 0px; margin: 0px; margin-right: 1px;">&nbsp;</div><div class="rating-star-icon" onmouseout="PDRTJS_4433917_post_2549.rebuild();" onclick="PDRTJS_4433917_post_2549.rate(3);" onmouseover="PDRTJS_4433917_post_2549.hover(3);" id="PDRTJS_4433917_post_2549_stars_3" style="background-size: 32px 48px !important; cursor: pointer; width: 16px; height: 16px; line-height: 16px; background: url(https://polldaddy.com/images/ratings/star-yellow-sml.png) top left; float: left; padding: 0px; margin: 0px; margin-right: 1px;">&nbsp;</div><div class="rating-star-icon" onmouseout="PDRTJS_4433917_post_2549.rebuild();" onclick="PDRTJS_4433917_post_2549.rate(4);" onmouseover="PDRTJS_4433917_post_2549.hover(4);" id="PDRTJS_4433917_post_2549_stars_4" style="background-size: 32px 48px !important; cursor: pointer; width: 16px; height: 16px; line-height: 16px; background: url(https://polldaddy.com/images/ratings/star-yellow-sml.png) top left; float: left; padding: 0px; margin: 0px; margin-right: 1px;">&nbsp;</div><div class="rating-star-icon" onmouseout="PDRTJS_4433917_post_2549.rebuild();" onclick="PDRTJS_4433917_post_2549.rate(5);" onmouseover="PDRTJS_4433917_post_2549.hover(5);" id="PDRTJS_4433917_post_2549_stars_5" style="background-size: 32px 48px !important; cursor: pointer; width: 16px; height: 16px; line-height: 16px; background: url(https://polldaddy.com/images/ratings/star-yellow-sml.png) top left; float: left; padding: 0px; margin: 0px; margin-right: 1px;">&nbsp;</div></div><span style="float:left;">&nbsp;</span><div id="rating_info_4433917_post_2549" style="display:block;float:left;background:url(https://polldaddy.com/images/ratings/info.png) no-repeat 3px 2px;width:16px;height:16px;cursor:pointer; null " onclick="javascript:PDRTJS_4433917_post_2549.togglePopup();return false;"><span style="display:none;">i</span></div><div class="pd_popup_holder" id="pd_popup_holder_4433917_post_2549">&nbsp;</div><div class="rating-msg" id="PDRTJS_4433917_post_2549_msg" style="float:left; padding-left: 5px; text-align: left; font:normal normal /16px ; color: #;">2 Votes</div><p style="padding: 0px; margin: 0px; clear: both;"></p></div></div><div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon-text sd-sharing"><h3 class="sd-title">Share this:</h3><div class="sd-content"><ul><li><a href="https://garvis.ca/2013/01/10/iscsi-storage-in-windows-server-20122/#" class="sharing-anchor sd-button share-more"><span>Share</span></a></li><li class="share-end"></li></ul><div class="sharing-hidden"><div class="inner" style="display: none;"><ul><li class="share-email share-service-visible"><a rel="nofollow" data-shared="" class="share-email sd-button share-icon" href="https://garvis.ca/2013/01/10/iscsi-storage-in-windows-server-20122/?share=email&amp;nb=1" target="_blank" title="Click to email"><span>Email</span></a></li><li class="share-print"><a rel="nofollow" data-shared="" class="share-print sd-button share-icon" href="https://garvis.ca/2013/01/10/iscsi-storage-in-windows-server-20122/#print" target="_blank" title="Click to print"><span>Print</span></a></li><li class="share-end"></li><li class="share-twitter"><a rel="nofollow" data-shared="sharing-twitter-2549" class="share-twitter sd-button share-icon" href="https://garvis.ca/2013/01/10/iscsi-storage-in-windows-server-20122/?share=twitter&amp;nb=1" target="_blank" title="Click to share on Twitter"><span>Twitter</span></a></li><li class="share-facebook"><a rel="nofollow" data-shared="sharing-facebook-2549" class="share-facebook sd-button share-icon" href="https://garvis.ca/2013/01/10/iscsi-storage-in-windows-server-20122/?share=facebook&amp;nb=1" target="_blank" title="Share on Facebook"><span>Facebook<span class="share-count">1</span></span></a></li><li class="share-end"></li><li class="share-end"></li></ul></div></div></div></div></div><div class="sharedaddy sd-block sd-like jetpack-likes-widget-wrapper jetpack-likes-widget-loaded" id="like-post-wrapper-17442937-2549-589f04b36ffc5" data-src="//widgets.wp.com/likes/#blog_id=17442937&amp;post_id=2549&amp;origin=mgarvis.wordpress.com&amp;obj_id=17442937-2549-589f04b36ffc5" data-name="like-post-frame-17442937-2549-589f04b36ffc5"><h3 class="sd-title">Like this:</h3><div class="likes-widget-placeholder post-likes-widget-placeholder" style="height: 55px; display: none;"><span class="button"><span>Like</span></span> <span class="loading">Loading...</span></div><iframe class="post-likes-widget jetpack-likes-widget" name="like-post-frame-17442937-2549-589f04b36ffc5" height="55px" width="100%" frameborder="0" src="./ISCSI Storage in Windows Server 2012_files/saved_resource(7).html"></iframe><span class="sd-text-color"></span><a class="sd-link-color"></a></div></div>	</div><!-- end .entry-content -->
+
+	<div class="entry-meta">
+		<p class="tags"><strong>Tags:</strong> <a href="https://garvis.ca/tag/iscsi/" rel="tag">ISCSI</a>, <a href="https://garvis.ca/tag/san/" rel="tag">SAN</a>, <a href="https://garvis.ca/tag/software-san/" rel="tag">Software SAN</a></p><span class="by-author">By <span class="author vcard"><a class="url fn n" href="https://garvis.ca/author/mgarvis/" title="View all posts by Mitch Garvis" rel="author">Mitch Garvis</a></span> </span>in <span class="category"><a href="https://garvis.ca/category/iscsi-software-target/" rel="category tag">iSCSI Software Target</a>, <a href="https://garvis.ca/category/sans/" rel="category tag">SANs</a>, <a href="https://garvis.ca/category/storage/" rel="category tag">Storage</a>, <a href="https://garvis.ca/category/windows-server-2012/" rel="category tag">Windows Server 2012</a></span> on <span class="datetime"><a href="https://garvis.ca/2013/01/10/iscsi-storage-in-windows-server-20122/" title="9:00 am" rel="bookmark"><time class="entry-date" datetime="2013-01-10T09:00:00+00:00" pubdate="">January 10, 2013</time></a></span>.	</div><!-- end .entry-meta -->
+
+</div><!-- end #post-## -->
+		<div class="navigation clearfix">
+			<span class="alignleft"><a href="https://garvis.ca/2013/01/07/shared-nothing-live-migration-goodbye-shared-storage/" rel="prev"><span class="meta-nav">←</span> Shared Nothing Live Migration: Goodbye Shared&nbsp;Storage?</a></span>			<span class="alignright"><a href="https://garvis.ca/2013/01/14/failover-clustering-let-s-spread-the-hyper-v-love-across-hosts/" rel="next">Failover Clustering: Let’s spread the Hyper-V love across&nbsp;hosts! <span class="meta-nav">→</span></a></span>		</div><!-- end .navigation -->
+
+		
+<div id="comments">
+
+	
+		<hr>
+		<h2>2 Comments</h2>
+
+		<ol class="commentlist">
+					<li class="pingback even thread-even depth-1 highlander-comment" id="comment-63771">
+				<div id="div-comment-63771" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./ISCSI Storage in Windows Server 2012_files/10c3ec1192caa9e22336044eada86f53" class="avatar avatar-40" height="40" width="40">			<cite class="fn"><a href="https://garvis.ca/2015/04/16/step-by-step-building-a-scale-out-file-server-sofs-on-windows-server-2012-r2/" rel="external nofollow" class="url">Step by Step: Building a Scale-Out File Server (SoFS) on Windows Server 2012 R2 « The World According to Mitch</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://garvis.ca/2013/01/10/iscsi-storage-in-windows-server-20122/#comment-63771">
+			April 16, 2015 at 8:45 am</a>		</div>
+
+		<p>[…] If you are building a Software SAN on Windows Server 2012 R2 you can follow the instructions in this article.&nbsp; Finding the SAN LUNs from Windows Server just requires the iSCSI Initiator.&nbsp; Ensure that all […]</p>
+
+		<div class="reply"><a rel="nofollow" class="comment-reply-link" href="https://garvis.ca/2013/01/10/iscsi-storage-in-windows-server-20122/?replytocom=63771#respond" onclick="return addComment.moveForm( &quot;div-comment-63771&quot;, &quot;63771&quot;, &quot;respond&quot;, &quot;2549&quot; )" aria-label="Reply to Step by Step: Building a Scale-Out File Server (SoFS) on Windows Server 2012 R2 « The World According to Mitch">Reply</a></div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="pingback odd alt thread-odd thread-alt depth-1 highlander-comment" id="comment-68425">
+				<div id="div-comment-68425" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt="" src="./ISCSI Storage in Windows Server 2012_files/10c3ec1192caa9e22336044eada86f53" class="avatar avatar-40" height="40" width="40">			<cite class="fn"><a href="https://garvis.ca/2015/06/29/help-my-free-storage-cannot-be-used-for-an-iscsi-virtual-disk/" rel="external nofollow" class="url">Help! My free storage cannot be used for an iSCSI Virtual Disk! « The World According to Mitch</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://garvis.ca/2013/01/10/iscsi-storage-in-windows-server-20122/#comment-68425">
+			June 29, 2015 at 8:45 am</a>		</div>
+
+		<p>[…] in the past about both Storage Spaces (Storage Pools: Dive right in!) and Software iSCSI Targets (iSCSI Storage in Windows Server 2012), as well as Failover Clusters (See list).&nbsp; These are all great technologies that IT Professionals […]</p>
+
+		<div class="reply"><a rel="nofollow" class="comment-reply-link" href="https://garvis.ca/2013/01/10/iscsi-storage-in-windows-server-20122/?replytocom=68425#respond" onclick="return addComment.moveForm( &quot;div-comment-68425&quot;, &quot;68425&quot;, &quot;respond&quot;, &quot;2549&quot; )" aria-label="Reply to Help! My free storage cannot be used for an iSCSI Virtual Disk! « The World According to Mitch">Reply</a></div>
+				</div>
+		</li><!-- #comment-## -->
+		</ol>
+
+						<div id="respond" class="comment-respond js">
+			<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="https://garvis.ca/2013/01/10/iscsi-storage-in-windows-server-20122/#respond" style="display:none;">Cancel reply</a></small></h3>				<form action="https://garvis.ca/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+					<input type="hidden" id="highlander_comment_nonce" name="highlander_comment_nonce" value="661517292c"><input type="hidden" name="_wp_http_referer" value="/2013/01/10/iscsi-storage-in-windows-server-20122/">
+<input type="hidden" name="hc_post_as" id="hc_post_as" value="guest">
+
+<div class="comment-form-field comment-textarea">
+	
+	<div id="comment-form-comment"><textarea tabindex="-1" style="position: absolute; top: -999px; left: 0px; right: auto; bottom: auto; border: 0px; padding: 0px; box-sizing: content-box; word-wrap: break-word; overflow: hidden; transition: none; height: 0px !important; min-height: 0px !important; font-family: Helvetica, Arial, Tahoma, sans-serif; font-size: 14px; font-weight: 400; font-style: normal; letter-spacing: 0px; text-transform: none; text-decoration: none; word-spacing: 0px; text-indent: 0px; line-height: normal; width: 477.5px;" class="autosizejs "></textarea><textarea id="comment" name="comment" title="Enter your comment here..." placeholder="Enter your comment here..." style="height: 35px; overflow: hidden; word-wrap: break-word; resize: none;"></textarea></div>
+</div>
+
+<div id="comment-form-identity" style="display: none;">
+
+	<div id="comment-form-nascar">
+		<p>Fill in your details below or click an icon to log in:</p>
+		<ul>
+			<li class="selected" style="display:none;">
+				<a href="https://garvis.ca/2013/01/10/iscsi-storage-in-windows-server-20122/#comment-form-guest" id="postas-guest" title="Guest">
+					<span></span>
+				</a>
+			</li>
+			<li>
+				<a href="https://garvis.ca/2013/01/10/iscsi-storage-in-windows-server-20122/#comment-form-load-service:WordPress.com" id="postas-wordpress" title="WordPress.com">
+					<span></span>
+				</a>
+			</li>
+			<li>
+				<a href="https://garvis.ca/2013/01/10/iscsi-storage-in-windows-server-20122/#comment-form-load-service:Twitter" id="postas-twitter" title="Twitter">
+					<span></span>
+				</a>
+			</li>
+			<li>
+				<a href="https://garvis.ca/2013/01/10/iscsi-storage-in-windows-server-20122/#comment-form-load-service:Facebook" id="postas-facebook" title="Facebook">
+					<span></span>
+				</a>
+			</li>
+			<li>
+		</li></ul>
+	</div>
+
+	<div id="comment-form-guest" class="comment-form-service selected">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+<a href="https://gravatar.com/site/signup/" target="_blank">				<img src="./ISCSI Storage in Windows Server 2012_files/ad516503a11cd5ca435acc9bb6523536" alt="Gravatar" width="25" class="no-grav">
+</a>			</div>
+
+				<div class="comment-form-fields">
+				<div class="comment-form-field comment-form-email">
+					<label for="email">Email <span class="required">(required)</span> <span class="nopublish">(Address never made public)</span></label>
+					<div class="comment-form-input"><input id="email" name="email" type="email" value=""></div>
+				</div>
+				<div class="comment-form-field comment-form-author">
+					<label for="author">Name <span class="required">(required)</span></label>
+					<div class="comment-form-input"><input id="author" name="author" type="text" value=""></div>
+				</div>
+				<div class="comment-form-field comment-form-url">
+					<label for="url">Website</label>
+					<div class="comment-form-input"><input id="url" name="url" type="url" value=""></div>
+				</div>
+			</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-wordpress" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="./ISCSI Storage in Windows Server 2012_files/ad516503a11cd5ca435acc9bb6523536" alt="WordPress.com Logo" width="25" class="no-grav">
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="wp_avatar" id="wordpress-avatar" class="comment-meta-wordpress" value="">
+				<input type="hidden" name="wp_user_id" id="wordpress-user_id" class="comment-meta-wordpress" value="">
+				<input type="hidden" name="wp_access_token" id="wordpress-access_token" class="comment-meta-wordpress" value="">
+				<p class="comment-form-posting-as pa-wordpress"><strong></strong> You are commenting using your <span class="skimlinks-unlinked">WordPress.com</span> account. <span class="comment-form-log-out">(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( &#39;wordpress&#39; );">Log&nbsp;Out</a>&nbsp;/&nbsp;<a href="https://garvis.ca/2013/01/10/iscsi-storage-in-windows-server-20122/#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)</span></p>
+			</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-twitter" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="./ISCSI Storage in Windows Server 2012_files/ad516503a11cd5ca435acc9bb6523536" alt="Twitter picture" width="25" class="no-grav">
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="twitter_avatar" id="twitter-avatar" class="comment-meta-twitter" value="">
+				<input type="hidden" name="twitter_user_id" id="twitter-user_id" class="comment-meta-twitter" value="">
+				<input type="hidden" name="twitter_access_token" id="twitter-access_token" class="comment-meta-twitter" value="">
+				<p class="comment-form-posting-as pa-twitter"><strong></strong> You are commenting using your Twitter account. <span class="comment-form-log-out">(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( &#39;twitter&#39; );">Log&nbsp;Out</a>&nbsp;/&nbsp;<a href="https://garvis.ca/2013/01/10/iscsi-storage-in-windows-server-20122/#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)</span></p>
+			</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-facebook" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="./ISCSI Storage in Windows Server 2012_files/ad516503a11cd5ca435acc9bb6523536" alt="Facebook photo" width="25" class="no-grav">
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="fb_avatar" id="facebook-avatar" class="comment-meta-facebook" value="">
+				<input type="hidden" name="fb_user_id" id="facebook-user_id" class="comment-meta-facebook" value="">
+				<input type="hidden" name="fb_access_token" id="facebook-access_token" class="comment-meta-facebook" value="">
+				<p class="comment-form-posting-as pa-facebook"><strong></strong> You are commenting using your Facebook account. <span class="comment-form-log-out">(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( &#39;facebook&#39; );">Log&nbsp;Out</a>&nbsp;/&nbsp;<a href="https://garvis.ca/2013/01/10/iscsi-storage-in-windows-server-20122/#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)</span></p>
+			</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-googleplus" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="./ISCSI Storage in Windows Server 2012_files/ad516503a11cd5ca435acc9bb6523536" alt="Google+ photo" width="25" class="no-grav">
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="googleplus_avatar" id="googleplus-avatar" class="comment-meta-googleplus" value="">
+				<input type="hidden" name="googleplus_user_id" id="googleplus-user_id" class="comment-meta-googleplus" value="">
+				<input type="hidden" name="googleplus_access_token" id="googleplus-access_token" class="comment-meta-googleplus" value="">
+				<p class="comment-form-posting-as pa-googleplus"><strong></strong> You are commenting using your Google+ account. <span class="comment-form-log-out">(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( &#39;googleplus&#39; );">Log&nbsp;Out</a>&nbsp;/&nbsp;<a href="https://garvis.ca/2013/01/10/iscsi-storage-in-windows-server-20122/#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)</span></p>
+			</div>
+	
+		</div>
+	</div>
+
+
+	<div id="comment-form-load-service" class="comment-form-service">
+		<div class="comment-form-posting-as-cancel"><a href="javascript:HighlanderComments.cancelExternalWindow();">Cancel</a></div>
+		<p>Connecting to %s</p>
+	</div>
+
+</div>
+
+<script type="text/javascript">
+var highlander_expando_javascript = function(){
+	var input = document.createElement( 'input' ),
+	    comment = jQuery( '#comment' );
+
+	if ( 'placeholder' in input ) {
+		comment.attr( 'placeholder', jQuery( '.comment-textarea label' ).remove().text() );
+	}
+
+	// Expando Mode: start small, then auto-resize on first click + text length
+	jQuery( '#comment-form-identity' ).hide();
+	jQuery( '#comment-form-subscribe' ).hide();
+	jQuery( '#commentform .form-submit' ).hide();
+
+	comment.css( { 'height':'10px' } ).one( 'focus', function() {
+		var timer = setInterval( HighlanderComments.resizeCallback, 10 )
+		jQuery( this ).animate( { 'height': HighlanderComments.initialHeight } ).delay( 100 ).queue( function(n) { clearInterval( timer ); HighlanderComments.resizeCallback(); n(); } );
+		jQuery( '#comment-form-identity' ).slideDown();
+		jQuery( '#comment-form-subscribe' ).slideDown();
+		jQuery( '#commentform .form-submit' ).slideDown();
+	});
+}
+jQuery(document).ready( highlander_expando_javascript );
+</script>
+
+<div id="comment-form-subscribe" style="display: none;">
+	<p class="comment-subscription-form"><input type="checkbox" name="subscribe" id="subscribe" value="subscribe" style="width: auto;"> <label class="subscribe-label" id="subscribe-label" for="subscribe" style="display: inline;">Notify me of new comments via email.</label></p><p class="post-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto;"> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog" style="display: inline;">Notify me of new posts via email.</label></p></div>
+
+
+
+
+<p class="form-submit" style="display: none;"><input name="submit" type="submit" id="comment-submit" class="submit" value="Post Comment"> <input type="hidden" name="comment_post_ID" value="2549" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="31d4655ab2"></p>
+<input type="hidden" name="genseq" value="1486816435">
+<p style="display: none;"></p>				<input type="hidden" id="ak_js" name="ak_js" value="1486816429700"></form>
+					</div><!-- #respond -->
+		<div style="clear: both"></div>
+</div><!-- #comments -->
+	</div><!-- end .column-content -->
+
+		<div class="column column-narrow column-last">
+		<div id="linkcat-1356" class="widget clearfix widget_links"><h3 class="heading">Blogroll</h3>
+	<ul class="xoxo blogroll">
+<li><a href="http://jeffwouters.nl/" title="A geeky mind is a joy forever…" target="_top">Jeff Wouters's Blog</a></li>
+<li><a href="http://rubelkhan.wordpress.com/" rel="acquaintance colleague" title="All about IT Training and Certification">Rubel Khan's Blog</a></li>
+<li><a href="http://www.bennettbusinessconnections.com/" rel="friend met colleague co-resident">Sharon Bennett's SMB Tech Support</a></li>
+<li><a href="https://garvis.ca/blogs/mitch/default.aspx" title="The day to day ramblings of an IT Professional and Community Leader">The World According to Mitch</a></li>
+
+	</ul>
+</div>
+<div id="search-5" class="widget clearfix widget_search"><form method="get" id="searchform" action="https://garvis.ca/">
+	<label for="s" class="assistive-text hidden">Search</label>
+	<input id="s" type="text" name="s" placeholder="Search">
+	<button id="searchsubmit" name="submit" type="submit">Search</button>
+</form></div><div id="twitter-4" class="widget clearfix widget_twitter"><h3 class="heading"><a href="http://twitter.com/mgarvis">Tweet Tweet…</a></h3><ul class="tweets">
+			<li>
+				My fitbit <a href="http://twitter.com/search?q=%23Fitstats_en_CA">#Fitstats_en_CA</a> for 2/10/2017: 5,260 steps and 2.2 miles traveled. <a href="http://www.fitbit.com/user/22574L"> fitbit.com/user/22574L</a> 				<a href="http://twitter.com/mgarvis/statuses/830295978452328448" class="timesince">6&nbsp;hours&nbsp;ago</a>
+			</li>
+
+			
+			<li>
+				My fitbit <a href="http://twitter.com/search?q=%23Fitstats_en_CA">#Fitstats_en_CA</a> for 2/09/2017: 21,062 steps and 8.7 miles traveled. <a href="http://www.fitbit.com/user/22574L"> fitbit.com/user/22574L</a> 				<a href="http://twitter.com/mgarvis/statuses/829936662129938433" class="timesince">1&nbsp;day&nbsp;ago</a>
+			</li>
+
+			
+			<li>
+				Resize Live Virtual Hard&nbsp;Drives <a href="https://garvis.ca/2017/02/08/resize-live-virtual-hard-drives"> garvis.ca/2017/02/08/res…</a> <a href="https://t.co/lLV6mgUyIY" rel="nofollow">https://t.co/lLV6mgUyIY</a> 				<a href="http://twitter.com/mgarvis/statuses/829325750507560960" class="timesince">2&nbsp;days&nbsp;ago</a>
+			</li>
+
+			
+			<li>
+				My fitbit <a href="http://twitter.com/search?q=%23Fitstats_en_CA">#Fitstats_en_CA</a> for 2/05/2017: 3,677 steps and 1.5 miles traveled. <a href="http://www.fitbit.com/user/22574L"> fitbit.com/user/22574L</a> 				<a href="http://twitter.com/mgarvis/statuses/828619958485647360" class="timesince">4&nbsp;days&nbsp;ago</a>
+			</li>
+
+			
+			<li>
+				My fitbit <a href="http://twitter.com/search?q=%23Fitstats_en_CA">#Fitstats_en_CA</a> for 2/04/2017: 2,684 steps and 1 miles traveled. <a href="http://www.fitbit.com/user/22574L"> fitbit.com/user/22574L</a> 				<a href="http://twitter.com/mgarvis/statuses/828182258498547712" class="timesince">6&nbsp;days&nbsp;ago</a>
+			</li>
+
+			</ul></div><div id="tag_cloud-5" class="widget clearfix widget_tag_cloud"><h3 class="heading">Categories in the Cloud</h3><div style="overflow: hidden;"><a href="https://garvis.ca/category/article/" style="font-size: 131.64383561644%; padding: 1px; margin: 1px;" title="Article (81)">Article</a> <a href="https://garvis.ca/category/blog/" style="font-size: 115.34246575342%; padding: 1px; margin: 1px;" title="Blog (47)">Blog</a> <a href="https://garvis.ca/category/certification-exams/" style="font-size: 103.35616438356%; padding: 1px; margin: 1px;" title="Certification Exams (22)">Certification Exams</a> <a href="https://garvis.ca/category/certifications/" style="font-size: 107.67123287671%; padding: 1px; margin: 1px;" title="Certifications (31)">Certifications</a> <a href="https://garvis.ca/category/certs/" style="font-size: 108.15068493151%; padding: 1px; margin: 1px;" title="Certs (32)">Certs</a> <a href="https://garvis.ca/category/community/" style="font-size: 100%; padding: 1px; margin: 1px;" title="Community (15)">Community</a> <a href="https://garvis.ca/category/deployment/" style="font-size: 101.43835616438%; padding: 1px; margin: 1px;" title="Deployment (18)">Deployment</a> <a href="https://garvis.ca/category/hp/" style="font-size: 100.47945205479%; padding: 1px; margin: 1px;" title="HP (16)">HP</a> <a href="https://garvis.ca/category/hyper-v/" style="font-size: 134.04109589041%; padding: 1px; margin: 1px;" title="Hyper-V (86)">Hyper-V</a> <a href="https://garvis.ca/category/it-pro/" style="font-size: 115.34246575342%; padding: 1px; margin: 1px;" title="IT Pro (47)">IT Pro</a> <a href="https://garvis.ca/category/japan/" style="font-size: 103.83561643836%; padding: 1px; margin: 1px;" title="Japan (23)">Japan</a> <a href="https://garvis.ca/category/mct/" style="font-size: 100.47945205479%; padding: 1px; margin: 1px;" title="MCT (16)">MCT</a> <a href="https://garvis.ca/category/microsoft/" style="font-size: 102.39726027397%; padding: 1px; margin: 1px;" title="Microsoft (20)">Microsoft</a> <a href="https://garvis.ca/category/microsoft-canada/" style="font-size: 107.19178082192%; padding: 1px; margin: 1px;" title="Microsoft Canada (30)">Microsoft Canada</a> <a href="https://garvis.ca/category/microsoft-learning/" style="font-size: 111.98630136986%; padding: 1px; margin: 1px;" title="Microsoft Learning (40)">Microsoft Learning</a> <a href="https://garvis.ca/category/microsoft-surface/" style="font-size: 101.91780821918%; padding: 1px; margin: 1px;" title="MIcrosoft Surface (19)">MIcrosoft Surface</a> <a href="https://garvis.ca/category/microsoft-virtualization/" style="font-size: 100.47945205479%; padding: 1px; margin: 1px;" title="Microsoft Virtualization (16)">Microsoft Virtualization</a> <a href="https://garvis.ca/category/powershell/" style="font-size: 102.39726027397%; padding: 1px; margin: 1px;" title="PowerShell (20)">PowerShell</a> <a href="https://garvis.ca/category/server/" style="font-size: 101.43835616438%; padding: 1px; margin: 1px;" title="Server (18)">Server</a> <a href="https://garvis.ca/category/system-center/" style="font-size: 110.54794520548%; padding: 1px; margin: 1px;" title="System Center (37)">System Center</a> <a href="https://garvis.ca/category/taekwondo/" style="font-size: 104.79452054795%; padding: 1px; margin: 1px;" title="Taekwondo (25)">Taekwondo</a> <a href="https://garvis.ca/category/travel/" style="font-size: 109.1095890411%; padding: 1px; margin: 1px;" title="Travel (34)">Travel</a> <a href="https://garvis.ca/category/uncategorized/" style="font-size: 275%; padding: 1px; margin: 1px;" title="Uncategorized (380)">Uncategorized</a> <a href="https://garvis.ca/category/virtualization/" style="font-size: 126.84931506849%; padding: 1px; margin: 1px;" title="Virtualization (71)">Virtualization</a> <a href="https://garvis.ca/category/vmware/" style="font-size: 105.27397260274%; padding: 1px; margin: 1px;" title="VMware (26)">VMware</a> <a href="https://garvis.ca/category/windows-7/" style="font-size: 104.79452054795%; padding: 1px; margin: 1px;" title="Windows 7 (25)">Windows 7</a> <a href="https://garvis.ca/category/windows-8/" style="font-size: 129.24657534247%; padding: 1px; margin: 1px;" title="Windows 8 (76)">Windows 8</a> <a href="https://garvis.ca/category/windows-server/" style="font-size: 104.79452054795%; padding: 1px; margin: 1px;" title="Windows Server (25)">Windows Server</a> <a href="https://garvis.ca/category/windows-server-2012/" style="font-size: 121.09589041096%; padding: 1px; margin: 1px;" title="Windows Server 2012 (59)">Windows Server 2012</a> <a href="https://garvis.ca/category/windows-server-2012-r2/" style="font-size: 102.39726027397%; padding: 1px; margin: 1px;" title="Windows Server 2012 R2 (20)">Windows Server 2012 R2</a> </div></div><div id="follow_button_widget-3" class="widget clearfix widget_follow_button_widget">
+		<iframe src="./ISCSI Storage in Windows Server 2012_files/index.html" width="100%" height="20" frameborder="0" scrolling="no"></iframe>
+		<script type="text/javascript">(function(d){var f = d.getElementsByTagName('SCRIPT')[0], p = d.createElement('SCRIPT');p.type = 'text/javascript';p.async = true;p.src = '//widgets.wp.com/platform.js';f.parentNode.insertBefore(p,f);}(document));</script>
+
+		</div>	</div><!-- end .column-narrow -->
+	
+	
+</div><!-- end #content -->
+
+			<div id="footer" class="clearfix">
+				
+								<p class="copy">
+					<a href="https://wordpress.com/?ref=footer_blog">Blog at WordPress.com.</a>
+									</p>
+			</div><!-- end #footer -->
+		</div><!-- end #wrap -->
+
+		<!--  -->
+		<script type="text/javascript">
+			!function(d,s,id){
+				var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+				if(!d.getElementById(id)){
+					js=d.createElement(s);
+					js.id=id;js.src=p+"://platform.twitter.com/widgets.js";
+					fjs.parentNode.insertBefore(js,fjs);
+				}
+			}(document,"script","twitter-wjs");
+		</script>
+		<script type="text/javascript" src="./ISCSI Storage in Windows Server 2012_files/gprofiles.js.téléchargement"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./ISCSI Storage in Windows Server 2012_files/wpgroho.js.téléchargement"></script>
+
+	<script>
+		//initialize and attach hovercards to all gravatars
+		jQuery( document ).ready( function( $ ) {
+
+			if (typeof Gravatar === "undefined"){
+				return;
+			}
+
+			if ( typeof Gravatar.init !== "function" ) {
+				return;
+			}			
+
+			Gravatar.profile_cb = function( hash, id ) {
+				WPGroHo.syncProfileData( hash, id );
+			};
+			Gravatar.my_hash = WPGroHo.my_hash;
+			Gravatar.init( 'body', '#wp-admin-bar-my-account' );
+		});
+	</script>
+
+		<div style="display:none">
+	</div>
+<script type="text/javascript">
+/* <![CDATA[ */
+var HighlanderComments = {"loggingInText":"Logging In\u2026","submittingText":"Posting Comment\u2026","postCommentText":"Post Comment","connectingToText":"Connecting to %s","commentingAsText":"%1$s: You are commenting using your %2$s account.","logoutText":"Log Out","loginText":"Log In","connectURL":"https:\/\/mgarvis.wordpress.com\/public.api\/connect\/?action=request","logoutURL":"https:\/\/mgarvis.wordpress.com\/wp-login.php?action=logout&_wpnonce=6f9b786dcb","homeURL":"https:\/\/garvis.ca\/","postID":"2549","gravDefault":"identicon","enterACommentError":"Please enter a comment","enterEmailError":"Please enter your email address here","invalidEmailError":"Invalid email address","enterAuthorError":"Please enter your name here","gravatarFromEmail":"This picture will show whenever you leave a comment. Click to customize it.","logInToExternalAccount":"Log in to use details from one of these accounts.","change":"Change","changeAccount":"Change Account","comment_registration":"","userIsLoggedIn":"","isJetpack":"0","text_direction":"ltr"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./ISCSI Storage in Windows Server 2012_files/saved_resource(4)"></script>
+
+	<div id="carousel-reblog-box">
+		<form action="https://garvis.ca/2013/01/10/iscsi-storage-in-windows-server-20122/#" name="carousel-reblog">
+			<textarea id="carousel-reblog-content" name="carousel-reblog-content" placeholder="Add your thoughts here... (optional)"></textarea>
+			<label for="carousel-reblog-to-blog-id" id="carousel-reblog-lblogid">Post to</label>
+			<select name="carousel-reblog-to-blog-id" id="carousel-reblog-to-blog-id">
+						</select>
+
+			<div class="submit">
+				<span class="canceltext"><a href="https://garvis.ca/2013/01/10/iscsi-storage-in-windows-server-20122/#" class="cancel">Cancel</a></span>
+				<input type="submit" name="carousel-reblog-submit" class="button" id="carousel-reblog-submit" value="Reblog Post">
+				<input type="hidden" id="carousel-reblog-blog-id" value="17442937">
+				<input type="hidden" id="carousel-reblog-blog-url" value="https://garvis.ca">
+				<input type="hidden" id="carousel-reblog-blog-title" value="The World According to Mitch">
+				<input type="hidden" id="carousel-reblog-post-url" value="">
+				<input type="hidden" id="carousel-reblog-post-title" value="">
+			</div>
+
+			<input type="hidden" id="_wpnonce" name="_wpnonce" value="52655ae38e"><input type="hidden" name="_wp_http_referer" value="/2013/01/10/iscsi-storage-in-windows-server-20122/">		</form>
+
+		<div class="arrow"></div>
+	</div>
+<script type="text/javascript" charset="UTF-8" id="polldaddyRatings"><!--//--><![CDATA[//><!--
+PDRTJS_settings_4433917_post_2549={"id":4433917,"unique_id":"wp-post-2549","title":"iSCSI%20Storage%20in%20Windows%20Server%26nbsp%3B2012","permalink":"https:\/\/garvis.ca\/2013\/01\/10\/iscsi-storage-in-windows-server-20122\/","item_id":"_post_2549"}; if ( typeof PDRTJS_RATING !== 'undefined' ){if ( typeof PDRTJS_4433917_post_2549 == 'undefined' ){PDRTJS_4433917_post_2549 = new PDRTJS_RATING( PDRTJS_settings_4433917_post_2549 );}}
+//--><!]]></script><script type="text/javascript" charset="UTF-8" src="./ISCSI Storage in Windows Server 2012_files/rating.js.téléchargement"></script>
+	<script type="text/javascript">
+		window.WPCOM_sharing_counts = {"https:\/\/garvis.ca\/2013\/01\/10\/iscsi-storage-in-windows-server-20122\/":2549};
+	</script>
+	
+		<script type="text/javascript">
+			var windowOpen;
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-twitter' ).on( 'click', function() {
+				if ( 'undefined' !== typeof windowOpen ){ // If there's another sharing window open, close it.
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery(this).attr( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+				return false;
+			});
+		});
+		</script>
+				<script type="text/javascript">
+			var windowOpen;
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-facebook' ).on( 'click', function() {
+				if ( 'undefined' !== typeof windowOpen ){ // If there's another sharing window open, close it.
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery(this).attr( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+				return false;
+			});
+		});
+		</script>
+		<script type="text/javascript" src="./ISCSI Storage in Windows Server 2012_files/form.js.téléchargement"></script>
+<script type="text/javascript" src="./ISCSI Storage in Windows Server 2012_files/widgets.js(1).téléchargement"></script>
+<link rel="stylesheet" id="all-css-0-3" href="./ISCSI Storage in Windows Server 2012_files/jetpack-carousel.css" type="text/css" media="all">
+<!--[if lte IE 8]>
+<link rel='stylesheet' id='jetpack-carousel-ie8fix-css'  href='https://s1.wp.com/wp-content/mu-plugins/carousel/jetpack-carousel-ie8fix.css?m=1412618825h&#038;ver=20121024' type='text/css' media='all' />
+<![endif]-->
+<script type="text/javascript">
+/* <![CDATA[ */
+var actionbardata = {"siteID":"17442937","siteName":"The World According to Mitch","siteURL":"https:\/\/garvis.ca","icon":"<img alt='' src='https:\/\/secure.gravatar.com\/blavatar\/10c3ec1192caa9e22336044eada86f53?s=50&d=https%3A%2F%2Fs1.wp.com%2Fi%2Flogo%2Fwpcom-gray-white.png' class='avatar avatar-50' height='50' width='50' \/>","canManageOptions":"","canCustomizeSite":"","isFollowing":"","themeSlug":"pub\/academica","signupURL":"https:\/\/wordpress.com\/start\/","loginURL":"https:\/\/mgarvis.wordpress.com\/wp-login.php?redirect_to=https%3A%2F%2Fgarvis.ca%2F2013%2F01%2F10%2Fiscsi-storage-in-windows-server-20122%2F","themeURL":"https:\/\/wordpress.com\/themes\/academica\/","xhrURL":"https:\/\/garvis.ca\/wp-admin\/admin-ajax.php","nonce":"6696c99e50","isSingular":"1","isFolded":"","isLoggedIn":"","isMobile":"","subscribeNonce":"<input type=\"hidden\" id=\"_wpnonce\" name=\"_wpnonce\" value=\"46629cbe6a\" \/>","referer":"https:\/\/garvis.ca\/2013\/01\/10\/iscsi-storage-in-windows-server-20122\/","canFollow":"","statusMessage":"","customizeLink":"https:\/\/mgarvis.wordpress.com\/wp-admin\/customize.php?url=https%3A%2F%2Fmgarvis.wordpress.com%2F2013%2F01%2F10%2Fiscsi-storage-in-windows-server-20122%2F","postID":"2549","shortlink":"http:\/\/wp.me\/p1bbHH-F7","canEditPost":"","editLink":"https:\/\/wordpress.com\/post\/garvis.ca\/2549","statsLink":"https:\/\/wordpress.com\/stats\/post\/2549\/garvis.ca","i18n":{"view":"View site","follow":"Follow","following":"Following","edit":"Edit","login":"Log in","signup":"Sign up","customize":"Customize","report":"Report this content","themeInfo":"Get theme: Academica","shortlink":"Copy shortlink","copied":"Copied","followedText":"New posts from this site will now appear in your <a href=\"https:\/\/wordpress.com\/\">Reader<\/a>","foldBar":"Collapse this bar","unfoldBar":"Expand this bar","editSubs":"Manage subscriptions","viewReader":"View site in the Reader","subscribe":"Sign me up","enterEmail":"Enter your email address","followers":"Join 2,508 other followers","alreadyUser":"Already have a WordPress.com account? <a href=\"https:\/\/mgarvis.wordpress.com\/wp-login.php?redirect_to=https%3A%2F%2Fgarvis.ca%2F2013%2F01%2F10%2Fiscsi-storage-in-windows-server-20122%2F\">Log in now.<\/a>","stats":"Stats"}};
+/* ]]> */
+</script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var jetpackCarouselStrings = {"widths":[370,700,1000,1200,1400,2000],"is_logged_in":"","lang":"en","ajaxurl":"https:\/\/garvis.ca\/wp-admin\/admin-ajax.php","nonce":"6e58a7ab47","display_exif":"1","display_geo":"1","single_image_gallery":"1","single_image_gallery_media_file":"","background_color":"black","comment":"Comment","post_comment":"Post Comment","write_comment":"Write a Comment...","loading_comments":"Loading Comments...","download_original":"View full size <span class=\"photo-size\">{0}<span class=\"photo-size-times\">\u00d7<\/span>{1}<\/span>","no_comment_text":"Please be sure to submit some text with your comment.","no_comment_email":"Please provide an email address to comment.","no_comment_author":"Please provide your name to comment.","comment_post_error":"Sorry, but there was an error posting your comment. Please try again later.","comment_approved":"Your comment was approved.","comment_unapproved":"Your comment is in moderation.","camera":"Camera","aperture":"Aperture","shutter_speed":"Shutter Speed","focal_length":"Focal Length","comment_registration":"0","require_name_email":"1","login_url":"https:\/\/mgarvis.wordpress.com\/wp-login.php?redirect_to=https%3A%2F%2Fgarvis.ca%2F2013%2F01%2F10%2Fiscsi-storage-in-windows-server-20122%2F","blog_id":"17442937","local_comments_commenting_as":"<fieldset><label for=\"email\">Email (Required)<\/label> <input type=\"text\" name=\"email\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-email-field\" \/><\/fieldset><fieldset><label for=\"author\">Name (Required)<\/label> <input type=\"text\" name=\"author\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-author-field\" \/><\/fieldset><fieldset><label for=\"url\">Website<\/label> <input type=\"text\" name=\"url\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-url-field\" \/><\/fieldset>","reblog":"Reblog","reblogged":"Reblogged","reblog_add_thoughts":"Add your thoughts here... (optional)","reblogging":"Reblogging...","post_reblog":"Post Reblog","stats_query_args":"blog=17442937&v=wpcom&tz=-4&user_id=0&subd=mgarvis","is_public":"1","reblog_enabled":""};
+/* ]]> */
+</script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var sharing_js_options = {"lang":"en","counts":"1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./ISCSI Storage in Windows Server 2012_files/saved_resource(5)"></script><div id="actionbar" class="actnbr-pub-academica actnbr-has-follow"><ul><li class="actnbr-ellipsis actnbr-hidden"> 			  <svg class="gridicon gridicon__ellipsis" height="24" width="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g><circle cx="5" cy="12" r="2"></circle><circle cx="19" cy="12" r="2"></circle><circle cx="12" cy="12" r="2"></circle></g></svg> 			  <div class="actnbr-popover tip tip-top-left actnbr-more"> 			  	<div class="tip-arrow"></div> 			  	<div class="tip-inner"> 				  <ul> 				    <li class="actnbr-sitename actnbr-hidden"><a href="https://garvis.ca/"><img alt="" src="./ISCSI Storage in Windows Server 2012_files/10c3ec1192caa9e22336044eada86f53(1)" class="avatar avatar-50" height="50" width="50"> The World According to Mitch</a></li> 				   	<li class="actnbr-folded-customize actnbr-hidden"><a href="https://mgarvis.wordpress.com/wp-admin/customize.php?url=https%3A%2F%2Fmgarvis.wordpress.com%2F2013%2F01%2F10%2Fiscsi-storage-in-windows-server-20122%2F"><svg class="gridicon gridicon__customize" height="20px" width="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g><path d="M2 6c0-1.505.78-3.08 2-4 0 .845.69 2 2 2 1.657 0 3 1.343 3 3 0 .386-.08.752-.212 1.09.74.594 1.476 1.19 2.19 1.81L8.9 11.98c-.62-.716-1.214-1.454-1.807-2.192C6.753 9.92 6.387 10 6 10c-2.21 0-4-1.79-4-4zm12.152 6.848l1.34-1.34c.607.304 1.283.492 2.008.492 2.485 0 4.5-2.015 4.5-4.5 0-.725-.188-1.4-.493-2.007L18 9l-2-2 3.507-3.507C18.9 3.188 18.225 3 17.5 3 15.015 3 13 5.015 13 7.5c0 .725.188 1.4.493 2.007L3 20l2 2 6.848-6.848c1.885 1.928 3.874 3.753 5.977 5.45l1.425 1.148 1.5-1.5-1.15-1.425c-1.695-2.103-3.52-4.092-5.448-5.977z" data-reactid=".2.1.1:0.1b.0"></path></g></svg><span>Customize<span></span></span></a></li> 				    <li class="actnbr-folded-follow actnbr-hidden"><a class="actnbr-action actnbr-actn-follow" href="https://garvis.ca/2013/01/10/iscsi-storage-in-windows-server-20122/"><svg class="gridicon gridicon__follow" height="24px" width="24px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g><path d="M23 16v2h-3v3h-2v-3h-3v-2h3v-3h2v3h3zM20 2v9h-4v3h-3v4H4c-1.1 0-2-.9-2-2V2h18zM8 13v-1H4v1h4zm3-3H4v1h7v-1zm0-2H4v1h7V8zm7-4H4v2h14V4z"></path></g></svg><span>Follow</span></a></li> 						<li class="actnbr-signup actnbr-hidden"><a href="https://wordpress.com/start/">Sign up</a></li> 				    <li class="actnbr-login actnbr-hidden"><a href="https://mgarvis.wordpress.com/wp-login.php?redirect_to=https%3A%2F%2Fgarvis.ca%2F2013%2F01%2F10%2Fiscsi-storage-in-windows-server-20122%2F">Log in</a></li> 				     				    <li class="actnbr-shortlink actnbr-hidden"><a href="http://wp.me/p1bbHH-F7">Copy shortlink</a></li> 				    <li class="flb-report actnbr-hidden"><a href="http://en.wordpress.com/abuse/">Report this content</a></li> 				     				     				    <li class="actnbr-subs actnbr-hidden"><a href="https://subscribe.wordpress.com/">Manage subscriptions</a></li> 				    <li class="actnbr-fold actnbr-hidden"><a href="https://garvis.ca/2013/01/10/iscsi-storage-in-windows-server-20122/">Collapse this bar</a></li> 			      </ul> 			    </div> 		      </div> 		    </li> 	      </ul></div>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script>	<script type="text/javascript">
+	var skimlinks_pub_id = "725X584219"
+	var skimlinks_sitename = "mgarvis.wordpress.com";
+	</script>
+	<script type="text/javascript" defer="" src="./ISCSI Storage in Windows Server 2012_files/725X1342.skimlinks.js.téléchargement"></script>		<iframe src="./ISCSI Storage in Windows Server 2012_files/master.html" scrolling="no" id="likes-master" name="likes-master" style="display:none;"></iframe>
+		<div id="likes-other-gravatars"><div class="likes-text"><span>%d</span> bloggers like this:</div><ul class="wpl-avatars sd-like-gravatars"></ul></div>
+		<script>
+			var _comscore = _comscore || [];
+			_comscore.push({
+				c1: "2",
+				c2: "7518284"
+			});
+			(function() {
+				var s = document.createElement("script"),
+					el = document.getElementsByTagName("script")[0];
+				s.defer = true;
+				s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
+				el.parentNode.insertBefore(s, el);
+			})();
+		</script>
+		<noscript>
+			&lt;p class="robots-nocontent"&gt;&lt;img src="https://sb.scorecardresearch.com/p?c1=2&amp;c2=7518284&amp;c3=&amp;c4=&amp;c5=&amp;c6=&amp;c15=&amp;cv=2.0&amp;cj=1" alt="" style="display:none;" width="1" height="1" /&gt;&lt;/p&gt;
+		</noscript><script src="./ISCSI Storage in Windows Server 2012_files/w.js.téléchargement" type="text/javascript" async="" defer=""></script>
+<script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'17442937','blog_tz':'-4','user_lang':'en','blog_lang':'en','user_id':'0'}]);
+_stq.push(['view', {'blog':'17442937','v':'wpcom','tz':'-4','user_id':'0','post':'2549','subd':'mgarvis'}]);
+_stq.push(['extra', {'crypt':'UE5XaGUuOTlwaD85flAmcm1mcmZsaDhkV11YdWtpP0NsWnVkPS9sL0ViLndld3BoOEFhbFhNYTZuanJMOV9KYXFBJlFDL3plODUzcXp5dyYtfmRqSE9xSHR2ckN1UEZ+bDN+Wk9IaVVfOD1TaHdPYWVYdlpvMjVZakVHcDRhTE4rR1JrUlJbJlcuSS9CS2RdbjdZTSxrMHl2aTlQcy1fd0xYR1t8UmdrUGIvdT9kZ1M4aD8lWzVqcHRMaXRHMTksY0c4UmprKz9NMX5qYis/VEt3MUNveTRjfk1EUDc5Q3VYTGtfUCtBS3VEUV1lU3RlOExbJnUsZ3E2ZTdBOGllR1hLJkhxWzdGZmxUa003UEJtUT9tSUFkZkR1V0dicFJPdFpreUQ9WGdHb3BrTitkWEt2ZmVHVWQ5PVBPMC4tYmRMZ3F3dS89ayZ2aGFpMz1DdC5XaS5MQ3F0a0l2cmVGOFFKXVI='}]);
+_stq.push([ 'clickTrackerInit', '17442937', '2549' ]);
+	</script>
+<noscript>&lt;img src="https://pixel.wp.com/b.gif?v=noscript" style="height:0px;width:0px;overflow:hidden" alt="" /&gt;</noscript>
+<script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script>	
+<div id="sharing_email" style="display: none;">
+		<form action="https://garvis.ca/2013/01/10/iscsi-storage-in-windows-server-20122/" method="post">
+			<label for="target_email">Send to Email Address</label>
+			<input type="email" name="target_email" id="target_email" value="">
+
+			
+				<label for="source_name">Your Name</label>
+				<input type="text" name="source_name" id="source_name" value="">
+
+				<label for="source_email">Your Email Address</label>
+				<input type="email" name="source_email" id="source_email" value="">
+
+						<input type="text" id="jetpack-source_f_name" name="source_f_name" class="input" value="" size="25" autocomplete="off">
+			<script> document.getElementById('jetpack-source_f_name').value = ''; </script>
+			<div class="recaptcha" id="sharing_recaptcha"></div><input type="hidden" name="recaptcha_public_key" id="recaptcha_public_key" value="6LcYW8MSAAAAADBAuEH9yaPcF7lWh11Iq62ZKtoo">
+			<img style="float: right; display: none" class="loading" src="./ISCSI Storage in Windows Server 2012_files/loading.gif" alt="loading" width="16" height="16">
+			<input type="submit" value="Send Email" class="sharing_send">
+			<a rel="nofollow" href="https://garvis.ca/2013/01/10/iscsi-storage-in-windows-server-20122/#cancel" class="sharing_cancel">Cancel</a>
+
+			<div class="errors errors-1" style="display: none;">
+				Post was not sent - check your email addresses!			</div>
+
+			<div class="errors errors-2" style="display: none;">
+				Email check failed, please try again			</div>
+
+			<div class="errors errors-3" style="display: none;">
+				Sorry, your blog cannot share posts by email.			</div>
+		</form>
+	</div><img src="./ISCSI Storage in Windows Server 2012_files/g.gif" alt=":)" id="wpstats"><iframe id="rufous-sandbox" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: none;" title="Twitter analytics iframe" src="./ISCSI Storage in Windows Server 2012_files/saved_resource(8).html"></iframe></body></html>

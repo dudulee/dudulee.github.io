@@ -1,0 +1,202 @@
+/*
+Theme Name:     NewsPlus Child
+Theme URI:      http://labs.saurabh-sharma.net/themes/newsplus/wp/
+Description:    Child theme for the NewsPlus theme
+Author:         Saurabh Sharma
+Author URI:     http://themeforest.net/author/SaurabhSharma
+Template:       newsplus                             
+Version:        2.1.2
+*/
+
+/*Header Logo Alignment*/
+.brand img {
+margin: 11px 0;
+}
+
+@media only screen and (max-width: 840px) {
+.brand img {
+margin: 11px auto;
+}
+}
+
+#main .wrap {
+    padding: 15px 0;
+}
+.entry-content .row {
+    display: none;
+}
+#sidebar {
+    width: 30%;
+    margin-top: 12px;
+}
+
+.single .entry-content a:hover {
+    color: #297c00;
+    text-decoration: underline;
+}
+
+
+
+/* Home Page Heading Spaces */
+.home .entry-content h1,
+.home .entry-content h2,
+.home .entry-content h3,
+.home .entry-content h4 {
+margin: 10px 0;
+}
+
+
+/* Home Page Headings Position */
+.home .post-content h1,
+.home .post-content h2,
+.home .post-content h3{
+ margin:0;
+}
+
+/* Paragraph Spacing*/
+.entry-content p {
+  margin: 10px 0 0 0;
+}
+
+/* Heading spacing for each Posts */
+.entry-content h2,
+.entry-content h3,
+.entry-content h4 {
+  margin: 15px 0;
+}
+
+
+
+/* Remove Spacing between address lines */
+address{
+  margin: 0px !important;
+}
+
+
+/* Header Google Responsive Banner */
+@media only screen and (min-width: 830px) {
+.header-widget-area { min-width: 730px; }
+}
+
+#header{ padding-bottom:10px;!important }
+#header{ padding-top:10px;!important }
+
+
+
+
+/* Remove titles from category pages */
+.category .page-title { display: none; }
+
+/* Breadcrumbs color and hover change */
+a:hover { color: #326793; }
+.breadcrumbs a,
+#breadcrumb a {
+color: #326793;
+font-weight: bold;
+}
+
+.breadcrumbs a:hover,
+#breadcrumb a:hover {
+color: #297c00;
+}
+.breadcrumbs .sep {
+font-size: 16px;
+}
+
+
+
+/ * To remove Categories Title from categories pages */
+.category .page-title { display: none; }
+
+
+/* Remove image border from sharing buttons */
+img.ssba {border: none !important;}
+
+
+/* Image border */
+.entry-content img {border: 1px solid #E0E0E0; padding: 4px;}
+
+
+/*Remove Yellow Background in Google Ads.*/
+ins {
+background: #fff;
+text-decoration: none;
+color: #000;
+}
+
+
+/*Opting Form Settings*/
+#optin {
+	background: #efefef;
+	border: 1px solid #ccc;
+	padding: 20px 15px;
+	text-align: center;
+/*height: 240px;*/
+}
+
+#optin input {
+	background: #fff;
+	border: 1px solid #ccc;
+	font-size: 15px;
+	margin-bottom: 10px;
+	padding: 8px 10px;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	box-shadow: 0 2px 2px #ddd;
+	-moz-box-shadow: 0 2px 2px #ddd;
+	-webkit-box-shadow: 0 2px 2px #ddd;
+}
+
+#optin input.thename {
+	background: #fff url(http://www.mustbegeek.com/wp-content/uploads/2013/07/name.png) no-repeat 10px center;
+	padding-left: 35px;
+  	width: 200px;
+  	height: 35px;
+  	color: black;
+}
+
+#optin input.theemail {
+	background: #fff url(http://www.mustbegeek.com/wp-content/uploads/2013/07/email.png) no-repeat 10px center;
+	padding-left: 35px;
+  	width: 200px;
+  	height: 35px;
+  	color: black;
+}
+
+#optin input[type="submit"] {
+	background: #217b30 url(http://www.mustbegeek.com/wp-content/uploads/2013/07/green.png) repeat-x top;
+	border: 1px solid #137725;
+	color: #fff;
+	cursor: pointer;
+	font-size: 18px;
+	font-weight: bold;
+	padding: 8px 0;
+	text-shadow: -1px -1px #1c5d28;
+	width: 80%;
+	margin-top: 20px;
+}
+
+#optin input[type="submit"]:hover {
+	color: #c6ffd1;
+}
+
+pre {
+	font-family: Consolas, 'ConsolasRegular', 'Courier New', monospace !important;
+	font-size: 1rem;
+	-webkit-hyphens: none;
+	-moz-hyphens:    none;
+	-ms-hyphens:     none;
+	hyphens:         none;
+}
+
+
+pre {
+    border: solid 1px #dddddd;
+    padding: 10px;
+    margin-bottom: 20px;
+    overflow: auto;
+    background: #012456;
+    color: #ffffff;
+    white-space:pre;
+}
