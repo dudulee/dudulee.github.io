@@ -1,0 +1,64 @@
+<head>
+<meta charset="UTF-8">
+    <title>windows iSCSI Target</title>
+    <link href="../styles/main_styles.css" rel="stylesheet" type="text/css" media="all">
+    <link href="../styles/blog.css" rel="stylesheet" type="text/css" media="all">
+</head>
+<body>
+    <h1 class="center">Configure ISCSI target in WServer 2008 R2</h1>
+    <p class="center"><a href="../index.html" rel=prev>Main menu</a></p>
+    <p class="center"><a href="../procedures.html" rel=prev>Return</a></p>
+
+    <div id="holder">
+        <div class="entry">
+            <h3>Installation</h3>
+            <br>
+            <p>Get the free Microsoft iSCSI Target (TechNet blogs) and start the installer.</p>
+            <br><a href="../img/iTarget_2008_01.png"><img src="../img/iTarget_2008_01.png" alt="context-menu" style="width:550px;"></a></p>
+
+            <br>
+            <p>Once completed, you'll get prompted with a screen where you should clin on "iSCSI Software Target (x64)".</p>
+            <br>
+            <p>Follow the easy wizard. Accept the license agreement, select installation path, and opt-in to the customer experience program. Just read and click next.</p>
+
+            <br><a href="../img/iTarget_2008_02.png"><img src="../img/iTarget_2008_01.png" alt="context-menu" style="width:550px;"></a></p>
+
+            <br>
+            <p>You can start the iSCSI target on the Win Serv 2008 R2.</p>
+
+            <br><a href="../img/iTarget_2008_03.png"><img src="../img/iTarget_2008_01.png" alt="context-menu" style="width:550px;"></a></p>
+            <br>
+
+            <p>the Microsoft iSCSI Software Target is installed under Admin Tools.</p>
+            <br>
+
+            <h3> Setup </h3>
+            <p>Create a Target. Enter the wizard</p>
+
+            <br><a href="../img/iTarget_2008_04.png"><img src="../img/iTarget_2008_04.png" alt="context-menu" style="width:550px;"></a></p>
+            <br>
+
+            <p>Supply an iSCSI target name and description. helps keep things clear. After this, set the IQN.</p>
+
+            <br><a href="../img/iTarget_2008_05.png"><img src="../img/iTarget_2008_05.png" alt="context-menu" style="width:550px;"></a></p>
+            <br>
+
+            <p>We now need to point the target to a disk. For this, create a new virtual disk (or import one).</p>
+
+            <br><a href="../img/iTarget_2008_06.png"><img src="../img/iTarget_2008_06.png" alt="context-menu" style="width:550px;"></a></p>
+            <br>
+
+            <p>New wizard. Define a path. <i>browse to the path on the host system and then type the name in a "<b>name.vhd</b>" format</i>.
+            Then, assign a size to the vhd.</p>
+
+            <br><a href="../img/iTarget_2008_07.png"><img src="../img/iTarget_2008_07.png" alt="context-menu" style="width:550px;"></a></p>
+
+            <br>
+            <p>with a target and virtual disk : need to link the two. In access screen, click add and then link the VHD and iSCI target.</p>
+
+
+            <h3> Ready to use the initiator </h3>
+            <a href="https://www.servethehome.com/setting-microsoft-iscsi-initiator-microsoft-iscsi-software-target/" rel="external">see here</a>
+        </div>
+    </div>
+</body>

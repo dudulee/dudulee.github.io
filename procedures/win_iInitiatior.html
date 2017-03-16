@@ -1,0 +1,61 @@
+<head>
+<meta charset="UTF-8">
+    <title>Windows iSCSI Initiator</title>
+    <link href="../styles/main_styles.css" rel="stylesheet" type="text/css" media="all">
+    <link href="../styles/blog.css" rel="stylesheet" type="text/css" media="all">
+</head>
+<body>
+    <h1 class="center">Installation procedure ISCSI Initiator w/ Microsoft target</h1>
+    <p class="center"><a href="../index.html" rel=prev>Main menu</a></p>
+    <p class="center"><a href="../procedures.html" rel=prev>Return</a></p>
+
+    <div id="holder">
+        <div class="entry">
+            <h3>Installation</h3>
+            <br>
+            <p>The Microsoft iSCSI initiator actually has many more features than will be shown here, but this series is meant to be a basic guide to getting Microsoft iSCSI targets and initiators set up.</p>>
+            <p>Run the Microsoft iSCSI software and allow access via UAC. If Quick Connect doesn't work, go to the Discovery tab and make sure that the iSCSI Target Server is on the target portals list.<br>
+            Once it is, you should see the IQN of the iSCSI target listed on the Targets tab. (may need to refresh list, > 5 min delay)</p>
+            <br><a href="../img/iInit_2008_01.png"><img src="../img/iInit_2008_01.png" alt="context-menu" style="width:550px;"></a></p>
+            <br>
+
+            <p>Next, Connect to the correct IQN of the iSCSI Target. In typical storage implementations one will see this list have lots of IQNs listed, making it all the more important to use descriptive names.</p>
+            <br><a href="../img/iInit_2008_02.png"><img src="../img/iInit_2008_01.png" alt="context-menu" style="width:550px;"></a></p>
+
+            <br>
+            <p>After clicking OK, should see on the Targets tab that everything is connected.</p>
+            <p>Once connected, go to the Volumes and Devices tab and select Auto Configure.</p>
+            <br>
+            <p>Once done, go into Windows Disk Management and see the volume attached as one would if a drive was directly connected into the machine.
+            Congrats, you can use the device as though it is a standard drive.</p>
+            <br><a href="../img/iInit_2008_03.png"><img src="../img/iInit_2008_01.png" alt="context-menu" style="width:550px;"></a></p>
+
+            <br>
+            <p>the Microsoft iSCSI Software Target is installed under Admin Tools.</p>
+            <br>
+
+
+            <h3> Setup </h3>
+            <p>Create a Target. Enter the wizard</p>
+
+            <br><a href="../img/iInit_2008_04.png"><img src="../img/iInit_2008_04.png" alt="context-menu" style="width:550px;"></a></p>
+            <br>
+            <p>Supply an iSCSI target name and description. helps keep things clear. After this, set the IQN.</p>
+            <br><a href="../img/iInit_2008_05.png"><img src="../img/iInit_2008_05.png" alt="context-menu" style="width:550px;"></a></p>
+            <br>
+
+            <p>We now need to point the target to a disk. For this, create a new virtual disk (or import one).</p>
+            <br><a href="../img/iInit_2008_06.png"><img src="../img/iInit_2008_06.png" alt="context-menu" style="width:550px;"></a></p>
+            <br>
+            <p>New wizard. Define a path. <i>browse to the path on the host system and then type the name in a "<b>name.vhd</b>" format</i>.
+            Then, assign a size to the vhd.</p>
+            <br><a href="../img/iInit_2008_07.png"><img src="../img/iInit_2008_07.png" alt="context-menu" style="width:550px;"></a></p>
+
+            <br>
+            <p>with a target and virtual disk : need to link the two. In access screen, click add and then link the VHD and iSCI target.</p>
+
+            <h3> Ready to use the initiator </h3>
+            <a href="https://www.servethehome.com/setting-microsoft-iscsi-initiator-microsoft-iscsi-software-target/" rel="external">see here</a>
+        </div>
+    </div>
+</body>
