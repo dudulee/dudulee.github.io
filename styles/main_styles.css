@@ -36,17 +36,18 @@ code {
     text-align: justify;
 }
 .txt-left {
-    margin-top: 200px;
-    margin-right: 10%;
+    margin-top: 100px;
+    margin-right: 20%;
     text-align: right;
 }
 
 
 #nav {
     margin-right: 15%;
-    margin-left: 15%;
+    margin-left: 20%;
     margin-top: 30px;
     display: inline-flex;
+    border-bottom: 1px solid #333222;
 }
 
 .navl {
@@ -65,7 +66,7 @@ b {
     font-weight: none;
 }
 #lol {
-    position: absolute;
+    position: fixed;
     bottom:0;
     right:0;
 }
