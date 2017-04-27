@@ -1,0 +1,262 @@
+I've recently struggled to get an IBM FAStT200 (3542-2RU) storage
+sub-system working, connected to a couple of AIX servers.  I had
+several problems which were undocumented, or documented so badly, that
+I thought I'd post something here to help any other unfortunates
+trying to do this.  The install and setup should have taken a couple
+of days at most, but ended up taking nearly two weeks.
+
+BTW, the disk unit is a re-badged LSI-Logic MetaStor unit, and the
+switches are re-badged Brocade units.
+
+I was trying to connect a FAStT200 HA model (the one with 2 FC
+controllers), with a couple of EXP500 expansion units (3560-1RU), via
+two IBM 3534-F08 SAN Fibre Channel 8 port Switches, to two RS6000
+servers (hosts) running AIX4.3.3.  Each server has two FC Adapters
+(HBAs) installed (IBM Feature Code 6227).  The idea was to have a
+configuration fully resistant to pretty much any single point of
+failure - ie: a FAStT controller, disk, cable, switch or HBA can fail
+and we can still access the disk from the hosts.
+
+===
+Hardware install was straight forward - follow the manuals that came
+with the kit.
+
+===
+Network configuration:  the switches and FAStT controllers each need
+to connect to our ethernet LAN.  The procedure for configuring the
+switches is simple and correctly described in the switch install
+manual - no problem.  If your switches are connected to a public LAN
+(eg: your regular company LAN) the you should secure them by changing
+the admin password (passwd command at commandline).  This password is
+unlikely to be used often, so take precautions not to forget it!
+
+The procedure to configure the network ports on the FAStT controller
+is poorly described in the FAStT Storage Manager Installation and
+Support Guide, in the Introduction, and nobody at the vendor or IBM
+knew the procedure properly when we raised a support call.  We did not
+find the doc as software install is a later step, and so we had not
+refered to this manual yet, and no one at the vendor or IBM directed
+us to this documentation when we enquired how to configure the FAStT
+ethernet addresses.
+
+Furthermore, the FAStT seems to use a very strange network adapter.
+The doc says it is 10/100, but doesn't specify duplex behavior.  Our
+network people prefer to set the ports that devices patch into to
+specific settings, so we tried 100 Full Duplex - didn't work.  IBM
+Tech Support said it's a half duplex device, so we tried that - also
+didn't work!  By trial and error we found the FAStT network ports
+would only work when the port they were patched to was set to Auto
+Duplex mode - presumably, the FAStT switches between Full and half
+duplex!?!  Nice one IBM, that cost us quite a few days.
+
+Eventually I worked out the following procedure which I believe is
+pretty comprehensive:
+
+1. Connect the special FAStT serial cable supplied with the unit to
+the serial port of the controller card in the FAStT unit that you want
+to configure.
+
+2. Connect a serial terminal or terminal emulator running on a PC or
+laptop via a null modem cable to the FAStT serial cable.  You may need
+a variety of adapters to achieve this (Null Modem, gender changes,
+etc).
+
+3. Configure the terminal to 9600 Bits/sec, 8 data bits, No parity, 1
+Stop bit, Xon/Xoff flow control.  If using an IBM 3153 terminal,
+setting its emulation to "SCO console" seems to work best.
+
+4. Press Ctrl-Break about once a second until the following prompt
+appears:
+"Set baud rate: press <space> within 5 seconds"
+
+5. Press space bar within 5 seconds.
+
+6. Press Ctrl-Break again once.  Should get following prompt:
+"Press within 5 seconds: <ESC> for SHELL, <BREAK> for baud rate"
+
+7. Press Esc key.  Should get the following:
+###################################################
+### ###
+### LSI Logic Series 3/4 SCSI RAID Controller ###
+### Copyright 1999, LSI Logic Inc. ###
+### ###
+### LSILOGIC 4th Generation Controller ###
+### Serial number: 1T83516049 ###
+### ###
+###################################################
+
+Enter password to access shell:
+
+8. Enter the default password which is infiniti.
+
+9. At the shell prompt enter:
+netCfgSet
+
+10. When prompted set the following values:
+
+My Host Name - enter something suitable, such as FAStT200-01A for
+controller A in the first FAStT200 installed.
+
+IP address - enter the IP address provided by network support for this
+FAStT
+
+Gateway IP address - enter the IP address provided by network support
+for this subnet
+
+Subnet mask - enter the correct IP subnet mask
+
+Network Init flags - enter 0x01 (this set to static IP address.  0x00
+sets the FAStT to use DHCP)
+
+All other values                just press enter to leave unchanged
+
+11. Check the values are set in NVSRAM correctly by entering:
+netCfgShow
+
+12. Reboot the controller by entering:
+sysReboot
+Note: this reboots just this controller in the FASTtT.
+
+13. Plug the network patch cable into the ethernet port on the FAStT
+controller.
+
+14. Bootup messages will appear on the serial attached terminal.  The
+reboot of the FAStT controller is finished when the message sodmain
+complete appears.
+
+15. Disconnect the serial terminal.
+
+16. Repeat the above procedure for the other FAStT controller card (if
+you have one), using a different IP address.
+
+===
+Cabling up the SAN was pretty straight forward.  The following diagram
+hopefully shows what we did to acheive resilience against any single
+point of failure:
+
++---------+            +---------+
+| Host A  |            | Host B  |
+|HBA   HBA|            |HBA   HBA|
++-|-----|-+            +-|-----|-+
+  |     |                |     |
+  |     +-------------------+  |
+  |                      |  |  |
+  |  +-------------------+  |  |
+  |  |                      |  |
++-|--|----+               +-|--|----+
+|switch A |               |switch B |
++-------|-+               +-------|-+
+        |                         |
+        |                         |
++-------|-----------+-------------|-----+
+|FAStT Controller A | FAStT Controller B|
++-------------------+-------------------+
+
+What we didn't realise, being SAN virgins, is that this configuration
+is actually two seperate SANs.  One SAN is FAStT controller A, switch
+A and the first HBA in each host.  The second SAN is FAStT controller
+B, switch B and the second HBAs in each host.  Each host can see both
+SANs.  Because the Domain ID of each SAN (set in the switches) was the
+same (factory default of 1), the hosts got confused about how to get
+to the disks, and we got configuration problems on the AIX hosts.
+
+All the "specialists" that looked at our subsequent problems missed
+this.  Eventually I figured the problem out myself, and fixed it by
+changing the Domain ID of switch B to 2.  We did this by telnet or
+serial connection to the switch, disabling the switch, using the
+configure command to change the Domain ID, and rebooting the switch,
+as follows:
+
+Fabric OS (tm)  Release v3.0.2f
+
+login: admin
+Password: ********
+
+IBM_3534_FC_Switch:admin> switchDisable
+IBM_3534_FC_Switch:admin> 0x101b7ca0 (tThad): Oct 29 15:17:51
+    WARNING FW-STATUS_SWITCH, 3, Switch status changed from HEALTHY/OK
+to Marginal/Warning
+
+
+IBM_3534_FC_Switch:admin> configure
+
+Configure...
+
+  Fabric parameters (yes, y, no, n): [no] y
+
+    Domain: (1..239) [1] 2
+    BB credit: (1..27) [16]
+    R_A_TOV: (4000..120000) [10000]
+    E_D_TOV: (1000..5000) [2000]
+    WAN_TOV: (1000..120000) [0]
+    WAN_RTT_DLY_MAX: (100..5000) [200]
+    Data field size: (256..2112) [2112]
+    Sequence Level Switching: (0..1) [0]
+    Disable Device Probing: (0..1) [0]
+    Suppress Class F Traffic: (0..1) [0]
+    SYNC IO mode: (0..1) [0]
+    VC Encoded Address Mode: (0..1) [0]
+    Core Switch PID Format: (0..1) [0]
+    Per-frame Route Priority: (0..1) [0]
+    Long Distance Fabric: (0..1) [0]
+
+  Virtual Channel parameters (yes, y, no, n): [no] n
+  Zoning Operation parameters (yes, y, no, n): [no] n
+  RSCN Transmission Mode (yes, y, no, n): [no] n
+  NS Operation Parameters (yes, y, no, n): [no] n
+  Arbitrated Loop parameters (yes, y, no, n): [no] n
+  System services (yes, y, no, n): [no] n
+  Portlog events enable (yes, y, no, n): [no] n
+
+IBM_3534_FC_Switch:admin> fastboot
+### THE SWITCH REBOOTS ###
+
+===
+Write down WWN of all adapters.  They're usually written on the back
+of the cards.  This is particularly important if your kit is in a
+machine some distance away from your desk as ours is (5 miles).
+
+===
+Hardware Install Done: at this point we went back to our office to do
+the software side of the install and setup.
+
+===
+We installed the latest level of support code for the FAStT and HBAs
+on our hosts.  In the specific case of AIX 4.3.3 we installed the
+latest levels of:
+devices.fcp.disk.array.*
+devices.pci.df1000f7.*
+devices.scsi.scarray.rte
+devices.common.IBM.fc.rte
+The README for FAStT Storage Manager specified minimum levels, but we
+installed the highest available - download from www.ibm.com somewhere.
+
+===
+Install Storage Manager on PC running NT and AIX server with X-windows
+no problems.
+The Storage Manager script to disable AVT/ADT requires the FAStT to be
+rebooted, and the only way to do that is to power off/on or reboot
+from the serial attach terminal - very annoying when the FAStT box is
+5 miles away.  Perhaps there'll be a reboot button in a future version
+of Storage Manager.
+
+===
+Hope this is of use to someone somewhere.  The big problems were:
+
+- configuring network adapters in FAStT,
+- Setting the SAN configuration correctly (realising it was 2 SANs and
+Domain ID),
+- tech support at vendor and IBM not having answers to the problems.
+Although they gave some information of assistance, they were unable to
+answer specific problems described and observed (yes, they came
+on-site a lot).  All problems were solved by us eventually working it
+out by trial and error.
+
+To be fair to the vendor at least, I'd say this was more a comment on
+the general level of maturity of this product (ie: not much), and the
+consequent lack of experience out there, than the ability of the
+vendor.  I was, however, very dissappointed that IBMs knowledge-base
+was so lacking in answers to clear and specific setup problems.
+
+Paul Holman, Unix SysAdmin, Oracle & Sybase DBA, SAN Admin (by
+default).

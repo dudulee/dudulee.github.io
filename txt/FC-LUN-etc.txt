@@ -41,3 +41,11 @@ Switch then assigns it a 24bit FCID (Fibre Channel ID) addr.
 Switches maintain FCID to WWPN address mapping and which port.
 
 
+#show flogi database    // show that maintained table.
+
+the FLOGI database info is shared with each switch using the FCNS (Fibre Channel Name Service)
+
+After the FLOGI process is complete, initiator will send the PLOGI (Port Login).
+Based on the zoning config, the host will learn it available target WWPNs
+Finally init host will send a PLRI (Process Login) to its target storage
+Access granted basing on Lun Masking config.
