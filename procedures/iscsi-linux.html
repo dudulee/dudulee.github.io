@@ -13,15 +13,15 @@
         <div class="entry">
             <p>First we need to install the iscsi-target</p>
             <br>
-            <p><a href="../img/Iscsi-Linux1.png"><img src="../img/Iscsi-Linux1.png" alt="context-menu"/></a></p>
+            <p><a href="../img/Iscsi-Linux1.PNG"><img src="../img/Iscsi-Linux1.PNG" alt="context-menu"/></a></p>
             <br>
             <p>Then we have to Open /etc/default/iscsitarget</p>
             <br>
-            <p><a href="../img/Iscsi-Linux2.png"><img src="../img/Iscsi-Linux2.png" alt="context-menu"/></a></p>
+            <p><a href="../img/Iscsi-Linux2.PNG"><img src="../img/Iscsi-Linux2.PNG" alt="context-menu"/></a></p>
             <br>
             <p>And set ISCSITARGET_ENABLE to true</p>
             <br>
-            <p><a href="../img/Iscsi-Linuxtrue.png"><img src="../img/Iscsi-Linuxtrue.png" alt="context-menu"/></a></p>
+            <p><a href="../img/Iscsi-Linuxtrue.PNG"><img src="../img/Iscsi-Linuxtrue.PNG" alt="context-menu"/></a></p>
             <br>
             <p>
               We can use unused logical volumes, image files, hard drives (e.g. /dev/sdb),
@@ -29,14 +29,14 @@
               In the following command, we put 20G in a volume
             </p>
             <br>
-            <p><a href="../img/Iscsi-Linux3.png"><img src="../img/Iscsi-Linux3.png" alt="context-menu"/></a></p>
+            <p><a href="../img/Iscsi-Linux3.PNG"><img src="../img/Iscsi-Linux3.PNG" alt="context-menu"/></a></p>
             <br>
             <p>
               Now that we've created a logical volume of 20GB named storage_lun1 in the volume group vg0,
               we will edit /etc/iet/ietd.conf
             </p>
             <br>
-            <p><a href="../img/Iscsi-Linux4.png"><img src="../img/Iscsi-Linux4.png" alt="context-menu"/></a></p>
+            <p><a href="../img/Iscsi-Linux4.PNG"><img src="../img/Iscsi-Linux4.PNG" alt="context-menu"/></a></p>
             <br>
             <p>
               and comment out everything in that file. At the end we add the following stanza: (insert ours)
@@ -46,11 +46,11 @@
                 from the IP address of our server. Thus the logical stockage device will comunicate will our server
             </p>
             <br>
-            <p><a href="../img/Iscsi-Linux5.png"><img src="../img/Iscsi-Linux5.png" alt="context-menu"/></a></p>
+            <p><a href="../img/Iscsi-Linux5.PNG"><img src="../img/Iscsi-Linux5.PNG" alt="context-menu"/></a></p>
             <br>
             <p>And start the target</p>
             <br>
-            <p><a href="../img/Iscsi-Linux6.png"><img src="../img/Iscsi-Linux6.png" alt="context-menu"/></a></p>
+            <p><a href="../img/Iscsi-Linux6.PNG"><img src="../img/Iscsi-Linux6.PNG" alt="context-menu"/></a></p>
             <br>
         </div>
     </div>
