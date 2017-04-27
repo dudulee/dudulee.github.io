@@ -52,21 +52,13 @@ duplex!?!  Nice one IBM, that cost us quite a few days.
 Eventually I worked out the following procedure which I believe is
 pretty comprehensive:
 
-1. Connect the special FAStT serial cable supplied with the unit to
-the serial port of the controller card in the FAStT unit that you want
-to configure.
+1. Connect the special FAStT serial cable supplied with the unit to the serial port of the controller card in the FAStT unit that you want to configure.
 
-2. Connect a serial terminal or terminal emulator running on a PC or
-laptop via a null modem cable to the FAStT serial cable.  You may need
-a variety of adapters to achieve this (Null Modem, gender changes,
-etc).
+2. Connect a serial terminal or terminal emulator running on a PC or laptop via a null modem cable to the FAStT serial cable.  You may need a variety of adapters to achieve this (Null Modem, gender changes, etc).
 
-3. Configure the terminal to 9600 Bits/sec, 8 data bits, No parity, 1
-Stop bit, Xon/Xoff flow control.  If using an IBM 3153 terminal,
-setting its emulation to "SCO console" seems to work best.
+3. Configure the terminal to 9600 Bits/sec, 8 data bits, No parity, 1 Stop bit, Xon/Xoff flow control.  If using an IBM 3153 terminal, setting its emulation to "SCO console" seems to work best.
 
-4. Press Ctrl-Break about once a second until the following prompt
-appears:
+4. Press Ctrl-Break about once a second until the following prompt appears:
 "Set baud rate: press <space> within 5 seconds"
 
 5. Press space bar within 5 seconds.
@@ -94,11 +86,9 @@ netCfgSet
 
 10. When prompted set the following values:
 
-My Host Name - enter something suitable, such as FAStT200-01A for
-controller A in the first FAStT200 installed.
+My Host Name - enter something suitable, such as FAStT200-01A for controller A in the first FAStT200 installed.
 
-IP address - enter the IP address provided by network support for this
-FAStT
+IP address - enter the IP address provided by network support for this FAStT
 
 Gateway IP address - enter the IP address provided by network support
 for this subnet
@@ -152,20 +142,9 @@ point of failure:
 |FAStT Controller A | FAStT Controller B|
 +-------------------+-------------------+
 
-What we didn't realise, being SAN virgins, is that this configuration
-is actually two seperate SANs.  One SAN is FAStT controller A, switch
-A and the first HBA in each host.  The second SAN is FAStT controller
-B, switch B and the second HBAs in each host.  Each host can see both
-SANs.  Because the Domain ID of each SAN (set in the switches) was the
-same (factory default of 1), the hosts got confused about how to get
-to the disks, and we got configuration problems on the AIX hosts.
+What we didn't realise, being SAN virgins, is that this configuration is actually two seperate SANs.  One SAN is FAStT controller A, switch A and the first HBA in each host.  The second SAN is FAStT controller B, switch B and the second HBAs in each host.  Each host can see both SANs.  Because the Domain ID of each SAN (set in the switches) was the same (factory default of 1), the hosts got confused about how to get to the disks, and we got configuration problems on the AIX hosts.
 
-All the "specialists" that looked at our subsequent problems missed
-this.  Eventually I figured the problem out myself, and fixed it by
-changing the Domain ID of switch B to 2.  We did this by telnet or
-serial connection to the switch, disabling the switch, using the
-configure command to change the Domain ID, and rebooting the switch,
-as follows:
+All the "specialists" that looked at our subsequent problems missed this.  Eventually I figured the problem out myself, and fixed it by changing the Domain ID of switch B to 2.  We did this by telnet or serial connection to the switch, disabling the switch, using the configure command to change the Domain ID, and rebooting the switch, as follows:
 
 Fabric OS (tm)  Release v3.0.2f
 
@@ -174,8 +153,7 @@ Password: ********
 
 IBM_3534_FC_Switch:admin> switchDisable
 IBM_3534_FC_Switch:admin> 0x101b7ca0 (tThad): Oct 29 15:17:51
-    WARNING FW-STATUS_SWITCH, 3, Switch status changed from HEALTHY/OK
-to Marginal/Warning
+    WARNING FW-STATUS_SWITCH, 3, Switch status changed from HEALTHY/OK to Marginal/Warning
 
 
 IBM_3534_FC_Switch:admin> configure
@@ -232,13 +210,8 @@ The README for FAStT Storage Manager specified minimum levels, but we
 installed the highest available - download from www.ibm.com somewhere.
 
 ===
-Install Storage Manager on PC running NT and AIX server with X-windows
-no problems.
-The Storage Manager script to disable AVT/ADT requires the FAStT to be
-rebooted, and the only way to do that is to power off/on or reboot
-from the serial attach terminal - very annoying when the FAStT box is
-5 miles away.  Perhaps there'll be a reboot button in a future version
-of Storage Manager.
+Install Storage Manager on PC running NT and AIX server with X-windows no problems.
+The Storage Manager script to disable AVT/ADT requires the FAStT to be rebooted, and the only way to do that is to power off/on or reboot from the serial attach terminal - very annoying when the FAStT box is 5 miles away.  Perhaps there'll be a reboot button in a future version of Storage Manager.
 
 ===
 Hope this is of use to someone somewhere.  The big problems were:
