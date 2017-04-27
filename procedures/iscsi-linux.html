@@ -1,0 +1,46 @@
+<head>
+<meta charset="UTF-8">
+    <title>Linux iSCSI Initiator</title>
+    <link href="../styles/main_styles.css" rel="stylesheet" type="text/css" media="all">
+    <link href="../styles/blog.css" rel="stylesheet" type="text/css" media="all">
+</head>
+<body>
+    <h1 class="center">Installation procedure ISCSI Initiator w/ Linux target</h1>
+    <p class="center"><a href="../index.html" rel=prev>Main menu</a></p>
+    <p class="center"><a href="../procedures.html" rel=prev>Return</a></p>
+
+    <div id="holder">
+        <div class="entry">
+            <p>First we need to install the iscsi-target</p>
+            <br>
+            <p><a href="../img/Iscsi-Linux1"><img src="../img/Iscsi-Linux1" alt="context-menu"/></a></p>
+            <br>
+            <p>Then we have to Open /etc/default/iscsitarget</p>
+            <br>
+            <p><a href="../img/Iscsi-Linux2"><img src="../img/Iscsi-Linux1" alt="context-menu"/></a></p>
+            <br>
+            <p>And set ISCSITARGET_ENABLE to true</p>
+            <br>
+            <p><a href="../img/Iscsi-Linux3"><img src="../img/Iscsi-Linux1" alt="context-menu"/></a></p>
+            <br>
+            <p>
+              We can use unused logical volumes, image files, hard drives (e.g. /dev/sdb),
+              hard drive partitions (e.g. /dev/sdb1) or RAID devices (e.g. /dev/md0) for the storage.
+              In the following command, we put 20G in a volume
+            </p>
+            <br>
+            <p><a href="../img/Iscsi-Linux4"><img src="../img/Iscsi-Linux1" alt="context-menu"/></a></p>
+            <br>
+            <p>
+              Now that we've created a logical volume of 20GB named storage_lun1 in the volume group vg0,
+              we will edit /etc/iet/ietd.conf
+            </p>
+            <br>
+            <p><a href="../img/Iscsi-Linux5"><img src="../img/Iscsi-Linux1" alt="context-menu"/></a></p>
+            <br>
+            <p>
+              and comment out everything in that file. At the end we add the following stanza: (insert ours)
+            </p>
+        </div>
+    </div>
+</body>
