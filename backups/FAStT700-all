@@ -1,0 +1,966 @@
+PROFILE FOR STORAGE SUBSYSTEM: FAStT700
+
+SUMMARY------------------------------
+   Number of controllers: 2
+   Number of arrays: 0
+   Number of standard logical drives: 0
+   Number of drives: 25
+   Access logical drive: LUN 31 (see Mappings section for details)
+   Default host type: Windows Non-Clustered (SP5 or higher) (Host type index 0)
+   Firmware version: 05.21.01.02
+   NVSRAM version: CNV1742R821NT008
+   Start cache flushing at (in percentage): 80
+   Stop cache flushing at (in percentage): 80
+   Cache block size (in KB): 4
+   Media scan duration (in days): Disabled
+   Feature enable identifier: 3038303434003038313536005195C358
+
+CONTROLLERS------------------------------
+   Number of controllers: 2
+
+   Controller in Slot A
+      IP address: 192.168.128.101
+      Appware version: 05.21.01.02
+      Bootware version: 05.00.02.00
+      Status: Optimal {1}
+      Mode: Active
+      Board ID: 4884
+      Product ID: 1742            
+      Product revision: 0520
+      Serial number: 1T21508044
+      Manufacturer: IBM     
+      Date of manufacture: May 4, 2002
+      Cache/processor size (MB): 1024/128
+      Fibre drive interface
+         Channel: 1
+         Current ID: 125/0x1
+      Fibre drive interface
+         Channel: 2
+         Current ID: 125/0x1
+      Fibre drive interface
+         Channel: 3
+         Current ID: 125/0x1
+      Fibre drive interface
+         Channel: 4
+         Current ID: 125/0x1
+
+      Host Interface(s): Unable to retrieve latest data; using last known state.
+      Host interface: FIBRE
+         Port: 1
+         Current ID: Not applicable/0xFFFFFFFF
+         Preferred ID: 0/0xEF
+         NL-Port ID: 0x000000
+         Topology: Not available
+         World-wide port name: 200400A0B80CE2B0
+         World-wide node name: 200400A0B80CE2AF
+         Fibre interface speed: 2 Gbps 
+         Fibre part type: HPFC-5200    revision 11
+         Fibre link status: Down
+      Host interface: FIBRE
+         Port: 2
+         Current ID: Not applicable/0xFFFFFFFF
+         Preferred ID: 1/0xE8
+         NL-Port ID: 0x0000E8
+         Topology: Arbitrated Loop - Private
+         World-wide port name: 200400A0B80CE2B1
+         World-wide node name: 200400A0B80CE2AF
+         Fibre interface speed: 2 Gbps 
+         Fibre part type: HPFC-5200    revision 11
+         Fibre link status: Down
+
+   Controller in Slot B
+      IP address: 192.168.1.250
+      Appware version: 05.21.01.02
+      Bootware version: 05.00.02.00
+      Status: Optimal {1}
+      Mode: Active
+      Board ID: 4884
+      Product ID: 1742            
+      Product revision: 0520
+      Serial number: 1T21508156
+      Manufacturer: IBM     
+      Date of manufacture: April 30, 2002
+      Cache/processor size (MB): 1024/128
+      Fibre drive interface
+         Channel: 1
+         Current ID: 124/0x2
+      Fibre drive interface
+         Channel: 2
+         Current ID: 124/0x2
+      Fibre drive interface
+         Channel: 3
+         Current ID: 124/0x2
+      Fibre drive interface
+         Channel: 4
+         Current ID: 124/0x2
+      Host interface: FIBRE
+         Port: 1
+         Current ID: Not applicable/0xFFFFFFFF
+         Preferred ID: 2/0xE4
+         NL-Port ID: 0x0000E4
+         Topology: Arbitrated Loop - Private
+         World-wide port name: 200500A0B80CE2B0
+         World-wide node name: 200400A0B80CE2AF
+         Fibre interface speed: 2 Gbps 
+         Fibre part type: HPFC-5200    revision 11
+         Fibre link status: Down
+      Host interface: FIBRE
+         Port: 2
+         Current ID: Not applicable/0xFFFFFFFF
+         Preferred ID: 3/0xE2
+         NL-Port ID: 0x000000
+         Topology: Not available
+         World-wide port name: 200500A0B80CE2B1
+         World-wide node name: 200400A0B80CE2AF
+         Fibre interface speed: 2 Gbps 
+         Fibre part type: HPFC-5200    revision 11
+         Fibre link status: Down
+
+ARRAYS------------------------------
+   Number of arrays: 0
+
+STANDARD LOGICAL DRIVES------------------------------
+   Number of standard logical drives: 0
+
+DRIVES------------------------------
+
+SUMMARY
+   Number of drives: 25
+
+   TRAY, SLOT  STATUS   CAPACITY  CURRENT DATA RATE  MANUFACTURER  FIRMWARE VERSION  
+   1, 1        Optimal  68.366GB  2 Gbps             IBM-ESXS      B356              
+   1, 2        Optimal  68.366GB  2 Gbps             IBM-ESXS      B356              
+   1, 3        Optimal  68.366GB  2 Gbps             IBM-ESXS      B356              
+   1, 4        Optimal  68.366GB  2 Gbps             IBM-ESXS      B346              
+   1, 5        Optimal  68.366GB  2 Gbps             IBM-ESXS      B356              
+   1, 6        Optimal  68.366GB  2 Gbps             IBM-ESXS      B346              
+   1, 10       Optimal  68.366GB  2 Gbps             IBM-ESXS      B346              
+   1, 11       Optimal  68.366GB  2 Gbps             IBM-ESXS      B346              
+   1, 12       Optimal  68.366GB  2 Gbps             IBM-ESXS      B356              
+   1, 13       Optimal  68.366GB  2 Gbps             IBM-ESXS      B346              
+   1, 14       Optimal  68.366GB  2 Gbps             IBM-ESXS      B356              
+   3, 1        Optimal  68.366GB  2 Gbps             IBM-ESXS      B346              
+   3, 2        Optimal  68.366GB  2 Gbps             IBM-ESXS      B346              
+   3, 3        Optimal  68.366GB  2 Gbps             IBM-ESXS      B343              
+   3, 4        Optimal  68.366GB  2 Gbps             IBM-ESXS      B346              
+   3, 5        Optimal  68.366GB  2 Gbps             IBM-ESXS      B356              
+   3, 6        Optimal  68.366GB  2 Gbps             IBM-ESXS      B346              
+   3, 7        Optimal  68.366GB  2 Gbps             IBM-ESXS      B356              
+   3, 8        Optimal  68.366GB  2 Gbps             IBM-ESXS      B356              
+   3, 9        Optimal  68.366GB  2 Gbps             IBM-ESXS      B356              
+   3, 10       Optimal  68.366GB  2 Gbps             IBM-ESXS      B356              
+   3, 11       Optimal  68.366GB  2 Gbps             IBM-ESXS      B356              
+   3, 12       Optimal  68.366GB  2 Gbps             IBM-ESXS      B356              
+   3, 13       Optimal  68.366GB  2 Gbps             IBM-ESXS      B356              
+   3, 14       Optimal  68.366GB  2 Gbps             IBM-ESXS      B356              
+
+DETAILS
+   Drive at Enclosure 1, Slot 1
+      Drive port: 1, Channel: 3, ID: 8/0xD9
+      Drive port: 2, Channel: 4, ID: 8/0xD9
+      Drive path redundancy: OK
+      Status: Optimal 
+      Raw capacity: 68.366GB
+      Usable capacity: 68.327GB
+      Current data rate: 2 Gbps
+      Product ID: ST373307FC    F 
+      Manufacturer: IBM-ESXS
+      Firmware version: B356
+      Serial number: 3HZ1HVGL00007352AHHW
+      Date of manufacture: June 24, 2003
+      World-wide name: 0C0000206A605650
+      Mode: Unassigned
+      Associated array: Array None
+
+   Drive at Enclosure 1, Slot 2
+      Drive port: 1, Channel: 4, ID: 9/0xD6
+      Drive port: 2, Channel: 3, ID: 9/0xD6
+      Drive path redundancy: OK
+      Status: Optimal 
+      Raw capacity: 68.366GB
+      Usable capacity: 68.327GB
+      Current data rate: 2 Gbps
+      Product ID: ST373307FC    F 
+      Manufacturer: IBM-ESXS
+      Firmware version: B356
+      Serial number: 3HZ1G9BA000073513C78
+      Date of manufacture: June 16, 2003
+      World-wide name: 0C0000208A695650
+      Mode: Unassigned
+      Associated array: Array None
+
+   Drive at Enclosure 1, Slot 3
+      Drive port: 1, Channel: 3, ID: 10/0xD5
+      Drive port: 2, Channel: 4, ID: 10/0xD5
+      Drive path redundancy: OK
+      Status: Optimal 
+      Raw capacity: 68.366GB
+      Usable capacity: 68.327GB
+      Current data rate: 2 Gbps
+      Product ID: ST373307FC    F 
+      Manufacturer: IBM-ESXS
+      Firmware version: B356
+      Serial number: 3HZ1DMVH00007349QWL7
+      Date of manufacture: June 6, 2003
+      World-wide name: 0C000020066A5650
+      Mode: Unassigned
+      Associated array: Array None
+
+   Drive at Enclosure 1, Slot 4
+      Drive port: 1, Channel: 4, ID: 11/0xD4
+      Drive port: 2, Channel: 3, ID: 11/0xD4
+      Drive path redundancy: OK
+      Status: Optimal 
+      Raw capacity: 68.366GB
+      Usable capacity: 68.327GB
+      Current data rate: 2 Gbps
+      Product ID: ST373405FC    !#
+      Manufacturer: IBM-ESXS
+      Firmware version: B346
+      Serial number: 3EK1VF2400007250UM4Y
+      Date of manufacture: May 15, 2002
+      World-wide name: 040000209BA4A4CF
+      Mode: Unassigned
+      Associated array: Array None
+
+   Drive at Enclosure 1, Slot 5
+      Drive port: 1, Channel: 3, ID: 12/0xD3
+      Drive port: 2, Channel: 4, ID: 12/0xD3
+      Drive path redundancy: OK
+      Status: Optimal 
+      Raw capacity: 68.366GB
+      Usable capacity: 68.327GB
+      Current data rate: 2 Gbps
+      Product ID: ST373307FC    F 
+      Manufacturer: IBM-ESXS
+      Firmware version: B356
+      Serial number: 3HZ1FZ6100007350D5KK
+      Date of manufacture: June 12, 2003
+      World-wide name: 0C000020B46B5650
+      Mode: Unassigned
+      Associated array: Array None
+
+   Drive at Enclosure 1, Slot 6
+      Drive port: 1, Channel: 4, ID: 13/0xD2
+      Drive port: 2, Channel: 3, ID: 13/0xD2
+      Drive path redundancy: OK
+      Status: Optimal 
+      Raw capacity: 68.366GB
+      Usable capacity: 68.327GB
+      Current data rate: 2 Gbps
+      Product ID: ST373405FC    !#
+      Manufacturer: IBM-ESXS
+      Firmware version: B346
+      Serial number: 3EK1VFNX00007250LQ6E
+      Date of manufacture: May 15, 2002
+      World-wide name: 040000206FA4A4CF
+      Mode: Unassigned
+      Associated array: Array None
+
+   Drive at Enclosure 1, Slot 10
+      Drive port: 1, Channel: 4, ID: 97/0x39
+      Drive port: 2, Channel: 3, ID: 97/0x39
+      Drive path redundancy: OK
+      Status: Optimal 
+      Raw capacity: 68.366GB
+      Usable capacity: 68.327GB
+      Current data rate: 2 Gbps
+      Product ID: ST373405FC    !#
+      Manufacturer: IBM-ESXS
+      Firmware version: B346
+      Serial number: 3EK1V27000007250W07W
+      Date of manufacture: May 15, 2002
+      World-wide name: 040000209CA2A4CF
+      Mode: Unassigned
+      Associated array: Array None
+
+   Drive at Enclosure 1, Slot 11
+      Drive port: 1, Channel: 3, ID: 65/0x71
+      Drive port: 2, Channel: 4, ID: 65/0x71
+      Drive path redundancy: OK
+      Status: Optimal 
+      Raw capacity: 68.366GB
+      Usable capacity: 68.327GB
+      Current data rate: 2 Gbps
+      Product ID: ST373405FC    !#
+      Manufacturer: IBM-ESXS
+      Firmware version: B346
+      Serial number: 3EK1VCRW00007250TESY
+      Date of manufacture: May 15, 2002
+      World-wide name: 0400002088A4A4CF
+      Mode: Unassigned
+      Associated array: Array None
+
+   Drive at Enclosure 1, Slot 12
+      Drive port: 1, Channel: 4, ID: 73/0x66
+      Drive port: 2, Channel: 3, ID: 73/0x66
+      Drive path redundancy: OK
+      Status: Optimal 
+      Raw capacity: 68.366GB
+      Usable capacity: 68.327GB
+      Current data rate: 2 Gbps
+      Product ID: ST373307FC    F 
+      Manufacturer: IBM-ESXS
+      Firmware version: B356
+      Serial number: 3HZ1HS9W00007352A85W
+      Date of manufacture: June 24, 2003
+      World-wide name: 0C0000207F615650
+      Mode: Unassigned
+      Associated array: Array None
+
+   Drive at Enclosure 1, Slot 13
+      Drive port: 1, Channel: 3, ID: 89/0x4A
+      Drive port: 2, Channel: 4, ID: 89/0x4A
+      Drive path redundancy: OK
+      Status: Optimal 
+      Raw capacity: 68.366GB
+      Usable capacity: 68.327GB
+      Current data rate: 2 Gbps
+      Product ID: ST373405FC    !#
+      Manufacturer: IBM-ESXS
+      Firmware version: B346
+      Serial number: 3EK1VCT700007250W08Y
+      Date of manufacture: May 15, 2002
+      World-wide name: 040000202AA2A4CF
+      Mode: Unassigned
+      Associated array: Array None
+
+   Drive at Enclosure 1, Slot 14
+      Drive port: 1, Channel: 4, ID: 105/0x2D
+      Drive port: 2, Channel: 3, ID: 105/0x2D
+      Drive path redundancy: OK
+      Status: Optimal 
+      Raw capacity: 68.366GB
+      Usable capacity: 68.327GB
+      Current data rate: 2 Gbps
+      Product ID: ST373307FC    F 
+      Manufacturer: IBM-ESXS
+      Firmware version: B356
+      Serial number: 3HZY46V40000740730XQ
+      Date of manufacture: May 31, 2004
+      World-wide name: 04000020232AE0CF
+      Mode: Unassigned
+      Associated array: Array None
+
+   Drive at Enclosure 3, Slot 1
+      Drive port: 1, Channel: 4, ID: 24/0xC3
+      Drive path redundancy: OK
+      Status: Optimal 
+      Raw capacity: 68.366GB
+      Usable capacity: 68.327GB
+      Current data rate: 2 Gbps
+      Product ID: ST373405FC    !#
+      Manufacturer: IBM-ESXS
+      Firmware version: B346
+      Serial number: 3EK1V5CA00007250QXK5
+      Date of manufacture: May 15, 2002
+      World-wide name: 04000020E673A4CF
+      Mode: Unassigned
+      Associated array: Array None
+
+   Drive at Enclosure 3, Slot 2
+      Drive port: 1, Channel: 4, ID: 25/0xBC
+      Drive path redundancy: OK
+      Status: Optimal 
+      Raw capacity: 68.366GB
+      Usable capacity: 68.327GB
+      Current data rate: 2 Gbps
+      Product ID: ST373405FC    !#
+      Manufacturer: IBM-ESXS
+      Firmware version: B346
+      Serial number: 3EK1TZZW00007249K270
+      Date of manufacture: May 15, 2002
+      World-wide name: 04000020AC70A4CF
+      Mode: Unassigned
+      Associated array: Array None
+
+   Drive at Enclosure 3, Slot 3
+      Drive port: 1, Channel: 4, ID: 26/0xBA
+      Drive path redundancy: OK
+      Status: Optimal 
+      Raw capacity: 68.366GB
+      Usable capacity: 68.327GB
+      Current data rate: 2 Gbps
+      Product ID: ST373405FC    !#
+      Manufacturer: IBM-ESXS
+      Firmware version: B343
+      Serial number: 3EKZ00PW00002341WQER
+      Date of manufacture: June 3, 2001
+      World-wide name: 040000204F3E2BCF
+      Mode: Unassigned
+      Associated array: Array None
+
+   Drive at Enclosure 3, Slot 4
+      Drive port: 1, Channel: 4, ID: 27/0xB9
+      Drive path redundancy: OK
+      Status: Optimal 
+      Raw capacity: 68.366GB
+      Usable capacity: 68.327GB
+      Current data rate: 2 Gbps
+      Product ID: ST373405FC    !#
+      Manufacturer: IBM-ESXS
+      Firmware version: B346
+      Serial number: 3EK1VCSM00007250TERC
+      Date of manufacture: May 15, 2002
+      World-wide name: 04000020A5A4A4CF
+      Mode: Unassigned
+      Associated array: Array None
+
+   Drive at Enclosure 3, Slot 5
+      Drive port: 1, Channel: 4, ID: 28/0xB6
+      Drive path redundancy: OK
+      Status: Optimal 
+      Raw capacity: 68.366GB
+      Usable capacity: 68.327GB
+      Current data rate: 2 Gbps
+      Product ID: ST373307FC    F 
+      Manufacturer: IBM-ESXS
+      Firmware version: B356
+      Serial number: 3HZY5WAT00007341P8EH
+      Date of manufacture: January 18, 2005
+      World-wide name: 11000020DBC62AC6
+      Mode: Unassigned
+      Associated array: Array None
+
+   Drive at Enclosure 3, Slot 6
+      Drive port: 1, Channel: 4, ID: 29/0xB5
+      Drive path redundancy: OK
+      Status: Optimal 
+      Raw capacity: 68.366GB
+      Usable capacity: 68.327GB
+      Current data rate: 2 Gbps
+      Product ID: ST373405FC    !#
+      Manufacturer: IBM-ESXS
+      Firmware version: B346
+      Serial number: 3EK1TZ6A00007250ULRL
+      Date of manufacture: May 15, 2002
+      World-wide name: 0400002062A1A4CF
+      Mode: Unassigned
+      Associated array: Array None
+
+   Drive at Enclosure 3, Slot 7
+      Drive port: 1, Channel: 4, ID: 30/0xB4
+      Drive path redundancy: OK
+      Status: Optimal 
+      Raw capacity: 68.366GB
+      Usable capacity: 68.327GB
+      Current data rate: 2 Gbps
+      Product ID: ST373307FC    F 
+      Manufacturer: IBM-ESXS
+      Firmware version: B356
+      Serial number: 3HZ6G7P1000074211DBH
+      Date of manufacture: November 16, 2003
+      World-wide name: 0C000020F2568050
+      Mode: Unassigned
+      Associated array: Array None
+
+   Drive at Enclosure 3, Slot 8
+      Drive port: 1, Channel: 4, ID: 31/0xB3
+      Drive path redundancy: OK
+      Status: Optimal 
+      Raw capacity: 68.366GB
+      Usable capacity: 68.327GB
+      Current data rate: 2 Gbps
+      Product ID: ST373307FC    F 
+      Manufacturer: IBM-ESXS
+      Firmware version: B356
+      Serial number: 3HZ6GVQJ00007419LC4V
+      Date of manufacture: November 16, 2003
+      World-wide name: 0C0000201E568050
+      Mode: Unassigned
+      Associated array: Array None
+
+   Drive at Enclosure 3, Slot 9
+      Drive port: 1, Channel: 4, ID: 83/0x52
+      Drive path redundancy: OK
+      Status: Optimal 
+      Raw capacity: 68.366GB
+      Usable capacity: 68.327GB
+      Current data rate: 2 Gbps
+      Product ID: ST373307FC    F 
+      Manufacturer: IBM-ESXS
+      Firmware version: B356
+      Serial number: 3HZ6GT4300007421KS11
+      Date of manufacture: November 16, 2003
+      World-wide name: 0C0000201D598050
+      Mode: Unassigned
+      Associated array: Array None
+
+   Drive at Enclosure 3, Slot 10
+      Drive port: 1, Channel: 4, ID: 99/0x35
+      Drive path redundancy: OK
+      Status: Optimal 
+      Raw capacity: 68.366GB
+      Usable capacity: 68.327GB
+      Current data rate: 2 Gbps
+      Product ID: ST373307FC    F 
+      Manufacturer: IBM-ESXS
+      Firmware version: B356
+      Serial number: 3HZ1HSPR000073517U2F
+      Date of manufacture: June 24, 2003
+      World-wide name: 0C0000200A615650
+      Mode: Unassigned
+      Associated array: Array None
+
+   Drive at Enclosure 3, Slot 11
+      Drive port: 1, Channel: 4, ID: 67/0x6D
+      Drive path redundancy: OK
+      Status: Optimal 
+      Raw capacity: 68.366GB
+      Usable capacity: 68.327GB
+      Current data rate: 2 Gbps
+      Product ID: ST373307FC    F 
+      Manufacturer: IBM-ESXS
+      Firmware version: B356
+      Serial number: 3HZ1J15X00007352BRW0
+      Date of manufacture: June 27, 2003
+      World-wide name: 0C0000208C605650
+      Mode: Unassigned
+      Associated array: Array None
+
+   Drive at Enclosure 3, Slot 12
+      Drive port: 1, Channel: 4, ID: 75/0x63
+      Drive path redundancy: OK
+      Status: Optimal 
+      Raw capacity: 68.366GB
+      Usable capacity: 68.327GB
+      Current data rate: 2 Gbps
+      Product ID: ST373307FC    F 
+      Manufacturer: IBM-ESXS
+      Firmware version: B356
+      Serial number: 3HZ1HSHX000073513SCE
+      Date of manufacture: June 24, 2003
+      World-wide name: 0C000020E0615650
+      Mode: Unassigned
+      Associated array: Array None
+
+   Drive at Enclosure 3, Slot 13
+      Drive port: 1, Channel: 4, ID: 91/0x47
+      Drive path redundancy: OK
+      Status: Optimal 
+      Raw capacity: 68.366GB
+      Usable capacity: 68.327GB
+      Current data rate: 2 Gbps
+      Product ID: ST373307FC    F 
+      Manufacturer: IBM-ESXS
+      Firmware version: B356
+      Serial number: 3HZ1GE7S00007351T4H3
+      Date of manufacture: June 15, 2003
+      World-wide name: 0C000020C7655650
+      Mode: Unassigned
+      Associated array: Array None
+
+   Drive at Enclosure 3, Slot 14
+      Drive port: 1, Channel: 4, ID: 107/0x2B
+      Drive path redundancy: OK
+      Status: Optimal 
+      Raw capacity: 68.366GB
+      Usable capacity: 68.327GB
+      Current data rate: 2 Gbps
+      Product ID: ST373307FC    F 
+      Manufacturer: IBM-ESXS
+      Firmware version: B356
+      Serial number: 3HZ1G38C00007350FU96
+      Date of manufacture: June 15, 2003
+      World-wide name: 0C00002096695650
+      Mode: Unassigned
+      Associated array: Array None
+
+ENCLOSURES------------------------------
+   Controller Enclosure Overall Component Information
+      Maximum data rate: 2 Gbps
+      Fan canister: Optimal
+      Fan canister: Optimal
+      Battery status: Failed
+         Age: 5379 day(s)
+         Battery end-of-life reached
+      Power supply canister
+         Status: Optimal
+      Power supply canister
+         Status: Optimal
+      Temperature: Optimal
+      Host mini-hub canister
+         Status: Optimal
+         Maximum data rate: 2 Gbps
+         Current data rate: 2 Gbps
+         Location: Controller B - Port 1
+         Serial number: SN 1T21297502  
+         Part number: PN 19K1270     
+         Vendor: VN IBM     
+         Date of manufacture: April 1, 2002
+         SFP
+            Status: Optimal
+            Location: In connection
+            Speed: 2 Gbps 1 Gbps 
+            Link length: Short
+            Connector: LC
+            Transmitter type: Shortwave Laser w/o OFC
+            Transmission media: TM Multi-mode 50m(M5) TM Multi-mode 62.5m(M6) 
+            IEEE company ID: 00 03 19 
+            Part number: V23818-M305-B57 
+            Revision: 2   
+            Serial number: 25668073        
+            Vendor name: Infineon AG     
+            Manufacture date: December 18, 2003
+      Host mini-hub canister
+         Status: Failed
+         Maximum data rate: 2 Gbps
+         Current data rate: 2 Gbps
+         Location: Controller B - Port 2
+         Serial number: Not available
+         Part number: Not available
+         Vendor: Not available
+         Date of manufacture: Not available
+      Host mini-hub canister
+         Status: Failed
+         Maximum data rate: 2 Gbps
+         Current data rate: 2 Gbps
+         Location: Controller A - Port 1
+         Serial number: Not available
+         Part number: Not available
+         Vendor: Not available
+         Date of manufacture: Not available
+         SFP
+            Status: Optimal
+            Location: Out connection
+            Speed: 2 Gbps 1 Gbps 
+            Link length: Short
+            Connector: LC
+            Transmitter type: Shortwave Laser w/o OFC
+            Transmission media: TM Multi-mode 50m(M5) TM Multi-mode 62.5m(M6) 
+            IEEE company ID: 00 03 19 
+            Part number: V23818-M305-B57 
+            Revision: 2   
+            Serial number: 25753304        
+            Vendor name: Infineon AG     
+            Manufacture date: January 12, 2004
+      Host mini-hub canister
+         Status: Optimal
+         Maximum data rate: 2 Gbps
+         Current data rate: 2 Gbps
+         Location: Controller A - Port 2
+         Serial number: Not available
+         Part number: Not available
+         Vendor: Not available
+         Date of manufacture: Not available
+         SFP
+            Status: Optimal
+            Location: Out connection
+            Speed: 2 Gbps 1 Gbps 
+            Link length: Short
+            Connector: LC
+            Transmitter type: Shortwave Laser w/o OFC
+            Transmission media: TM Multi-mode 50m(M5) TM Multi-mode 62.5m(M6) 
+            IEEE company ID: 00 03 19 
+            Part number: V23818-M305-B57 
+            Revision: 2   
+            Serial number: 25397405        
+            Vendor name: Infineon AG     
+            Manufacture date: October 22, 2003
+      Drive mini-hub canister
+         Status: Optimal
+         Maximum data rate: 2 Gbps
+         Current data rate: 2 Gbps
+         Location: Channel 1
+         Serial number: SN 1T21502729  
+         Part number: PN 19K1270     
+         Vendor: VN IBM     
+         Date of manufacture: April 1, 2002
+         SFP
+            Status: Optimal
+            Location: In connection
+            Speed: 2 Gbps 1 Gbps 
+            Link length: Short
+            Connector: LC
+            Transmitter type: Shortwave Laser w/o OFC
+            Transmission media: TM Multi-mode 50m(M5) TM Multi-mode 62.5m(M6) 
+            IEEE company ID: 00 03 19 
+            Part number: V23818-M305-B57 
+            Revision: 2   
+            Serial number: 25397105        
+            Vendor name: Infineon AG     
+            Manufacture date: October 22, 2003
+      Drive mini-hub canister
+         Status: Optimal
+         Maximum data rate: 2 Gbps
+         Current data rate: 2 Gbps
+         Location: Channel 2
+         Serial number: Not available
+         Part number: Not available
+         Vendor: Not available
+         Date of manufacture: Not available
+         SFP
+            Status: Optimal
+            Location: Out connection
+            Speed: 2 Gbps 1 Gbps 
+            Link length: Short
+            Connector: LC
+            Transmitter type: Shortwave Laser w/o OFC
+            Transmission media: TM Multi-mode 50m(M5) TM Multi-mode 62.5m(M6) 
+            IEEE company ID: 00 03 19 
+            Part number: V23818-M305-B57 
+            Revision: 2   
+            Serial number: 25397164        
+            Vendor name: Infineon AG     
+            Manufacture date: October 22, 2003
+      Drive mini-hub canister
+         Status: Optimal
+         Maximum data rate: 2 Gbps
+         Current data rate: 2 Gbps
+         Location: Channel 3
+         Serial number: SN 1T22017288  
+         Part number: PN 19K1270     
+         Vendor: VN IBM     
+         Date of manufacture: June 1, 2002
+         SFP
+            Status: Optimal
+            Location: In connection
+            Speed: 2 Gbps 1 Gbps 
+            Link length: Short
+            Connector: LC
+            Transmitter type: Shortwave Laser w/o OFC
+            Transmission media: TM Multi-mode 50m(M5) TM Multi-mode 62.5m(M6) 
+            IEEE company ID: 00 03 19 
+            Part number: V23818-M305-B57 
+            Revision: 2   
+            Serial number: 25732334        
+            Vendor name: Infineon AG     
+            Manufacture date: January 9, 2004
+      Drive mini-hub canister
+         Status: Optimal
+         Maximum data rate: 2 Gbps
+         Current data rate: 2 Gbps
+         Location: Channel 4
+         Serial number: Not available
+         Part number: Not available
+         Vendor: Not available
+         Date of manufacture: Not available
+         SFP
+            Status: Optimal
+            Location: Out connection
+            Speed: 2 Gbps 1 Gbps 
+            Link length: Short
+            Connector: LC
+            Transmitter type: Shortwave Laser w/o OFC
+            Transmission media: TM Multi-mode 50m(M5) TM Multi-mode 62.5m(M6) 
+            IEEE company ID: 00 03 19 
+            Part number: V23818-M305-B57 
+            Revision: 2   
+            Serial number: 25732364        
+            Vendor name: Infineon AG     
+            Manufacture date: January 12, 2004
+
+   Drive Enclosure 1 Overall Component Information
+      Maximum data rate: 2 Gbps
+      Part number: PN 19K1288     
+      Serial number: SN 23A0595     
+      Vendor: VN IBM     
+      Date of manufacture: July 1, 2002
+      Enclosure path redundancy: OK
+      Fan canister: Optimal
+      Fan canister: Optimal
+      Power supply canister
+         Status: Failed
+         Part number: PN 19K1289     
+         Serial number: SN A6843J00540C
+         Vendor: VN IBM     
+         Date of manufacture: April 1, 2002
+      Power supply canister
+         Status: Optimal
+         Part number: PN 19K1289     
+         Serial number: SN A6843J00670C
+         Vendor: VN IBM     
+         Date of manufacture: April 1, 2002
+      Temperature: Optimal
+      Temperature: Optimal
+      ESM card
+         Status: Optimal
+         Firmware version: 9319
+         Maximum data rate: 2 Gbps
+         Current data rate: 2 Gbps
+         Location: A (left canister)
+         Card communication: OK
+         Product ID: EXP700          
+         Part number: PN 19K1287     
+         Serial number: SN 1T22529806  
+         Manufacturer: IBM     
+         Date of manufacture: July 1, 2002
+         SFP
+            Status: Optimal
+            Location: In connection
+            Speed: 2 Gbps 1 Gbps 
+            Link length: Intermediate
+            Connector: LC
+            Transmitter type: Shortwave Laser w/o OFC
+            Transmission media: TM Multi-mode 50m(M5) TM Multi-mode 62.5m(M6) 
+            IEEE company ID: 08 00 5a 
+            Part number: IBM42P21SNY     
+            Revision: AA10
+            Serial number: 53P1476008G0Q   
+            Vendor name: IBM             
+            Manufacture date: June 3, 2002
+      ESM card
+         Status: Optimal
+         Firmware version: 9319
+         Maximum data rate: 2 Gbps
+         Current data rate: 2 Gbps
+         Location: B (right canister)
+         Card communication: OK
+         Product ID: EXP700          
+         Part number: PN 19K1287     
+         Serial number: SN 1T22529658  
+         Manufacturer: IBM     
+         Date of manufacture: July 1, 2002
+         SFP
+            Status: Failed
+            Location: In connection
+            Speed: 4 Gbps 2 Gbps 1 Gbps 
+            Link length: Intermediate
+            Connector: LC
+            Transmitter type: Shortwave Laser w/o OFC
+            Transmission media: TM Multi-mode 50m(M5) TM Multi-mode 62.5m(M6) 
+            IEEE company ID: 00 01 9c 
+            Part number: JSHR42S305803   
+            Revision: 0000
+            Serial number: F6089675073E    
+            Vendor name: JDS UNIPHASE    
+            Manufacture date: March 5, 2006
+         SFP
+            Status: Optimal
+            Location: Out connection
+            Speed: 2 Gbps 1 Gbps 
+            Link length: Intermediate
+            Connector: LC
+            Transmitter type: Shortwave Laser w/o OFC
+            Transmission media: TM Multi-mode 50m(M5) TM Multi-mode 62.5m(M6) 
+            IEEE company ID: 08 00 5a 
+            Part number: IBM42P21SNY     
+            Revision: AA10
+            Serial number: 53P1476008FB3   
+            Vendor name: IBM             
+            Manufacture date: June 3, 2002
+
+   Drive Enclosure 3 Overall Component Information
+      Maximum data rate: 2 Gbps
+      Part number: PN 19K1288     
+      Serial number: SN 23A0597     
+      Vendor: VN IBM     
+      Date of manufacture: July 1, 2002
+      Enclosure path redundancy: Lost
+      Fan canister: Optimal
+      Fan canister: Optimal
+      Power supply canister
+         Status: Failed
+         Part number: PN 19K1289     
+         Serial number: SN A6843J00560C
+         Vendor: VN IBM     
+         Date of manufacture: April 1, 2002
+      Power supply canister
+         Status: Failed
+         Part number: PN 19K1289     
+         Serial number: SN A6843J00660C
+         Vendor: VN IBM     
+         Date of manufacture: April 1, 2002
+      Temperature: Maximum Temperature Exceeded
+      Temperature: Optimal
+      ESM card
+         Status: Failed
+         Firmware version: 9319
+         Maximum data rate: 2 Gbps
+         Current data rate: 2 Gbps
+         Location: A (left canister)
+         Card communication: OK
+         Product ID: EXP700          
+         Part number: PN 19K1287     
+         Serial number: SN 1T22530133  
+         Manufacturer: IBM     
+         Date of manufacture: July 1, 2002
+         SFP
+            Status: Optimal
+            Location: In connection
+            Speed: 2 Gbps 1 Gbps 
+            Link length: Intermediate
+            Connector: LC
+            Transmitter type: Shortwave Laser w/o OFC
+            Transmission media: TM Multi-mode 50m(M5) TM Multi-mode 62.5m(M6) 
+            IEEE company ID: 08 00 5a 
+            Part number: IBM42P21SNY     
+            Revision: AA10
+            Serial number: 53P1476008FN7   
+            Vendor name: IBM             
+            Manufacture date: June 3, 2002
+         SFP
+            Status: Optimal
+            Location: Out connection
+            Speed: 4 Gbps 2 Gbps 1 Gbps 
+            Link length: Intermediate
+            Connector: LC
+            Transmitter type: Shortwave Laser w/o OFC
+            Transmission media: TM Multi-mode 50m(M5) TM Multi-mode 62.5m(M6) 
+            IEEE company ID: 00 01 9c 
+            Part number: JSHR42S305803   
+            Revision: 0000
+            Serial number: F60896750679    
+            Vendor name: JDS UNIPHASE    
+            Manufacture date: February 27, 2006
+      ESM card
+         Status: Failed
+         Firmware version: 
+         Maximum data rate: 2 Gbps
+         Current data rate: 2 Gbps
+         Location: B (right canister)
+         Card communication: OK
+         Product ID: Not available
+         Part number: PN 19K1287     
+         Serial number: SN 1T22529845  
+         Manufacturer: Not available
+         Date of manufacture: October 1, 2000
+         GBIC
+            Status: Optimal
+            Location: Out connection
+            Type: Not present
+
+MAPPINGS  STORAGE PARTITIONING - ENABLED)------------------------------
+   Logical Drive-To-LUN Mappings (Partitions Allowed/Used: 64/0)
+      Access Logical Drive, LUN 31, Default Group
+
+   Topology
+      [Default Group]
+
+   NVSRAM Host Type Internal Definitions
+      Index 0 (DEFAULT)
+         Name: Windows Non-Clustered (SP5 or higher)
+         ADT status: Disabled
+      Index 1 
+         Name: Windows Clustered (SP5 or higher)
+         ADT status: Disabled
+      Index 2 
+         Name: Windows 2000 Non-Clustered
+         ADT status: Disabled
+      Index 3 
+         Name: Windows 2000 Clustered
+         ADT status: Disabled
+      Index 4 
+         Name: NetWare-IBMSAN
+         ADT status: Enabled
+      Index 5 
+         Name: Linux
+         ADT status: Enabled
+      Index 6 
+         Name: AIX
+         ADT status: Disabled
+      Index 7 
+         Name: HP-UX
+         ADT status: Enabled
+      Index 8 
+         Name: Solaris (Sparc)
+         ADT status: Disabled
+      Index 9 
+         Name: PTX
+         ADT status: Enabled
+      Index 10 
+         Name: Irix
+         ADT status: Disabled
+      Index 11 
+         Name: Netware Failover
+         ADT status: Enabled

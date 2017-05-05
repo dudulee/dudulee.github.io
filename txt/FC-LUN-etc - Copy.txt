@@ -1,0 +1,51 @@
+zoning configure on switches  to control which hosts are allowed to communicate with each other.
+    > Servers allowed to comm. w/ Storage BUT NOT w/ each other.
+
+example :
+    zone name SERVER1
+        member fcalias SERVER1
+        member fcalias STORAGE-CTRL1
+    !
+    zone name SERVER2
+        member fcalias SERVER2
+        member fcalias STORAGE-CTRL1
+    !
+    zoneset name MY-ZONESET
+        member SERVER1
+        member SERVER2
+
+== LUN MASKING ==
+right LUN presented to right host; if wrong host can connect to LUN -> risk of corruption
+=> Zoning only prevents unauthorized hosts from reaching storage system, but not prevent access to wrong LUN if it has access to storage sys.
+
+LUN Masking is config'd on storage sys to lock a LUN down to the authorized host(s)
+
+LUN: Server-1-Boot; Initiator: <ip-server1>
+LUN: Server-2-Boot; Initiator: <ip-server2>
+
+===> ZONING ON SWITCHES, LUN MASKING ON STORAGE SYSTEM.
+
+
+what is a wwpn ?
+
+== Switch Domain IDs ==
+Each switch in the FC network will be assigned a unique Domain ID.
+One switch in the net is automatically assigned as Principle switch : distributes Domain IDs to other switches.
+Each switch learns about other switches and how to route them based on Domain ID.
+
+
+When server's or storage system's HBA powers on, it sends a FLOGI (Fabric Login) request to locally attached FC switch.
+Switch then assigns it a 24bit FCID (Fibre Channel ID) addr.
+        FCID = SwitchDomainID + SwitchPort
+(?) FCID ~= IP addr. used by FC switch to route traffic.
+Switches maintain FCID to WWPN address mapping and which port.
+
+
+#show flogi database    // show that maintained table.
+
+the FLOGI database info is shared with each switch using the FCNS (Fibre Channel Name Service)
+
+After the FLOGI process is complete, initiator will send the PLOGI (Port Login).
+Based on the zoning config, the host will learn it available target WWPNs
+Finally init host will send a PLRI (Process Login) to its target storage
+Access granted basing on Lun Masking config.

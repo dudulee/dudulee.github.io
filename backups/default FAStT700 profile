@@ -1,0 +1,61 @@
+PROFILE FOR STORAGE SUBSYSTEM: FAStT700
+
+SUMMARY------------------------------
+   Number of controllers: 2
+   Number of arrays: 0
+   Number of standard logical drives: 0
+   Number of drives: 25
+   Access logical drive: LUN 31 (see Mappings section for details)
+   Default host type: Windows Non-Clustered (SP5 or higher) (Host type index 0)
+   Firmware version: 05.21.01.02
+   NVSRAM version: CNV1742R821NT008
+   Start cache flushing at (in percentage): 80
+   Stop cache flushing at (in percentage): 80
+   Cache block size (in KB): 4
+   Media scan duration (in days): Disabled
+   Feature enable identifier: 3038303434003038313536005195C358
+
+MAPPINGS  STORAGE PARTITIONING - ENABLED)------------------------------
+   Logical Drive-To-LUN Mappings (Partitions Allowed/Used: 64/0)
+      Access Logical Drive, LUN 31, Default Group
+
+   Topology
+      [Default Group]
+
+   NVSRAM Host Type Internal Definitions
+      Index 0 (DEFAULT)
+         Name: Windows Non-Clustered (SP5 or higher)
+         ADT status: Disabled
+      Index 1 
+         Name: Windows Clustered (SP5 or higher)
+         ADT status: Disabled
+      Index 2 
+         Name: Windows 2000 Non-Clustered
+         ADT status: Disabled
+      Index 3 
+         Name: Windows 2000 Clustered
+         ADT status: Disabled
+      Index 4 
+         Name: NetWare-IBMSAN
+         ADT status: Enabled
+      Index 5 
+         Name: Linux
+         ADT status: Enabled
+      Index 6 
+         Name: AIX
+         ADT status: Disabled
+      Index 7 
+         Name: HP-UX
+         ADT status: Enabled
+      Index 8 
+         Name: Solaris (Sparc)
+         ADT status: Disabled
+      Index 9 
+         Name: PTX
+         ADT status: Enabled
+      Index 10 
+         Name: Irix
+         ADT status: Disabled
+      Index 11 
+         Name: Netware Failover
+         ADT status: Enabled
