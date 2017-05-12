@@ -78,7 +78,7 @@ code {
     padding: 0 0.3em;
     white-space: pre-wrap;
     display: inline;
-    background-color: --bg-master;
+
 }
 pre code {
     white-space: pre;

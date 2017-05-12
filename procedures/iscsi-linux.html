@@ -18,12 +18,13 @@
             <h2>2. Configuration de la carte Réseau du serveur Debian</h2>
             <br>
             <p>Avant de connecter le serveur sur le switch, nous avons définit une adresse ip statique pour le serveur en ajoutant dans le fichier /etc/network/interfaces ces lignes:</p>
-            <code>allow-hotplug eth1<br>
-                iface eth1 inet static<br>
-                address 192.168.1.252<br>
-                netmask 255.255.255.0
-                network 192.168.1.0
-            </code>
+            <p><code>
+allow-hotplug eth1
+iface eth1 inet static
+address 192.168.1.252
+netmask 255.255.255.0
+network 192.168.1.0
+            </code></p>
             <p><a href="../img/Iscsi-Linux1.PNG"><img src="../img/Iscsi-Linux1.PNG" alt="context-menu"/></a></p>
             <br>
             <p>Then we have to Open /etc/default/iscsitarget</p>
@@ -53,7 +54,7 @@
               and comment out everything in that file. At the end we add the following stanza: (insert ours)
             </p>
             <p>
-                Now we tell the target that we want to allow connections to the device iqn.2001-04.com.example:storage.lun1 
+                Now we tell the target that we want to allow connections to the device iqn.2001-04.com.example:storage.lun1
                 from the IP address of our server. Thus the logical stockage device will comunicate will our server
             </p>
             <br>
