@@ -70,3 +70,7 @@ b {
     bottom:0;
     right:0;
 }
+
+code {
+    margin: 0 0.85em;
+}
