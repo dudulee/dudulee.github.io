@@ -13,6 +13,17 @@
         <div class="entry">
             <h2>1. Les Raids</h2>
             <br>
+            <p>Nous avons fait les raids directement via l'utilitaire du BIOS, un raid 5 composé de 3 disques qui sont destiné au SAN et un raid 1 pour installer l'OS. </p>
+            <br>
+            <h2>2. Configuration de la carte Réseau du serveur Debian</h2>
+            <br>
+            <p>Avant de connecter le serveur sur le switch, nous avons définit une adresse ip statique pour le serveur en ajoutant dans le fichier /etc/network/interfaces ces lignes:</p>
+            <code>allow-hotplug eth1
+                iface eth1 inet static
+                address 192.168.1.252
+                netmask 255.255.255.0
+                network 192.168.1.0
+            </code>
             <p><a href="../img/Iscsi-Linux1.PNG"><img src="../img/Iscsi-Linux1.PNG" alt="context-menu"/></a></p>
             <br>
             <p>Then we have to Open /etc/default/iscsitarget</p>
