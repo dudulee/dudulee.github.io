@@ -33,20 +33,21 @@ apt-get install iscsitarget iscsitarget-dkms lvm2
             <br>
             <p>On édite ensuite le fichier /etc/default/iscsitarget:</p>
             <p><code>
-                nano /etc/default/iscsitarget
+nano /etc/default/iscsitarget
                 </code></p>
             <p>et on met ISCSITARGERT_ENABLE à true:</p>
             <p><code>
-                ISCSITARGET_ENABLE=true
+ISCSITARGET_ENABLE=true
                 </code></p>
             <p>On passe maintenant à la création d'un volume avec une capacité de 20giga nommé LUN750 apppartenant au groupe GR-LUN</p>
             <p><code>
-                lvcreate -L20G -n LUN750 GR-LUN
+lvcreate -L20G -n LUN750 GR-LUN
                 </code></p>
             <p>On affiche ensuite le volume créer pour vérifier:</p>
             <p><code>
-                lvs
+lvs
                 </code></p>
+            <p>
             <p><a href="../img/Iscsi-Linux1.PNG"><img src="../img/Iscsi-Linux1.PNG" alt="context-menu"/></a></p>
             <br>
             <p>Then we have to Open /etc/default/iscsitarget</p>
