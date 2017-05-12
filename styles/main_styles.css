@@ -3,6 +3,8 @@
     --fg-master: rgb(34,34,34);
 
     --fg-link: rgb(0, 102, 33);
+
+    --bg-code: rgb(160,160,160);
 }
 
 body {
@@ -73,4 +75,13 @@ b {
 
 code {
     margin: 0 0.85em;
+    padding: 0 0.3em;
+    white-space: pre-wrap;
+    display: inline;
+    background-color: --bg-master;
+}
+pre code {
+    white-space: pre;
+    overflow: auto;
+    display: block !important;
 }
