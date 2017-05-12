@@ -25,6 +25,28 @@ address 192.168.1.252
 netmask 255.255.255.0
 network 192.168.1.0
             </code></p>
+            <h2>3. Installation et configuration d'iscsi target sur Debian</h2>
+            <p>On commence par installer les dépendances nécessaires pour l'installation d'iscsi:</p>
+            <p><code>
+apt-get install iscsitarget iscsitarget-dkms lvm2
+                </code></p>
+            <br>
+            <p>On édite ensuite le fichier /etc/default/iscsitarget:</p>
+            <p><code>
+                nano /etc/default/iscsitarget
+                </code></p>
+            <p>et on met ISCSITARGERT_ENABLE à true:</p>
+            <p><code>
+                ISCSITARGET_ENABLE=true
+                </code></p>
+            <p>On passe maintenant à la création d'un volume avec une capacité de 20giga nommé LUN750 apppartenant au groupe GR-LUN</p>
+            <p><code>
+                lvcreate -L20G -n LUN750 GR-LUN
+                </code></p>
+            <p>On affiche ensuite le volume créer pour vérifier:</p>
+            <p><code>
+                lvs
+                </code></p>
             <p><a href="../img/Iscsi-Linux1.PNG"><img src="../img/Iscsi-Linux1.PNG" alt="context-menu"/></a></p>
             <br>
             <p>Then we have to Open /etc/default/iscsitarget</p>
